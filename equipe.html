@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formations — Le Labo Durable</title>
-    <meta name="description" content="Formations certifiées Qualiopi en chimie analytique durable, instrumentation GC/LC/MS, chémo-informatique. Le Labo Durable / Analytiss.">
+    <title>Notre équipe — Le Labo Durable</title>
+    <meta name="description" content="Découvrez l'équipe Le Labo Durable : docteur·es et ingénieur·es en chimie analytique, ACV, chémo-informatique et instrumentation.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -44,91 +44,75 @@
         /* PAGE HEADER */
         .page-header{padding:10rem 2rem 5rem;background:var(--deep);position:relative;overflow:hidden}
         .page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-        .page-header::after{content:'';position:absolute;top:10%;right:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(42,138,154,0.12) 0%,transparent 70%);pointer-events:none}
-        .page-header-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+        .page-header::after{content:'';position:absolute;top:20%;right:-5%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(42,138,154,0.15) 0%,transparent 70%);pointer-events:none}
+        .page-header-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:end;gap:3rem}
         .page-header .section-label{color:var(--accent-light)}
         .page-header .section-label::before{background:var(--accent)}
-        .page-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:800;color:var(--white);line-height:1.15;margin-bottom:1rem}
-        .page-header p{font-size:1.05rem;color:rgba(255,255,255,0.65);max-width:620px;line-height:1.7}
+        .page-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2.4rem,5vw,3.5rem);font-weight:800;color:var(--white);line-height:1.1;margin-bottom:1rem}
+        .page-header p{font-size:1.1rem;color:rgba(255,255,255,0.65);max-width:500px;line-height:1.7}
+        .header-stat{text-align:right;flex-shrink:0}
+        .header-stat-number{font-family:'Outfit',sans-serif;font-size:5rem;font-weight:800;color:var(--accent-light);line-height:1;opacity:0.25}
+        .header-stat-label{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-top:0.25rem}
 
         /* SECTIONS */
         .section{padding:6rem 2rem}
         .section-inner{max-width:1200px;margin:0 auto}
-        .section-header{max-width:700px;margin-bottom:3rem}
+        .section-header{max-width:640px;margin-bottom:3.5rem}
         .section-header.center{margin-left:auto;margin-right:auto;text-align:center}
         .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);margin-bottom:1rem}
         .section-label::before{content:'';width:20px;height:2px;background:var(--primary);border-radius:1px}
         h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--deep);line-height:1.25;margin-bottom:1rem}
         .section-desc{font-size:1.05rem;color:var(--text-mid);line-height:1.7}
 
+        /* ─── TEAM GRID ─── */
+        .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+
+        .team-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition)}
+        .team-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+
+        .team-photo{width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,var(--tint) 0%,var(--off-white) 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+        .team-photo img{width:100%;height:100%;object-fit:cover}
+
+        /* Pole badge on photo */
+        .pole-badge{position:absolute;top:0.75rem;left:0.75rem;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:0.25rem 0.7rem;font-size:0.7rem;font-weight:600;color:var(--primary);letter-spacing:0.02em;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:0.3rem}
+
+        .team-body{padding:1.5rem}
+        .team-name{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;color:var(--deep);margin-bottom:0.15rem}
+        .team-role{font-size:0.78rem;font-weight:600;color:var(--primary);margin-bottom:0.85rem;line-height:1.4}
+
+        /* Skill tags */
+        .team-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.85rem}
+        .team-tag{background:var(--tint);color:var(--primary);font-size:0.68rem;font-weight:600;padding:0.2rem 0.55rem;border-radius:100px}
+
+        /* Collapsible bio */
+        .team-bio{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+        .team-card.open .team-bio{max-height:300px}
+        .team-bio-inner{font-size:0.85rem;color:var(--text-mid);line-height:1.65;padding-bottom:0.75rem}
+
+        .team-bio-toggle{display:inline-flex;align-items:center;gap:0.3rem;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:600;color:var(--primary);padding:0;transition:color 0.2s ease}
+        .team-bio-toggle:hover{color:var(--deep)}
+        .team-bio-toggle svg{transition:transform 0.3s ease;width:13px;height:13px}
+        .team-card.open .team-bio-toggle svg{transform:rotate(180deg)}
+
+        /* Links */
+        .team-links{display:flex;gap:0.4rem;margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid var(--border)}
+        .team-link{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.78rem;font-weight:600;color:var(--text-mid);text-decoration:none;padding:0.3rem 0.65rem;border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition)}
+        .team-link:hover{color:var(--primary);border-color:var(--primary-light);background:var(--tint)}
+
+        /* ─── LABO ─── */
+        .labo{background:var(--deep);color:var(--white)}
+        .labo .section-label{color:var(--accent-light)}
+        .labo .section-label::before{background:var(--accent)}
+        .labo h2{color:var(--white)}
+        .labo-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+        .labo-photo{width:100%;aspect-ratio:16/10;background:rgba(255,255,255,0.05);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;border:1px solid rgba(255,255,255,0.08)}
+        .labo-text p{font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:1rem}
         .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.95rem;font-weight:600;text-decoration:none;transition:var(--transition);border:none;cursor:pointer}
-        .btn-accent{background:var(--primary);color:var(--white)}
-        .btn-accent:hover{background:var(--deep);transform:translateY(-2px);box-shadow:var(--shadow-md)}
 
-        /* ─── WHY US — 4 cards ─── */
-        .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
-        .why-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;transition:var(--transition)}
-        .why-card:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
-        .why-icon{width:44px;height:44px;background:var(--tint);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:0.85rem;font-size:1.2rem}
-        .why-card h3{font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;color:var(--deep);margin-bottom:0.35rem}
-        .why-card p{font-size:0.82rem;color:var(--text-mid);line-height:1.55}
-
-        /* ─── CATEGORY FILTERS ─── */
-        .filters{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
-        .filter-btn{padding:0.45rem 1rem;border-radius:100px;border:1.5px solid var(--border);background:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text-mid);cursor:pointer;transition:var(--transition)}
-        .filter-btn:hover{border-color:var(--primary-light);color:var(--primary)}
-        .filter-btn.active{background:var(--primary);color:var(--white);border-color:var(--primary)}
-
-        /* ─── FORMATION CARDS ─── */
-        .formations-list{display:flex;flex-direction:column;gap:1rem}
-
-        .formation-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition)}
-        .formation-card:hover{box-shadow:var(--shadow-sm)}
-
-        .formation-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.75rem;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;transition:background 0.2s ease;gap:1rem}
-        .formation-trigger:hover{background:var(--off-white)}
-
-        .formation-trigger-left{display:flex;align-items:center;gap:1rem;flex:1;min-width:0}
-        .formation-cat{font-size:1.4rem;flex-shrink:0}
-
-        .formation-title-block{flex:1;min-width:0}
-        .formation-title{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;color:var(--deep);margin-bottom:0.15rem}
-        .formation-subtitle{font-size:0.82rem;color:var(--text-light)}
-
-        .formation-meta{display:flex;gap:1.25rem;align-items:center;flex-shrink:0}
-        .formation-meta-item{font-size:0.78rem;color:var(--text-light);font-weight:500;display:flex;align-items:center;gap:0.3rem;white-space:nowrap}
-
-        .formation-satisfaction{background:var(--tint-warm);color:var(--primary);font-size:0.72rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:100px;white-space:nowrap}
-
-        .chevron{width:18px;height:18px;transition:transform 0.3s ease;flex-shrink:0;color:var(--text-light)}
-        .formation-card.open .chevron{transform:rotate(180deg)}
-
-        .formation-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-        .formation-content-inner{padding:0 1.75rem 1.75rem;border-top:1px solid var(--border);padding-top:1.5rem}
-
-        .formation-desc{font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1.25rem}
-
-        .formation-objectives h4{font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;color:var(--deep);margin-bottom:0.6rem}
-        .formation-objectives ul{list-style:none;display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem}
-        .formation-objectives li{font-size:0.85rem;color:var(--text-mid);padding-left:1.1rem;position:relative;line-height:1.55}
-        .formation-objectives li::before{content:'✓';position:absolute;left:0;color:var(--primary);font-size:0.75rem;font-weight:700}
-
-        .formation-details{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.25rem}
-        .formation-detail{display:flex;flex-direction:column;gap:0.1rem}
-        .formation-detail-label{font-size:0.72rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.04em}
-        .formation-detail-value{font-size:0.9rem;font-weight:600;color:var(--text)}
-
-        .formation-cta{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:600;color:var(--primary);text-decoration:none;padding:0.5rem 1rem;border-radius:var(--radius);border:1.5px solid var(--primary);transition:var(--transition)}
-        .formation-cta:hover{background:var(--primary);color:var(--white)}
-
-        /* ─── LEGEND ─── */
-        .legend{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
-        .legend-item{display:flex;align-items:center;gap:0.35rem;font-size:0.8rem;color:var(--text-mid);font-weight:500}
-
-        /* ─── CTA BAND ─── */
-        .cta-band{background:var(--deep);padding:4rem 2rem;text-align:center}
-        .cta-band h2{color:var(--white);margin-bottom:1rem}
-        .cta-band p{color:rgba(255,255,255,0.65);font-size:1.05rem;max-width:520px;margin:0 auto 2rem}
+        /* ─── JOIN ─── */
+        .join{background:var(--tint-warm)}
+        .join-box{max-width:640px;margin:0 auto;text-align:center}
+        .join-box p{color:var(--text-mid);font-size:1.05rem;margin-bottom:2rem}
 
         /* FOOTER */
         .footer{background:var(--deep);color:rgba(255,255,255,0.65);padding:4rem 2rem 2rem}
@@ -155,24 +139,23 @@
             .nav-links a{font-size:1rem;padding:0.85rem 1rem;border-radius:var(--radius);display:block}
             .nav-links .nav-cta{text-align:center;margin-top:0.5rem}
             .nav-toggle{display:block}
-            .why-grid{grid-template-columns:repeat(2,1fr)}
-            .formation-meta{display:none}
+            .page-header-inner{flex-direction:column;align-items:start}
+            .header-stat{text-align:left}
+            .team-grid{grid-template-columns:repeat(2,1fr)}
+            .labo-grid{grid-template-columns:1fr}
             .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
         }
         @media(max-width:600px){
             .section{padding:4rem 1.25rem}
             .page-header{padding:8rem 1.25rem 3rem}
-            .why-grid{grid-template-columns:1fr}
-            .formation-trigger{padding:1rem 1.25rem}
-            .formation-content-inner{padding:0 1.25rem 1.5rem;padding-top:1.25rem}
-            .formation-details{gap:1rem}
+            .team-grid{grid-template-columns:1fr}
             .footer-grid{grid-template-columns:1fr}
             .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
         }
 
         .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
         .fade-up.visible{opacity:1;transform:translateY(0)}
-        .stagger-1{transition-delay:0.05s}.stagger-2{transition-delay:0.1s}
+        .stagger-1{transition-delay:0.05s}.stagger-2{transition-delay:0.1s}.stagger-3{transition-delay:0.15s}
     </style>
 </head>
 <body>
@@ -184,8 +167,8 @@
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Nos services</a></li>
                 <li><a href="acv.html">L'ACV</a></li>
-                <li><a href="equipe.html">Notre équipe</a></li>
-                <li><a href="formations.html" class="active">Formations</a></li>
+                <li><a href="equipe.html" class="active">Notre équipe</a></li>
+                <li><a href="formations.html">Formations</a></li>
                 <li><a href="consolab.html">Consolab</a></li>
                 <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
             </ul>
@@ -195,372 +178,197 @@
 
     <header class="page-header">
         <div class="page-header-inner">
-            <div class="section-label">Formations</div>
-            <h1>Former pour susciter l'implication</h1>
-            <p>Des sessions pratiques et théoriques à la pointe de la connaissance en chimie analytique durable, instrumentation et chémo-informatique. Adaptées à tous les profils, du néophyte à l'expert.</p>
+            <div>
+                <div class="section-label">Notre équipe</div>
+                <h1>Les visages<br>derrière la mission</h1>
+                <p>Docteur·es et ingénieur·es passionné·es, nous combinons chimie analytique, ACV et chémo-informatique pour transformer les laboratoires.</p>
+            </div>
+            <div class="header-stat">
+                <div class="header-stat-number">5</div>
+                <div class="header-stat-label">expert·es pluridisciplinaires</div>
+            </div>
         </div>
     </header>
 
-    <!-- POURQUOI NOUS -->
-    <section class="section" style="background:var(--off-white)">
-        <div class="section-inner">
-            <div class="section-header center fade-up">
-                <div class="section-label">Pourquoi nous</div>
-                <h2>Pourquoi faire appel à nous ?</h2>
-            </div>
-            <div class="why-grid fade-up">
-                <div class="why-card">
-                    <div class="why-icon">🎓</div>
-                    <h3>Expertise unique</h3>
-                    <p>Formateur·ices titulaires de doctorats avec plusieurs années d'expérience terrain.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">✓</div>
-                    <h3>Certifié Qualiopi</h3>
-                    <p>Certification qualité via Analytiss pour une meilleure accessibilité aux financements.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">📡</div>
-                    <h3>Contenus actualisés</h3>
-                    <p>Veille bibliographique continue pour vous proposer les dernières innovations.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-icon">🧪</div>
-                    <h3>Laboratoire R&D</h3>
-                    <p>Un labo dédié à Brioude pour tester et développer les solutions présentées en formation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CATALOGUE -->
     <section class="section">
         <div class="section-inner">
-            <div class="section-header fade-up">
-                <div class="section-label">Catalogue</div>
-                <h2>Notre offre de formations</h2>
-                <p class="section-desc">Toutes nos formations peuvent être adaptées aux personnes en situation de handicap. Formats : présentiel (Brioude ou dans vos locaux) ou distanciel.</p>
-            </div>
+            <div class="team-grid">
 
-            <div class="legend fade-up">
-                <div class="legend-item"><span>🌱</span> Durabilité</div>
-                <div class="legend-item"><span>⚙️</span> Instrumentation</div>
-                <div class="legend-item"><span>🖥️</span> Chémo-informatique</div>
-            </div>
-
-            <!-- Filters -->
-            <div class="filters fade-up">
-                <button class="filter-btn active" data-filter="all">Toutes</button>
-                <button class="filter-btn" data-filter="durabilite">🌱 Durabilité</button>
-                <button class="filter-btn" data-filter="instru">⚙️ Instrumentation</button>
-                <button class="filter-btn" data-filter="chemo">🖥️ Chémo-informatique</button>
-            </div>
-
-            <div class="formations-list fade-up">
-
-                <!-- 1 -->
-                <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Le laboratoire face aux défis environnementaux : introduction & mobilisation</div>
-                                <div class="formation-subtitle">Sensibilisation + définition d'objectifs + plan d'action</div>
-                            </div>
+                <!-- Christophe Pérès -->
+                <div class="team-card fade-up stagger-1">
+                    <div class="team-photo">
+                        <span class="pole-badge">🔬 Instrumentation</span>
+                        <img src="assets/team/christophe-peres.png" alt="Christophe Pérès">
+                    </div>
+                    <div class="team-body">
+                        <div class="team-name">Christophe Pérès</div>
+                        <div class="team-role">Fondateur — Pôle méthodes & instrumentation</div>
+                        <div class="team-tags">
+                            <span class="team-tag">GC/LC/MS</span>
+                            <span class="team-tag">Cosmétique</span>
+                            <span class="team-tag">Reconditionnement</span>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 2 jours</span>
-                            <span class="formation-satisfaction">96 %</span>
+                        <button class="team-bio-toggle">
+                            Voir le parcours
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        </button>
+                        <div class="team-bio"><div class="team-bio-inner">Docteur-ingénieur AgroParisTech, Christophe a débuté au Research Institute for Chromatography dans l'instrumentation analytique. En 2009, il prend la responsabilité de la Recherche Analytique Parfums chez Chanel. En 2021, il fonde Le Labo Durable.</div></div>
+                        <div class="team-links">
+                            <a href="https://www.linkedin.com/in/christophe-peres-385ba84/" target="_blank" rel="noopener" class="team-link">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="mailto:christophe.peres@lelabodurable.com" class="team-link">✉ Email</a>
                         </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Cette formation accompagne le personnel de laboratoire dans la prise de conscience des défis environnementaux actuels. Elle permet de mieux connaître les ordres de grandeur de consommations et d'impacts GES, tout en identifiant les leviers d'action spécifiques au laboratoire.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser les personnels en responsabilité à la nécessité de définir des objectifs environnementaux</li>
-                                <li>Accompagner dans la définition d'objectifs concrets</li>
-                                <li>S'approprier les ordres de grandeur au laboratoire</li>
-                                <li>Connaître les labels et référentiels normatifs</li>
-                                <li>Favoriser les stratégies adaptées au contexte de son entreprise</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 journées</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Délai d'accès</span><span class="formation-detail-value">~2 mois</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation introduction et mobilisation" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
+                    </div>
                 </div>
 
-                <!-- 2 -->
-                <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Le laboratoire face aux défis environnementaux : introduction à la chimie analytique durable</div>
-                                <div class="formation-subtitle">Ordres de grandeur, acteurs, outils et choix durables</div>
-                            </div>
+                <!-- Bastien Raccary -->
+                <div class="team-card fade-up stagger-2">
+                    <div class="team-photo">
+                        <span class="pole-badge">🌿 Durabilité</span>
+                        <img src="assets/team/bastien-raccary.png" alt="Bastien Raccary">
+                    </div>
+                    <div class="team-body">
+                        <div class="team-name">Bastien Raccary</div>
+                        <div class="team-role">Responsable pôle durabilité — ACV & stratégie low impact</div>
+                        <div class="team-tags">
+                            <span class="team-tag">ACV ISO 14040/44</span>
+                            <span class="team-tag">Bilan GES</span>
+                            <span class="team-tag">ISO 14001</span>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                            <span class="formation-satisfaction">96 %</span>
+                        <button class="team-bio-toggle">
+                            Voir le parcours
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        </button>
+                        <div class="team-bio"><div class="team-bio-inner">Ingénieur CPE Lyon, docteur de l'Université Bordeaux 1. En 2019, il co-fonde The Green Analytical Project (GAP) avec Christophe Pérès. Auditeur ISO 14001, il audite des structures, propose des plans d'action et accompagne les équipes dans leur transition environnementale.</div></div>
+                        <div class="team-links">
+                            <a href="https://www.linkedin.com/in/bastien-raccary/" target="_blank" rel="noopener" class="team-link">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="mailto:bastien.raccary@lelabodurable.com" class="team-link">✉ Email</a>
                         </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Prise de conscience des défis environnementaux et identification des leviers d'action au laboratoire. Approche pratique et contextuelle.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser le personnel à la nécessité de revisiter les pratiques</li>
-                                <li>S'approprier les ordres de grandeur au laboratoire</li>
-                                <li>Connaître les acteurs et outils de la chimie analytique durable</li>
-                                <li>Favoriser les choix durables adaptés à son contexte</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Délai d'accès</span><span class="formation-detail-value">~2 mois</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation chimie analytique durable" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
+                    </div>
                 </div>
 
-                <!-- 3 -->
-                <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Sciences et environnement : introduction aux ordres de grandeur</div>
-                                <div class="formation-subtitle">Ordres de grandeur, labels et référentiels normatifs</div>
-                            </div>
+                <!-- Clément Truan -->
+                <div class="team-card fade-up stagger-3">
+                    <div class="team-photo">
+                        <span class="pole-badge">💻 Chémo-info</span>
+                        <img src="assets/team/clement-truan.png" alt="Clément Truan">
+                    </div>
+                    <div class="team-body">
+                        <div class="team-name">Clément Truan</div>
+                        <div class="team-role">Responsable pôle chémo-informatique & IA</div>
+                        <div class="team-tags">
+                            <span class="team-tag">Algorithmie</span>
+                            <span class="team-tag">IA</span>
+                            <span class="team-tag">Traitement du signal</span>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
+                        <button class="team-bio-toggle">
+                            Voir le parcours
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        </button>
+                        <div class="team-bio"><div class="team-bio-inner">Docteur-Ingénieur Chimie ParisTech et de l'Université Clermont-Auvergne. Sa double compétence en chimie analytique et en programmation lui permet de fournir des solutions de pointe utilisant algorithmes génétiques et intelligence artificielle.</div></div>
+                        <div class="team-links">
+                            <a href="https://www.linkedin.com/in/cl%C3%A9ment-truan-54a70669/" target="_blank" rel="noopener" class="team-link">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="mailto:clement.truan@lelabodurable.com" class="team-link">✉ Email</a>
                         </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Prise de conscience des défis environnementaux et appropriation des ordres de grandeur de consommations et d'impacts GES au laboratoire.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser à la nécessité de définir des objectifs environnementaux</li>
-                                <li>Accompagner dans la définition d'objectifs</li>
-                                <li>S'approprier les ordres de grandeur</li>
-                                <li>Connaître les labels et référentiels normatifs</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation ordres de grandeur" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
+                    </div>
                 </div>
 
-                <!-- 4 -->
-                <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Savoir faire son bilan GES et mieux décrypter le quotidien</div>
-                                <div class="formation-subtitle">Bilan carbone personnel → transposition professionnelle</div>
-                            </div>
+                <!-- Xavier Rouessac -->
+                <div class="team-card fade-up stagger-1">
+                    <div class="team-photo">
+                        <span class="pole-badge">🔬 Support</span>
+                        <img src="assets/team/xavier-rouessac.png" alt="Xavier Rouessac">
+                    </div>
+                    <div class="team-body">
+                        <div class="team-name">Xavier Rouessac</div>
+                        <div class="team-role">Responsable support & formation — Expert LC/GC/MS</div>
+                        <div class="team-tags">
+                            <span class="team-tag">Chromatographie</span>
+                            <span class="team-tag">Spectrométrie de masse</span>
+                            <span class="team-tag">Maintenance</span>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 ½ journée</span>
+                        <button class="team-bio-toggle">
+                            Voir le parcours
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        </button>
+                        <div class="team-bio"><div class="team-bio-inner">Chez les Rouessac, l'Analyse Chimique est une histoire de famille. Fort de 35 ans d'expérience en chromatographie et spectrométrie de masse, Xavier assure le support à distance et sur site des solutions déployées par Le Labo Durable.</div></div>
+                        <div class="team-links">
+                            <a href="https://www.linkedin.com/in/xavier-rouessac-b255a399/" target="_blank" rel="noopener" class="team-link">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="mailto:xavier.rouessac@lelabodurable.com" class="team-link">✉ Email</a>
                         </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Introduction pratique à la réalisation et à l'interprétation des bilans GES. Comprendre son impact personnel pour mieux agir en contexte professionnel.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser à la pertinence de définir des objectifs GES</li>
-                                <li>Accompagner dans la définition d'objectifs</li>
-                                <li>S'approprier les ordres de grandeur</li>
-                                <li>Connaître les labels et référentiels</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">½ journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation bilan GES" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
+                    </div>
                 </div>
 
-                <!-- 5 -->
-                <div class="formation-card" data-cat="instru">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">⚙️</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Gérer et maintenir sa GC de façon plus efficiente et durable</div>
-                                <div class="formation-subtitle">Maintenance 1er niveau GC Agilent — S/SL, FID, colonne capillaire</div>
-                            </div>
+                <!-- Thomas Vandewattyne -->
+                <div class="team-card fade-up stagger-2">
+                    <div class="team-photo">
+                        <span class="pole-badge">💻 Chémo-info</span>
+                        <img src="assets/team/thomas-vandewattyne.png" alt="Thomas Vandewattyne">
+                    </div>
+                    <div class="team-body">
+                        <div class="team-name">Thomas Vandewattyne</div>
+                        <div class="team-role">Expert chémo-informatique — Doctorant IA appliquée</div>
+                        <div class="team-tags">
+                            <span class="team-tag">IA</span>
+                            <span class="team-tag">Algorithmie</span>
+                            <span class="team-tag">Recherche</span>
+                            <span class="team-tag">Données labo</span>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
+                        <button class="team-bio-toggle">
+                            Voir le parcours
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        </button>
+                        <div class="team-bio"><div class="team-bio-inner">Titulaire d'une licence en Chimie Analytique et d'un Master en Informatique, Thomas collabore avec Clément Truan. Sa thèse porte sur l'IA et l'algorithmie appliquées aux problématiques des laboratoires d'analyses.</div></div>
+                        <div class="team-links">
+                            <a href="https://www.linkedin.com/in/thomas-vandewattyne/" target="_blank" rel="noopener" class="team-link">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="mailto:thomas.vandewattyne@lelabodurable.com" class="team-link">✉ Email</a>
                         </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Maîtriser la maintenance de son GC Agilent pour gagner en indépendance de façon durable.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Planifier l'entretien courant d'un GC Agilent avec injecteur S/SL et détecteur FID</li>
-                                <li>Identifier les éléments du système</li>
-                                <li>Assurer leur maintenance de 1er niveau</li>
-                                <li>Installer une colonne capillaire entre S/SL et FID</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation maintenance GC" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
-                </div>
-
-                <!-- 6 -->
-                <div class="formation-card" data-cat="instru">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">⚙️</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Gérer et maintenir sa LC de façon plus efficiente et durable</div>
-                                <div class="formation-subtitle">Maintenance 1er niveau HPLC Agilent — pompe, injecteur, four, UV</div>
-                            </div>
-                        </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                        </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Maîtriser la maintenance de son HPLC Agilent pour gagner en autonomie.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Planifier l'entretien courant d'une HPLC Agilent</li>
-                                <li>Identifier les éléments de chaque module LC</li>
-                                <li>Assurer leur maintenance de 1er niveau</li>
-                                <li>Installer et conditionner une colonne LC</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation maintenance LC" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
-                </div>
-
-                <!-- 7 — MS -->
-                <div class="formation-card" data-cat="instru">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">⚙️</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Gérer et maintenir sa MS de façon plus efficiente et durable</div>
-                                <div class="formation-subtitle">Maintenance 1er niveau MSD Agilent — source EI, interface</div>
-                            </div>
-                        </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                        </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Maîtriser la maintenance de son MSD Agilent et vérifier son bon fonctionnement.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Planifier l'entretien courant d'un MSD Agilent avec source EI</li>
-                                <li>Identifier les éléments du MSD</li>
-                                <li>Assurer leur maintenance de 1er niveau</li>
-                                <li>Installer une colonne capillaire sur l'interface MSD</li>
-                                <li>Vérifier le bon fonctionnement du MSD</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation maintenance MS" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
-                </div>
-
-                <!-- 8 — Chémo -->
-                <div class="formation-card" data-cat="chemo">
-                    <button class="formation-trigger">
-                        <div class="formation-trigger-left">
-                            <span class="formation-cat">🖥️</span>
-                            <div class="formation-title-block">
-                                <div class="formation-title">Introduction au traitement des données GC-MS/FID</div>
-                                <div class="formation-subtitle">Modes d'acquisition, stratégies de traitement, cas concrets</div>
-                            </div>
-                        </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 2 jours</span>
-                            <span class="formation-satisfaction">92,5 %</span>
-                        </div>
-                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                    </button>
-                    <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Comprendre les modes d'acquisition des données chromatographiques et leur contenu. Explorer les différentes approches de traitement et les appliquer sur des cas concrets.</p>
-                        <div class="formation-objectives">
-                            <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser aux modes d'acquisition des données chromatographiques</li>
-                                <li>Présenter les différentes façons de traiter les données et leurs intérêts</li>
-                                <li>Appliquer des stratégies efficaces sur des cas concrets</li>
-                            </ul>
-                        </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 journées</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation traitement données GC-MS" class="formation-cta">Demander + d'infos →</a>
-                    </div></div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-band">
-        <h2>Besoin d'une formation sur mesure ?</h2>
-        <p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs. Parlons-en.</p>
-        <a href="contact.html" class="btn" style="background:var(--white);color:var(--deep)">Nous contacter →</a>
+    <!-- LABO -->
+    <section class="section labo">
+        <div class="section-inner">
+            <div class="labo-grid">
+                <div class="labo-photo fade-up"><img src="assets/photos/labo-brioude.jpg" alt="Laboratoire Le Labo Durable — Brioude" style="width:100%;height:100%;object-fit:cover"></div>
+                <div class="labo-text fade-up stagger-1">
+                    <div class="section-label">Notre laboratoire</div>
+                    <h2>Un membre à part entière de l'équipe</h2>
+                    <p>Situé à Brioude, en Auvergne, notre laboratoire nous permet d'expérimenter les solutions que nous proposons à nos clients. Conçu comme un lieu de rencontres et de coworking, il accueille aussi des associations comme la Fresque du Climat.</p>
+                    <a href="contact.html" class="btn" style="background:var(--white);color:var(--deep)">Réserver une salle →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="section join">
+        <div class="section-inner">
+            <div class="join-box fade-up">
+                <div class="section-label">Rejoignez-nous</div>
+                <h2>Envie de transformer les laboratoires avec nous ?</h2>
+                <p>Nous sommes toujours en quête de talents passionnés. Envoyez-nous votre candidature.</p>
+                <a href="mailto:christophe.peres@lelabodurable.com" class="btn" style="background:var(--primary);color:var(--white)">Postuler →</a>
+            </div>
+        </div>
     </section>
 
     <!-- FOOTER -->
@@ -607,36 +415,19 @@
         links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')}));
         window.addEventListener('resize',()=>{if(window.innerWidth>900){toggle.classList.remove('open');links.classList.remove('open')}});
 
-        // Formation accordion
-        document.querySelectorAll('.formation-trigger').forEach(btn=>{
+        // Bio toggles
+        document.querySelectorAll('.team-bio-toggle').forEach(btn=>{
             btn.addEventListener('click',()=>{
-                const card=btn.closest('.formation-card');
-                const content=card.querySelector('.formation-content');
+                const card=btn.closest('.team-card');
+                const bio=card.querySelector('.team-bio');
                 const isOpen=card.classList.contains('open');
-                // Close others
-                document.querySelectorAll('.formation-card.open').forEach(c=>{
-                    if(c!==card){c.classList.remove('open');c.querySelector('.formation-content').style.maxHeight=null}
-                });
-                if(isOpen){card.classList.remove('open');content.style.maxHeight=null}
-                else{card.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}
-            });
-        });
-
-        // Category filters
-        document.querySelectorAll('.filter-btn').forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter=btn.dataset.filter;
-                document.querySelectorAll('.formation-card').forEach(card=>{
-                    if(filter==='all'||card.dataset.cat===filter){
-                        card.style.display=''
-                    }else{
-                        card.style.display='none';
-                        card.classList.remove('open');
-                        card.querySelector('.formation-content').style.maxHeight=null
-                    }
-                });
+                if(isOpen){
+                    card.classList.remove('open');bio.style.maxHeight=null;
+                    btn.childNodes[0].textContent='Voir le parcours ';
+                }else{
+                    card.classList.add('open');bio.style.maxHeight=bio.scrollHeight+'px';
+                    btn.childNodes[0].textContent='Masquer ';
+                }
             });
         });
 
