@@ -123,7 +123,12 @@
         /* ─── JOIN ─── */
         .join{background:var(--tint-warm)}
         .join-box{max-width:640px;margin:0 auto;text-align:center}
-        .join-box p{color:var(--text-mid);font-size:1.05rem;margin-bottom:2rem}
+        .join-box p{
+  color:var(--text-mid);
+  font-size:1.05rem;
+  margin:0 auto 2rem;  /* centre le bloc <p> + conserve l’espace du bas */
+  max-width:52ch;      /* largeur confortable (évite l’effet “pas centré”) */
+}
 
         /* FOOTER */
         .footer{background:var(--off-white);color:var(--text-mid);padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
