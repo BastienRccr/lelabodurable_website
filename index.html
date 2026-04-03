@@ -192,14 +192,16 @@
         .bilan-breakdown{display:flex;flex-direction:column;gap:0.85rem;max-width:600px}
         .bilan-bar-item{display:flex;align-items:center;gap:1rem}
         .bilan-bar-label{font-size:0.85rem;color:var(--text-mid);width:90px;flex-shrink:0;text-align:right}
+        .bilan-bar-row{display:flex;align-items:center;gap:0.5rem;flex:1}
         .bilan-bar-track{flex:1;height:26px;background:var(--tint);border-radius:var(--radius);overflow:hidden}
-        .bilan-bar-fill{height:100%;border-radius:var(--radius);display:flex;align-items:center;padding-left:0.65rem;font-size:0.75rem;font-weight:600;color:var(--white)}
+        .bilan-bar-fill{height:100%;border-radius:var(--radius)}
+        .bilan-bar-value{font-size:0.75rem;font-weight:600;color:var(--text-mid);white-space:nowrap;min-width:5rem}
         .bilan-bar-fill.transport{background:var(--primary)}
         .bilan-bar-fill.elec{background:var(--primary-light)}
         .bilan-bar-fill.teletravail{background:var(--accent)}
         .bilan-bar-fill.achats{background:#6b9ea8}
         .bilan-note{font-size:0.88rem;color:var(--text-mid);line-height:1.65;margin-top:1.25rem;max-width:600px}
-        .bilan-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+        .bilan-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
         .bilan-chart-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
         .bilan-chart-wrap canvas{max-width:280px;max-height:280px}
         .bilan-chart-title{font-size:0.82rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;text-align:center}
@@ -356,7 +358,7 @@
                         <p>Embarquer les structures scientifiques dans la lutte contre la crise environnementale et les accompagner afin de répondre aux attentes de la société en termes d'engagements et d'actes.</p>
                     </div>
                     <div class="about-quote">
-                        <p>« S'engager est le meilleur moyen de faire évoluer son activité »</p>
+                        <p>«&nbsp;S'engager est le meilleur moyen de faire évoluer son activité&nbsp;»</p>
                         <cite>Christophe Pérès, fondateur</cite>
                     </div>
                 </div>
@@ -520,12 +522,13 @@
                     <div class="bilan-detail-inner">
                         <div class="bilan-detail-grid">
                             <div class="bilan-breakdown">
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Voiture</div><div class="bilan-bar-track"><div class="bilan-bar-fill transport" style="width:61%">3,87 tCO₂e</div></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Avion</div><div class="bilan-bar-track"><div class="bilan-bar-fill transport" style="width:20.5%">1,30</div></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Achats</div><div class="bilan-bar-track"><div class="bilan-bar-fill achats" style="width:6.2%">0,39</div></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Électricité</div><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.3%">0,27</div></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Train</div><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.1%">0,26</div></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Télétravail</div><div class="bilan-bar-track"><div class="bilan-bar-fill teletravail" style="width:3.9%">0,25</div></div></div>
+                                <div class="bilan-bar-item"><div class="bilan-bar-label">Voiture</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill transport" style="width:61%"></div></div><span class="bilan-bar-value">3,87 tCO₂e</span></div></div>
+                                <div class="bilan-bar-item"><div class="bilan-bar-label">Avion</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill transport" style="width:20.5%"></div></div><span class="bilan-bar-value">1,30 tCO₂e</span></div></div>
+                                <div class="bilan-bar-item"><div class="bilan-bar-label">Achats</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill achats" style="width:6.2%"></div></div><span class="bilan-bar-value">0,39 tCO₂e</span></div></div>
+                                <div class="bilan-bar-item"><div class="bilan-bar-label">Électricité</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.3%"></div></div><span class="bilan-bar-value">0,27 tCO₂e</span></div></div>
+                                <div class="bilan-bar-item"><div class="bilan-bar-label">Train</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.1%"></div></div><span class="bilan-bar-value">0,26 tCO₂e</span></div></div>
+                                <div class="bilan-bar-item"><div class="bilan-bar-label">Télétravail</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill teletravail" style="width:3.9%"></div></div><span class="bilan-bar-value">0,25 tCO₂e</span></div></div>
+                                <p class="bilan-note">85 % de notre empreinte carbone est liée aux déplacements, principalement la voiture pour le transport de matériel analytique volumineux (HPLC, GC-MS). L'avion représente le second poste malgré un usage limité.</p>
                             </div>
                             <div class="bilan-chart-wrap">
                                 <div class="bilan-chart-title">Répartition des déplacements</div>
