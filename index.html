@@ -526,11 +526,11 @@
                                 <div class="bilan-bar-item"><div class="bilan-bar-label">Électricité</div><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.3%">0,27</div></div></div>
                                 <div class="bilan-bar-item"><div class="bilan-bar-label">Train</div><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.1%">0,26</div></div></div>
                                 <div class="bilan-bar-item"><div class="bilan-bar-label">Télétravail</div><div class="bilan-bar-track"><div class="bilan-bar-fill teletravail" style="width:3.9%">0,25</div></div></div>
-                                <p class="bilan-note">Malgré 61 % des km parcourus en train, la voiture reste le 1er poste d'émissions en raison du transport de matériel analytique (HPLC, GC-MS). Chaque trajet sert à la fois à livrer du matériel reconditionné et à récupérer des instruments en fin de vie — principe de non-circulation à vide.</p>
                             </div>
                             <div class="bilan-chart-wrap">
-                                <div class="bilan-chart-title">Répartition des émissions</div>
-                                <canvas id="gesChart" aria-label="Répartition des émissions GES 2025"></canvas>
+                                <div class="bilan-chart-title">Répartition des déplacements</div>
+                                <canvas id="gesChart" aria-label="Répartition des déplacements 2025 (km)"></canvas>
+                                <p class="bilan-note" style="text-align:center;max-width:none">La majorité de nos déplacements est effectuée en train. La voiture reste nécessaire pour le transport de matériel analytique volumineux (HPLC, GC-MS) — chaque trajet combine livraison et récupération d'instruments.</p>
                             </div>
                         </div>
                     </div>
@@ -629,10 +629,10 @@
                     gesChartInstance=new Chart(ctx,{
                         type:'pie',
                         data:{
-                            labels:['Voiture','Avion','Achats','Électricité','Train','Télétravail'],
+                            labels:['Train — 60,6 %','Voiture — 29,5 %','Avion — 9,9 %'],
                             datasets:[{
-                                data:[3.87,1.30,0.39,0.27,0.26,0.25],
-                                backgroundColor:['#1a6b7a','#0f3d4f','#6b9ea8','#2a8a9a','#4aabb8','#d4a053'],
+                                data:[43660,21240,7140],
+                                backgroundColor:['#1a6b7a','#0f3d4f','#d4a053'],
                                 borderColor:'#ffffff',
                                 borderWidth:2,
                                 hoverOffset:8
@@ -652,7 +652,7 @@
                                 },
                                 tooltip:{
                                     callbacks:{
-                                        label:function(ctx){return ' '+ctx.label+' : '+ctx.parsed.toFixed(2)+' tCO₂e'}
+                                        label:function(ctx){return ' '+ctx.label.split(' —')[0]+' : '+ctx.parsed.toLocaleString('fr-FR')+' km'}
                                     }
                                 }
                             }
