@@ -7,299 +7,177 @@
     <meta name="description" content="Le Labo Durable accompagne les laboratoires de chimie analytique dans la réduction de leurs impacts environnementaux. ACV, Bilan GES, formations, audit.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <meta name="color-scheme" content="light dark">
+    <script>document.documentElement.classList.add('js')</script>
     <style>
-        :root {
-            --deep: #0f3d4f;
-            --primary: #1a6b7a;
-            --primary-light: #2a8a9a;
-            --tint: #e8f4f6;
-            --tint-warm: #f0f7f4;
-            --accent: #d4a053;
-            --accent-light: #e8c88a;
-            --text: #1a2a2e;
-            --text-mid: #4a5e63;
-            --text-light: #7a8e93;
-            --white: #ffffff;
-            --off-white: #f8fafb;
-            --border: #d8e4e7;
-            --radius: 8px;
-            --radius-lg: 16px;
-            --shadow-sm: 0 1px 3px rgba(15,61,79,0.08);
-            --shadow-md: 0 4px 20px rgba(15,61,79,0.1);
-            --shadow-lg: 0 8px 40px rgba(15,61,79,0.12);
-            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-        }
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;font-size:16px}
-        body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
-
-        /* NAV */
-        .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-        .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px}
-        .nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--deep);z-index:120}
-        .nav-logo-icon{width:40px;height:40px;background:var(--primary);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:white;font-family:'Outfit',sans-serif;font-size:1.1rem}
-        .nav-logo-text{font-weight:600;font-size:1.1rem}
-        .nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
-        .nav-links a{text-decoration:none;color:var(--text-mid);font-size:0.9rem;font-weight:500;padding:0.5rem 1rem;border-radius:var(--radius);transition:color 0.2s ease,background 0.2s ease}
-        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:var(--tint)}
-        .nav-cta{background:var(--primary)!important;color:var(--white)!important;padding:0.55rem 1.25rem!important}
-        .nav-cta:hover{background:var(--deep)!important;color:var(--white)!important}
-        .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;z-index:120;position:relative;border-radius:var(--radius)}
-        .nav-toggle:hover{background:var(--tint)}
-        .nav-toggle-bar{display:block;width:20px;height:2px;background:var(--text);position:absolute;left:12px;transition:transform 0.35s ease,opacity 0.25s ease;border-radius:2px}
-        .nav-toggle-bar:nth-child(1){top:15px}
-        .nav-toggle-bar:nth-child(2){top:21px}
-        .nav-toggle-bar:nth-child(3){top:27px}
-        .nav-toggle.open .nav-toggle-bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(2){opacity:0;transform:scaleX(0)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+        /* Accueil — styles propres à la page (jetons définis dans assets/css/site.css) */
+        :root { --logo-tile: #ffffff; }
 
         /* HERO */
-        .hero{padding:10rem 2rem 6rem;background:var(--deep);position:relative;overflow:hidden;min-height:85vh;display:flex;align-items:center}
-        .hero-bg{position:absolute;inset:0;background:url('assets/photos/hero-accueil.jpg') center center / cover no-repeat;opacity:0.80}
-        .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(165deg,rgba(15,61,79,0.85) 0%,rgba(26,107,122,0.7) 50%,rgba(42,138,154,0.6) 100%);z-index:1;pointer-events:none}
-        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--white),transparent);pointer-events:none;z-index:2}
-        .hero-pattern{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:2}
-        .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:3;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-        .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(8px);padding:0.4rem 1rem;border-radius:100px;font-size:0.8rem;color:var(--accent-light);font-weight:500;margin-bottom:1.5rem;letter-spacing:0.03em;text-transform:uppercase}
-        .hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%}
-        .hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;color:var(--white);line-height:1.2;margin-bottom:1.5rem}
-        .hero p{font-size:1.1rem;color:rgba(255,255,255,0.8);line-height:1.7;max-width:520px;margin-bottom:2rem}
-        .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-        .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.95rem;font-weight:600;text-decoration:none;transition:var(--transition);border:none;cursor:pointer}
-        .btn-primary{background:var(--white);color:var(--deep)}
-        .btn-primary:hover{background:var(--tint);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-        .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.3)}
-        .btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.5)}
-        .btn-accent{background:var(--primary);color:var(--white)}
-        .btn-accent:hover{background:var(--deep);transform:translateY(-2px);box-shadow:var(--shadow-md)}
-        .hero-visual{display:flex;justify-content:center;align-items:center}
-        .hero-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:var(--radius-lg);padding:2.5rem;width:100%;max-width:420px}
-        .hero-card-stat{display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.75rem}
-        .hero-card-stat .number{font-family:'Outfit',sans-serif;font-size:3rem;color:var(--accent-light);line-height:1}
-        .hero-card-stat .unit{font-size:1rem;color:rgba(255,255,255,0.6)}
-        .hero-card>p{font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:0}
-        .hero-card-divider{height:1px;background:rgba(255,255,255,0.1);margin:1.5rem 0}
-        .hero-card-items{display:flex;flex-direction:column;gap:1rem}
-        .hero-card-item{display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.75);font-size:0.9rem}
-        .hero-card-item .icon{width:32px;height:32px;background:rgba(255,255,255,0.08);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0}
+        .hero {
+            position: relative; overflow: hidden;
+            background: var(--band); color: var(--on-band-2);
+            padding-block: calc(var(--nav-h) + clamp(3.5rem, 9vw, 7rem)) clamp(3.5rem, 8vw, 6rem);
+            padding-inline: var(--gutter);
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('assets/photos/hero-accueil.jpg') center / cover no-repeat;
+            opacity: 0.35; filter: grayscale(0.35);
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background: linear-gradient(100deg, var(--band) 30%, transparent 100%);
+            opacity: 0.92;
+        }
+        .hero-pattern { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+        .hero-inner {
+            position: relative; z-index: 3; max-width: var(--maxw); margin: 0 auto;
+            display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: end;
+        }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem;
+            font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--band-leaf);
+        }
+        .hero-tag::before { content: ''; width: 9px; height: 9px; background: var(--band-leaf); border-radius: var(--leaf-shape); }
+        .hero h1 {
+            font-family: var(--font-display); font-weight: 500;
+            font-size: clamp(2.3rem, 1.4rem + 3.8vw, 4.1rem); line-height: 1.04; letter-spacing: -0.02em;
+            color: var(--on-band); max-width: 16ch; margin-bottom: 1.5rem;
+        }
+        .hero p { font-size: var(--fs-md); line-height: 1.65; max-width: 52ch; margin-bottom: 2rem; color: var(--on-band-2); }
+        .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
-        /* SECTIONS */
-        .section{padding:6rem 2rem}
-        .section-inner{max-width:1200px;margin:0 auto}
-        .section-header{max-width:640px;margin-bottom:3.5rem}
-        .section-header.center{margin-left:auto;margin-right:auto;text-align:center}
-        .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);margin-bottom:1rem}
-        .section-label::before{content:'';width:20px;height:2px;background:var(--primary);border-radius:1px}
-        h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--deep);line-height:1.25;margin-bottom:1rem}
-        .section-desc{font-size:1.05rem;color:var(--text-mid);line-height:1.7}
+        /* Fiche « 3 pôles » */
+        .hero-card {
+            background: var(--band-surface); border: 1px solid var(--band-line); border-radius: var(--radius-lg);
+            padding: 1.75rem; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        }
+        .hero-card-stat { display: flex; align-items: baseline; gap: 0.75rem; }
+        .hero-card-stat .number { font-family: var(--font-display); font-size: 3.4rem; font-weight: 500; line-height: 1; color: var(--band-leaf); }
+        .hero-card-stat .unit { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-band-2); }
+        .hero-card > p { font-size: var(--fs-sm); color: var(--on-band-3); margin: 0.5rem 0 0; }
+        .hero-card-divider { height: 1px; background: var(--band-line); margin: 1.25rem 0; }
+        .hero-card-items { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+        .hero-card-item { display: flex; align-items: center; gap: 0.8rem; color: var(--on-band); font-size: 0.95rem; }
+        .hero-card-item .ic-box { background: var(--band-2); color: var(--band-leaf); }
 
-        /* KEY FIGURES */
-        .figures{background:var(--deep);padding:3.5rem 2rem;position:relative;overflow:hidden}
-        .figures::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
-        .figures-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
-        .figure-item{text-align:center}
-        .figure-number{font-family:'Outfit',sans-serif;font-size:2.8rem;color:var(--accent-light);line-height:1;margin-bottom:0.4rem}
-        .figure-label{font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.4}
+        /* CHIFFRES CLÉS */
+        .figures { background: var(--band-2); padding-block: clamp(2.25rem, 5vw, 3.25rem); padding-inline: var(--gutter); border-top: 1px solid var(--band-line); }
+        .figures-inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .figure-item { padding: 0.25rem 1.5rem; border-left: 1px solid var(--band-line); }
+        .figure-item:first-child { border-left: 0; padding-left: 0; }
+        .figure-number { font-family: var(--font-display); font-size: clamp(2.2rem, 1.6rem + 2vw, 3rem); font-weight: 500; line-height: 1; color: var(--on-band); margin-bottom: 0.5rem; font-variant-numeric: tabular-nums; }
+        .figure-number span { color: var(--band-leaf); }
+        .figure-label { font-size: var(--fs-sm); color: var(--on-band-3); line-height: 1.45; max-width: 22ch; }
 
-        /* ABOUT */
-        .about{background:var(--off-white)}
-        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-        .about-text p{color:var(--text-mid);font-size:1rem;line-height:1.75;margin-bottom:1.25rem}
-        .about-quote{border-left:3px solid var(--accent);padding-left:1.5rem;margin:2rem 0}
-        .about-quote p{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.15rem;color:var(--deep);font-style:italic;line-height:1.5}
-        .about-quote cite{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-style:normal;font-size:0.85rem;color:var(--text-light);margin-top:0.5rem}
-        .about-sidebar{display:flex;flex-direction:column;gap:1.5rem}
-        .about-mission{background:var(--white);border-radius:var(--radius-lg);padding:2.25rem;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
-        .about-mission h3{font-family:'Outfit',sans-serif;font-size:1.2rem;color:var(--deep);margin-bottom:0.75rem;font-weight:600}
-        .about-mission p{color:var(--text-mid);font-size:0.95rem;line-height:1.7;margin-bottom:0}
+        /* À PROPOS */
+        .about-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+        .about-text p { color: var(--ink-2); font-size: 1.05rem; line-height: 1.75; max-width: 62ch; }
+        .about-text p + p { margin-top: 1.1rem; }
+        .about-sidebar { display: flex; flex-direction: column; gap: 2rem; }
+        .about-mission { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.75rem; }
+        .about-mission h3 { font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--leaf-ink); margin-bottom: 0.75rem; }
+        .about-mission p { color: var(--ink); font-size: 1.05rem; line-height: 1.65; }
+        .about-quote { border-left: 2px solid var(--leaf); padding-left: 1.5rem; }
+        .about-quote p { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 400; line-height: 1.35; color: var(--ink); }
+        .about-quote cite { display: block; margin-top: 0.75rem; font-style: normal; font-size: var(--fs-sm); color: var(--ink-3); }
 
-        /* VALUES */
-        .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem}
-        .value-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;text-align:center;transition:var(--transition)}
-        .value-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
-        .value-icon{width:44px;height:44px;background:var(--tint);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.2rem}
-        .value-card h3{font-size:0.95rem;font-weight:700;color:var(--deep);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.03em}
-        .value-card p{font-size:0.85rem;color:var(--text-mid);line-height:1.5}
+        /* VALEURS */
+        .values-grid {
+            display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-top: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--line);
+        }
+        .value-card { padding: 1.5rem 1.5rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
+        .value-card + .value-card { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+        .value-card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 500; color: var(--ink); margin-top: 0.5rem; }
+        .value-card p { font-size: 0.92rem; color: var(--ink-2); line-height: 1.55; }
 
-        /* PARTNER LOGOS */
-        .partner-logos{display:flex;align-items:flex-start;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:2.5rem;padding-top:2.5rem}
-        .partner-logo-item{display:flex;flex-direction:column;align-items:center;gap:1rem}
-        .partner-logo-item img{height:72px;width:auto;max-width:200px;object-fit:contain;opacity:0.9;transition:opacity 0.2s}
-        .partner-logo-item img:hover{opacity:1}
-        .cert-item{display:flex;align-items:center;gap:0.6rem;font-size:0.85rem;color:var(--text-mid);font-weight:500}
-        .cert-badge{width:36px;height:36px;background:var(--tint);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0}
+        /* CERTIFICATIONS & PARTENAIRES */
+        .partner-logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+        .partner-logo-item { display: flex; flex-direction: column; gap: 0.75rem; }
+        .partner-logo-item img {
+            width: 100%; height: 110px; object-fit: contain; padding: 1rem 1.25rem;
+            background: var(--logo-tile); border: 1px solid var(--line); border-radius: var(--radius-lg);
+        }
+        .cert-item { display: flex; align-items: center; gap: 0.5rem; font-size: var(--fs-sm); font-weight: 500; color: var(--ink-2); }
+        .cert-item .ic { color: var(--leaf-ink); }
 
-        /* ─── ACCORDION ─── */
-        .accordion{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--white)}
-        .accordion-item{border-bottom:1px solid var(--border)}
-        .accordion-item:last-child{border-bottom:none}
-        .accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.75rem;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;transition:var(--transition)}
-        .accordion-trigger:hover{background:var(--tint)}
-        .accordion-trigger-left{display:flex;align-items:center;gap:1rem}
-        .accordion-trigger-icon{width:40px;height:40px;background:var(--tint);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-        .accordion-trigger h3{font-size:1rem;font-weight:600;color:var(--deep);margin:0}
-        .accordion-trigger .subtitle{font-size:0.85rem;color:var(--text-light);margin-top:0.15rem}
-        .accordion-chevron{width:20px;height:20px;transition:transform 0.3s ease;flex-shrink:0;color:var(--text-light)}
-        .accordion-item.open .accordion-chevron{transform:rotate(180deg)}
-        .accordion-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-        .accordion-content-inner{padding:0 1.75rem 1.5rem;color:var(--text-mid);font-size:0.92rem;line-height:1.7}
-        .accordion-content-inner p{margin-bottom:0.5rem}
+        /* SERVICES (3 pôles) */
+        .services-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+        .service-card {
+            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+            padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem;
+            transition: border-color 0.2s, transform 0.2s var(--ease);
+        }
+        .service-card:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+        .service-card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 500; line-height: 1.2; }
+        .service-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
+        .service-card li { font-size: 0.92rem; color: var(--ink-2); padding-left: 1.1rem; position: relative; }
+        .service-card li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; background: var(--leaf); border-radius: var(--leaf-shape); }
+        .service-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: var(--fs-sm); font-weight: 600; color: var(--ink); text-decoration: none; }
+        .service-link .ic { transition: transform 0.2s var(--ease); }
+        .service-link:hover { color: var(--leaf-ink); }
+        .service-link:hover .ic { transform: translateX(3px); }
 
-        /* Dark accordion (for engagements section) */
-        .accordion-dark{border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.03)}
-        .accordion-dark .accordion-item{border-color:rgba(255,255,255,0.08)}
-        .accordion-dark .accordion-trigger:hover{background:rgba(255,255,255,0.05)}
-        .accordion-dark .accordion-trigger-icon{background:rgba(212,160,83,0.12)}
-        .accordion-dark .accordion-trigger h3{color:var(--white)}
-        .accordion-dark .accordion-trigger .subtitle{color:rgba(255,255,255,0.45)}
-        .accordion-dark .accordion-chevron{color:rgba(255,255,255,0.35)}
-        .accordion-dark .accordion-content-inner{color:rgba(255,255,255,0.6)}
-
-        /* SERVICES */
-        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-        .service-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.25rem;transition:var(--transition);position:relative;overflow:hidden}
-        .service-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow-md);transform:translateY(-4px)}
-        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--primary);opacity:0;transition:var(--transition)}
-        .service-card:hover::before{opacity:1}
-        .service-icon{width:48px;height:48px;background:var(--tint);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.3rem}
-        .service-card h3{font-size:1.05rem;font-weight:600;color:var(--deep);margin-bottom:0.75rem}
-        .service-card ul{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
-        .service-card li{font-size:0.88rem;color:var(--text-mid);padding-left:1.1rem;position:relative}
-        .service-card li::before{content:'→';position:absolute;left:0;color:var(--primary-light);font-size:0.8rem}
-        .service-card .service-link{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-size:0.88rem;font-weight:600;color:var(--primary);text-decoration:none;transition:var(--transition)}
-        .service-card .service-link:hover{gap:0.7rem}
-
-        /* ENGAGEMENTS */
-        .engagements{background:var(--deep);color:var(--white)}
-        .engagements .section-label{color:var(--accent-light)}
-        .engagements .section-label::before{background:var(--accent)}
-        .engagements h2{color:var(--white)}
-        .engagements .section-desc{color:rgba(255,255,255,0.65)}
-
-        /* BILAN GES TEASER (collapsible) */
-        .bilan-teaser{background:var(--off-white)}
-        .bilan-summary{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
-        .bilan-summary-number{font-family:'Outfit',sans-serif;font-size:3.5rem;color:var(--primary);line-height:1}
-        .bilan-summary-text{flex:1;min-width:200px}
-        .bilan-summary-text p{font-size:1rem;color:var(--text-mid);line-height:1.6;margin-bottom:0.5rem}
-        .bilan-summary-text .bilan-target{display:inline-flex;align-items:center;gap:0.5rem;background:var(--tint);padding:0.5rem 0.85rem;border-radius:var(--radius);font-size:0.83rem;font-weight:600;color:var(--primary)}
-        .bilan-expand-btn{display:inline-flex;align-items:center;gap:0.5rem;background:none;border:1px solid var(--border);padding:0.6rem 1.25rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.88rem;font-weight:600;color:var(--primary);cursor:pointer;transition:var(--transition);margin-top:1.25rem}
-        .bilan-expand-btn:hover{background:var(--tint);border-color:var(--primary-light)}
-        .bilan-expand-btn svg{transition:transform 0.3s ease}
-        .bilan-expand-btn.open svg{transform:rotate(180deg)}
-        .bilan-detail{max-height:0;overflow:hidden;transition:max-height 0.5s ease}
-        .bilan-detail-inner{padding-top:2rem}
-        .bilan-breakdown{display:flex;flex-direction:column;gap:0.85rem;max-width:600px}
-        .bilan-bar-item{display:flex;align-items:center;gap:1rem}
-        .bilan-bar-label{font-size:0.85rem;color:var(--text-mid);width:90px;flex-shrink:0;text-align:right}
-        .bilan-bar-row{display:flex;align-items:center;gap:0.5rem;flex:1}
-        .bilan-bar-track{flex:1;height:26px;background:var(--tint);border-radius:var(--radius);overflow:hidden}
-        .bilan-bar-fill{height:100%;border-radius:var(--radius)}
-        .bilan-bar-value{font-size:0.75rem;font-weight:600;color:var(--text-mid);white-space:nowrap;min-width:5rem}
-        .bilan-bar-fill.transport{background:var(--primary)}
-        .bilan-bar-fill.elec{background:var(--primary-light)}
-        .bilan-bar-fill.teletravail{background:var(--accent)}
-        .bilan-bar-fill.achats{background:#6b9ea8}
-        .bilan-note{font-size:0.88rem;color:var(--text-mid);line-height:1.65;margin-top:1.25rem;max-width:600px}
-        .bilan-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:stretch}
-        .bilan-breakdown .bilan-note,.bilan-chart-wrap .bilan-note{margin-top:auto}
-        .bilan-chart-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
-        .bilan-chart-wrap canvas{max-width:280px;max-height:280px}
-        .bilan-chart-title{font-size:0.82rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;text-align:center}
-        @media(max-width:900px){.bilan-detail-grid{grid-template-columns:1fr}}
+        /* BILAN GES */
+        .bilan-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: end; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+        .bilan-summary-number { font-family: var(--font-display); font-size: clamp(3.5rem, 2.5rem + 4vw, 5.5rem); font-weight: 500; line-height: 0.9; color: var(--ink); letter-spacing: -0.02em; white-space: nowrap; }
+        .bilan-summary-number .unit { font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 400; letter-spacing: 0; color: var(--ink-3); margin-left: 0.35rem; }
+        .bilan-summary-text p { font-size: 1.05rem; color: var(--ink-2); max-width: 60ch; }
+        .bilan-target {
+            display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem;
+            padding: 0.5rem 0.8rem; border-radius: var(--radius);
+            background: var(--leaf-wash); color: var(--ink); font-size: var(--fs-sm); font-weight: 500;
+        }
+        .bilan-target .ic { color: var(--leaf-ink); }
+        .bilan-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5vw, 4rem); padding-top: 2rem; }
+        .bilan-chart { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+        .bilan-chart-title { font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+        .bilan-chart-title b { font-weight: 500; color: var(--ink); }
+        .bars { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .bar { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) 5.5rem; align-items: center; gap: 0.75rem; }
+        .bar-label { font-size: var(--fs-sm); color: var(--ink); }
+        .bar-track { height: 22px; background: var(--surface-2); border-radius: 0 4px 4px 0; }
+        .bar-fill { display: block; height: 100%; min-width: 3px; background: var(--leaf-ink); border-radius: 0 4px 4px 0; }
+        .bar-value { font-family: var(--font-mono); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; color: var(--ink); text-align: right; white-space: nowrap; }
+        .bar-value small { display: block; font-size: var(--fs-xs); color: var(--ink-3); }
+        .bilan-note { font-size: 0.92rem; color: var(--ink-2); line-height: 1.65; margin-top: auto; padding-top: 0.5rem; max-width: 60ch; }
 
         /* CTA */
-        .cta-section{background:var(--tint-warm)}
-        .cta-box{background:var(--white);border-radius:var(--radius-lg);padding:4rem;text-align:center;box-shadow:var(--shadow-md);border:1px solid var(--border)}
-        .cta-box h2{margin-bottom:1rem}
-        .cta-box p{color:var(--text-mid);font-size:1.05rem;max-width:500px;margin:0 auto 2rem}
-        .cta-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+        .cta-box h2 { max-width: 22ch; margin-inline: auto; }
 
-        /* FOOTER */
-        .footer{background:var(--deep);color:rgba(255,255,255,0.65);padding:4rem 2rem 2rem}
-        .footer-inner{max-width:1200px;margin:0 auto}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-        .footer-brand p{font-size:0.9rem;line-height:1.7;margin-top:1rem;max-width:280px}
-        .footer h4{color:var(--white);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.25rem}
-        .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
-        .footer-links a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.9rem;transition:var(--transition)}
-        .footer-links a:hover{color:var(--white)}
-        .footer-contact-item{display:flex;align-items:start;gap:0.6rem;font-size:0.9rem;margin-bottom:0.75rem}
-        .footer-contact-item .icon{margin-top:0.1rem;font-size:0.85rem;flex-shrink:0}
-        .footer-contact-item a{color:rgba(255,255,255,0.55);text-decoration:none;transition:var(--transition)}
-        .footer-contact-item a:hover{color:var(--white)}
-        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:0.8rem;color:rgba(255,255,255,0.35);flex-wrap:wrap;gap:0.75rem}
-        .footer-bottom-left{display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem 1.25rem}
-        .footer-bottom-left a{color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s ease}
-        .footer-bottom-left a:hover{color:rgba(255,255,255,0.7)}
-        .footer-social{display:flex;gap:0.75rem}
-        .footer-social a{width:36px;height:36px;border-radius:var(--radius);background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;transition:var(--transition)}
-        .footer-social a:hover{background:rgba(255,255,255,0.12);color:var(--white)}
-
-        /* RESPONSIVE */
-        @media(max-width:900px){
-            .nav-links{
-                position:fixed;top:72px;left:0;right:0;
-                background:var(--white);
-                flex-direction:column;align-items:stretch;gap:0;
-                list-style:none;
-                border-bottom:1px solid var(--border);
-                box-shadow:var(--shadow-lg);
-                transform:translateY(-110%);
-                opacity:0;
-                transition:transform 0.35s ease,opacity 0.3s ease;
-                pointer-events:none;
-                padding:0.75rem 1rem;
-                z-index:105
-            }
-            .nav-links.open{
-                transform:translateY(0);
-                opacity:1;
-                pointer-events:auto
-            }
-            .nav-links a{font-size:1rem;padding:0.85rem 1rem;border-radius:var(--radius);display:block}
-            .nav-links .nav-cta{text-align:center;margin-top:0.5rem}
-            .nav-toggle{display:block}
-            .hero-inner{grid-template-columns:1fr;text-align:center}
-            .hero p{margin-left:auto;margin-right:auto}
-            .hero-actions{justify-content:center}
-            .hero-visual{display:none}
-            .figures-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem}
-            .about-grid{grid-template-columns:1fr;gap:2rem}
-            .values-grid{grid-template-columns:repeat(2,1fr)}
-            .services-grid{grid-template-columns:1fr}
-            .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
-            .cta-box{padding:3rem 2rem}
-            .bilan-summary{flex-direction:column;text-align:center;gap:1rem}
+        @media (max-width: 960px) {
+            .hero-inner { grid-template-columns: minmax(0, 1fr); align-items: start; }
+            .figures-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
+            .figure-item:nth-child(3) { border-left: 0; padding-left: 0; }
+            .about-grid { grid-template-columns: minmax(0, 1fr); }
+            .values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .value-card:nth-child(3) { padding-left: 0; border-left: 0; }
+            .partner-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .services-grid { grid-template-columns: minmax(0, 1fr); }
+            .bilan-detail-grid { grid-template-columns: minmax(0, 1fr); }
         }
-        @media(max-width:600px){
-            .section{padding:4rem 1.25rem}
-            .hero{padding:8rem 1.25rem 4rem;min-height:auto}
-            .figures{padding:2.5rem 1.25rem}
-            .figures-inner{grid-template-columns:1fr 1fr}
-            .values-grid{grid-template-columns:1fr 1fr}
-            .footer-grid{grid-template-columns:1fr}
-            .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
-            .footer-bottom-left{justify-content:center}
-            .partner-logos{gap:1.5rem}
-            .partner-logo-item img{height:52px;max-width:150px}
-            .certifications{gap:1.5rem}
+        @media (max-width: 600px) {
+            .bilan-head { grid-template-columns: minmax(0, 1fr); }
+            .values-grid { grid-template-columns: minmax(0, 1fr); }
+            .value-card, .value-card + .value-card { padding: 1.25rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
+            .figure-item { padding: 0 0 0 1rem; }
+            .figure-item:nth-child(odd) { border-left: 0; padding-left: 0; }
+            .bar { grid-template-columns: 5.5rem minmax(0, 1fr) 4.75rem; gap: 0.5rem; }
+            .partner-logo-item img { height: 90px; }
         }
-
-        /* ANIMATIONS */
-        .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
-        .fade-up.visible{opacity:1;transform:translateY(0)}
-        .stagger-1{transition-delay:0.05s}.stagger-2{transition-delay:0.1s}.stagger-3{transition-delay:0.15s}.stagger-4{transition-delay:0.2s}
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Navigation principale">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
+            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Accueil</a></li>
                 <li><a href="services.html">Nos services</a></li>
@@ -309,14 +187,15 @@
                 <li><a href="consolab.html">Consolab</a></li>
                 <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
+            <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
         </div>
     </nav>
 
+    <main id="main">
     <!-- HERO -->
     <section class="hero">
         <div class="hero-bg"></div>
-        <div class="hero-pattern"></div>
+        <div class="hero-pattern grid-paper"></div>
         <div class="hero-inner">
             <div>
                 <div class="hero-tag">Cabinet de conseil en durabilité</div>
@@ -324,7 +203,7 @@
                 <p>Nous accompagnons les laboratoires de chimie analytique dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
                 <div class="hero-actions">
                     <a href="contact.html" class="btn btn-primary">Discutons de votre projet</a>
-                    <a href="services.html" class="btn btn-ghost">Découvrir nos services →</a>
+                    <a href="services.html" class="btn btn-ghost">Découvrir nos services <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -332,23 +211,23 @@
                     <div class="hero-card-stat"><span class="number">3</span><span class="unit">pôles d'expertise</span></div>
                     <p>Un accompagnement pluridisciplinaire unique</p>
                     <div class="hero-card-divider"></div>
-                    <div class="hero-card-items">
-                        <div class="hero-card-item"><span class="icon">🔬</span><span>Expertise analytique & instrumentation</span></div>
-                        <div class="hero-card-item"><span class="icon">🌿</span><span>Durabilité, ACV & bilans GES</span></div>
-                        <div class="hero-card-item"><span class="icon">💻</span><span>Chémo-informatique & IA</span></div>
-                    </div>
+                    <ul class="hero-card-items">
+                        <li class="hero-card-item"><span class="ic-box sm"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-microscope"/></svg></span><span>Expertise analytique &amp; instrumentation</span></li>
+                        <li class="hero-card-item"><span class="ic-box sm"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg></span><span>Durabilité, ACV &amp; bilans GES</span></li>
+                        <li class="hero-card-item"><span class="ic-box sm"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg></span><span>Chémo-informatique &amp; IA</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CHIFFRES CLÉS -->
-    <section class="figures fade-up">
+    <section class="figures" aria-label="Chiffres clés">
         <div class="figures-inner">
-            <div class="figure-item"><div class="figure-number">25+</div><div class="figure-label">clients accompagnés</div></div>
-            <div class="figure-item"><div class="figure-number">500+</div><div class="figure-label">personnes sensibilisées et formées</div></div>
-            <div class="figure-item"><div class="figure-number">15+</div><div class="figure-label">stratégies de réduction déployées</div></div>
-            <div class="figure-item"><div class="figure-number">10+</div><div class="figure-label">politiques environnementales co-construites</div></div>
+            <div class="figure-item"><div class="figure-number">25<span>+</span></div><div class="figure-label">clients accompagnés</div></div>
+            <div class="figure-item"><div class="figure-number">500<span>+</span></div><div class="figure-label">personnes sensibilisées et formées</div></div>
+            <div class="figure-item"><div class="figure-number">15<span>+</span></div><div class="figure-label">stratégies de réduction déployées</div></div>
+            <div class="figure-item"><div class="figure-number">10<span>+</span></div><div class="figure-label">politiques environnementales co-construites</div></div>
         </div>
     </section>
 
@@ -367,86 +246,86 @@
                         <h3>Notre mission</h3>
                         <p>Embarquer les structures scientifiques dans la lutte contre la crise environnementale et les accompagner afin de répondre aux attentes de la société en termes d'engagements et d'actes.</p>
                     </div>
-                    <div class="about-quote">
+                    <blockquote class="about-quote">
                         <p>«&nbsp;S'engager est le meilleur moyen de faire évoluer son activité&nbsp;»</p>
                         <cite>Christophe Pérès, fondateur</cite>
-                    </div>
+                    </blockquote>
                 </div>
             </div>
             <div class="values-grid fade-up">
-                <div class="value-card"><div class="value-icon">🎯</div><h3>Engagement</h3><p>Dans nos accompagnements et nos pratiques</p></div>
-                <div class="value-card"><div class="value-icon">🤝</div><h3>Partage</h3><p>Des connaissances, expertises et expériences</p></div>
-                <div class="value-card"><div class="value-icon">🔬</div><h3>Rigueur</h3><p>Scientifique et méthodologique, sans greenwashing</p></div>
-                <div class="value-card"><div class="value-icon">💪</div><h3>Détermination</h3><p>Pour aller plus loin ensemble et relever les défis</p></div>
+                <div class="value-card"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-target"/></svg></span><h3>Engagement</h3><p>Dans nos accompagnements et nos pratiques</p></div>
+                <div class="value-card"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-handshake"/></svg></span><h3>Partage</h3><p>Des connaissances, expertises et expériences</p></div>
+                <div class="value-card"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-microscope"/></svg></span><h3>Rigueur</h3><p>Scientifique et méthodologique, sans greenwashing</p></div>
+                <div class="value-card"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mountain"/></svg></span><h3>Détermination</h3><p>Pour aller plus loin ensemble et relever les défis</p></div>
             </div>
             <div class="partner-logos fade-up">
                 <div class="partner-logo-item">
-                    <img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi – processus certifié, Actions de formation">
-                    <div class="cert-item"><div class="cert-badge">✓</div><span>Qualiopi (via Analytiss)</span></div>
+                    <img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi – processus certifié, Actions de formation" loading="lazy">
+                    <div class="cert-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-badge-check"/></svg><span>Qualiopi (via Analytiss)</span></div>
                 </div>
                 <div class="partner-logo-item">
-                    <img src="https://github.com/user-attachments/assets/2317682e-cad8-462c-8d78-312238bbc307" alt="CIR – Crédit Impôt Recherche">
-                    <div class="cert-item"><div class="cert-badge">✓</div><span>Agréé CIR</span></div>
+                    <img src="https://github.com/user-attachments/assets/2317682e-cad8-462c-8d78-312238bbc307" alt="CIR – Crédit Impôt Recherche" loading="lazy">
+                    <div class="cert-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-badge-check"/></svg><span>Agréé CIR</span></div>
                 </div>
                 <div class="partner-logo-item">
-                    <img src="https://github.com/user-attachments/assets/9b4d19d2-c2cd-4acd-9a9e-b2560ad00858" alt="République Française – ADEME, Agence de la Transition Écologique">
-                    <div class="cert-item"><div class="cert-badge">✓</div><span>Partenaire ADEME</span></div>
+                    <img src="https://github.com/user-attachments/assets/9b4d19d2-c2cd-4acd-9a9e-b2560ad00858" alt="République Française – ADEME, Agence de la Transition Écologique" loading="lazy">
+                    <div class="cert-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-badge-check"/></svg><span>Partenaire ADEME</span></div>
                 </div>
                 <div class="partner-logo-item">
-                    <img src="https://github.com/user-attachments/assets/9b12bd80-223d-4653-8d12-c398a51bed6a" alt="CIFL">
-                    <div class="cert-item"><div class="cert-badge">✓</div><span>Membre du CIFL</span></div>
+                    <img src="https://github.com/user-attachments/assets/9b12bd80-223d-4653-8d12-c398a51bed6a" alt="CIFL" loading="lazy">
+                    <div class="cert-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-badge-check"/></svg><span>Membre du CIFL</span></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- NOS MÉTIERS — ACCORDÉON -->
-    <section class="section" style="background:var(--white)">
+    <section class="section section-alt">
         <div class="section-inner">
-            <div class="section-header center fade-up">
+            <div class="section-header fade-up">
                 <div class="section-label">Nos métiers</div>
                 <h2>De la mesure d'impact au déploiement opérationnel</h2>
             </div>
             <div class="accordion fade-up">
                 <div class="accordion-item">
                     <button class="accordion-trigger" aria-expanded="false">
-                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon">📊</div><div><h3>Diagnostic & mesure d'impact</h3><div class="subtitle">Bilans GES, ACV, audits environnementaux</div></div></div>
-                        <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-chart-column"/></svg></div><div><h3>Diagnostic &amp; mesure d'impact</h3><div class="subtitle">Bilans GES, ACV, audits environnementaux</div></div></div>
+                        <svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
                     </button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Nous accompagnons les organisations dans la compréhension de leurs enjeux, par l'identification, la mesure et l'analyse de leurs impacts environnementaux.</p></div></div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-trigger" aria-expanded="false">
-                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon">🧭</div><div><h3>Conseil stratégique</h3><div class="subtitle">Stratégie et feuille de route</div></div></div>
-                        <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-compass"/></svg></div><div><h3>Conseil stratégique</h3><div class="subtitle">Stratégie et feuille de route</div></div></div>
+                        <svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
                     </button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Nous guidons les organisations dans la formalisation de leurs engagements en matière d'atténuation de leurs impacts, par la construction d'une stratégie et d'une feuille de route adaptées.</p></div></div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-trigger" aria-expanded="false">
-                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon">🚀</div><div><h3>Déploiement opérationnel</h3><div class="subtitle">Plan d'actions, financement, suivi</div></div></div>
-                        <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-rocket"/></svg></div><div><h3>Déploiement opérationnel</h3><div class="subtitle">Plan d'actions, financement, suivi</div></div></div>
+                        <svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
                     </button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Nous sommes aux côtés des organisations dans le déploiement, le financement et le suivi de leur plan d'actions, ainsi que l'intégration des enjeux dans leurs métiers et pratiques.</p></div></div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-trigger" aria-expanded="false">
-                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon">🎤</div><div><h3>Conduite du changement</h3><div class="subtitle">Communication, sensibilisation, formation</div></div></div>
-                        <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-megaphone"/></svg></div><div><h3>Conduite du changement</h3><div class="subtitle">Communication, sensibilisation, formation</div></div></div>
+                        <svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
                     </button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Nous accompagnons les organisations dans le déploiement d'actions de communication, de sensibilisation et de formation, et dans la valorisation de leurs engagements.</p></div></div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-trigger" aria-expanded="false">
-                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon">🔧</div><div><h3>Expertise analytique & maintenance</h3><div class="subtitle">Instruments reconditionnés, économie circulaire</div></div></div>
-                        <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-wrench"/></svg></div><div><h3>Expertise analytique &amp; maintenance</h3><div class="subtitle">Instruments reconditionnés, économie circulaire</div></div></div>
+                        <svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
                     </button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Sourcing et déploiement d'instruments analytiques reconditionnés, contrats de maintenance, extension de durée de vie des équipements de laboratoire. Réparation et économie circulaire appliquée.</p></div></div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-trigger" aria-expanded="false">
-                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon">💻</div><div><h3>Chémo-informatique & algorithmie</h3><div class="subtitle">Données analytiques, algorithmes génétiques</div></div></div>
-                        <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                        <div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg></div><div><h3>Chémo-informatique &amp; algorithmie</h3><div class="subtitle">Données analytiques, algorithmes génétiques</div></div></div>
+                        <svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
                     </button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Accompagnement dans la gestion des données analytiques, algorithmes génétiques, traitement du signal pour les laboratoires.</p></div></div>
                 </div>
@@ -454,136 +333,134 @@
         </div>
     </section>
 
-    <!-- 3 PÔLES (toujours visibles) -->
+    <!-- 3 PÔLES -->
     <section class="section">
         <div class="section-inner">
-            <div class="section-header center fade-up">
+            <div class="section-header fade-up">
                 <div class="section-label">Nos expertises</div>
                 <h2>Trois pôles pour transformer votre laboratoire</h2>
             </div>
             <div class="services-grid">
                 <div class="service-card fade-up stagger-1">
-                    <div class="service-icon">🔬</div>
-                    <h3>Expertise analytique & instrumentation</h3>
+                    <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-microscope"/></svg></span>
+                    <h3>Expertise analytique &amp; instrumentation</h3>
                     <ul><li>Conseil en stratégies analytiques</li><li>Audit de performance</li><li>Maintenance instrumentale</li><li>Matériel reconditionné</li></ul>
-                    <a href="services.html" class="service-link">En savoir plus →</a>
+                    <a href="services.html" class="service-link">En savoir plus <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a>
                 </div>
                 <div class="service-card fade-up stagger-2">
-                    <div class="service-icon">🌿</div>
-                    <h3>Durabilité, résilience & criticité</h3>
+                    <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg></span>
+                    <h3>Durabilité, résilience &amp; criticité</h3>
                     <ul><li>ACV ISO 14040/44</li><li>Bilans GES / Bilan Carbone®</li><li>Éco-conception de méthodes</li><li>Pilotage des consommations</li></ul>
-                    <a href="services.html" class="service-link">En savoir plus →</a>
+                    <a href="services.html" class="service-link">En savoir plus <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a>
                 </div>
                 <div class="service-card fade-up stagger-3">
-                    <div class="service-icon">💻</div>
-                    <h3>Chémo-informatique & IA</h3>
+                    <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg></span>
+                    <h3>Chémo-informatique &amp; IA</h3>
                     <ul><li>Traitement de données labo</li><li>Solutions algorithmiques</li><li>Bases de données sur mesure</li><li>Formations spécialisées</li></ul>
-                    <a href="services.html" class="service-link">En savoir plus →</a>
+                    <a href="services.html" class="service-link">En savoir plus <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ENGAGEMENTS — ACCORDÉON DARK -->
-    <section class="section engagements">
+    <!-- ENGAGEMENTS — ACCORDÉON SOMBRE -->
+    <section class="section band">
         <div class="section-inner">
-            <div class="section-header center fade-up">
+            <div class="section-header fade-up">
                 <div class="section-label">Nos engagements</div>
                 <h2>Des pratiques engagées au quotidien</h2>
                 <p class="section-desc">Notre politique environnementale structure nos actions autour de 3 axes et 6 engagements concrets.</p>
             </div>
             <div class="accordion accordion-dark fade-up">
                 <div class="accordion-item">
-                    <button class="accordion-trigger"><div class="accordion-trigger-left"><div class="accordion-trigger-icon">🚆</div><div><h3>Transports bas carbone</h3></div></div><svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></button>
+                    <button class="accordion-trigger" aria-expanded="false"><div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-train-front"/></svg></div><div><h3>Transports bas carbone</h3></div></div><svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Priorisation train et vélo, regroupement des RDV par zone géographique, visioconférence systématique. 61 % de nos km parcourus en train en 2025.</p></div></div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-trigger"><div class="accordion-trigger-left"><div class="accordion-trigger-icon">🏠</div><div><h3>Télétravail encouragé</h3></div></div><svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></button>
+                    <button class="accordion-trigger" aria-expanded="false"><div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-house"/></svg></div><div><h3>Télétravail encouragé</h3></div></div><svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Réduction des déplacements quotidiens et de l'empreinte carbone associée. Recrutement régional priorisé pour réduire les distances domicile-client.</p></div></div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-trigger"><div class="accordion-trigger-left"><div class="accordion-trigger-icon">♻️</div><div><h3>Numérique responsable</h3></div></div><svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></button>
+                    <button class="accordion-trigger" aria-expanded="false"><div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-recycle"/></svg></div><div><h3>Numérique responsable</h3></div></div><svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Achat de matériel informatique reconditionné uniquement (sauf irréparabilité), extension de garantie, réparation prioritaire.</p></div></div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-trigger"><div class="accordion-trigger-left"><div class="accordion-trigger-icon">⚖️</div><div><h3>Éthique & loyauté</h3></div></div><svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></button>
+                    <button class="accordion-trigger" aria-expanded="false"><div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-scale"/></svg></div><div><h3>Éthique &amp; loyauté</h3></div></div><svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>CDI favorisés, rémunération des stagiaires dès le 1er jour, écart salarial de 1 à 3 maximum. Confidentialité stricte sur les données clients (RGPD).</p></div></div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-trigger"><div class="accordion-trigger-left"><div class="accordion-trigger-icon">🎓</div><div><h3>Formation continue</h3></div></div><svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></button>
+                    <button class="accordion-trigger" aria-expanded="false"><div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-graduation-cap"/></svg></div><div><h3>Formation continue</h3></div></div><svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Fresques, myCO₂, ateliers. Sensibilisation régulière des collaborateur·ices aux enjeux environnementaux. Formations 100 % accessibles PMR.</p></div></div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-trigger"><div class="accordion-trigger-left"><div class="accordion-trigger-icon">🌱</div><div><h3>Alimentation responsable</h3></div></div><svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></button>
+                    <button class="accordion-trigger" aria-expanded="false"><div class="accordion-trigger-left"><div class="accordion-trigger-icon"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-sprout"/></svg></div><div><h3>Alimentation responsable</h3></div></div><svg class="accordion-chevron" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></button>
                     <div class="accordion-content"><div class="accordion-content-inner"><p>Pas de viande ni de poisson lors de nos workshops et événements. Alternatives végétales systématiquement proposées.</p></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BILAN GES — RÉSUMÉ + DÉPLIABLE -->
-    <section class="section bilan-teaser">
+    <!-- BILAN GES -->
+    <section class="section">
         <div class="section-inner">
             <div class="section-header fade-up">
                 <div class="section-label">Transparence</div>
                 <h2>Notre bilan GES 2025</h2>
             </div>
             <div class="fade-up">
-                <div class="bilan-summary">
-                    <div class="bilan-summary-number">6,34 <span style="font-size:1.2rem;color:var(--text-mid);font-family:'Plus Jakarta Sans',sans-serif">tCO₂e</span></div>
+                <div class="bilan-head">
+                    <div class="bilan-summary-number">6,34<span class="unit">tCO₂e</span></div>
                     <div class="bilan-summary-text">
                         <p>~1,15 tCO₂e par personne. 85 % de notre empreinte provient des déplacements, principalement liés au transport de matériel analytique volumineux.</p>
-                        <div class="bilan-target">📉 Objectif 2028 : 3,80 tCO₂e (−40 %), zéro avion dès 2027</div>
+                        <div class="bilan-target"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-trending-down"/></svg>Objectif 2028 : 3,80 tCO₂e (−40 %), zéro avion dès 2027</div>
                     </div>
                 </div>
-                <button class="bilan-expand-btn" id="bilanToggle">
-                    Voir le détail par poste
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
-                </button>
-                <div class="bilan-detail" id="bilanDetail">
-                    <div class="bilan-detail-inner">
-                        <div class="bilan-detail-grid">
-                            <div class="bilan-breakdown">
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Voiture</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill transport" style="width:61%"></div></div><span class="bilan-bar-value">3,87 tCO₂e</span></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Avion</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill transport" style="width:20.5%"></div></div><span class="bilan-bar-value">1,30 tCO₂e</span></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Achats</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill achats" style="width:6.2%"></div></div><span class="bilan-bar-value">0,39 tCO₂e</span></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Électricité</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.3%"></div></div><span class="bilan-bar-value">0,27 tCO₂e</span></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Train</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill elec" style="width:4.1%"></div></div><span class="bilan-bar-value">0,26 tCO₂e</span></div></div>
-                                <div class="bilan-bar-item"><div class="bilan-bar-label">Télétravail</div><div class="bilan-bar-row"><div class="bilan-bar-track"><div class="bilan-bar-fill teletravail" style="width:3.9%"></div></div><span class="bilan-bar-value">0,25 tCO₂e</span></div></div>
-                                <p class="bilan-note">85 % de notre empreinte carbone est liée aux déplacements, principalement la voiture pour le transport de matériel analytique volumineux (HPLC, GC-MS). L'avion représente le second poste malgré un usage limité.</p>
-                            </div>
-                            <div class="bilan-chart-wrap">
-                                <div class="bilan-chart-title">Répartition des déplacements</div>
-                                <canvas id="gesChart" aria-label="Répartition des déplacements 2025 (km)"></canvas>
-                                <p class="bilan-note" style="text-align:center;max-width:none">La majorité de nos déplacements est effectuée en train. La voiture reste nécessaire pour le transport de matériel analytique volumineux (HPLC, GC-MS) — chaque trajet combine livraison et récupération d'instruments.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bilan-detail-grid">
+                    <figure class="bilan-chart">
+                        <figcaption class="bilan-chart-title">Émissions par poste <b>· tCO₂e</b></figcaption>
+                        <ul class="bars">
+                            <li class="bar"><span class="bar-label">Voiture</span><span class="bar-track"><span class="bar-fill" style="width:61%"></span></span><span class="bar-value">3,87 <small>61,0 %</small></span></li>
+                            <li class="bar"><span class="bar-label">Avion</span><span class="bar-track"><span class="bar-fill" style="width:20.5%"></span></span><span class="bar-value">1,30 <small>20,5 %</small></span></li>
+                            <li class="bar"><span class="bar-label">Achats</span><span class="bar-track"><span class="bar-fill" style="width:6.2%"></span></span><span class="bar-value">0,39 <small>6,2 %</small></span></li>
+                            <li class="bar"><span class="bar-label">Électricité</span><span class="bar-track"><span class="bar-fill" style="width:4.3%"></span></span><span class="bar-value">0,27 <small>4,3 %</small></span></li>
+                            <li class="bar"><span class="bar-label">Train</span><span class="bar-track"><span class="bar-fill" style="width:4.1%"></span></span><span class="bar-value">0,26 <small>4,1 %</small></span></li>
+                            <li class="bar"><span class="bar-label">Télétravail</span><span class="bar-track"><span class="bar-fill" style="width:3.9%"></span></span><span class="bar-value">0,25 <small>3,9 %</small></span></li>
+                        </ul>
+                        <p class="bilan-note">85 % de notre empreinte carbone est liée aux déplacements, principalement la voiture pour le transport de matériel analytique volumineux (HPLC, GC-MS). L'avion représente le second poste malgré un usage limité.</p>
+                    </figure>
+                    <figure class="bilan-chart">
+                        <figcaption class="bilan-chart-title">Répartition des déplacements 2025 <b>· km</b></figcaption>
+                        <ul class="bars">
+                            <li class="bar"><span class="bar-label">Train</span><span class="bar-track"><span class="bar-fill" style="width:60.6%"></span></span><span class="bar-value">43 660 <small>60,6 %</small></span></li>
+                            <li class="bar"><span class="bar-label">Voiture</span><span class="bar-track"><span class="bar-fill" style="width:29.5%"></span></span><span class="bar-value">21 240 <small>29,5 %</small></span></li>
+                            <li class="bar"><span class="bar-label">Avion</span><span class="bar-track"><span class="bar-fill" style="width:9.9%"></span></span><span class="bar-value">7 140 <small>9,9 %</small></span></li>
+                        </ul>
+                        <p class="bilan-note">La majorité de nos déplacements est effectuée en train. La voiture reste nécessaire pour le transport de matériel analytique volumineux (HPLC, GC-MS) — chaque trajet combine livraison et récupération d'instruments.</p>
+                    </figure>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
-    <section class="section cta-section">
-        <div class="section-inner">
-            <div class="cta-box fade-up">
-                <h2>Rejoignez le mouvement</h2>
-                <p>Vous souhaitez engager votre laboratoire dans une démarche durable ? Parlons-en.</p>
-                <div class="cta-actions">
-                    <a href="contact.html" class="btn btn-accent">Nous contacter</a>
-                    <a href="formations.html" class="btn btn-ghost" style="color:var(--primary);border-color:var(--primary)">Voir nos formations →</a>
-                </div>
+    <section class="cta-band">
+        <div class="cta-box fade-up">
+            <h2>Rejoignez le mouvement</h2>
+            <p>Vous souhaitez engager votre laboratoire dans une démarche durable ? Parlons-en.</p>
+            <div class="cta-actions">
+                <a href="contact.html" class="btn btn-accent">Nous contacter</a>
+                <a href="formations.html" class="btn btn-outline">Voir nos formations <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto;filter:brightness(0) invert(1)"></a>
+                    <a href="index.html" class="footer-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
                     <p>Accompagner les laboratoires d'analyses dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
                 </div>
                 <div>
@@ -605,8 +482,8 @@
                 </div>
                 <div>
                     <h4>Nous contacter</h4>
-                    <div class="footer-contact-item"><span class="icon">📍</span><span>34 rue du Vallat, 43100 Brioude</span></div>
-                    <div class="footer-contact-item"><span class="icon">✉️</span><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg><span>34 rue du Vallat, 43100 Brioude</span></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -616,88 +493,10 @@
                     <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
                     <a href="mentions-legales.html#cookies">Cookies</a>
                 </div>
-                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a></div>
+                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg></a></div>
             </div>
         </div>
     </footer>
-
-    <script>
-        // Mobile nav
-        const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-        toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
-        links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')}));
-        window.addEventListener('resize',()=>{if(window.innerWidth>900){toggle.classList.remove('open');links.classList.remove('open')}});
-
-        // Accordion logic
-        document.querySelectorAll('.accordion-trigger').forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                const item=btn.parentElement;
-                const content=item.querySelector('.accordion-content');
-                const isOpen=item.classList.contains('open');
-                // Close siblings
-                item.parentElement.querySelectorAll('.accordion-item.open').forEach(sib=>{
-                    if(sib!==item){sib.classList.remove('open');sib.querySelector('.accordion-content').style.maxHeight=null;sib.querySelector('.accordion-trigger').setAttribute('aria-expanded','false')}
-                });
-                if(isOpen){
-                    item.classList.remove('open');content.style.maxHeight=null;btn.setAttribute('aria-expanded','false');
-                }else{
-                    item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px';btn.setAttribute('aria-expanded','true');
-                }
-            });
-        });
-
-        // Bilan GES toggle
-        const bilanBtn=document.getElementById('bilanToggle'),bilanDetail=document.getElementById('bilanDetail');
-        let gesChartInstance=null;
-        bilanBtn.addEventListener('click',()=>{
-            const isOpen=bilanBtn.classList.contains('open');
-            if(isOpen){
-                bilanBtn.classList.remove('open');bilanDetail.style.maxHeight=null;bilanBtn.textContent='';bilanBtn.innerHTML='Voir le détail par poste <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>';
-            }else{
-                bilanBtn.classList.add('open');bilanDetail.style.maxHeight=bilanDetail.scrollHeight+'px';bilanBtn.innerHTML='Masquer le détail <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="transform:rotate(180deg)"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>';
-                if(!gesChartInstance){
-                    const ctx=document.getElementById('gesChart').getContext('2d');
-                    gesChartInstance=new Chart(ctx,{
-                        type:'pie',
-                        data:{
-                            labels:['Train — 60,6 %','Voiture — 29,5 %','Avion — 9,9 %'],
-                            datasets:[{
-                                data:[43660,21240,7140],
-                                backgroundColor:['#1a6b7a','#0f3d4f','#d4a053'],
-                                borderColor:'#ffffff',
-                                borderWidth:2,
-                                hoverOffset:8
-                            }]
-                        },
-                        options:{
-                            responsive:true,
-                            plugins:{
-                                legend:{
-                                    position:'bottom',
-                                    labels:{
-                                        font:{family:"'Plus Jakarta Sans',sans-serif",size:12},
-                                        color:'#4a5e63',
-                                        padding:12,
-                                        boxWidth:14
-                                    }
-                                },
-                                tooltip:{
-                                    callbacks:{
-                                        label:function(ctx){return ' '+ctx.label.split(' —')[0]+' : '+ctx.parsed.toLocaleString('fr-FR')+' km'}
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    // Allow Chart.js to finish rendering before recalculating max-height
-                    setTimeout(()=>{bilanDetail.style.maxHeight=bilanDetail.scrollHeight+'px'},300);
-                }
-            }
-        });
-
-        // Scroll animations
-        const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-        document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-    </script>
+    <script src="assets/js/site.js"></script>
 </body>
 </html>

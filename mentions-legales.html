@@ -7,147 +7,103 @@
     <meta name="description" content="Mentions légales, politique de confidentialité et gestion des cookies du site Le Labo Durable, société basée en France.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <meta name="color-scheme" content="light dark">
+    <script>document.documentElement.classList.add('js')</script>
     <style>
-        :root {
-            --deep: #0f3d4f;
-            --primary: #1a6b7a;
-            --primary-light: #2a8a9a;
-            --tint: #e8f4f6;
-            --tint-warm: #f0f7f4;
-            --accent: #d4a053;
-            --accent-light: #e8c88a;
-            --text: #1a2a2e;
-            --text-mid: #4a5e63;
-            --text-light: #7a8e93;
-            --white: #ffffff;
-            --off-white: #f8fafb;
-            --border: #d8e4e7;
-            --radius: 8px;
-            --radius-lg: 16px;
-            --shadow-sm: 0 1px 3px rgba(15,61,79,0.08);
-            --shadow-md: 0 4px 20px rgba(15,61,79,0.1);
-            --shadow-lg: 0 8px 40px rgba(15,61,79,0.12);
-            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+
+        .page-header p strong { color: var(--on-band); }
+
+        /* ---------- Mise en page de lecture ---------- */
+        .legal-layout { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 70ch); gap: clamp(2rem, 5vw, 4.5rem); justify-content: center; align-items: start; }
+        .legal-content { min-width: 0; }
+
+        /* ---------- Sommaire ---------- */
+        .legal-toc {
+            position: sticky; top: calc(var(--nav-h) + 1.5rem);
+            max-height: calc(100vh - var(--nav-h) - 3rem); overflow-y: auto;
+            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+            padding: 1.4rem 1.5rem;
         }
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;font-size:16px}
-        body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
-
-        /* NAV */
-        .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-        .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px}
-        .nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--deep);z-index:120}
-        .nav-logo-icon{width:40px;height:40px;background:var(--primary);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:white;font-family:'Outfit',sans-serif;font-size:1.1rem}
-        .nav-logo-text{font-weight:600;font-size:1.1rem}
-        .nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
-        .nav-links a{text-decoration:none;color:var(--text-mid);font-size:0.9rem;font-weight:500;padding:0.5rem 1rem;border-radius:var(--radius);transition:color 0.2s ease,background 0.2s ease}
-        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:var(--tint)}
-        .nav-cta{background:var(--primary)!important;color:var(--white)!important;padding:0.55rem 1.25rem!important}
-        .nav-cta:hover{background:var(--deep)!important;color:var(--white)!important}
-        .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;z-index:120;position:relative;border-radius:var(--radius)}
-        .nav-toggle:hover{background:var(--tint)}
-        .nav-toggle-bar{display:block;width:20px;height:2px;background:var(--text);position:absolute;left:12px;transition:transform 0.35s ease,opacity 0.25s ease;border-radius:2px}
-        .nav-toggle-bar:nth-child(1){top:15px}
-        .nav-toggle-bar:nth-child(2){top:21px}
-        .nav-toggle-bar:nth-child(3){top:27px}
-        .nav-toggle.open .nav-toggle-bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(2){opacity:0;transform:scaleX(0)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-        /* PAGE HEADER */
-        .page-header{padding:10rem 2rem 4rem;background:linear-gradient(165deg,rgba(15,61,79,0.85) 0%,rgba(26,107,122,0.7) 50%,rgba(42,138,154,0.6) 100%),url('assets/photos/hero-accueil.jpg') center center/cover no-repeat;position:relative;overflow:hidden}
-        .page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-        .page-header-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
-        .page-header .section-label{color:var(--accent-light)}
-        .page-header .section-label::before{background:var(--accent)}
-        .page-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:1rem}
-        .page-header p{font-size:1.1rem;color:rgba(255,255,255,0.75);max-width:680px;line-height:1.7}
-
-        /* SECTIONS */
-        .section{padding:5rem 2rem}
-        .section-inner{max-width:860px;margin:0 auto}
-        .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);margin-bottom:1rem}
-        .section-label::before{content:'';width:20px;height:2px;background:var(--primary);border-radius:1px}
-        h2{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,2.5vw,2rem);font-weight:700;color:var(--deep);line-height:1.25;margin-bottom:1.5rem}
-
-        /* LEGAL CONTENT */
-        .legal-toc{background:var(--tint);border-radius:var(--radius-lg);padding:2rem;margin-bottom:3rem}
-        .legal-toc h2{font-size:1rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em}
-        .legal-toc ol{padding-left:1.5rem;display:flex;flex-direction:column;gap:0.4rem}
-        .legal-toc li a{color:var(--primary);text-decoration:none;font-size:0.95rem}
-        .legal-toc li a:hover{text-decoration:underline}
-        .legal-toc li{color:var(--text-mid);font-size:0.95rem}
-
-        .legal-block{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid var(--border)}
-        .legal-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-        .legal-block h2{scroll-margin-top:100px}
-        .legal-block h3{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:600;color:var(--deep);margin:2rem 0 0.75rem}
-        .legal-block p{color:var(--text-mid);margin-bottom:1rem;font-size:0.97rem;line-height:1.75}
-        .legal-block p:last-child{margin-bottom:0}
-        .legal-block ul,.legal-block ol{padding-left:1.5rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:0.4rem}
-        .legal-block li{color:var(--text-mid);font-size:0.97rem;line-height:1.7}
-        .legal-block a{color:var(--primary);text-decoration:none}
-        .legal-block a:hover{text-decoration:underline}
-        .legal-block strong{color:var(--text);font-weight:600}
-
-        .info-table{width:100%;border-collapse:collapse;margin-bottom:1rem;font-size:0.93rem}
-        .info-table th{text-align:left;padding:0.6rem 0.8rem;background:var(--tint);color:var(--deep);font-weight:600;border:1px solid var(--border)}
-        .info-table td{padding:0.6rem 0.8rem;border:1px solid var(--border);color:var(--text-mid);vertical-align:top}
-        .info-table tr:nth-child(even) td{background:var(--off-white)}
-
-        .rights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1.5rem 0}
-        .right-card{background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem}
-        .right-card h4{font-size:0.88rem;font-weight:700;color:var(--primary);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.04em}
-        .right-card p{font-size:0.88rem;color:var(--text-mid);line-height:1.5;margin:0}
-
-        .update-banner{background:var(--tint-warm);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;font-size:0.88rem;color:var(--text-mid);margin-top:2rem}
-        .update-banner strong{color:var(--text)}
-
-        /* FOOTER */
-        .footer{background:var(--off-white);color:var(--text-mid);padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
-        .footer-inner{max-width:1200px;margin:0 auto}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
-        .footer-brand p{font-size:0.9rem;line-height:1.7;margin-top:1rem;max-width:280px}
-        .footer h4{color:var(--deep);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.25rem}
-        .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
-        .footer-links a{color:var(--text-mid);text-decoration:none;font-size:0.9rem;transition:var(--transition)}
-        .footer-links a:hover{color:var(--primary)}
-        .footer-contact-item{display:flex;align-items:start;gap:0.6rem;font-size:0.9rem;margin-bottom:0.75rem}
-        .footer-contact-item .icon{margin-top:0.1rem;font-size:0.85rem;flex-shrink:0}
-        .footer-contact-item a{color:var(--text-mid);text-decoration:none;transition:var(--transition)}
-        .footer-contact-item a:hover{color:var(--primary)}
-        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:0.8rem;color:var(--text-light);flex-wrap:wrap;gap:0.75rem}
-        .footer-bottom-left{display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem 1.25rem}
-        .footer-bottom-left a{color:var(--text-light);text-decoration:none;transition:color 0.2s ease}
-        .footer-bottom-left a:hover{color:var(--primary)}
-        .footer-social{display:flex;gap:0.75rem}
-        .footer-social a{width:36px;height:36px;border-radius:var(--radius);background:var(--tint);display:flex;align-items:center;justify-content:center;color:var(--primary);text-decoration:none;font-size:0.85rem;transition:var(--transition)}
-        .footer-social a:hover{background:var(--primary);color:var(--white)}
-
-        /* MOBILE NAV */
-        @media(max-width:900px){
-            .nav-links{display:none;position:fixed;inset:0;background:var(--white);padding:6rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0.5rem;z-index:110}
-            .nav-links.open{display:flex}
-            .nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center}
-            .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+        .legal-toc h2 {
+            font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-3); margin-bottom: 0.9rem;
         }
-        @media(max-width:600px){
-            .footer-grid{grid-template-columns:1fr}
-            .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
-            .footer-bottom-left{justify-content:center}
-            .rights-grid{grid-template-columns:1fr}
-        }
+        .legal-toc ol { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
+        .legal-toc ol ol { margin-top: 0.45rem; padding-left: 1rem; list-style: lower-alpha; }
+        .legal-toc li { color: var(--ink-3); font-size: var(--fs-sm); line-height: 1.4; }
+        .legal-toc li::marker { font-family: var(--font-mono); font-size: 0.9em; }
+        .legal-toc a { color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+        .legal-toc a:hover { color: var(--leaf-ink); text-decoration-color: currentColor; }
 
-        .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
-        .fade-up.visible{opacity:1;transform:translateY(0)}
+        /* ---------- Blocs de texte ---------- */
+        .legal-block { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--line); }
+        .legal-block:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+        .legal-block .section-label { margin-bottom: 0.6rem; font-variant-numeric: tabular-nums; }
+        .legal-block h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem); margin-bottom: 1.25rem; }
+        .legal-block h3 { font-size: var(--fs-md); margin: 2.25rem 0 0.75rem; }
+        .legal-block p { color: var(--ink-2); margin-bottom: 1rem; line-height: 1.75; }
+        .legal-block p:last-child { margin-bottom: 0; }
+        .legal-block ul, .legal-block ol { padding-left: 1.4rem; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+        .legal-block li { color: var(--ink-2); line-height: 1.7; }
+        .legal-block li::marker { color: var(--leaf-ink); }
+        .legal-block a { color: var(--leaf-ink); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+        .legal-block a:hover { color: var(--ink); }
+        .legal-block strong { color: var(--ink); }
+
+        /* ---------- Tableaux ---------- */
+        .table-wrap {
+            overflow-x: auto; margin-bottom: 1.25rem;
+            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+        }
+        .info-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+        .info-table th, .info-table td { text-align: left; vertical-align: top; padding: 0.7rem 1rem; border-bottom: 1px solid var(--line); }
+        .info-table tr:last-child > * { border-bottom: 0; }
+        .info-table th {
+            font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); line-height: 1.5;
+        }
+        .info-table tbody th { width: 36%; min-width: 11rem; }
+        .info-table thead th { background: var(--surface-2); white-space: nowrap; }
+        .info-table td { color: var(--ink); }
+        .info-table td a { overflow-wrap: normal; }
+        .info-table.wide { min-width: 720px; }
+
+        /* ---------- Droits ---------- */
+        .rights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+        .right-card { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.1rem 1.2rem; }
+        .right-card h4 { font-size: var(--fs-sm); font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+        .right-card p { font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.55; margin: 0; }
+
+        /* ---------- Mise à jour ---------- */
+        .update-banner {
+            background: var(--leaf-wash); border: 1px solid var(--line); border-left: 3px solid var(--leaf);
+            border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 2rem;
+            font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.65;
+        }
+        .update-banner strong { color: var(--ink); }
+
+        @media (max-width: 600px) {
+            /* Tableaux clé / valeur : libellé au-dessus de la valeur */
+            .info-table.kv tr { display: block; padding: 0.7rem 1rem; border-bottom: 1px solid var(--line); }
+            .info-table.kv tr:last-child { border-bottom: 0; }
+            .info-table.kv th, .info-table.kv td { display: block; width: auto; min-width: 0; padding: 0; border: 0; }
+            .info-table.kv th { margin-bottom: 0.15rem; }
+            .info-table.kv td { overflow-wrap: anywhere; }
+        }
+        @media (max-width: 960px) {
+            .legal-layout { grid-template-columns: minmax(0, 1fr); }
+            .legal-toc { position: static; max-height: none; }
+        }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
 
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
+            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Nos services</a></li>
@@ -157,20 +113,21 @@
                 <li><a href="consolab.html">Consolab</a></li>
                 <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
+            <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
         </div>
     </nav>
 
+    <main id="main">
     <header class="page-header">
         <div class="page-header-inner">
             <div class="section-label">Informations légales</div>
             <h1>Mentions légales &amp; Politique de confidentialité</h1>
-            <p>Conformément à la loi française pour la Confiance dans l'Économie Numérique (LCEN) et au Règlement Général sur la Protection des Données (RGPD), vous trouverez ci-dessous les informations légales relatives au site <strong style="color:var(--white)">lelabodurable.com</strong>.</p>
+            <p>Conformément à la loi française pour la Confiance dans l'Économie Numérique (LCEN) et au Règlement Général sur la Protection des Données (RGPD), vous trouverez ci-dessous les informations légales relatives au site <strong>lelabodurable.com</strong>.</p>
         </div>
     </header>
 
     <section class="section">
-        <div class="section-inner">
+        <div class="section-inner legal-layout">
 
             <!-- TABLE DES MATIÈRES -->
             <nav class="legal-toc fade-up" aria-label="Table des matières">
@@ -180,7 +137,7 @@
                     <li><a href="#hebergeur">Hébergeur du site</a></li>
                     <li><a href="#propriete-intellectuelle">Propriété intellectuelle</a></li>
                     <li><a href="#confidentialite">Politique de confidentialité &amp; RGPD</a>
-                        <ol style="margin-top:0.4rem">
+                        <ol>
                             <li><a href="#donnees-collectees">Données collectées</a></li>
                             <li><a href="#finalites">Finalités et bases légales</a></li>
                             <li><a href="#conservation">Durée de conservation</a></li>
@@ -195,12 +152,13 @@
                 </ol>
             </nav>
 
+            <div class="legal-content">
             <!-- 1. ÉDITEUR -->
             <div class="legal-block fade-up" id="editeur">
                 <div class="section-label">1</div>
                 <h2>Éditeur du site</h2>
                 <p>Le présent site internet est édité par la société <strong>Le Labo Durable</strong>, société par actions simplifiée (SAS) au capital de <strong>50 000 €</strong>, immatriculée au Registre du Commerce et des Sociétés (RCS) de Brioude.</p>
-                <table class="info-table">
+                <div class="table-wrap" tabindex="0"><table class="info-table kv">
                     <tbody>
                         <tr><th>Dénomination sociale</th><td>Le Labo Durable</td></tr>
                         <tr><th>Forme juridique</th><td>Société par Actions Simplifiée (SAS)</td></tr>
@@ -214,7 +172,7 @@
                         <tr><th>Directeur de la publication</th><td>Christophe Péres, Président</td></tr>
                         <tr><th>Email</th><td><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></td></tr>
                     </tbody>
-                </table>
+                </table></div>
                 <p>Vous pouvez consulter la fiche officielle de l'entreprise sur l'<a href="https://annuaire-entreprises.data.gouv.fr/entreprise/le-labo-durable-920504057" target="_blank" rel="noopener noreferrer">Annuaire des Entreprises du gouvernement français</a>.</p>
             </div>
 
@@ -223,14 +181,14 @@
                 <div class="section-label">2</div>
                 <h2>Hébergeur du site</h2>
                 <p>Le site est hébergé par <strong>GitHub, Inc.</strong>, via le service <strong>GitHub Pages</strong>.</p>
-                <table class="info-table">
+                <div class="table-wrap" tabindex="0"><table class="info-table kv">
                     <tbody>
                         <tr><th>Société</th><td>GitHub, Inc.</td></tr>
                         <tr><th>Adresse</th><td>88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis</td></tr>
                         <tr><th>Site web</th><td><a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a></td></tr>
                         <tr><th>Politique de confidentialité</th><td><a href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Déclaration de confidentialité GitHub</a></td></tr>
                     </tbody>
-                </table>
+                </table></div>
             </div>
 
             <!-- 3. PROPRIÉTÉ INTELLECTUELLE -->
@@ -250,7 +208,7 @@
 
                 <h3 id="donnees-collectees">4.1 Données personnelles collectées</h3>
                 <p>Nous collectons des données personnelles uniquement lorsque vous nous les transmettez volontairement, notamment via le <a href="contact.html">formulaire de contact</a>. Les données susceptibles d'être collectées sont :</p>
-                <table class="info-table">
+                <div class="table-wrap" tabindex="0"><table class="info-table">
                     <thead>
                         <tr><th>Donnée collectée</th><th>Caractère</th><th>Finalité</th></tr>
                     </thead>
@@ -260,12 +218,12 @@
                         <tr><td>Nom de votre organisation / laboratoire</td><td>Facultatif</td><td>Personnalisation de la réponse</td></tr>
                         <tr><td>Objet et contenu du message</td><td>Obligatoire</td><td>Traitement de votre demande</td></tr>
                     </tbody>
-                </table>
+                </table></div>
                 <p>Nous ne collectons pas de données sensibles au sens de l'article 9 du RGPD (données de santé, données biométriques, opinions politiques, etc.).</p>
                 <p>La navigation sur le site ne fait pas l'objet de collecte automatisée de données personnelles à des fins de profilage ou de ciblage publicitaire.</p>
 
                 <h3 id="finalites">4.2 Finalités et bases légales du traitement</h3>
-                <table class="info-table">
+                <div class="table-wrap" tabindex="0"><table class="info-table">
                     <thead>
                         <tr><th>Finalité</th><th>Base légale (art. 6 RGPD)</th></tr>
                     </thead>
@@ -274,7 +232,7 @@
                         <tr><td>Établissement et suivi de relations commerciales</td><td>Exécution d'un contrat ou mesures précontractuelles (art. 6.1.b)</td></tr>
                         <tr><td>Amélioration de nos services</td><td>Intérêt légitime (art. 6.1.f)</td></tr>
                     </tbody>
-                </table>
+                </table></div>
 
                 <h3 id="conservation">4.3 Durée de conservation</h3>
                 <p>Les données collectées via le formulaire de contact sont conservées pendant une durée maximale de <strong>3 ans</strong> à compter du dernier contact, conformément aux recommandations de la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">CNIL</a>.</p>
@@ -332,7 +290,7 @@
                 <p>Le site <strong>lelabodurable.com</strong> <strong>ne dépose pas de cookie de suivi analytique ou publicitaire</strong>. Toutefois, certaines ressources tierces intégrées peuvent entraîner des transferts de données vers des serveurs extérieurs :</p>
 
                 <h3>Services tiers intégrés</h3>
-                <table class="info-table">
+                <div class="table-wrap" tabindex="0"><table class="info-table wide">
                     <thead>
                         <tr><th>Service</th><th>Fournisseur</th><th>Usage</th><th>Données transmises</th><th>Politique de confidentialité</th></tr>
                     </thead>
@@ -366,7 +324,7 @@
                             <td><a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Politique LinkedIn</a></td>
                         </tr>
                     </tbody>
-                </table>
+                </table></div>
 
                 <p>Ces services peuvent déposer leurs propres cookies et traiter des données personnelles selon leurs propres politiques de confidentialité. Le Labo Durable ne contrôle pas ces traitements et vous invite à consulter les politiques respectives de ces fournisseurs.</p>
                 <p>Pour en savoir plus sur les cookies et vos droits, consultez le site de la CNIL : <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs" target="_blank" rel="noopener noreferrer">www.cnil.fr/fr/cookies-et-autres-traceurs</a>.</p>
@@ -401,15 +359,18 @@
                     <strong>Dernière mise à jour :</strong> Avril 2025. Le Labo Durable se réserve le droit de modifier à tout moment la présente politique afin de la mettre en conformité avec d'éventuelles évolutions légales ou réglementaires. La version en vigueur est celle disponible sur cette page.
                 </div>
             </div>
+            </div>
 
         </div>
     </section>
+    </main>
+
 
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
+                    <a href="index.html"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
                     <p>Accompagner les laboratoires d'analyses dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
                 </div>
                 <div>
@@ -430,8 +391,8 @@
                 </div>
                 <div>
                     <h4>Nous contacter</h4>
-                    <div class="footer-contact-item"><span class="icon">📍</span><span>34 rue du Vallat, 43100 Brioude</span></div>
-                    <div class="footer-contact-item"><span class="icon">✉️</span><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg><span>34 rue du Vallat, 43100 Brioude</span></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -441,19 +402,12 @@
                     <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
                     <a href="mentions-legales.html#cookies">Cookies</a>
                 </div>
-                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a></div>
+                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg></a></div>
             </div>
         </div>
     </footer>
 
-    <script>
-        const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-        toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
-        links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')}));
-        window.addEventListener('resize',()=>{if(window.innerWidth>900){toggle.classList.remove('open');links.classList.remove('open')}});
-        const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-        document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-    </script>
+    <script src="assets/js/site.js"></script>
 
 </body>
 </html>

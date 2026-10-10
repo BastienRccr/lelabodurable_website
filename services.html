@@ -7,219 +7,114 @@
     <meta name="description" content="Découvrez nos services : ACV ISO 14040/44, bilans GES, audit environnemental, maintenance instrumentale, chémo-informatique, formations Qualiopi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <meta name="color-scheme" content="light dark">
+    <script>document.documentElement.classList.add('js')</script>
     <style>
-        :root {
-            --deep: #0f3d4f;
-            --primary: #1a6b7a;
-            --primary-light: #2a8a9a;
-            --tint: #e8f4f6;
-            --tint-warm: #f0f7f4;
-            --accent: #d4a053;
-            --accent-light: #e8c88a;
-            --text: #1a2a2e;
-            --text-mid: #4a5e63;
-            --text-light: #7a8e93;
-            --white: #ffffff;
-            --off-white: #f8fafb;
-            --border: #d8e4e7;
-            --radius: 8px;
-            --radius-lg: 16px;
-            --shadow-sm: 0 1px 3px rgba(15,61,79,0.08);
-            --shadow-md: 0 4px 20px rgba(15,61,79,0.1);
-            --shadow-lg: 0 8px 40px rgba(15,61,79,0.12);
-            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+        /* ---------- Schéma cyclique des trois pôles ---------- */
+        .poles-cycle { display: flex; justify-content: center; margin-bottom: clamp(2rem, 5vw, 3.5rem); max-width: 100%; }
+        .poles-cycle svg { display: block; width: 100%; max-width: 480px; height: auto; overflow: visible; }
+        .poles-cycle .cycle-arrow { fill: none; stroke: var(--ink-3); stroke-width: 2; }
+        .poles-cycle .cycle-arrowhead { fill: var(--ink-3); }
+        .poles-cycle .cycle-dot { fill: var(--leaf); }
+        .poles-cycle .cycle-hub { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 3 5; }
+        .poles-cycle .cycle-node-circle { fill: var(--surface); stroke: var(--line); stroke-width: 2; transition: stroke 0.2s; }
+        .poles-cycle .cycle-node:hover .cycle-node-circle { stroke: var(--leaf); }
+        .poles-cycle .cycle-node-icon { color: var(--leaf-ink); }
+        .poles-cycle .cycle-node-label { fill: var(--ink); font-family: var(--font-display); font-size: 15px; font-weight: 500; }
+        .poles-cycle .cycle-node-sub { fill: var(--ink-2); font-family: var(--font-body); font-size: 11.5px; }
+        .poles-cycle .cycle-center-label {
+            fill: var(--ink-3); font-family: var(--font-mono); font-size: 10.5px; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.12em;
         }
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;font-size:16px}
-        body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+        @media (prefers-reduced-motion: reduce) { .poles-cycle .cycle-dot { display: none; } }
 
-        /* NAV */
-        .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-        .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px}
-        .nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--deep);z-index:120}
-        .nav-logo-icon{width:40px;height:40px;background:var(--primary);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:white;font-family:'Outfit',sans-serif;font-size:1.1rem}
-        .nav-logo-text{font-weight:600;font-size:1.1rem}
-        .nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
-        .nav-links a{text-decoration:none;color:var(--text-mid);font-size:0.9rem;font-weight:500;padding:0.5rem 1rem;border-radius:var(--radius);transition:color 0.2s ease,background 0.2s ease}
-        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:var(--tint)}
-        .nav-cta{background:var(--primary)!important;color:var(--white)!important;padding:0.55rem 1.25rem!important}
-        .nav-cta:hover{background:var(--deep)!important;color:var(--white)!important}
-        .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;z-index:120;position:relative;border-radius:var(--radius)}
-        .nav-toggle:hover{background:var(--tint)}
-        .nav-toggle-bar{display:block;width:20px;height:2px;background:var(--text);position:absolute;left:12px;transition:transform 0.35s ease,opacity 0.25s ease;border-radius:2px}
-        .nav-toggle-bar:nth-child(1){top:15px}
-        .nav-toggle-bar:nth-child(2){top:21px}
-        .nav-toggle-bar:nth-child(3){top:27px}
-        .nav-toggle.open .nav-toggle-bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(2){opacity:0;transform:scaleX(0)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-        /* PAGE HEADER */
-        .page-header{padding:10rem 2rem 4rem;background:linear-gradient(165deg,rgba(15,61,79,0.85) 0%,rgba(26,107,122,0.7) 50%,rgba(42,138,154,0.6) 100%),url('assets/photos/hero-accueil.jpg') center center/cover no-repeat;position:relative;overflow:hidden}
-        .page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-        .page-header-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
-        .page-header .section-label{color:var(--accent-light)}
-        .page-header .section-label::before{background:var(--accent)}
-        .page-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:1rem}
-        .page-header p{font-size:1.1rem;color:rgba(255,255,255,0.75);max-width:600px;line-height:1.7}
-
-        /* SECTIONS */
-        .section{padding:6rem 2rem}
-        .section-inner{max-width:1200px;margin:0 auto}
-        .section-header{max-width:640px;margin-bottom:3.5rem}
-        .section-header.center{margin-left:auto;margin-right:auto;text-align:center}
-        .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);margin-bottom:1rem}
-        .section-label::before{content:'';width:20px;height:2px;background:var(--primary);border-radius:1px}
-        h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--deep);line-height:1.25;margin-bottom:1rem}
-        .section-desc{font-size:1.05rem;color:var(--text-mid);line-height:1.7}
-
-        .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.95rem;font-weight:600;text-decoration:none;transition:var(--transition);border:none;cursor:pointer}
-        .btn-accent{background:var(--primary);color:var(--white)}
-        .btn-accent:hover{background:var(--deep);transform:translateY(-2px);box-shadow:var(--shadow-md)}
-
-        /* ─── 3 PÔLES ─── */
-        .poles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-
-        .pole-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition)}
-        .pole-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
-
-        .pole-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border)}
-        .pole-icon{width:52px;height:52px;background:var(--tint);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.4rem}
-        .pole-header h3{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:600;color:var(--deep);margin-bottom:0.4rem}
-        .pole-header .pole-subtitle{font-size:0.85rem;color:var(--text-light)}
-
-        .pole-body{padding:1.5rem 2rem 2rem}
-        .pole-body ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
-        .pole-body li{font-size:0.9rem;color:var(--text-mid);padding-left:1.25rem;position:relative;line-height:1.5}
-        .pole-body li::before{content:'→';position:absolute;left:0;color:var(--primary-light);font-size:0.8rem}
-
-        .pole-link{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.25rem;font-size:0.85rem;font-weight:600;color:var(--white);background:var(--primary);text-decoration:none;padding:0.55rem 1.15rem;border-radius:var(--radius);transition:var(--transition)}
-        .pole-link:hover{background:var(--deep);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
-
-        /* ─── MÉTIERS ACCORDÉON ─── */
-        .metiers-section{background:var(--off-white)}
-        .accordion{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--white)}
-        .accordion-item{border-bottom:1px solid var(--border)}
-        .accordion-item:last-child{border-bottom:none}
-        .accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.75rem;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;transition:var(--transition)}
-        .accordion-trigger:hover{background:var(--tint)}
-        .accordion-trigger-left{display:flex;align-items:center;gap:1rem}
-        .accordion-trigger-icon{width:40px;height:40px;background:var(--tint);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-        .accordion-trigger h3{font-size:1rem;font-weight:600;color:var(--deep);margin:0}
-        .accordion-trigger .subtitle{font-size:0.85rem;color:var(--text-light);margin-top:0.15rem}
-        .accordion-chevron{width:20px;height:20px;transition:transform 0.3s ease;flex-shrink:0;color:var(--text-light)}
-        .accordion-item.open .accordion-chevron{transform:rotate(180deg)}
-        .accordion-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-        .accordion-content-inner{padding:0 1.75rem 1.5rem;color:var(--text-mid);font-size:0.92rem;line-height:1.7}
-
-        /* ─── BOÎTE À OUTILS ─── */
-        .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-
-        .tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;text-align:center;transition:var(--transition)}
-        .tool-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
-
-        .tool-icon{width:52px;height:52px;background:var(--tint);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.3rem}
-        .tool-card h3{font-size:0.95rem;font-weight:600;color:var(--deep);margin-bottom:0.3rem}
-        .tool-card p{font-size:0.82rem;color:var(--text-light);line-height:1.45}
-
-        /* ─── CONFIDENTIALITÉ ─── */
-        .confidentiality-section{background:var(--off-white)}
-        .confidentiality-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-        .confidentiality-points{display:flex;flex-direction:column;gap:1rem;margin-top:1.75rem}
-        .confidentiality-point{display:flex;align-items:flex-start;gap:0.9rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.5rem}
-        .confidentiality-point-icon{width:40px;height:40px;background:var(--tint);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-        .confidentiality-point-text{font-size:0.92rem;color:var(--text-mid);line-height:1.6}
-        .confidentiality-callout{background:var(--primary);border-radius:var(--radius-lg);padding:2.5rem;color:var(--white);display:flex;flex-direction:column;gap:1.25rem}
-        .confidentiality-callout .callout-icon{font-size:2rem}
-        .confidentiality-callout h3{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
-        .confidentiality-callout p{font-size:0.95rem;color:rgba(255,255,255,0.82);line-height:1.7}
-        @media(max-width:900px){.confidentiality-inner{grid-template-columns:1fr}}
-
-        /* ─── CTA BAND ─── */
-        .cta-band{background:var(--deep);padding:4rem 2rem;text-align:center}
-        .cta-band h2{color:var(--white);margin-bottom:1rem}
-        .cta-band p{color:rgba(255,255,255,0.65);font-size:1.05rem;max-width:480px;margin:0 auto 2rem}
-
-        /* FOOTER */
-        .footer{background:var(--off-white);color:var(--text-mid);padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
-        .footer-inner{max-width:1200px;margin:0 auto}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
-        .footer-brand p{font-size:0.9rem;line-height:1.7;margin-top:1rem;max-width:280px}
-        .footer h4{color:var(--deep);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.25rem}
-        .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
-        .footer-links a{color:var(--text-mid);text-decoration:none;font-size:0.9rem;transition:var(--transition)}
-        .footer-links a:hover{color:var(--primary)}
-        .footer-contact-item{display:flex;align-items:start;gap:0.6rem;font-size:0.9rem;margin-bottom:0.75rem}
-        .footer-contact-item .icon{margin-top:0.1rem;font-size:0.85rem;flex-shrink:0}
-        .footer-contact-item a{color:var(--text-mid);text-decoration:none;transition:var(--transition)}
-        .footer-contact-item a:hover{color:var(--primary)}
-        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:0.8rem;color:var(--text-light);flex-wrap:wrap;gap:0.75rem}
-        .footer-bottom-left{display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem 1.25rem}
-        .footer-bottom-left a{color:var(--text-light);text-decoration:none;transition:color 0.2s ease}
-        .footer-bottom-left a:hover{color:var(--primary)}
-        .footer-social{display:flex;gap:0.75rem}
-        .footer-social a{width:36px;height:36px;border-radius:var(--radius);background:var(--tint);display:flex;align-items:center;justify-content:center;color:var(--primary);text-decoration:none;font-size:0.85rem;transition:var(--transition)}
-        .footer-social a:hover{background:var(--primary);color:var(--white)}
-
-        /* RESPONSIVE */
-        @media(max-width:900px){
-            .nav-links{
-                position:fixed;top:72px;left:0;right:0;
-                background:var(--white);
-                flex-direction:column;align-items:stretch;gap:0;
-                list-style:none;
-                border-bottom:1px solid var(--border);
-                box-shadow:var(--shadow-lg);
-                transform:translateY(-110%);
-                opacity:0;
-                transition:transform 0.35s ease,opacity 0.3s ease;
-                pointer-events:none;
-                padding:0.75rem 1rem;
-                z-index:105
-            }
-            .nav-links.open{
-                transform:translateY(0);
-                opacity:1;
-                pointer-events:auto
-            }
-            .nav-links a{font-size:1rem;padding:0.85rem 1rem;border-radius:var(--radius);display:block}
-            .nav-links .nav-cta{text-align:center;margin-top:0.5rem}
-            .nav-toggle{display:block}
-            .poles-grid{grid-template-columns:1fr}
-            .tools-grid{grid-template-columns:repeat(2,1fr)}
-            .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+        /* ---------- Cartes des pôles ---------- */
+        .poles-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; align-items: stretch; }
+        .pole-card {
+            min-width: 0; display: flex; flex-direction: column;
+            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+            transition: border-color 0.2s, transform 0.2s var(--ease);
         }
-        @media(max-width:600px){
-            .section{padding:4rem 1.25rem}
-            .page-header{padding:8rem 1.25rem 3rem}
-            .tools-grid{grid-template-columns:1fr 1fr}
-            .footer-grid{grid-template-columns:1fr}
-            .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
-            .footer-bottom-left{justify-content:center}
+        .pole-card:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+        .pole-header { padding: 1.75rem 1.75rem 1.4rem; border-bottom: 1px solid var(--line); }
+        .pole-icon { margin-bottom: 1.1rem; }
+        .pole-header h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 500; line-height: 1.2; margin-bottom: 0.45rem; }
+        .pole-header .pole-subtitle { font-size: var(--fs-sm); color: var(--ink-3); }
+        .pole-body { flex: 1; display: flex; flex-direction: column; padding: 1.4rem 1.75rem 1.75rem; }
+        .pole-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+        .pole-body li { font-size: 0.92rem; color: var(--ink-2); padding-left: 1.2rem; position: relative; line-height: 1.5; }
+        .pole-body li::before {
+            content: ''; position: absolute; left: 0; top: 0.5em;
+            width: 7px; height: 7px; background: var(--leaf); border-radius: var(--leaf-shape);
         }
+        .pole-link {
+            align-self: flex-start; margin-top: auto;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: var(--fs-sm); font-weight: 600; text-decoration: none;
+            color: var(--paper); background: var(--ink);
+            padding: 0.6rem 1.1rem; border-radius: var(--radius);
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .pole-body ul { margin-bottom: 1.4rem; }
+        .pole-link:hover { background: var(--leaf-ink); color: var(--on-leaf-ink); }
 
-        /* POLES CYCLE VISUAL */
-        .poles-cycle{display:flex;justify-content:center;margin-bottom:3.5rem}
-        .poles-cycle svg{width:100%;max-width:480px;height:auto}
-        .poles-cycle .cycle-arrow{fill:none;stroke:var(--primary-light);stroke-width:2.5;opacity:0.45}
-        .poles-cycle .cycle-node{cursor:default}
-        .poles-cycle .cycle-node-circle{fill:var(--white);stroke:var(--border);stroke-width:2;transition:stroke 0.3s ease,fill 0.3s ease}
-        .poles-cycle .cycle-node:hover .cycle-node-circle{stroke:var(--primary);fill:var(--tint)}
-        .poles-cycle .cycle-node-icon{font-size:28px}
-        .poles-cycle .cycle-node-label{fill:var(--deep);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600}
-        .poles-cycle .cycle-node-sub{fill:var(--text-light);font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;font-weight:400}
-        .poles-cycle .cycle-center-label{fill:var(--text-light);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em}
-        @media(max-width:600px){.poles-cycle svg{max-width:340px}}
-        .fade-up.visible{opacity:1;transform:translateY(0)}
-        .stagger-1{transition-delay:0.05s}.stagger-2{transition-delay:0.1s}.stagger-3{transition-delay:0.15s}
+        /* ---------- Boîte à outils ---------- */
+        .tools-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+        .tool-card {
+            min-width: 0; background: var(--surface); border: 1px solid var(--line);
+            border-radius: var(--radius-lg); padding: 1.4rem;
+            transition: border-color 0.2s, transform 0.2s var(--ease);
+        }
+        .tool-card:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+        .tool-icon { margin-bottom: 0.9rem; }
+        .tool-card h3 { font-size: var(--fs-base); margin-bottom: 0.25rem; }
+        .tool-card p { font-size: var(--fs-sm); color: var(--ink-3); line-height: 1.5; }
+
+        /* ---------- Confidentialité (bandeau sombre) ---------- */
+        .confidentiality-inner { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+        .confidentiality-inner > * { min-width: 0; }
+        .confidentiality-inner .section-header { margin-bottom: 0; }
+        .confidentiality-points { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.75rem; }
+        .confidentiality-point {
+            display: flex; align-items: center; gap: 0.9rem;
+            border: 1px solid var(--band-line); border-radius: var(--radius-lg); padding: 1rem 1.25rem;
+        }
+        .band .ic-box { background: var(--band-2); color: var(--band-leaf); }
+        .confidentiality-point-text { font-size: 0.95rem; color: var(--on-band-2); line-height: 1.6; min-width: 0; }
+        .confidentiality-callout {
+            display: flex; flex-direction: column; gap: 1.25rem;
+            background: var(--band-surface); border: 1px solid var(--band-line);
+            border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        .confidentiality-callout .callout-icon { width: 56px; height: 56px; }
+        .confidentiality-callout .callout-icon .ic { width: 28px; height: 28px; }
+        .confidentiality-callout h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 500; color: var(--on-band); margin-bottom: 0.5rem; }
+        .confidentiality-callout p { font-size: 0.95rem; color: var(--on-band-2); line-height: 1.7; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 960px) {
+            .poles-grid { grid-template-columns: minmax(0, 1fr); }
+            .tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .confidentiality-inner { grid-template-columns: minmax(0, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .poles-cycle .cycle-node-label { font-size: 18px; }
+            .poles-cycle .cycle-node-sub { font-size: 14px; }
+            .poles-cycle .cycle-center-label { font-size: 13px; }
+            .tool-card { padding: 1.1rem; }
+            .pole-header { padding: 1.4rem 1.25rem 1.2rem; }
+            .pole-body { padding: 1.2rem 1.25rem 1.4rem; }
+        }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
 
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
+            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html" class="active">Nos services</a></li>
@@ -229,9 +124,11 @@
                 <li><a href="consolab.html">Consolab</a></li>
                 <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
+            <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
         </div>
     </nav>
+
+    <main id="main">
 
     <!-- PAGE HEADER -->
     <header class="page-header">
@@ -254,8 +151,8 @@
             <div class="poles-cycle fade-up">
                 <svg viewBox="0 0 480 470" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <marker id="arrowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" fill="var(--primary-light)">
-                            <path d="M 0 1.5 L 10 5 L 0 8.5 z" />
+                        <marker id="arrowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                            <path class="cycle-arrowhead" d="M 0 1.5 L 10 5 L 0 8.5 z" />
                         </marker>
                     </defs>
 
@@ -263,35 +160,28 @@
 
                     <!--
                         3 nodes on a circle of radius 130, centered at (240, 210).
-                        Node positions (120° apart, starting from top):
-                        Top:          (240, 80)
-                        Bottom-right: (352.6, 275)
-                        Bottom-left:  (127.4, 275)
-
-                        Arrows arc between nodes, offset from node edge (r=48).
-                        Using circular arcs (A command) with radius 130.
+                        Top: (240, 80) · Bottom-right: (352.6, 275) · Bottom-left: (127.4, 275)
                     -->
 
-                    <!-- Arc arrows — each starts/ends ~50px from node center, following the circle -->
-                    <!-- Arrow: Top → Bottom-right (clockwise) -->
+                    <circle class="cycle-hub" cx="240" cy="210" r="62" />
+
+                    <!-- Arcs fléchés (sens horaire) -->
                     <path d="M 268,118 A 130,130 0 0,1 348,238" class="cycle-arrow" marker-end="url(#arrowA)" />
-                    <!-- Arrow: Bottom-right → Bottom-left (clockwise) -->
                     <path d="M 330,305 A 130,130 0 0,1 168,305" class="cycle-arrow" marker-end="url(#arrowA)" />
-                    <!-- Arrow: Bottom-left → Top (clockwise) -->
                     <path d="M 132,238 A 130,130 0 0,1 212,118" class="cycle-arrow" marker-end="url(#arrowA)" />
 
-                    <!-- Flow dots traveling along the arcs -->
-                    <circle r="4" fill="var(--primary-light)" opacity="0.55">
+                    <!-- Points de flux le long des arcs -->
+                    <circle class="cycle-dot" r="4">
                         <animateMotion dur="3.5s" repeatCount="indefinite">
                             <mpath href="#fp1"/>
                         </animateMotion>
                     </circle>
-                    <circle r="4" fill="var(--primary-light)" opacity="0.55">
+                    <circle class="cycle-dot" r="4">
                         <animateMotion dur="3.5s" repeatCount="indefinite">
                             <mpath href="#fp2"/>
                         </animateMotion>
                     </circle>
-                    <circle r="4" fill="var(--primary-light)" opacity="0.55">
+                    <circle class="cycle-dot" r="4">
                         <animateMotion dur="3.5s" repeatCount="indefinite">
                             <mpath href="#fp3"/>
                         </animateMotion>
@@ -302,30 +192,30 @@
 
                     <!-- Center label -->
                     <text class="cycle-center-label" x="240" y="206" text-anchor="middle">Interaction</text>
-                    <text class="cycle-center-label" x="240" y="222" text-anchor="middle">permanente</text>
+                    <text class="cycle-center-label" x="240" y="224" text-anchor="middle">permanente</text>
 
                     <!-- Node 1: top — Expertise analytique -->
                     <g class="cycle-node" transform="translate(240,80)">
                         <circle class="cycle-node-circle" cx="0" cy="0" r="48" />
-                        <text class="cycle-node-icon" x="0" y="8" text-anchor="middle">🔬</text>
-                        <text class="cycle-node-label" x="0" y="-72" text-anchor="middle">Expertise analytique</text>
-                        <text class="cycle-node-sub" x="0" y="-58" text-anchor="middle">& instrumentation</text>
+                        <use class="cycle-node-icon" href="assets/icons.svg#i-microscope" x="-16" y="-16" width="32" height="32" aria-hidden="true" />
+                        <text class="cycle-node-label" x="0" y="-74" text-anchor="middle">Expertise analytique</text>
+                        <text class="cycle-node-sub" x="0" y="-57" text-anchor="middle">& instrumentation</text>
                     </g>
 
                     <!-- Node 2: bottom-right — Durabilité -->
                     <g class="cycle-node" transform="translate(352.6,275)">
                         <circle class="cycle-node-circle" cx="0" cy="0" r="48" />
-                        <text class="cycle-node-icon" x="0" y="8" text-anchor="middle">🌿</text>
-                        <text class="cycle-node-label" x="0" y="68" text-anchor="middle">Durabilité</text>
-                        <text class="cycle-node-sub" x="0" y="82" text-anchor="middle">résilience & criticité</text>
+                        <use class="cycle-node-icon" href="assets/icons.svg#i-leaf" x="-16" y="-16" width="32" height="32" aria-hidden="true" />
+                        <text class="cycle-node-label" x="0" y="70" text-anchor="middle">Durabilité</text>
+                        <text class="cycle-node-sub" x="0" y="87" text-anchor="middle">résilience & criticité</text>
                     </g>
 
                     <!-- Node 3: bottom-left — Chémo-informatique -->
                     <g class="cycle-node" transform="translate(127.4,275)">
                         <circle class="cycle-node-circle" cx="0" cy="0" r="48" />
-                        <text class="cycle-node-icon" x="0" y="8" text-anchor="middle">💻</text>
-                        <text class="cycle-node-label" x="0" y="68" text-anchor="middle">Chémo-informatique</text>
-                        <text class="cycle-node-sub" x="0" y="82" text-anchor="middle">& intelligence artificielle</text>
+                        <use class="cycle-node-icon" href="assets/icons.svg#i-laptop" x="-16" y="-16" width="32" height="32" aria-hidden="true" />
+                        <text class="cycle-node-label" x="0" y="70" text-anchor="middle">Chémo-informatique</text>
+                        <text class="cycle-node-sub" x="0" y="87" text-anchor="middle">& intelligence artificielle</text>
                     </g>
                     </g>
                 </svg>
@@ -334,7 +224,7 @@
             <div class="poles-grid">
                 <div class="pole-card fade-up stagger-1">
                     <div class="pole-header">
-                        <div class="pole-icon">🔬</div>
+                        <div class="pole-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-microscope"/></svg></div>
                         <h3>Expertise analytique & instrumentation</h3>
                         <div class="pole-subtitle">Christophe Pérès & Xavier Rouessac</div>
                     </div>
@@ -352,7 +242,7 @@
                 </div>
                 <div class="pole-card fade-up stagger-2">
                     <div class="pole-header">
-                        <div class="pole-icon">🌿</div>
+                        <div class="pole-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg></div>
                         <h3>Durabilité, résilience & criticité</h3>
                         <div class="pole-subtitle">Bastien Raccary & Christophe Pérès</div>
                     </div>
@@ -372,7 +262,7 @@
                 </div>
                 <div class="pole-card fade-up stagger-3">
                     <div class="pole-header">
-                        <div class="pole-icon">💻</div>
+                        <div class="pole-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg></div>
                         <h3>Chémo-informatique & IA</h3>
                         <div class="pole-subtitle">Clément Truan & Thomas Vandewattyne</div>
                     </div>
@@ -402,42 +292,42 @@
             </div>
             <div class="tools-grid fade-up">
                 <div class="tool-card">
-                    <div class="tool-icon">🎯</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-target"/></svg></div>
                     <h3>Coaching</h3>
                     <p>Accompagnement personnalisé</p>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon">🌿</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg></div>
                     <h3>ACV</h3>
                     <p>Analyse du cycle de vie ISO 14040/44</p>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon">🔧</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-wrench"/></svg></div>
                     <h3>Maintenance</h3>
                     <p>Maintenance instrumentale & reconditionnement</p>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon">📊</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-chart-column"/></svg></div>
                     <h3>Bilan GES</h3>
                     <p>Bilan Carbone® & stratégie bas carbone</p>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon">🎓</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-graduation-cap"/></svg></div>
                     <h3>Formations</h3>
                     <p>Certifiées Qualiopi, adaptées à tous niveaux</p>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon">💻</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg></div>
                     <h3>Chémo-informatique</h3>
                     <p>Traitement de données & algorithmie</p>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon">🧪</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-flask-conical"/></svg></div>
                     <h3>Conseil analytique</h3>
                     <p>Stratégie & optimisation de méthodes</p>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon">📱</div>
+                    <div class="tool-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-smartphone"/></svg></div>
                     <h3>Consolab</h3>
                     <p>Pilotage des consommations du labo</p>
                 </div>
@@ -446,28 +336,28 @@
     </section>
 
     <!-- CONFIDENTIALITÉ -->
-    <section class="section confidentiality-section">
+    <section class="section band confidentiality-section">
         <div class="section-inner">
             <div class="confidentiality-inner fade-up">
                 <div>
-                    <div class="section-header" style="margin-bottom:0">
+                    <div class="section-header">
                         <div class="section-label">Confidentialité</div>
                         <h2>La confidentialité au cœur de notre méthodologie</h2>
                         <p class="section-desc">Nos missions nous conduisent à accéder à des informations souvent stratégiques. Nous prenons cet accès très au sérieux et nous engageons à la plus stricte confidentialité.</p>
                     </div>
                     <div class="confidentiality-points">
                         <div class="confidentiality-point">
-                            <div class="confidentiality-point-icon">📄</div>
+                            <div class="confidentiality-point-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-file-text"/></svg></div>
                             <p class="confidentiality-point-text">Contrats de confidentialité stricts avec chaque client</p>
                         </div>
                         <div class="confidentiality-point">
-                            <div class="confidentiality-point-icon">🔒</div>
+                            <div class="confidentiality-point-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-lock"/></svg></div>
                             <p class="confidentiality-point-text">Nos audits, échanges et études ne sont en aucun cas rendus publiques.</p>
                         </div>
                     </div>
                 </div>
                 <div class="confidentiality-callout">
-                    <div class="callout-icon">🛡️</div>
+                    <div class="callout-icon ic-box"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-shield-check"/></svg></div>
                     <div>
                         <h3>Un engagement sans compromis</h3>
                         <p>La confidentialité n'est pas une simple clause contractuelle : c'est une valeur fondamentale qui guide chacune de nos interventions. Vos données, vos process et vos stratégies restent les vôtres.</p>
@@ -481,15 +371,17 @@
     <section class="cta-band">
         <h2>Discutons de votre projet</h2>
         <p>Chaque laboratoire est unique. Contactez-nous pour un accompagnement sur mesure.</p>
-        <a href="contact.html" class="btn btn-accent" style="background:var(--white);color:var(--deep)">Nous contacter →</a>
+        <a href="contact.html" class="btn btn-accent">Nous contacter →</a>
     </section>
+
+    </main>
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
+                    <a href="index.html"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
                     <p>Accompagner les laboratoires d'analyses dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
                 </div>
                 <div>
@@ -511,8 +403,8 @@
                 </div>
                 <div>
                     <h4>Nous contacter</h4>
-                    <div class="footer-contact-item"><span class="icon">📍</span><span>34 rue du Vallat, 43100 Brioude</span></div>
-                    <div class="footer-contact-item"><span class="icon">✉️</span><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg><span>34 rue du Vallat, 43100 Brioude</span></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -522,35 +414,11 @@
                     <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
                     <a href="mentions-legales.html#cookies">Cookies</a>
                 </div>
-                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a></div>
+                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg></a></div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile nav
-        const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-        toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
-        links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')}));
-        window.addEventListener('resize',()=>{if(window.innerWidth>900){toggle.classList.remove('open');links.classList.remove('open')}});
-
-        // Accordion
-        document.querySelectorAll('.accordion-trigger').forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                const item=btn.parentElement;
-                const content=item.querySelector('.accordion-content');
-                const isOpen=item.classList.contains('open');
-                item.parentElement.querySelectorAll('.accordion-item.open').forEach(sib=>{
-                    if(sib!==item){sib.classList.remove('open');sib.querySelector('.accordion-content').style.maxHeight=null;sib.querySelector('.accordion-trigger').setAttribute('aria-expanded','false')}
-                });
-                if(isOpen){item.classList.remove('open');content.style.maxHeight=null;btn.setAttribute('aria-expanded','false')}
-                else{item.classList.add('open');content.style.maxHeight=content.scrollHeight+'px';btn.setAttribute('aria-expanded','true')}
-            });
-        });
-
-        // Scroll animations
-        const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-        document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-    </script>
+    <script src="assets/js/site.js"></script>
 </body>
 </html>
