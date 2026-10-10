@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formations — Le Labo Durable</title>
-    <meta name="description" content="Formations certifiées Qualiopi en chimie analytique durable, instrumentation GC/LC/MS, chémo-informatique. Le Labo Durable / Analytiss.">
+    <meta name="description" content="Formations certifiées Qualiopi en chimie analytique durable, analyse du cycle de vie, instrumentation GC/LC/MS et chémo-informatique. Le Labo Durable / Analytiss.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -49,6 +49,7 @@
         .page-header .section-label{color:var(--accent-light)}
         .page-header .section-label::before{background:var(--accent)}
         .page-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:800;color:var(--white);line-height:1.15;margin-bottom:1rem}
+        .page-header .hero-stat{margin-top:1.5rem;font-size:0.92rem;color:rgba(255,255,255,0.8)}.page-header .hero-stat strong{color:var(--accent-light)}
         .page-header p{font-size:1.05rem;color:rgba(255,255,255,0.65);max-width:620px;line-height:1.7}
 
         /* SECTIONS */
@@ -113,13 +114,30 @@
         .formation-objectives li{font-size:0.85rem;color:var(--text-mid);padding-left:1.1rem;position:relative;line-height:1.55}
         .formation-objectives li::before{content:'✓';position:absolute;left:0;color:var(--primary);font-size:0.75rem;font-weight:700}
 
-        .formation-details{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.25rem}
         .formation-detail{display:flex;flex-direction:column;gap:0.1rem}
         .formation-detail-label{font-size:0.72rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.04em}
         .formation-detail-value{font-size:0.9rem;font-weight:600;color:var(--text)}
 
         .formation-cta{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:600;color:var(--primary);text-decoration:none;padding:0.5rem 1rem;border-radius:var(--radius);border:1.5px solid var(--primary);transition:var(--transition)}
         .formation-cta:hover{background:var(--primary);color:var(--white)}
+
+        .formation-ref{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.04em;color:var(--primary);background:var(--tint);padding:0.1rem 0.45rem;border-radius:4px;margin-right:0.5rem;vertical-align:1px}
+        .formation-details{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem 2rem;margin-bottom:1.25rem}
+
+        /* ─── INFOS PRATIQUES ─── */
+        .infos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--border)}
+        .info-item{display:grid;grid-template-columns:11rem 1fr;gap:1.5rem;padding:1.25rem 0;border-bottom:1px solid var(--border)}
+        .info-item:nth-child(odd){padding-right:2rem}
+        .info-item:nth-child(even){padding-left:2rem;border-left:1px solid var(--border)}
+        .info-item dt{font-family:'Outfit',sans-serif;font-size:0.92rem;font-weight:700;color:var(--deep)}
+        .info-item dd{font-size:0.88rem;color:var(--text-mid);line-height:1.65}
+        .info-item a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
+        .info-item a[href^="tel"]{white-space:nowrap}
+        .results{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;padding:1.5rem 1.75rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg)}
+        .results-figure{font-family:'Outfit',sans-serif;font-size:2.4rem;font-weight:800;color:var(--primary);line-height:1;flex-shrink:0}
+        .results-text{font-size:0.92rem;color:var(--text-mid);line-height:1.6}
+        .results-text strong{color:var(--deep)}
+        .legal-note{margin-top:1.5rem;font-size:0.78rem;color:var(--text-light);line-height:1.6;max-width:760px}
 
         /* ─── LEGEND ─── */
         .legend{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
@@ -161,6 +179,8 @@
             .why-grid{grid-template-columns:repeat(2,1fr)}
             .formation-meta{display:none}
             .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+            .infos-grid{grid-template-columns:1fr}
+            .info-item:nth-child(odd),.info-item:nth-child(even){padding-left:0;padding-right:0;border-left:none}
         }
         @media(max-width:600px){
             .section{padding:4rem 1.25rem}
@@ -168,7 +188,8 @@
             .why-grid{grid-template-columns:1fr}
             .formation-trigger{padding:1rem 1.25rem}
             .formation-content-inner{padding:0 1.25rem 1.5rem;padding-top:1.25rem}
-            .formation-details{gap:1rem}
+            .info-item{grid-template-columns:1fr;gap:0.35rem}
+            .results{flex-direction:column;align-items:flex-start;gap:0.75rem}
             .footer-grid{grid-template-columns:1fr}
             .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
             .footer-bottom-left{justify-content:center}
@@ -201,7 +222,8 @@
         <div class="page-header-inner">
             <div class="section-label">Formations</div>
             <h1>Former pour susciter l'implication</h1>
-            <p>Des sessions pratiques et théoriques à la pointe de la connaissance en chimie analytique durable, instrumentation et chémo-informatique. Adaptées à tous les profils, du néophyte à l'expert.</p>
+            <p>Des sessions pratiques et théoriques à la pointe de la connaissance en chimie analytique durable, analyse du cycle de vie, instrumentation et chémo-informatique. Adaptées à tous les profils, du néophyte à l'expert.</p>
+            <p class="hero-stat"><strong>100 % de stagiaires satisfaits en 2025</strong> · note moyenne 4,7/5</p>
         </div>
     </header>
 
@@ -221,7 +243,7 @@
                 <div class="why-card">
                     <div class="why-icon">✓</div>
                     <h3>Certifié Qualiopi</h3>
-                    <p>Certification qualité via Analytiss pour une meilleure accessibilité aux financements.</p>
+                    <p>Certification qualité via Analytiss : prise en charge possible par votre OPCO.</p>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">📡</div>
@@ -241,319 +263,275 @@
     <section class="section">
         <div class="section-inner">
             <div class="section-header fade-up">
-                <div class="section-label">Catalogue</div>
+                <div class="section-label">Catalogue 2026</div>
                 <h2>Notre offre de formations</h2>
-                <p class="section-desc">Toutes nos formations peuvent être adaptées aux personnes en situation de handicap. Formats : présentiel (Brioude ou dans vos locaux) ou distanciel.</p>
+                <p class="section-desc">En présentiel à Brioude, dans vos locaux (intra-entreprise) ou à distance. Toutes nos formations sont accessibles aux personnes en situation de handicap : contactez notre référent handicap pour étudier les aménagements nécessaires.</p>
             </div>
 
-            <div class="legend fade-up">
-                <div class="legend-item"><span>🌱</span> Durabilité</div>
-                <div class="legend-item"><span>⚙️</span> Instrumentation</div>
-                <div class="legend-item"><span>🖥️</span> Chémo-informatique</div>
-            </div>
-
-            <!-- Filters -->
-            <div class="filters fade-up">
+            <div class="filters fade-up" role="group" aria-label="Filtrer par thème">
                 <button class="filter-btn active" data-filter="all">Toutes</button>
                 <button class="filter-btn" data-filter="durabilite">🌱 Durabilité</button>
+                <button class="filter-btn" data-filter="acv">🔄 Analyse du cycle de vie</button>
                 <button class="filter-btn" data-filter="instru">⚙️ Instrumentation</button>
                 <button class="filter-btn" data-filter="chemo">🖥️ Chémo-informatique</button>
             </div>
 
             <div class="formations-list fade-up">
 
-                <!-- 1 -->
                 <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
+                            <span class="formation-cat" aria-hidden="true">🌱</span>
                             <div class="formation-title-block">
-                                <div class="formation-title">Le laboratoire face aux défis environnementaux : introduction & mobilisation</div>
-                                <div class="formation-subtitle">Sensibilisation + définition d'objectifs + plan d'action</div>
+                                <div class="formation-title">Défis environnementaux : introduction à la chimie analytique durable et mobilisation des équipes</div>
+                                <div class="formation-subtitle"><span class="formation-ref">LLD2025-01</span>Enjeux, état des lieux, politique environnementale et plan d'action</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 2 jours</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 2 jours</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Cette formation accompagne le personnel de laboratoire dans la prise de conscience des défis environnementaux actuels. Elle permet de mieux connaître les ordres de grandeur de consommations et d'impacts GES, tout en identifiant les leviers d'action spécifiques au laboratoire.</p>
+                        <p class="formation-desc">Pour les personnels en responsabilité qui veulent piloter les engagements environnementaux de leur structure : définir des objectifs pertinents et alignés sur les enjeux de durabilité, puis les mettre en pratique. Ateliers tout au long des deux journées, dont un atelier long de construction d'une politique environnementale pour votre laboratoire.</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser les personnels en responsabilité à la nécessité de définir des objectifs environnementaux</li>
-                                <li>Accompagner dans la définition d'objectifs concrets</li>
-                                <li>S'approprier les ordres de grandeur au laboratoire</li>
-                                <li>Connaître les labels et référentiels normatifs</li>
-                                <li>Favoriser les stratégies adaptées au contexte de son entreprise</li>
-                            </ul>
+                            <ul><li>Comprendre la nécessité et la pertinence de définir des objectifs d'engagement environnemental</li><li>Être accompagné·e dans la définition de ces objectifs</li><li>S'approprier les ordres de grandeur au laboratoire</li><li>Connaître et comprendre l'intérêt des labels et référentiels normatifs</li><li>Adopter des stratégies adaptées au contexte de son entreprise ou laboratoire</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 journées</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Délai d'accès</span><span class="formation-detail-value">~2 mois</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation introduction et mobilisation" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 jours</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Dirigeant·es, directeur·ices de labo, chef·fes d'équipe</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">4 à 10</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">60 % enseignements, 40 % TD</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary & Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Défis environnementaux : introduction à la chimie analytique durable et mobilisation des équipes" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
-                <!-- 2 -->
                 <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
+                            <span class="formation-cat" aria-hidden="true">🌱</span>
                             <div class="formation-title-block">
-                                <div class="formation-title">Le laboratoire face aux défis environnementaux : introduction à la chimie analytique durable</div>
-                                <div class="formation-subtitle">Ordres de grandeur, acteurs, outils et choix durables</div>
+                                <div class="formation-title">Défis environnementaux : introduction à la chimie analytique durable (1 journée)</div>
+                                <div class="formation-subtitle"><span class="formation-ref">LLD2025-02</span>Chimie analytique verte, ordres de grandeur, outils et acteurs</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Prise de conscience des défis environnementaux et identification des leviers d'action au laboratoire. Approche pratique et contextuelle.</p>
+                        <p class="formation-desc">Une introduction approfondie à la chimie analytique durable : revisiter les pratiques de laboratoire au prisme des limites planétaires et de la résilience, découvrir les 12 principes de la chimie analytique verte, les outils d'évaluation de la « greenness » et l'analyse du cycle de vie.</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser le personnel à la nécessité de revisiter les pratiques</li>
-                                <li>S'approprier les ordres de grandeur au laboratoire</li>
-                                <li>Connaître les acteurs et outils de la chimie analytique durable</li>
-                                <li>Favoriser les choix durables adaptés à son contexte</li>
-                            </ul>
+                            <ul><li>Comprendre pourquoi revisiter les pratiques de laboratoire</li><li>S'approprier les ordres de grandeur au laboratoire</li><li>Connaître les acteurs et les outils de la chimie analytique durable</li><li>Passer en revue les techniques de mise en place d'actions et de mobilisation des équipes</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Délai d'accès</span><span class="formation-detail-value">~2 mois</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation chimie analytique durable" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">4 à 10</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">80 % enseignements, 20 % TD</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary ou Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Défis environnementaux : introduction à la chimie analytique durable (1 journée)" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
-                <!-- 3 -->
                 <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
+                            <span class="formation-cat" aria-hidden="true">🌱</span>
                             <div class="formation-title-block">
-                                <div class="formation-title">Sciences et environnement : introduction aux ordres de grandeur</div>
-                                <div class="formation-subtitle">Ordres de grandeur, labels et référentiels normatifs</div>
+                                <div class="formation-title">Défis environnementaux : introduction aux ordres de grandeur</div>
+                                <div class="formation-subtitle"><span class="formation-ref">LLD2025-04</span>Gaz à effet de serre, empreinte carbone, leviers d'action au laboratoire</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Prise de conscience des défis environnementaux et appropriation des ordres de grandeur de consommations et d'impacts GES au laboratoire.</p>
+                        <p class="formation-desc">Prendre conscience des défis environnementaux actuels, sur le plan personnel comme professionnel : ordres de grandeur des consommations et des émissions de GES, atelier de bilan carbone personnalisé, puis identification des leviers d'action propres au laboratoire.</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser à la nécessité de définir des objectifs environnementaux</li>
-                                <li>Accompagner dans la définition d'objectifs</li>
-                                <li>S'approprier les ordres de grandeur</li>
-                                <li>Connaître les labels et référentiels normatifs</li>
-                            </ul>
+                            <ul><li>Comprendre les défis environnementaux personnels et professionnels</li><li>Disposer de clés pour hiérarchiser les risques et les actions, individuelles et collectives</li><li>Mieux cerner les leviers d'action au niveau du laboratoire</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation ordres de grandeur" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">5 maximum</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">80 % enseignements, 20 % TD</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary ou Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Défis environnementaux : introduction aux ordres de grandeur" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
-                <!-- 4 -->
                 <div class="formation-card" data-cat="durabilite">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">🌱</span>
+                            <span class="formation-cat" aria-hidden="true">🌱</span>
                             <div class="formation-title-block">
-                                <div class="formation-title">Savoir faire son bilan GES et mieux décrypter le quotidien</div>
-                                <div class="formation-subtitle">Bilan carbone personnel → transposition professionnelle</div>
+                                <div class="formation-title">Défis environnementaux : réaliser et comprendre son bilan carbone</div>
+                                <div class="formation-subtitle"><span class="formation-ref">LLD2025-05</span>Bilan GES personnel, puis transposition au contexte professionnel</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 ½ journée</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 ½ journée</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Introduction pratique à la réalisation et à l'interprétation des bilans GES. Comprendre son impact personnel pour mieux agir en contexte professionnel.</p>
+                        <p class="formation-desc">Une introduction pratique à la réalisation et à l'interprétation des bilans de gaz à effet de serre : chacun·e réalise son bilan carbone personnel, comprend ce qu'il recouvre et identifie comment transposer les leviers de réduction à sa structure.</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser à la pertinence de définir des objectifs GES</li>
-                                <li>Accompagner dans la définition d'objectifs</li>
-                                <li>S'approprier les ordres de grandeur</li>
-                                <li>Connaître les labels et référentiels</li>
-                            </ul>
+                            <ul><li>Réaliser son bilan GES personnel et savoir ce qu'il recouvre</li><li>Comprendre l'importance de faire le bilan GES de sa structure</li><li>Comprendre son impact et les leviers d'évolution</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">½ journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation bilan GES" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">½ journée</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout public</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">4 à 10</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">80 % enseignements, 20 % TD</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary ou Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Défis environnementaux : réaliser et comprendre son bilan carbone" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
-                <!-- 5 -->
+                <div class="formation-card" data-cat="acv">
+                    <button class="formation-trigger" aria-expanded="false">
+                        <div class="formation-trigger-left">
+                            <span class="formation-cat" aria-hidden="true">🔄</span>
+                            <div class="formation-title-block">
+                                <div class="formation-title">Introduction à l'analyse du cycle de vie (ACV)</div>
+                                <div class="formation-subtitle">ISO 14040/44, les 4 phases de l'ACV, ateliers openLCA & ecoinvent</div>
+                            </div>
+                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                    </button>
+                    <div class="formation-content"><div class="formation-content-inner">
+                        <p class="formation-desc">Le matin, les fondamentaux : pourquoi l'ACV, cadre normatif ISO 14040/14044, unité fonctionnelle et frontières du système, inventaire et qualité des données, méthodes d'évaluation des impacts (EF 3.1, ReCiPe), interprétation et éco-conception. L'après-midi, la pratique sur openLCA et ecoinvent : ACV comparative pas à pas, analyse de sensibilité, puis définition de l'unité fonctionnelle et organisation de la collecte de données sur une méthode de votre laboratoire.</p>
+                        <div class="formation-objectives">
+                            <h4>Objectifs</h4>
+                            <ul><li>Comprendre les principes et le cadre normatif de l'ACV</li><li>Définir une unité fonctionnelle et les frontières d'un système</li><li>Collecter et documenter des données d'inventaire, choisir des proxys défendables</li><li>Réaliser et interpréter une ACV comparative dans openLCA</li><li>Repérer les hotspots, les transferts d'impacts et les leviers d'éco-conception</li></ul>
+                        </div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel de laboratoire, responsables qualité / RSE</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Format</span><span class="formation-detail-value">Matin théorique, après-midi en ateliers</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Bastien Raccary</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Introduction à l’analyse du cycle de vie (ACV)" class="formation-cta">Demander + d'infos →</a>
+                    </div></div>
+                </div>
+
                 <div class="formation-card" data-cat="instru">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">⚙️</span>
+                            <span class="formation-cat" aria-hidden="true">⚙️</span>
                             <div class="formation-title-block">
-                                <div class="formation-title">Gérer et maintenir sa GC de façon plus efficiente et durable</div>
-                                <div class="formation-subtitle">Maintenance 1er niveau GC Agilent — S/SL, FID, colonne capillaire</div>
+                                <div class="formation-title">Instrumentation : maintenance GC</div>
+                                <div class="formation-subtitle"><span class="formation-ref">B43-GC-M</span>Maintenance 1er niveau GC Agilent : ALS, injecteur S/SL, FID, colonne</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Maîtriser la maintenance de son GC Agilent pour gagner en indépendance de façon durable.</p>
+                        <p class="formation-desc">Maîtriser la maintenance de premier niveau des GC Agilent équipés d'injecteurs S/SL et de détecteurs FID : identifier les composants clés, appliquer la maintenance préventive et fiabiliser vos analyses. Exposé en salle, travaux pratiques en laboratoire.</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Planifier l'entretien courant d'un GC Agilent avec injecteur S/SL et détecteur FID</li>
-                                <li>Identifier les éléments du système</li>
-                                <li>Assurer leur maintenance de 1er niveau</li>
-                                <li>Installer une colonne capillaire entre S/SL et FID</li>
-                            </ul>
+                            <ul><li>Planifier l'entretien courant d'un GC Agilent avec injecteur S/SL et détecteur FID</li><li>Identifier les éléments du système</li><li>Assurer leur maintenance de 1er niveau (septum, insert, buse, briquet…)</li><li>Installer une colonne GC entre injecteur S/SL et détecteur FID</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation maintenance GC" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Utilisateur·ices de GC Agilent (7683/6890, 7693/7890/8890)</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">6 maximum</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">3 mois de pratique régulière sur GC Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">40 % enseignements, 60 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Instrumentation : maintenance GC" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
-                <!-- 6 -->
                 <div class="formation-card" data-cat="instru">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">⚙️</span>
+                            <span class="formation-cat" aria-hidden="true">⚙️</span>
                             <div class="formation-title-block">
-                                <div class="formation-title">Gérer et maintenir sa LC de façon plus efficiente et durable</div>
-                                <div class="formation-subtitle">Maintenance 1er niveau HPLC Agilent — pompe, injecteur, four, UV</div>
+                                <div class="formation-title">Instrumentation : maintenance LC</div>
+                                <div class="formation-subtitle"><span class="formation-ref">B43-LC-M</span>Maintenance 1er niveau HPLC Agilent : pompe, injecteur, four, détecteur UV</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Maîtriser la maintenance de son HPLC Agilent pour gagner en autonomie.</p>
+                        <p class="formation-desc">Acquérir une expertise pratique de la maintenance de premier niveau des modules clés d'une HPLC Agilent (pompe binaire ou quaternaire, injecteur automatique, four colonne, détecteur UV) pour optimiser la performance et la longévité de vos instruments.</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Planifier l'entretien courant d'une HPLC Agilent</li>
-                                <li>Identifier les éléments de chaque module LC</li>
-                                <li>Assurer leur maintenance de 1er niveau</li>
-                                <li>Installer et conditionner une colonne LC</li>
-                            </ul>
+                            <ul><li>Planifier l'entretien courant d'une HPLC Agilent</li><li>Identifier les éléments de chaque module LC</li><li>Assurer leur maintenance de 1er niveau (joints, clapets, aiguille, rotor, lampes…)</li><li>Installer et conditionner une colonne LC</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation maintenance LC" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Utilisateur·ices de LC Agilent (1100, 1200, 1260, 1260 II)</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">6 maximum</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">3 mois de pratique régulière sur LC Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">40 % enseignements, 60 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Instrumentation : maintenance LC" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
-                <!-- 7 — MS -->
                 <div class="formation-card" data-cat="instru">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">⚙️</span>
+                            <span class="formation-cat" aria-hidden="true">⚙️</span>
                             <div class="formation-title-block">
-                                <div class="formation-title">Gérer et maintenir sa MS de façon plus efficiente et durable</div>
-                                <div class="formation-subtitle">Maintenance 1er niveau MSD Agilent — source EI, interface</div>
+                                <div class="formation-title">Instrumentation : maintenance MSD</div>
+                                <div class="formation-subtitle"><span class="formation-ref">B43-MS-M</span>Maintenance 1er niveau MSD Agilent : source EI, calibration PFTBA, interface</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 1 jour</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Maîtriser la maintenance de son MSD Agilent et vérifier son bon fonctionnement.</p>
+                        <p class="formation-desc">Maîtriser la maintenance de premier niveau d'un spectromètre de masse Agilent (MSD) équipé d'une source EI : nettoyage de la source, vidange de la pompe primaire, remplacement du multiplicateur, installation de la colonne sur l'interface, calibration et diagnostic.</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Planifier l'entretien courant d'un MSD Agilent avec source EI</li>
-                                <li>Identifier les éléments du MSD</li>
-                                <li>Assurer leur maintenance de 1er niveau</li>
-                                <li>Installer une colonne capillaire sur l'interface MSD</li>
-                                <li>Vérifier le bon fonctionnement du MSD</li>
-                            </ul>
+                            <ul><li>Planifier l'entretien courant d'un MSD Agilent avec source EI</li><li>Identifier les éléments du MSD</li><li>Assurer leur maintenance de 1er niveau</li><li>Installer une colonne capillaire sur l'interface MSD</li><li>Vérifier le bon fonctionnement du MSD (rapport de tune)</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 journée</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation maintenance MS" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Utilisateur·ices de MSD Agilent (5973, 5975, 5977)</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">6 maximum</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">3 mois de pratique sur GC/MSD Agilent et maîtrise de la formation B43-GC-M</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">40 % enseignements, 60 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Instrumentation : maintenance MSD" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
-                <!-- 8 — Chémo -->
+                <div class="formation-card" data-cat="instru">
+                    <button class="formation-trigger" aria-expanded="false">
+                        <div class="formation-trigger-left">
+                            <span class="formation-cat" aria-hidden="true">⚙️</span>
+                            <div class="formation-title-block">
+                                <div class="formation-title">Les essentiels GC-MS : utilisation et maintenance</div>
+                                <div class="formation-subtitle"><span class="formation-ref">P75-GCMS-U</span>Opération de l'instrument, traitement des données et maintenance de 1er niveau</div>
+                            </div>
+                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                    </button>
+                    <div class="formation-content"><div class="formation-content-inner">
+                        <p class="formation-desc">Dédiée au couplage GC-MS Agilent, cette formation permet aux opérateur·ices de maîtriser le fonctionnement de l'instrument, son logiciel de pilotage, le traitement des données et la maintenance de premier niveau. Le contenu s'adapte aux points d'intérêt définis avec votre laboratoire, sur votre propre instrument.</p>
+                        <div class="formation-objectives">
+                            <h4>Objectifs</h4>
+                            <ul><li>Gagner en autonomie sur l'appareillage GC-MS</li><li>Appliquer les paramètres d'intégration et mettre à jour une table d'étalonnage</li><li>Identifier les éléments constitutifs du système GC-MS</li><li>Assurer la maintenance de 1er niveau du GC et du MSD</li><li>Vérifier le bon fonctionnement du MSD via les procédures de calibration</li></ul>
+                        </div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Opérateur·ices GC-MS Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Format</span><span class="formation-detail-value">Sur site, sur votre instrument</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Idéalement 3 mois d'expérience sur la technique</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">50 % enseignements, 50 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Les essentiels GC-MS : utilisation et maintenance" class="formation-cta">Demander + d'infos →</a>
+                    </div></div>
+                </div>
+
                 <div class="formation-card" data-cat="chemo">
-                    <button class="formation-trigger">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat">🖥️</span>
+                            <span class="formation-cat" aria-hidden="true">🖥️</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Introduction au traitement des données GC-MS/FID</div>
-                                <div class="formation-subtitle">Modes d'acquisition, stratégies de traitement, cas concrets</div>
+                                <div class="formation-subtitle"><span class="formation-ref">APY2024-09</span>Acquisition, structure des données, déconvolution, intégration, identification</div>
                             </div>
                         </div>
-                        <div class="formation-meta">
-                            <span class="formation-meta-item">📅 2 jours</span>
-                        </div>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 2 jours</span></div>
                         <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
-                        <p class="formation-desc">Comprendre les modes d'acquisition des données chromatographiques et leur contenu. Explorer les différentes approches de traitement et les appliquer sur des cas concrets.</p>
+                        <p class="formation-desc">Comprendre les modes d'acquisition des données chromatographiques et leur contenu, explorer les différentes approches de traitement, puis les appliquer sur des cas concrets de laboratoire avec la suite MassHunter (Agilent).</p>
                         <div class="formation-objectives">
                             <h4>Objectifs</h4>
-                            <ul>
-                                <li>Sensibiliser aux modes d'acquisition des données chromatographiques</li>
-                                <li>Présenter les différentes façons de traiter les données et leurs intérêts</li>
-                                <li>Appliquer des stratégies efficaces sur des cas concrets</li>
-                            </ul>
+                            <ul><li>Comprendre les modes d'acquisition des données chromatographiques et leur contenu</li><li>Connaître les différentes façons de traiter les données et leurs intérêts</li><li>Appliquer des stratégies de traitement efficaces sur des cas concrets</li></ul>
                         </div>
-                        <div class="formation-details">
-                            <div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel labo</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 journées</span></div>
-                            <div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur demande</span></div>
-                        </div>
-                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'infos — Formation traitement données GC-MS" class="formation-cta">Demander + d'infos →</a>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 jours</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel scientifique de laboratoire</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">5 maximum</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">80 % enseignements, 20 % TD</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Clément Truan</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — Introduction au traitement des données GC-MS/FID" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- INFORMATIONS PRATIQUES (Qualiopi) -->
+    <section class="section" id="informations-pratiques" style="background:var(--off-white)">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <div class="section-label">Informations pratiques</div>
+                <h2>Comment se déroulent nos formations</h2>
+            </div>
+            <dl class="infos-grid fade-up">
+                <div class="info-item"><dt>Délais d’accès</dt><dd>Formation intra-entreprise sur devis : démarrage possible sous 4 à 8 semaines après signature de la convention. Formation à Brioude : inscription jusqu’à 10 jours ouvrés avant la session.</dd></div>
+                <div class="info-item"><dt>Tarifs</dt><dd>Sur devis, selon le nombre de participant·es et le lieu. Prise en charge possible par votre OPCO.</dd></div>
+                <div class="info-item"><dt>Méthodes pédagogiques</dt><dd>Apports théoriques, démonstrations sur instruments et ateliers pratiques (openLCA, données réelles, travaux pratiques de maintenance). Supports remis aux participant·es.</dd></div>
+                <div class="info-item"><dt>Modalités d’évaluation</dt><dd>Questionnaire de positionnement avant la formation, évaluation des acquis par le formateur pendant les exercices et travaux pratiques, questionnaire de satisfaction en fin de session. Une attestation de fin de formation est remise à chaque participant·e.</dd></div>
+                <div class="info-item"><dt>Accessibilité</dt><dd>Nos formations sont accessibles aux personnes en situation de handicap. Référent handicap : Christophe Pérès, <a href="mailto:christophe.peres@analytiss.com">christophe.peres@analytiss.com</a>, <a href="tel:+33684145484">06 84 14 54 84</a>.</dd></div>
+                <div class="info-item"><dt>Contact</dt><dd>Bastien Raccary, <a href="mailto:bastien.raccary@lelabodurable.com">bastien.raccary@lelabodurable.com</a>, <a href="tel:+33630637757">06 30 63 77 57</a>.</dd></div>
+            </dl>
+            <div class="results fade-up">
+                <div class="results-figure">100 %</div>
+                <div class="results-text"><strong>Nos résultats 2025.</strong> Taux de satisfaction des stagiaires : 100 % (note moyenne de 4,7 sur 5, 6 répondant·es).</div>
+            </div>
+            <p class="legal-note fade-up">Certification Qualiopi délivrée via Analytiss au titre de la catégorie : actions de formation. Déclaration d’activité enregistrée sous le numéro 84 43 03750 43 auprès du préfet de région Auvergne-Rhône-Alpes.</p>
         </div>
     </section>
 
@@ -597,7 +575,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-bottom-left">
-                    <span>© 2025 Le Labo Durable. Tous droits réservés.</span>
+                    <span>© 2026 Le Labo Durable. Tous droits réservés.</span>
                     <a href="mentions-legales.html">Mentions légales</a>
                     <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
                     <a href="mentions-legales.html#cookies">Cookies</a>
@@ -622,8 +600,9 @@
                 const isOpen=card.classList.contains('open');
                 // Close others
                 document.querySelectorAll('.formation-card.open').forEach(c=>{
-                    if(c!==card){c.classList.remove('open');c.querySelector('.formation-content').style.maxHeight=null}
+                    if(c!==card){c.classList.remove('open');c.querySelector('.formation-trigger').setAttribute('aria-expanded','false');c.querySelector('.formation-content').style.maxHeight=null}
                 });
+                btn.setAttribute('aria-expanded',String(!isOpen));
                 if(isOpen){card.classList.remove('open');content.style.maxHeight=null}
                 else{card.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}
             });
