@@ -307,6 +307,12 @@ strong { font-weight: 600; }
     mask-image: linear-gradient(100deg, #000 10%, transparent 75%);
 }
 .page-header-inner { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; }
+/* Photo de fond des en-têtes (paysage, atténué sur le bandeau sombre) */
+.page-header-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background: url('assets/photos/hero-accueil.jpg') center / cover no-repeat;
+    opacity: 0.35; filter: grayscale(0.35);
+}
 .page-header .section-label { color: var(--band-leaf); }
 .page-header .section-label::before { background: var(--band-leaf); }
 .page-header h1 {
@@ -639,6 +645,7 @@ strong { font-weight: 600; }
     <main id="main">
 
     <header class="page-header">
+        <div class="page-header-bg" aria-hidden="true"></div>
         <div class="page-header-inner">
             <div class="section-label">Formations</div>
             <h1>Former pour susciter l'implication</h1>
