@@ -8,7 +8,432 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+/* ==========================================================================
+   Le Labo Durable — styles communs (identiques sur toutes les pages)
+   Concept : carnet de laboratoire. Encre presque noire et vert feuille du logo,
+   titres géométriques (écho du logotype), données et unités en chasse fixe,
+   repère en forme de goutte/feuille repris du « O » du logo.
+   Les couleurs sont toutes des jetons : thème clair sur :root, thème sombre
+   redéfini via prefers-color-scheme et [data-theme="dark"].
+   ========================================================================== */
+
+:root {
+    /* Couleurs — thème clair */
+    --paper: #ffffff;          /* fond de page, blanc pur */
+    --surface: #ffffff;        /* cartes, formulaires */
+    --surface-2: #f2f4f5;      /* aplats gris neutre, pistes de barres */
+    --line: #dde1e4;           /* filets et bordures */
+    --ink: #131a15;            /* texte principal (≈ noir du logo) */
+    --ink-2: #3a463e;          /* texte courant secondaire */
+    --ink-3: #5a665e;          /* légendes, métadonnées (AA ≥ 4.5:1) */
+    --leaf: #94c455;           /* vert du logo : aplats, repères, jamais en texte sur clair */
+    --leaf-ink: #3d6b1a;       /* vert lisible pour liens et labels (5.9:1) */
+    --leaf-wash: #f2f4f5;      /* fond des pastilles d'icônes (gris neutre) */
+    --on-leaf-ink: #ffffff;    /* texte sur bouton --leaf-ink */
+
+    /* Bandeaux sombres (hero, en-têtes, pied de page) — identiques dans les deux thèmes */
+    --band: #142019;
+    --band-2: #1b2a21;
+    --on-band: #eef3ec;
+    --on-band-2: #c9d3cb;
+    --on-band-3: #9aa79d;
+    --band-line: rgba(238, 243, 236, 0.14);
+    --band-surface: rgba(238, 243, 236, 0.06);
+    --band-leaf: #a7d46c;
+
+    /* Ombres */
+    --shadow-sm: 0 1px 2px rgba(19, 26, 21, 0.06);
+    --shadow-md: 0 6px 24px rgba(19, 26, 21, 0.08);
+    --nav-bg: rgba(255, 255, 255, 0.92);
+
+    /* Typographie */
+    --font-display: 'Jost', 'Futura', 'Century Gothic', 'Avenir Next', system-ui, sans-serif;
+    --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+    /* Échelle typographique (1.25) */
+    --fs-xs: 0.78rem;
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-md: 1.125rem;
+    --fs-lg: 1.375rem;
+    --fs-xl: clamp(1.75rem, 1.3rem + 1.6vw, 2.4rem);
+    --fs-2xl: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem);
+
+    /* Formes et rythme */
+    --radius: 6px;
+    --radius-lg: 12px;
+    --leaf-shape: 50% 0 50% 50%;   /* goutte du logo */
+    --gutter: clamp(1rem, 4vw, 2rem);
+    --maxw: 1180px;
+    --nav-h: 68px;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --paper: #0e1310;
+        --surface: #151c17;
+        --surface-2: #1c251f;
+        --line: #2b3830;
+        --ink: #e6ece5;
+        --ink-2: #b9c4bb;
+        --ink-3: #8f9c92;
+        --leaf: #a7d46c;
+        --leaf-ink: #a7d46c;
+        --leaf-wash: #1f2c1a;
+        --on-leaf-ink: #0e1310;
+        --band: #0a0e0b;
+        --band-2: #111813;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+        --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
+        --nav-bg: rgba(14, 19, 16, 0.9);
+        color-scheme: dark;
+    }
+}
+:root[data-theme="dark"] {
+    --paper: #0e1310;
+    --surface: #151c17;
+    --surface-2: #1c251f;
+    --line: #2b3830;
+    --ink: #e6ece5;
+    --ink-2: #b9c4bb;
+    --ink-3: #8f9c92;
+    --leaf: #a7d46c;
+    --leaf-ink: #a7d46c;
+    --leaf-wash: #1f2c1a;
+    --on-leaf-ink: #0e1310;
+    --band: #0a0e0b;
+    --band-2: #111813;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
+    --nav-bg: rgba(14, 19, 16, 0.9);
+    color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: calc(var(--nav-h) + 1rem); }
+body {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--leaf-ink); }
+h1, h2, h3, h4 { text-wrap: balance; }
+h2 {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+h3 { font-family: var(--font-body); font-weight: 600; color: var(--ink); line-height: 1.35; }
+p { text-wrap: pretty; }
+strong { font-weight: 600; }
+::selection { background: var(--leaf); color: #131a15; }
+
+:focus-visible { outline: 2px solid var(--leaf-ink); outline-offset: 3px; border-radius: 2px; }
+.band :focus-visible, .footer :focus-visible, .hero :focus-visible, .page-header :focus-visible { outline-color: var(--band-leaf); }
+
+.skip-link {
+    position: absolute; left: 1rem; top: -100px; z-index: 200;
+    background: var(--ink); color: var(--paper); padding: 0.6rem 1rem; border-radius: var(--radius);
+    font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { top: 0.75rem; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Données chiffrées et unités */
+.num, .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- Icônes (sprite SVG intégré en haut de la page) ---------- */
+.ic { width: 1.25em; height: 1.25em; flex-shrink: 0; display: inline-block; vertical-align: -0.2em; color: inherit; }
+.ic-box {
+    width: 44px; height: 44px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--leaf-wash); color: var(--leaf-ink);
+    border-radius: var(--leaf-shape);
+}
+.ic-box .ic { width: 22px; height: 22px; }
+.ic-box.sm { width: 34px; height: 34px; }
+.ic-box.sm .ic { width: 18px; height: 18px; }
+
+/* ---------- Navigation ---------- */
+.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding-top: env(safe-area-inset-top, 0px);
+}
+.nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter);
+    height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.nav-logo { display: flex; align-items: center; text-decoration: none; position: relative; z-index: 120; }
+.nav-logo img, .logo-img { height: 34px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
+.nav-links a {
+    position: relative; display: block;
+    text-decoration: none; color: var(--ink-2);
+    font-size: var(--fs-sm); font-weight: 500;
+    padding: 0.5rem 0.8rem; border-radius: var(--radius);
+    transition: color 0.2s, background-color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); background: var(--surface-2); }
+.nav-links a.active, .nav-links a[aria-current="page"] { color: var(--ink); }
+.nav-links a.active::after, .nav-links a[aria-current="page"]::after {
+    content: ''; position: absolute; left: 0.8rem; right: 0.8rem; bottom: 0.2rem;
+    height: 2px; background: var(--leaf); border-radius: 2px;
+}
+.nav-links a.nav-cta {
+    background: var(--ink); color: var(--paper);
+    padding: 0.55rem 1.1rem; margin-left: 0.5rem;
+}
+.nav-links a.nav-cta:hover { background: var(--leaf-ink); color: var(--on-leaf-ink); }
+.nav-links a.nav-cta::after { display: none; }
+
+.nav-toggle {
+    display: none; position: relative; z-index: 120;
+    width: 44px; height: 44px; border: 0; border-radius: var(--radius);
+    background: none; cursor: pointer; color: var(--ink);
+}
+.nav-toggle:hover { background: var(--surface-2); }
+.nav-toggle-bar {
+    position: absolute; left: 12px; width: 20px; height: 2px; border-radius: 2px;
+    background: currentColor; transition: transform 0.3s var(--ease), opacity 0.2s;
+}
+.nav-toggle-bar:nth-child(1) { top: 15px; }
+.nav-toggle-bar:nth-child(2) { top: 21px; }
+.nav-toggle-bar:nth-child(3) { top: 27px; }
+.nav-toggle.open .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle.open .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Logo noir : version claire en thème sombre (le vert reste vert) */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .nav-logo img { filter: invert(1) hue-rotate(180deg) brightness(1.1); }
+}
+:root[data-theme="dark"] .nav-logo img { filter: invert(1) hue-rotate(180deg) brightness(1.1); }
+
+/* ---------- Boutons ---------- */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.8rem 1.4rem; border-radius: var(--radius);
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; line-height: 1.2;
+    text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s var(--ease);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn .ic { width: 1.1em; height: 1.1em; }
+/* Plein, sur fond sombre (hero, bandeaux) */
+.btn-primary { background: var(--band-leaf); color: #10170f; }
+.btn-primary:hover { background: var(--on-band); }
+/* Contour, sur fond sombre */
+.btn-ghost { background: transparent; color: var(--on-band); border-color: var(--band-line); }
+.btn-ghost:hover { background: var(--band-surface); border-color: var(--on-band-3); }
+/* Plein, sur fond clair */
+.btn-accent { background: var(--ink); color: var(--paper); }
+.btn-accent:hover { background: var(--leaf-ink); color: var(--on-leaf-ink); }
+/* Contour, sur fond clair */
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--ink-3); }
+.btn-outline:hover { border-color: var(--ink); background: var(--surface-2); }
+
+/* ---------- Sections ---------- */
+.section { padding-block: clamp(3.5rem, 7vw, 6rem); padding-inline: var(--gutter); }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-alt { background: var(--surface-2); border-block: 1px solid var(--line); }
+.section-header { max-width: 680px; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.section-header.center { margin-inline: auto; text-align: center; }
+.section-header.center .section-label { justify-content: center; }
+.section-label {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--leaf-ink); margin-bottom: 0.9rem;
+}
+.section-label::before {
+    content: ''; width: 9px; height: 9px; flex-shrink: 0;
+    background: var(--leaf); border-radius: var(--leaf-shape);
+}
+.section-desc { font-size: var(--fs-md); color: var(--ink-2); line-height: 1.65; max-width: 62ch; }
+.section-header.center .section-desc { margin-inline: auto; }
+
+/* Bandeau sombre générique */
+.band { background: var(--band); color: var(--on-band-2); }
+.band h2, .band h3 { color: var(--on-band); }
+.band .section-label { color: var(--band-leaf); }
+.band .section-label::before { background: var(--band-leaf); }
+.band .section-desc { color: var(--on-band-2); }
+.band .ic-box { background: var(--band-2); color: var(--band-leaf); }
+
+/* Motif papier millimétré pour les bandeaux */
+.grid-paper {
+    background-image:
+        linear-gradient(var(--band-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.35;
+}
+
+/* ---------- En-tête des pages intérieures ---------- */
+.page-header {
+    position: relative; overflow: hidden;
+    background: var(--band); color: var(--on-band-2);
+    padding-block: calc(var(--nav-h) + clamp(3rem, 7vw, 5rem)) clamp(3rem, 6vw, 4.5rem);
+    padding-inline: var(--gutter);
+}
+.page-header::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+        linear-gradient(var(--band-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.35;
+    -webkit-mask-image: linear-gradient(100deg, #000 10%, transparent 75%);
+    mask-image: linear-gradient(100deg, #000 10%, transparent 75%);
+}
+.page-header-inner { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; }
+.page-header .section-label { color: var(--band-leaf); }
+.page-header .section-label::before { background: var(--band-leaf); }
+.page-header h1 {
+    font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 500;
+    line-height: 1.08; letter-spacing: -0.015em; color: var(--on-band);
+    max-width: 20ch; margin-bottom: 1.1rem;
+}
+.page-header p { font-size: var(--fs-md); color: var(--on-band-2); max-width: 60ch; line-height: 1.65; }
+
+/* ---------- Accordéon ---------- */
+.accordion { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
+.accordion-item { border-bottom: 1px solid var(--line); }
+.accordion-item:last-child { border-bottom: 0; }
+.accordion-trigger {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.15rem 1.5rem; background: none; border: 0; cursor: pointer;
+    font: inherit; color: inherit; text-align: left; transition: background-color 0.2s;
+}
+.accordion-trigger:hover { background: var(--surface-2); }
+.accordion-trigger-left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
+.accordion-trigger-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--leaf-wash); color: var(--leaf-ink); border-radius: var(--leaf-shape);
+}
+.accordion-trigger-icon .ic { width: 20px; height: 20px; }
+.accordion-trigger h3 { font-size: var(--fs-base); font-weight: 600; color: var(--ink); margin: 0; }
+.accordion-trigger .subtitle { font-size: var(--fs-sm); color: var(--ink-3); margin-top: 0.1rem; }
+.accordion-chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--ink-3); transition: transform 0.3s var(--ease); }
+.accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+.accordion-content-inner { padding: 0 1.5rem 1.4rem calc(1.5rem + 40px + 1rem); color: var(--ink-2); font-size: 0.95rem; line-height: 1.7; max-width: 80ch; }
+.accordion-content-inner p + p { margin-top: 0.6rem; }
+
+/* Variante sur bandeau sombre */
+.accordion-dark { background: var(--band-surface); border-color: var(--band-line); }
+.accordion-dark .accordion-item { border-color: var(--band-line); }
+.accordion-dark .accordion-trigger:hover { background: var(--band-surface); }
+.accordion-dark .accordion-trigger-icon { background: var(--band-2); color: var(--band-leaf); }
+.accordion-dark .accordion-trigger h3 { color: var(--on-band); }
+.accordion-dark .accordion-trigger .subtitle { color: var(--on-band-3); }
+.accordion-dark .accordion-chevron { color: var(--on-band-3); }
+.accordion-dark .accordion-content-inner { color: var(--on-band-2); }
+
+/* ---------- Bandeau d'appel à l'action ---------- */
+.cta-band { padding-block: clamp(3.5rem, 7vw, 5rem); padding-inline: var(--gutter); background: var(--surface-2); border-top: 1px solid var(--line); text-align: center; }
+.cta-band h2 { max-width: 24ch; margin-inline: auto; }
+.cta-band p { color: var(--ink-2); font-size: var(--fs-md); max-width: 56ch; margin: 0 auto 2rem; }
+.cta-actions { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+
+/* ---------- Pied de page ---------- */
+.footer { background: var(--band); color: var(--on-band-2); padding-block: 4rem 2rem; padding-inline: var(--gutter); }
+.footer-inner { max-width: var(--maxw); margin: 0 auto; }
+.footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2.5rem;
+    padding-bottom: 2.5rem; border-bottom: 1px solid var(--band-line);
+}
+.footer-brand p { font-size: var(--fs-sm); line-height: 1.7; margin-top: 1rem; max-width: 34ch; }
+.footer-brand img { height: 34px; width: auto; filter: brightness(0) invert(1); opacity: 0.92; }
+.footer h4 {
+    font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--on-band-3); margin-bottom: 1.1rem;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.footer a { color: var(--on-band-2); text-decoration: none; transition: color 0.2s; }
+.footer a:hover { color: var(--on-band); text-decoration: underline; text-underline-offset: 3px; }
+.footer-links a { font-size: var(--fs-sm); }
+.footer-contact-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: var(--fs-sm); margin-bottom: 0.75rem; overflow-wrap: anywhere; }
+.footer-contact-item .ic { color: var(--band-leaf); margin-top: 0.15rem; width: 1.05em; height: 1.05em; }
+.footer-contact-item .icon { display: inline-flex; color: var(--band-leaf); }
+.footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;
+    padding-top: 1.75rem; font-size: var(--fs-xs); color: var(--on-band-3);
+}
+.footer-bottom-left { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.25rem; }
+.footer-bottom-left a { color: var(--on-band-3); }
+.footer-social { display: flex; gap: 0.6rem; }
+.footer-social a {
+    width: 38px; height: 38px; border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--band-surface); border: 1px solid var(--band-line); color: var(--on-band-2);
+}
+.footer-social a:hover { color: var(--on-band); border-color: var(--on-band-3); text-decoration: none; }
+.footer-social .ic { width: 18px; height: 18px; }
+
+/* ---------- Apparition au défilement ----------
+   Le contenu est visible par défaut ; l'effet ne s'applique que si le JS
+   a chargé (classe .js sur <html>) et si l'utilisateur accepte les animations. */
+@media (prefers-reduced-motion: no-preference) {
+    .js .fade-up { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+    .js .fade-up.visible { opacity: 1; transform: none; }
+    .js .stagger-1 { transition-delay: 0.05s; }
+    .js .stagger-2 { transition-delay: 0.1s; }
+    .js .stagger-3 { transition-delay: 0.15s; }
+    .js .stagger-4 { transition-delay: 0.2s; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* ---------- Responsive commun ---------- */
+@media (max-width: 960px) {
+    .nav-toggle { display: block; }
+    .nav-links {
+        position: fixed; left: 0; right: 0;
+        top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+        flex-direction: column; align-items: stretch; gap: 0.1rem;
+        background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-md);
+        padding: 0.75rem var(--gutter) 1rem;
+        transform: translateY(-110%); opacity: 0; visibility: hidden; pointer-events: none;
+        transition: transform 0.3s var(--ease), opacity 0.25s, visibility 0s 0.3s;
+        z-index: 105;
+    }
+    .nav-links.open { transform: none; opacity: 1; visibility: visible; pointer-events: auto; transition: transform 0.3s var(--ease), opacity 0.25s; }
+    .nav-links a { font-size: var(--fs-base); padding: 0.8rem 0.9rem; }
+    .nav-links a.active::after, .nav-links a[aria-current="page"]::after { left: 0.9rem; right: auto; width: 24px; bottom: 0.45rem; }
+    .nav-links a.nav-cta { margin: 0.5rem 0 0; text-align: center; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .accordion-trigger { padding: 1rem; }
+    .accordion-content-inner { padding: 0 1rem 1.25rem; }
+}
+    </style>
     <meta name="color-scheme" content="light dark">
     <script>document.documentElement.classList.add('js')</script>
     <style>
@@ -134,6 +559,16 @@
     </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<!-- Icônes : Lucide v0.460.0, licence ISC (https://lucide.dev) -->
+<symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" /></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /> <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /> <rect width="4" height="12" x="2" y="9" /> <circle cx="4" cy="4" r="2" /></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /></symbol>
+<symbol id="i-microscope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8" /> <path d="M3 22h18" /> <path d="M14 22a7 7 0 1 0 0-14h-1" /> <path d="M9 14h2" /> <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z" /> <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3" /></symbol>
+</svg>
     <a class="skip-link" href="#main">Aller au contenu</a>
 
     <nav class="nav">
@@ -188,9 +623,9 @@
             <!-- Filters -->
             <div class="team-filters fade-up">
                 <button type="button" class="team-filter-btn" data-filter="all" aria-pressed="true">Toute l'équipe</button>
-                <button type="button" class="team-filter-btn" data-filter="instru" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-microscope"/></svg>Instrumentation</button>
-                <button type="button" class="team-filter-btn" data-filter="dura" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg>Durabilité</button>
-                <button type="button" class="team-filter-btn" data-filter="chemo" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg>Chémo-info</button>
+                <button type="button" class="team-filter-btn" data-filter="instru" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg>Instrumentation</button>
+                <button type="button" class="team-filter-btn" data-filter="dura" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg>Durabilité</button>
+                <button type="button" class="team-filter-btn" data-filter="chemo" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg>Chémo-info</button>
             </div>
             <div class="team-grid">
 
@@ -198,8 +633,8 @@
                 <div class="team-card fade-up stagger-1" data-cat="instru dura">
                     <div class="team-photo">
                         <div class="pole-badges">
-                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-microscope"/></svg>Instrumentation</span>
-                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg>Durabilité</span>
+                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg>Instrumentation</span>
+                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg>Durabilité</span>
                         </div>
                         <img src="assets/team/christophe-peres.png" alt="Christophe Pérès">
                     </div>
@@ -214,15 +649,15 @@
                         </div>
                         <button type="button" class="team-bio-toggle" aria-expanded="false" aria-controls="bio-1">
                             <span class="team-bio-label">Voir le parcours</span>
-                            <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
+                            <svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg>
                         </button>
                         <div class="team-bio" id="bio-1"><div class="team-bio-inner">Docteur-ingénieur AgroParisTech, Christophe a débuté au Research Institute for Chromatography dans l'instrumentation analytique. En 2009, il prend la responsabilité de la Recherche Analytique Parfums chez Chanel. En 2021, il fonde Le Labo Durable.</div></div>
                         <div class="team-links">
                             <a href="https://www.linkedin.com/in/christophe-peres-385ba84/" target="_blank" rel="noopener" class="team-link">
-                                <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg>
+                                <svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>
                                 LinkedIn
                             </a>
-                            <a href="mailto:christophe.peres@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg>Email</a>
+                            <a href="mailto:christophe.peres@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
                         </div>
                     </div>
                 </div>
@@ -231,7 +666,7 @@
                 <div class="team-card fade-up stagger-2" data-cat="dura">
                     <div class="team-photo">
                         <div class="pole-badges">
-                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg>Durabilité</span>
+                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg>Durabilité</span>
                         </div>
                         <img src="assets/team/bastien-raccary.png" alt="Bastien Raccary">
                     </div>
@@ -245,15 +680,15 @@
                         </div>
                         <button type="button" class="team-bio-toggle" aria-expanded="false" aria-controls="bio-2">
                             <span class="team-bio-label">Voir le parcours</span>
-                            <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
+                            <svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg>
                         </button>
                         <div class="team-bio" id="bio-2"><div class="team-bio-inner">Ingénieur CPE Lyon, docteur de l'Université Bordeaux 1. En 2019, il co-fonde The Green Analytical Project (GAP) avec Christophe Pérès. Auditeur ISO 14001, il audite des structures, propose des plans d'action et accompagne les équipes dans leur transition environnementale.</div></div>
                         <div class="team-links">
                             <a href="https://www.linkedin.com/in/bastien-raccary/" target="_blank" rel="noopener" class="team-link">
-                                <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg>
+                                <svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>
                                 LinkedIn
                             </a>
-                            <a href="mailto:bastien.raccary@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg>Email</a>
+                            <a href="mailto:bastien.raccary@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
                         </div>
                     </div>
                 </div>
@@ -262,8 +697,8 @@
                 <div class="team-card fade-up stagger-3" data-cat="chemo dura">
                     <div class="team-photo">
                         <div class="pole-badges">
-                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg>Chémo-info</span>
-                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg>Durabilité</span>
+                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg>Chémo-info</span>
+                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg>Durabilité</span>
                         </div>
                         <img src="assets/team/clement-truan.png" alt="Clément Truan">
                     </div>
@@ -277,15 +712,15 @@
                         </div>
                         <button type="button" class="team-bio-toggle" aria-expanded="false" aria-controls="bio-3">
                             <span class="team-bio-label">Voir le parcours</span>
-                            <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
+                            <svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg>
                         </button>
                         <div class="team-bio" id="bio-3"><div class="team-bio-inner">Docteur-Ingénieur Chimie ParisTech et de l'Université Clermont-Auvergne. Sa double compétence en chimie analytique et en programmation lui permet de fournir des solutions de pointe utilisant algorithmes génétiques et intelligence artificielle.</div></div>
                         <div class="team-links">
                             <a href="https://www.linkedin.com/in/cl%C3%A9ment-truan-54a70669/" target="_blank" rel="noopener" class="team-link">
-                                <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg>
+                                <svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>
                                 LinkedIn
                             </a>
-                            <a href="mailto:clement.truan@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg>Email</a>
+                            <a href="mailto:clement.truan@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
                         </div>
                     </div>
                 </div>
@@ -294,7 +729,7 @@
                 <div class="team-card fade-up stagger-1" data-cat="instru">
                     <div class="team-photo">
                         <div class="pole-badges">
-                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-microscope"/></svg>Support</span>
+                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg>Support</span>
                         </div>
                         <img src="assets/team/xavier-rouessac.png" alt="Xavier Rouessac">
                     </div>
@@ -308,15 +743,15 @@
                         </div>
                         <button type="button" class="team-bio-toggle" aria-expanded="false" aria-controls="bio-4">
                             <span class="team-bio-label">Voir le parcours</span>
-                            <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
+                            <svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg>
                         </button>
                         <div class="team-bio" id="bio-4"><div class="team-bio-inner">Chez les Rouessac, l'Analyse Chimique est une histoire de famille. Fort de 35 ans d'expérience en chromatographie et spectrométrie de masse, Xavier assure le support à distance et sur site des solutions déployées par Le Labo Durable.</div></div>
                         <div class="team-links">
                             <a href="https://www.linkedin.com/in/xavier-rouessac-b255a399/" target="_blank" rel="noopener" class="team-link">
-                                <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg>
+                                <svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>
                                 LinkedIn
                             </a>
-                            <a href="mailto:xavier.rouessac@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg>Email</a>
+                            <a href="mailto:xavier.rouessac@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
                         </div>
                     </div>
                 </div>
@@ -325,7 +760,7 @@
                 <div class="team-card fade-up stagger-2" data-cat="chemo">
                     <div class="team-photo">
                         <div class="pole-badges">
-                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg>Chémo-info</span>
+                            <span class="pole-badge"><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg>Chémo-info</span>
                         </div>
                         <img src="assets/team/thomas-vandewattyne.png" alt="Thomas Vandewattyne">
                     </div>
@@ -340,15 +775,15 @@
                         </div>
                         <button type="button" class="team-bio-toggle" aria-expanded="false" aria-controls="bio-5">
                             <span class="team-bio-label">Voir le parcours</span>
-                            <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>
+                            <svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg>
                         </button>
                         <div class="team-bio" id="bio-5"><div class="team-bio-inner">Titulaire d'une licence en Chimie Analytique et d'un Master en Informatique, Thomas collabore avec Clément Truan. Sa thèse porte sur l'IA et l'algorithmie appliquées aux problématiques des laboratoires d'analyses.</div></div>
                         <div class="team-links">
                             <a href="https://www.linkedin.com/in/thomas-vandewattyne/" target="_blank" rel="noopener" class="team-link">
-                                <svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg>
+                                <svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>
                                 LinkedIn
                             </a>
-                            <a href="mailto:thomas.vandewattyne@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg>Email</a>
+                            <a href="mailto:thomas.vandewattyne@lelabodurable.com" class="team-link"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
                         </div>
                     </div>
                 </div>
@@ -413,8 +848,8 @@
                 </div>
                 <div>
                     <h4>Nous contacter</h4>
-                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg><span>34 rue du Vallat, 43100 Brioude</span></div>
-                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-mail"/></svg><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>34 rue du Vallat, 43100 Brioude</span></div>
+                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -424,12 +859,69 @@
                     <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
                     <a href="mentions-legales.html#cookies">Cookies</a>
                 </div>
-                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" aria-hidden="true"><use href="assets/icons.svg#i-linkedin"/></svg></a></div>
+                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg></a></div>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/site.js"></script>
+    <script>
+// Le Labo Durable — comportements communs à toutes les pages
+// (menu mobile, accordéons .accordion, apparition au défilement)
+(function () {
+    document.documentElement.classList.add('js');
+
+    // Menu mobile
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    if (toggle && links) {
+        toggle.setAttribute('aria-controls', 'navLinks');
+        toggle.setAttribute('aria-expanded', 'false');
+        const setOpen = (open) => {
+            toggle.classList.toggle('open', open);
+            links.classList.toggle('open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+        };
+        toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
+        links.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+        window.addEventListener('resize', () => { if (window.innerWidth > 960) setOpen(false); });
+        // Lien de la page courante
+        links.querySelectorAll('a.active').forEach((a) => a.setAttribute('aria-current', 'page'));
+    }
+
+    // Accordéons : un seul élément ouvert par accordéon
+    document.querySelectorAll('.accordion-trigger').forEach((btn) => {
+        if (!btn.hasAttribute('aria-expanded')) btn.setAttribute('aria-expanded', 'false');
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.accordion-item');
+            const content = item.querySelector('.accordion-content');
+            const isOpen = item.classList.contains('open');
+            item.parentElement.querySelectorAll('.accordion-item.open').forEach((sib) => {
+                if (sib === item) return;
+                sib.classList.remove('open');
+                sib.querySelector('.accordion-content').style.maxHeight = null;
+                sib.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+            });
+            item.classList.toggle('open', !isOpen);
+            content.style.maxHeight = isOpen ? null : content.scrollHeight + 'px';
+            btn.setAttribute('aria-expanded', String(!isOpen));
+        });
+    });
+
+    // Apparition au défilement (le contenu reste visible sans JS)
+    const els = document.querySelectorAll('.fade-up');
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        els.forEach((el) => io.observe(el));
+    } else {
+        els.forEach((el) => el.classList.add('visible'));
+    }
+})();
+    </script>
     <script>
 
         // Bascule des parcours
