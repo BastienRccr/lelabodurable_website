@@ -14,12 +14,12 @@
    Concept : carnet de laboratoire. Encre presque noire et vert feuille du logo,
    titres géométriques (écho du logotype), données et unités en chasse fixe,
    repère en forme de goutte/feuille repris du « O » du logo.
-   Les couleurs sont toutes des jetons : thème clair sur :root, thème sombre
-   redéfini via prefers-color-scheme et [data-theme="dark"].
+   Les couleurs sont toutes des jetons, définis sur :root.
+   Le site est volontairement toujours en thème clair.
    ========================================================================== */
 
 :root {
-    /* Couleurs — thème clair */
+    /* Couleurs */
     --paper: #ffffff;          /* fond de page, blanc pur */
     --surface: #ffffff;        /* cartes, formulaires */
     --surface-2: #f2f4f5;      /* aplats gris neutre, pistes de barres */
@@ -32,7 +32,7 @@
     --leaf-wash: #f2f4f5;      /* fond des pastilles d'icônes (gris neutre) */
     --on-leaf-ink: #ffffff;    /* texte sur bouton --leaf-ink */
 
-    /* Bandeaux sombres (hero, en-têtes, pied de page) — identiques dans les deux thèmes */
+    /* Bandeaux sombres (hero, en-têtes, pied de page) */
     --band: #142019;
     --band-2: #1b2a21;
     --on-band: #eef3ec;
@@ -73,46 +73,6 @@
     color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-        --paper: #0e1310;
-        --surface: #151c17;
-        --surface-2: #1c251f;
-        --line: #2b3830;
-        --ink: #e6ece5;
-        --ink-2: #b9c4bb;
-        --ink-3: #8f9c92;
-        --leaf: #a7d46c;
-        --leaf-ink: #a7d46c;
-        --leaf-wash: #1f2c1a;
-        --on-leaf-ink: #0e1310;
-        --band: #0a0e0b;
-        --band-2: #111813;
-        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-        --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
-        --nav-bg: rgba(14, 19, 16, 0.9);
-        color-scheme: dark;
-    }
-}
-:root[data-theme="dark"] {
-    --paper: #0e1310;
-    --surface: #151c17;
-    --surface-2: #1c251f;
-    --line: #2b3830;
-    --ink: #e6ece5;
-    --ink-2: #b9c4bb;
-    --ink-3: #8f9c92;
-    --leaf: #a7d46c;
-    --leaf-ink: #a7d46c;
-    --leaf-wash: #1f2c1a;
-    --on-leaf-ink: #0e1310;
-    --band: #0a0e0b;
-    --band-2: #111813;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
-    --nav-bg: rgba(14, 19, 16, 0.9);
-    color-scheme: dark;
-}
 
 /* ---------- Base ---------- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -223,11 +183,6 @@ strong { font-weight: 600; }
 .nav-toggle.open .nav-toggle-bar:nth-child(2) { opacity: 0; }
 .nav-toggle.open .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-/* Logo noir : version claire en thème sombre (le vert reste vert) */
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .nav-logo img { filter: invert(1) hue-rotate(180deg) brightness(1.1); }
-}
-:root[data-theme="dark"] .nav-logo img { filter: invert(1) hue-rotate(180deg) brightness(1.1); }
 
 /* ---------- Boutons ---------- */
 .btn {
@@ -440,7 +395,7 @@ strong { font-weight: 600; }
     .accordion-content-inner { padding: 0 1rem 1.25rem; }
 }
     </style>
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="light">
     <script>document.documentElement.classList.add('js')</script>
     <style>
         /* ─── En-tête : texte + rangée de fiches ─── */
