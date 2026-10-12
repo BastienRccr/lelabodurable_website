@@ -9,16 +9,16 @@
 
 :root {
     /* Couleurs — thème clair */
-    --paper: #f6f8f3;          /* fond de page, neutre légèrement vert */
+    --paper: #ffffff;          /* fond de page, blanc pur */
     --surface: #ffffff;        /* cartes, formulaires */
-    --surface-2: #edf2e8;      /* aplats teintés, pistes de barres */
-    --line: #d7dfd1;           /* filets et bordures */
+    --surface-2: #f2f4f5;      /* aplats gris neutre, pistes de barres */
+    --line: #dde1e4;           /* filets et bordures */
     --ink: #131a15;            /* texte principal (≈ noir du logo) */
     --ink-2: #3a463e;          /* texte courant secondaire */
     --ink-3: #5a665e;          /* légendes, métadonnées (AA ≥ 4.5:1) */
     --leaf: #94c455;           /* vert du logo : aplats, repères, jamais en texte sur clair */
     --leaf-ink: #3d6b1a;       /* vert lisible pour liens et labels (5.9:1) */
-    --leaf-wash: #e6f0d8;      /* fond teinté vert */
+    --leaf-wash: #f2f4f5;      /* fond des pastilles d'icônes (gris neutre) */
     --on-leaf-ink: #ffffff;    /* texte sur bouton --leaf-ink */
 
     /* Bandeaux sombres (hero, en-têtes, pied de page) — identiques dans les deux thèmes */
@@ -34,7 +34,7 @@
     /* Ombres */
     --shadow-sm: 0 1px 2px rgba(19, 26, 21, 0.06);
     --shadow-md: 0 6px 24px rgba(19, 26, 21, 0.08);
-    --nav-bg: rgba(246, 248, 243, 0.92);
+    --nav-bg: rgba(255, 255, 255, 0.92);
 
     /* Typographie */
     --font-display: 'Jost', 'Futura', 'Century Gothic', 'Avenir Next', system-ui, sans-serif;
@@ -244,7 +244,7 @@ strong { font-weight: 600; }
 /* ---------- Sections ---------- */
 .section { padding-block: clamp(3.5rem, 7vw, 6rem); padding-inline: var(--gutter); }
 .section-inner { max-width: var(--maxw); margin: 0 auto; }
-.section-alt { background: var(--surface); border-block: 1px solid var(--line); }
+.section-alt { background: var(--surface-2); border-block: 1px solid var(--line); }
 .section-header { max-width: 680px; margin-bottom: clamp(2rem, 4vw, 3rem); }
 .section-header.center { margin-inline: auto; text-align: center; }
 .section-header.center .section-label { justify-content: center; }
@@ -341,7 +341,7 @@ strong { font-weight: 600; }
 .accordion-dark .accordion-content-inner { color: var(--on-band-2); }
 
 /* ---------- Bandeau d'appel à l'action ---------- */
-.cta-band { padding-block: clamp(3.5rem, 7vw, 5rem); padding-inline: var(--gutter); background: var(--surface); border-top: 1px solid var(--line); text-align: center; }
+.cta-band { padding-block: clamp(3.5rem, 7vw, 5rem); padding-inline: var(--gutter); background: var(--surface-2); border-top: 1px solid var(--line); text-align: center; }
 .cta-band h2 { max-width: 24ch; margin-inline: auto; }
 .cta-band p { color: var(--ink-2); font-size: var(--fs-md); max-width: 56ch; margin: 0 auto 2rem; }
 .cta-actions { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
