@@ -1,0 +1,73 @@
+<!-- title: Contact — Le Labo Durable -->
+<!-- description: Contactez Le Labo Durable pour vos projets de durabilité en laboratoire. ACV, bilan GES, formations, audit environnemental. -->
+<style>
+.c-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+.form-card .card-head h2{color:#fff;font-size:1.6rem;margin:0}
+.form-card .card-head p{font-size:.88rem;margin-top:.4rem}
+.form-body{padding:1.5rem}
+.f-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1rem}
+.field{margin-bottom:1.1rem;min-width:0}
+.field label{display:block;font-size:.9rem;font-weight:600;color:var(--deep);margin-bottom:.4rem}
+.field label .req{color:var(--gold-ink);margin-left:.15rem}
+.field label .opt-l{font-weight:500;color:var(--ink-3);font-size:.84rem}
+.field input,.field textarea{width:100%;font:400 1rem/1.5 var(--f-body);color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:.7rem .9rem;min-height:48px;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:160px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-3)}
+.field input:hover,.field textarea:hover{border-color:var(--primary-light)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--deep);box-shadow:0 0 0 3px var(--tint),0 0 0 5px var(--deep)}
+.form-body .btn{margin-top:.4rem}
+.c-info h2{font-size:1.6rem;margin-bottom:1rem}
+.c-list{list-style:none;border-top:1px solid var(--line)}
+.c-list li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:1rem;align-items:start;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.c-list .tile{width:44px;height:44px;border-radius:var(--r);background:var(--tint);color:var(--deep);display:grid;place-items:center}
+.c-list .lab{display:block;font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+.c-list .val{display:block;color:var(--ink);font-weight:600;overflow-wrap:anywhere;margin-top:.1rem}
+.c-list a.val{color:var(--primary)}
+.map{margin-top:1.75rem;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);aspect-ratio:16/11;background:var(--soft)}
+.map iframe{display:block;width:100%;height:100%;border:0}
+.join{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--line);display:grid;grid-template-columns:44px minmax(0,1fr);gap:1rem}
+.join .tile{width:44px;height:44px;border-radius:var(--r);background:var(--tint);color:var(--deep);display:grid;place-items:center}
+.join h3{font:700 1.1rem/1.3 var(--f-display);color:var(--deep)}
+.join p{font-size:.92rem;color:var(--ink-2);margin-top:.25rem}
+.join a{font-weight:600;overflow-wrap:anywhere}
+@media (max-width:1040px){.c-grid{grid-template-columns:minmax(0,1fr)}.form-card{max-width:680px}}
+@media (max-width:560px){.f-row{grid-template-columns:minmax(0,1fr)}.form-body{padding:1.25rem}}
+</style>
+<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li aria-current="page">Contact</li></ol>
+<h1>Parlons de <em>votre projet</em></h1>
+<p class="hero-lead">Une question, un besoin d'accompagnement, une demande de formation ? Écrivez-nous, nous vous répondons sous 48h.</p>
+<div class="hero-actions"><a class="btn btn-gold" href="#message">Écrire un message {{ic:arrow-down}}</a><a class="btn btn-line" href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
+<ul class="facts" aria-label="En bref"><li><b>Sous 48 h</b><span>notre délai de réponse</span></li><li><b>Brioude</b><span>34 rue du Vallat, 43100 Brioude, France</span></li><li><b class="long">ACV, bilan GES, formations</b><span>audit environnemental</span></li><li><b>LinkedIn</b><span>Le Labo Durable</span></li></ul>
+</div>
+</header>
+
+<section class="sec" id="message" aria-label="Formulaire et coordonnées"><div class="wrap c-grid">
+<div class="form-card">
+<div class="card-head"><h2 id="form-h">Envoyez-nous un message</h2><p>Tous les champs marqués d'un * sont obligatoires.</p></div>
+<form class="form-body" action="https://formspree.io/f/mdapbdql" method="POST" aria-labelledby="form-h">
+<div class="f-row">
+<div class="field"><label for="f-nom">Nom <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><input id="f-nom" type="text" name="nom" placeholder="Votre nom" autocomplete="family-name" required></div>
+<div class="field"><label for="f-prenom">Prénom <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><input id="f-prenom" type="text" name="prenom" placeholder="Votre prénom" autocomplete="given-name" required></div>
+</div>
+<div class="field"><label for="f-email">Email <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><input id="f-email" type="email" name="email" placeholder="votre@email.com" autocomplete="email" required></div>
+<div class="field"><label for="f-org">Organisation</label><input id="f-org" type="text" name="organisation" placeholder="Nom de votre structure (optionnel)" autocomplete="organization"></div>
+<div class="field"><label for="f-msg">Message <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><textarea id="f-msg" name="message" placeholder="Décrivez-nous votre projet ou votre besoin..." required></textarea></div>
+<button type="submit" class="btn btn-deep btn-block">Envoyer le message {{ic:send}}</button>
+</form>
+</div>
+
+<div class="c-info">
+<h2>Nos coordonnées</h2>
+<ul class="c-list">
+<li><span class="tile">{{ic:mail}}</span><span><span class="lab">Email</span><a class="val" href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></span></li>
+<li><span class="tile">{{ic:map-pin}}</span><span><span class="lab">Adresse</span><span class="val">34 rue du Vallat<br>43100 Brioude, France</span></span></li>
+<li><span class="tile">{{ic:linkedin}}</span><span><span class="lab">LinkedIn</span><a class="val" href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener">Le Labo Durable</a></span></li>
+</ul>
+<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.5!2d3.3847!3d45.2942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDE3JzM5LjEiTiAzwrAyMycwNC45IkU!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Le Labo Durable — Brioude"></iframe></div>
+<div class="join"><span class="tile">{{ic:users}}</span><div><h3>Vous souhaitez rejoindre l'équipe ?</h3><p>Envoyez-nous votre CV à</p><a href="mailto:christophe.peres@lelabodurable.com">christophe.peres@lelabodurable.com</a></div></div>
+</div>
+</div></section>

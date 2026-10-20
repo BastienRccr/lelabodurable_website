@@ -1,379 +1,455 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — Le Labo Durable</title>
-    <meta name="description" content="Contactez Le Labo Durable pour vos projets de durabilité en laboratoire. ACV, bilan GES, formations, audit environnemental.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --deep: #0f3d4f;
-            --primary: #1a6b7a;
-            --primary-light: #2a8a9a;
-            --tint: #e8f4f6;
-            --tint-warm: #f0f7f4;
-            --accent: #d4a053;
-            --accent-light: #e8c88a;
-            --text: #1a2a2e;
-            --text-mid: #4a5e63;
-            --text-light: #7a8e93;
-            --white: #ffffff;
-            --off-white: #f8fafb;
-            --border: #d8e4e7;
-            --radius: 8px;
-            --radius-lg: 16px;
-            --shadow-sm: 0 1px 3px rgba(15,61,79,0.08);
-            --shadow-md: 0 4px 20px rgba(15,61,79,0.1);
-            --shadow-lg: 0 8px 40px rgba(15,61,79,0.12);
-            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-        }
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;font-size:16px}
-        body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Le Labo Durable</title>
+<meta name="description" content="Contactez Le Labo Durable pour vos projets de durabilité en laboratoire. ACV, bilan GES, formations, audit environnemental.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0f3d4f; --deep-2:#14495d; --primary:#1a6b7a; --primary-light:#2a8a9a;
+  --tint:#e8f4f6; --gold:#d4a053; --gold-light:#e8c88a; --gold-ink:#8f5c15;
+  --ink:#1a2a2e; --ink-2:#4a5e63; --ink-3:#566a6f; --line:#d8e4e7; --paper:#ffffff; --soft:#f4f8f9;
+  --on-deep:#ffffff; --on-deep-2:#d3e6eb; --on-deep-3:#a9c9d1; --deep-line:rgba(255,255,255,.14);
+  --f-display:'Outfit',system-ui,sans-serif; --f-body:'Plus Jakarta Sans',system-ui,sans-serif;
+  --maxw:1180px; --gut:clamp(1rem,4vw,2rem); --nav-h:72px;
+  --r:10px; --r-lg:18px; --ease:cubic-bezier(.16,1,.3,1);
+  --shadow:0 18px 40px -18px rgba(15,61,79,.28),0 2px 6px rgba(15,61,79,.06);
+  color-scheme:light;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 1rem);-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);font-size:1rem;line-height:1.65;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--primary);text-underline-offset:3px}
+h1,h2,h3{font-family:var(--f-display);color:var(--deep);line-height:1.15;text-wrap:balance;letter-spacing:-.01em}
+p{text-wrap:pretty}
+::selection{background:var(--gold-light);color:var(--deep)}
+:focus-visible{outline:2px solid var(--deep);outline-offset:3px;border-radius:4px}
+.hero :focus-visible,.dark :focus-visible,.footer :focus-visible,.card-head :focus-visible,.mini:focus-visible,.step-side :focus-visible{outline-color:var(--gold-light)}
+.ic{width:1.2em;height:1.2em;flex-shrink:0;display:inline-block;vertical-align:-.22em}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:1rem;top:-100px;z-index:300;background:var(--deep);color:#fff;padding:.6rem 1rem;border-radius:var(--r);font-weight:600}
+.skip:focus{top:.75rem}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+.num{font-variant-numeric:tabular-nums}
 
-        /* NAV */
-        .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-        .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px}
-        .nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--deep);z-index:120}
-        .nav-logo-icon{width:40px;height:40px;background:var(--primary);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:white;font-family:'Outfit',sans-serif;font-size:1.1rem}
-        .nav-logo-text{font-weight:600;font-size:1.1rem}
-        .nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
-        .nav-links a{text-decoration:none;color:var(--text-mid);font-size:0.9rem;font-weight:500;padding:0.5rem 1rem;border-radius:var(--radius);transition:color 0.2s ease,background 0.2s ease}
-        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:var(--tint)}
-        .nav-cta{background:var(--primary)!important;color:var(--white)!important;padding:0.55rem 1.25rem!important}
-        .nav-cta:hover{background:var(--deep)!important;color:var(--white)!important}
-        .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;z-index:120;position:relative;border-radius:var(--radius)}
-        .nav-toggle:hover{background:var(--tint)}
-        .nav-toggle-bar{display:block;width:20px;height:2px;background:var(--text);position:absolute;left:12px;transition:transform 0.35s ease,opacity 0.25s ease;border-radius:2px}
-        .nav-toggle-bar:nth-child(1){top:15px}
-        .nav-toggle-bar:nth-child(2){top:21px}
-        .nav-toggle-bar:nth-child(3){top:27px}
-        .nav-toggle.open .nav-toggle-bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(2){opacity:0;transform:scaleX(0)}
-        .nav-toggle.open .nav-toggle-bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:saturate(150%) blur(14px);-webkit-backdrop-filter:saturate(150%) blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo img{height:40px;width:auto}
+.nav-links{display:flex;align-items:center;gap:.15rem;list-style:none}
+.nav-links a{display:block;text-decoration:none;color:var(--ink-2);font-size:.9rem;font-weight:500;padding:.5rem .9rem;border-radius:999px;transition:color .2s,background-color .2s}
+.nav-links a:hover{color:var(--deep);background:var(--tint)}
+.nav-links a[aria-current="page"]{color:var(--deep);background:var(--tint);font-weight:600}
+.nav-links a.nav-cta{background:var(--gold);color:var(--deep);font-weight:700;margin-left:.5rem;padding:.6rem 1.2rem}
+.nav-links a.nav-cta:hover{background:var(--gold-light)}
+.nav-toggle{display:none;width:44px;height:44px;border:0;background:none;border-radius:var(--r);cursor:pointer;position:relative;color:var(--ink)}
+.nav-toggle span{position:absolute;left:12px;width:20px;height:2px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .2s}
+.nav-toggle span:nth-child(1){top:15px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:27px}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-        /* PAGE HEADER */
-        .page-header{padding:10rem 2rem 4rem;background:linear-gradient(165deg,rgba(15,61,79,0.85) 0%,rgba(26,107,122,0.7) 50%,rgba(42,138,154,0.6) 100%),url('assets/photos/hero-accueil.jpg') center center/cover no-repeat;position:relative;overflow:hidden}
-        .page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-        .page-header-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
-        .page-header .section-label{color:var(--accent-light)}
-        .page-header .section-label::before{background:var(--accent)}
-        .page-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:1rem}
-        .page-header p{font-size:1.1rem;color:rgba(255,255,255,0.75);max-width:600px;line-height:1.7}
+/* BOUTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:.8rem 1.5rem;border-radius:999px;font:700 .95rem/1.2 var(--f-body);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s,transform .25s var(--ease),box-shadow .25s}
+.btn .ic{width:1.05em;height:1.05em;transition:transform .25s var(--ease)}
+.btn:hover .ic{transform:translate(2px,-2px)}
+.btn-gold{background:var(--gold);color:var(--deep);box-shadow:0 8px 20px -10px rgba(212,160,83,.9)}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-line{color:#fff;border-color:rgba(255,255,255,.45)}
+.btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-deep{background:var(--deep);color:#fff}
+.btn-deep:hover{background:var(--primary)}
+.btn-ghost{color:var(--deep);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--deep)}
+.btn-block{width:100%}
 
-        /* SECTIONS */
-        .section{padding:6rem 2rem}
-        .section-inner{max-width:1200px;margin:0 auto}
-        .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);margin-bottom:1rem}
-        .section-label::before{content:'';width:20px;height:2px;background:var(--primary);border-radius:1px}
-        h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--deep);line-height:1.25;margin-bottom:1rem}
+/* HERO */
+.hero{position:relative;background:var(--deep);color:var(--on-deep-2);padding-top:calc(var(--nav-h) + clamp(1.5rem,4vw,2.5rem));overflow:hidden;isolation:isolate}
+.hero-photo{position:absolute;inset:0;z-index:-2;background:url('assets/photos/hero-accueil.jpg') center 62%/cover no-repeat}
+.hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(15,61,79,.96) 0%,rgba(15,61,79,.84) 42%,rgba(15,61,79,.42) 100%)}
+.crumbs{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-size:.8rem;color:var(--on-deep-3);list-style:none}
+.crumbs a{color:var(--on-deep-2);text-decoration:none}
+.crumbs a:hover{color:#fff;text-decoration:underline}
+.crumbs li+li::before{content:'/';margin-right:.4rem;color:var(--on-deep-3)}
+.hero h1{color:#fff;font-weight:700;font-size:clamp(2.2rem,1.5rem + 3vw,3.6rem);line-height:1.06;letter-spacing:-.02em;max-width:17ch;margin:1.4rem 0 1.2rem}
+.hero h1 em{font-style:normal;color:var(--gold-light);display:block}
+.hero-lead{font-size:clamp(1rem,.95rem + .3vw,1.13rem);max-width:58ch;color:var(--on-deep-2)}
+.hero-ref{display:inline-flex;gap:.5rem;align-items:center;margin-top:1rem;font-size:.82rem;color:var(--on-deep-3)}
+.hero-ref b{color:var(--on-deep-2);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.8rem 0 clamp(2rem,5vw,3rem)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--deep-line);list-style:none}
+.facts li{padding:1.25rem 1.25rem 1.6rem 0;min-width:0}
+.facts li+li{padding-left:1.25rem;border-left:1px solid var(--deep-line)}
+.facts b{display:block;font:700 clamp(1.15rem,1rem + .6vw,1.45rem)/1.2 var(--f-display);color:var(--gold-light);font-variant-numeric:tabular-nums}
+.facts b.long{font:700 .98rem/1.4 var(--f-body);color:#fff}
+.facts span{display:block;margin-top:.3rem;font-size:.84rem;color:var(--on-deep-2);line-height:1.4}
 
-        /* CONTACT LAYOUT */
-        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+/* SECTIONS */
+.sec{padding-block:clamp(3.5rem,7vw,5.5rem)}
+.sec-soft{background:var(--soft)}
+.sec h2{font-size:clamp(1.6rem,1.25rem + 1.4vw,2.25rem);font-weight:700;margin-bottom:1rem}
+.sec-intro{max-width:62ch;color:var(--ink-2);font-size:1.05rem;margin-bottom:clamp(1.75rem,4vw,2.5rem)}
+.h3{font:700 1.2rem/1.3 var(--f-display);color:var(--deep);margin-bottom:.9rem}
 
-        /* FORM */
-        .contact-form{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-sm)}
-        .contact-form h2{font-size:1.5rem;margin-bottom:0.5rem}
-        .contact-form .form-subtitle{color:var(--text-mid);font-size:0.95rem;margin-bottom:2rem}
+/* FICHE : grille contenu + carte */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:clamp(2rem,4vw,4rem);align-items:start}
+.main>*+*{margin-top:clamp(2.75rem,5vw,3.75rem)}
+.lede{font-size:1.08rem;color:var(--ink-2);max-width:66ch}
+.lede strong{color:var(--deep)}
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.who>div{padding:1.1rem 1.25rem 0 0;min-width:0}
+.who>div+div{padding-left:1.25rem;border-left:1px solid var(--line)}
+.who dt{font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
+.who dd{font-weight:600;color:var(--deep);line-height:1.45}
+.goals{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
+.goals li{display:flex;gap:.8rem;padding:1rem 0;border-top:1px solid var(--line);color:var(--ink-2);font-size:.95rem;min-width:0}
+.goals .ic{color:var(--primary);margin-top:.2rem}
 
-        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+/* PROGRAMME */
+.prog{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:#fff}
+.step{display:grid;grid-template-columns:180px minmax(0,1fr)}
+.step+.step{border-top:1px solid var(--line)}
+.step-side{background:var(--deep);color:var(--on-deep-2);padding:1.4rem 1.25rem}
+.step-side b{display:block;font:700 1.25rem/1.2 var(--f-display);color:#fff}
+.step-side span{display:block;margin-top:.25rem;font-size:.85rem;color:var(--gold-light);font-weight:600}
+.step+.step .step-side{border-top:1px solid var(--deep-line)}
+.step-body{padding:1.4rem 1.5rem;min-width:0}
+.step-body ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.step-body li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem}
+.step-body li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.tools{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;list-style:none}
+.tools li{font-size:.84rem;font-weight:600;color:var(--deep);background:var(--tint);border-radius:999px;padding:.35rem .85rem}
 
-        .form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem}
-        .form-group label{font-size:0.85rem;font-weight:600;color:var(--text)}
-        .form-group label .required{color:var(--accent)}
+/* CARTE D'INSCRIPTION */
+.card{position:sticky;top:calc(var(--nav-h) + 1.25rem);background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+.card-head{background:var(--deep);color:var(--on-deep-2);padding:1.4rem 1.5rem}
+.card-head small{display:block;font-size:.8rem;color:var(--on-deep-3)}
+.card-head b{display:block;font:700 1.7rem/1.15 var(--f-display);color:#fff}
+.card-head p{font-size:.85rem;margin-top:.35rem}
+.card-body{padding:1.25rem 1.5rem 1.5rem}
+.card-body fieldset{border:0}
+.card-body legend{font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.opt{display:flex;gap:.75rem;align-items:flex-start;padding:.8rem .9rem;border:1.5px solid var(--line);border-radius:var(--r);cursor:pointer;transition:border-color .2s,background-color .2s}
+.opt+.opt{margin-top:.5rem}
+.opt input{appearance:none;width:18px;height:18px;margin-top:.15rem;border:2px solid var(--ink-3);border-radius:50%;flex-shrink:0;display:grid;place-content:center;cursor:pointer}
+.opt input::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--deep);transform:scale(0);transition:transform .2s var(--ease)}
+.opt input:checked{border-color:var(--deep)}
+.opt input:checked::before{transform:scale(1)}
+.opt:has(input:checked){border-color:var(--deep);background:var(--tint)}
+.opt:hover{border-color:var(--primary-light)}
+.opt b{display:block;font-size:.95rem;color:var(--deep)}
+.opt span{display:block;font-size:.82rem;color:var(--ink-3)}
+.card .btn{margin-top:1.1rem}
+.fmt-one{padding:.9rem 1rem;border-radius:var(--r);background:var(--tint)}
+.fmt-one span{display:block;font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+.fmt-one b{display:block;color:var(--deep);margin-top:.15rem}
+.fmt-one small{display:block;font-size:.84rem;color:var(--ink-2);margin-top:.15rem}
+.card-alt{display:block;text-align:center;margin-top:.75rem;font-size:.88rem;font-weight:600;color:var(--deep)}
+.spec{list-style:none;border-top:1px solid var(--line);margin-top:1.25rem;padding-top:.5rem}
+.spec li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;font-size:.86rem;border-bottom:1px solid var(--soft)}
+.spec li:last-child{border-bottom:0}
+.spec span{color:var(--ink-3);flex-shrink:0}
+.spec b{color:var(--ink);font-weight:600;text-align:right;min-width:0}
 
-        .form-group input,
-        .form-group textarea{
-            font-family:'Plus Jakarta Sans',sans-serif;
-            font-size:0.95rem;
-            padding:0.75rem 1rem;
-            border:1.5px solid var(--border);
-            border-radius:var(--radius);
-            background:var(--off-white);
-            color:var(--text);
-            transition:border-color 0.2s ease,box-shadow 0.2s ease;
-            outline:none
-        }
-        .form-group input:focus,
-        .form-group textarea:focus{
-            border-color:var(--primary);
-            box-shadow:0 0 0 3px rgba(26,107,122,0.1);
-            background:var(--white)
-        }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder{color:var(--text-light)}
+/* ÉVALUATION (frise) */
+.eval{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:clamp(2rem,4vw,4rem);align-items:start}
+.eval h2{margin-bottom:0}
+.track{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
+.track::before{content:'';position:absolute;left:9px;right:12%;top:9px;height:2px;background:var(--gold)}
+.track li{position:relative;padding:2.1rem 1rem 0 0;min-width:0}
+.track li::before{content:'';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--gold)}
+.track b{display:block;font-weight:600;color:var(--deep);line-height:1.35;margin-top:.25rem;font-size:.95rem}
+.track span{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.3rem}
 
-        .form-group textarea{resize:vertical;min-height:140px}
+/* BANDEAU SOMBRE */
+.dark{background:var(--deep);color:var(--on-deep-2);position:relative;isolation:isolate}
+.dark h2,.dark h3{color:#fff}
+.dark .sec-intro{color:var(--on-deep-2)}
+.proof{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.score{border:1px solid var(--deep-line);border-radius:var(--r-lg);padding:1.75rem;background:rgba(255,255,255,.04)}
+.score-n{font:700 clamp(3rem,2.4rem + 2.5vw,4.4rem)/1 var(--f-display);color:var(--gold-light);font-variant-numeric:tabular-nums}
+.score-n small{font-size:.35em;color:var(--on-deep-2);font-weight:600;margin-left:.2rem}
+.meter{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:1.1rem 0 .6rem}
+.meter i{height:8px;border-radius:2px;background:rgba(255,255,255,.14);position:relative;overflow:hidden}
+.meter i::after{content:'';position:absolute;inset:0;width:var(--fill,100%);background:var(--gold)}
+.score p{font-size:.88rem}
+.score dl{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.25rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--deep-line);font-size:.88rem}
+.score dt{font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.quali{display:inline-flex;align-items:center;gap:.75rem;margin-top:1.5rem;padding:.6rem .9rem .6rem .6rem;background:#fff;border-radius:var(--r);color:var(--deep);font-size:.85rem;font-weight:600;text-decoration:none}
+.quali img{height:34px;width:auto}
+.money{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(2rem,5vw,4rem);margin-top:clamp(3rem,6vw,4.5rem);padding-top:clamp(2.5rem,5vw,3.5rem);border-top:1px solid var(--deep-line)}
+.money-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2rem}
+.money-grid>div{padding:1.1rem 0;border-bottom:1px solid var(--deep-line);min-width:0}
+.money-grid b{display:block;font:700 1.35rem/1.2 var(--f-display);color:#fff}
+.money-grid b.gold{color:var(--gold-light)}
+.money-grid span{display:block;font-size:.88rem;margin-top:.3rem}
 
-        .form-submit{
-            display:inline-flex;align-items:center;gap:0.5rem;
-            padding:0.85rem 2rem;border-radius:var(--radius);
-            font-family:'Plus Jakarta Sans',sans-serif;font-size:0.95rem;font-weight:600;
-            background:var(--primary);color:var(--white);
-            border:none;cursor:pointer;transition:var(--transition);
-            width:100%
-        }
-        .form-submit:hover{background:var(--deep);transform:translateY(-1px);box-shadow:var(--shadow-md)}
-        .form-submit svg{flex-shrink:0}
+/* FAQ + CONTACT */
+.faq-wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(2rem,4vw,4rem);align-items:start}
+.faq details{border:1px solid var(--line);border-radius:var(--r);background:#fff;transition:border-color .2s,box-shadow .2s}
+.faq details+details{margin-top:.6rem}
+.faq details[open]{border-color:var(--gold);box-shadow:0 10px 30px -18px rgba(15,61,79,.35)}
+.faq summary{list-style:none;display:flex;align-items:center;gap:1rem;padding:1.05rem 1.2rem;cursor:pointer;font-weight:600;color:var(--deep)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ic{margin-left:auto;color:var(--ink-3);transition:transform .3s var(--ease)}
+.faq details[open] summary .ic{transform:rotate(180deg);color:var(--deep)}
+.faq details p{padding:0 1.2rem 1.15rem;color:var(--ink-2);font-size:.95rem}
+.contact{border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow);border:1px solid var(--line);padding:1.5rem;position:sticky;top:calc(var(--nav-h) + 1.25rem)}
+.person{display:flex;gap:.9rem;align-items:center}
+.person img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;background:var(--tint);border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.person b{display:block;color:var(--deep)}
+.person span{display:block;font-size:.84rem;color:var(--ink-3);line-height:1.4}
+.contact h3{font-size:1.15rem;margin:1.25rem 0 .4rem}
+.contact p{font-size:.92rem;color:var(--ink-2)}
+.contact ul{list-style:none;margin:1rem 0 1.25rem;display:flex;flex-direction:column;gap:.5rem;font-size:.92rem}
+.contact li{display:flex;gap:.6rem;align-items:center;min-width:0;overflow-wrap:anywhere}
+.contact li .ic{color:var(--primary)}
 
-        /* INFO SIDE */
-        .contact-info{display:flex;flex-direction:column;gap:2rem}
+/* FORMATEURS */
+.trainers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1rem}
+.trainer{display:flex;gap:1.1rem;align-items:center;padding:1.1rem;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff}
+.trainer img{width:84px;height:84px;border-radius:var(--r);object-fit:cover;object-position:top;background:var(--tint)}
+.trainer b{display:block;font:700 1.1rem/1.25 var(--f-display);color:var(--deep)}
+.trainer span{display:block;font-size:.88rem;color:var(--ink-2);margin-top:.2rem}
+.trainer a{font-size:.85rem;font-weight:600;display:inline-block;margin-top:.4rem}
 
-        .info-card{background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem}
-        .info-card h3{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:600;color:var(--deep);margin-bottom:1.25rem}
+/* AUTRES FORMATIONS / CATALOGUE */
+.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.mini{display:flex;flex-direction:column;gap:.5rem;padding:1.25rem;border-radius:var(--r-lg);background:var(--deep);color:var(--on-deep-2);text-decoration:none;min-height:180px;transition:transform .3s var(--ease),background-color .2s}
+.mini:hover{transform:translateY(-3px);background:var(--deep-2)}
+.mini small{display:flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;color:var(--gold-light)}
+.mini b{font:700 1.08rem/1.3 var(--f-display);color:#fff}
+.mini span{margin-top:auto;display:flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;color:var(--on-deep-2)}
 
-        .info-item{display:flex;align-items:start;gap:0.85rem;margin-bottom:1.25rem}
-        .info-item:last-child{margin-bottom:0}
-        .info-icon{width:40px;height:40px;background:var(--tint);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-        .info-text{display:flex;flex-direction:column;gap:0.15rem}
-        .info-text .info-label{font-size:0.8rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.04em}
-        .info-text .info-value{font-size:0.95rem;color:var(--text)}
-        .info-text a{color:var(--primary);text-decoration:none;transition:color 0.2s ease}
-        .info-text a:hover{color:var(--deep)}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.chip{display:inline-flex;align-items:center;gap:.45rem;min-height:40px;padding:.45rem 1rem;border-radius:999px;border:1.5px solid var(--line);background:#fff;font:600 .88rem var(--f-body);color:var(--ink-2);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}
+.chip:hover{border-color:var(--deep);color:var(--deep)}
+.chip[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+.chip .n{font-variant-numeric:tabular-nums;opacity:.75}
+.list{list-style:none;border-top:1px solid var(--line)}
+.row{border-bottom:1px solid var(--line)}
+.row a{display:grid;grid-template-columns:56px minmax(0,1fr) 210px 28px;gap:1.25rem;align-items:center;padding:1.4rem .5rem;text-decoration:none;color:inherit;border-radius:var(--r);transition:background-color .2s}
+.row a:hover{background:var(--soft)}
+.row-ic{width:56px;height:56px;border-radius:14px;background:var(--tint);color:var(--deep);display:grid;place-items:center}
+.row-ic .ic{width:24px;height:24px}
+.row-t b{display:block;font:700 1.15rem/1.3 var(--f-display);color:var(--deep)}
+.row-m .ref{font-weight:700;color:var(--gold-ink);font-variant-numeric:tabular-nums}
+.row-t span{display:block;font-size:.9rem;color:var(--ink-2);margin-top:.25rem}
+.row-m{font-size:.86rem;color:var(--ink-2);display:flex;flex-direction:column;gap:.3rem}
+.row-m span{display:flex;gap:.45rem;align-items:center}
+.row-m .ic{color:var(--primary)}
+.row-go{color:var(--deep);transition:transform .25s var(--ease)}
+.row a:hover .row-go{transform:translateX(4px)}
+.row[hidden]{display:none}
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.why>div{padding:1.4rem 1.4rem 0 0;min-width:0}
+.why>div+div{padding-left:1.4rem;border-left:1px solid var(--line)}
+.why .ic{width:28px;height:28px;color:var(--primary)}
+.why b{display:block;font:700 1.1rem/1.3 var(--f-display);color:var(--deep);margin:.8rem 0 .35rem}
+.why p{font-size:.92rem;color:var(--ink-2)}
+.infos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 3rem}
+.infos>div{padding:1.25rem 0;border-top:1px solid var(--line);min-width:0}
+.infos dt{font:700 1.05rem var(--f-display);color:var(--deep);margin-bottom:.35rem}
+.infos dd{color:var(--ink-2);font-size:.95rem;overflow-wrap:anywhere}
+.close{text-align:center}
+.close h2{max-width:22ch;margin-inline:auto}
+.close p{color:var(--ink-2);max-width:52ch;margin:0 auto 1.75rem}
+.close .row-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem}
 
-        /* MAP */
-        .map-container{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);height:240px}
-        .map-container iframe{width:100%;height:100%;border:0}
+/* FOOTER */
+.footer{background:var(--deep);color:var(--on-deep-3);padding-block:4rem 2rem}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--deep-line)}
+.f-brand img{height:40px;width:auto;filter:brightness(0) invert(1)}
+.f-brand p{font-size:.9rem;margin-top:1rem;max-width:34ch;color:var(--on-deep-2)}
+.footer h4{color:#fff;font:600 .85rem var(--f-body);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.1rem}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;font-size:.9rem}
+.footer a{color:var(--on-deep-2);text-decoration:none}
+.footer a:hover{color:#fff;text-decoration:underline}
+.f-contact li{display:flex;gap:.55rem;align-items:flex-start;overflow-wrap:anywhere}
+.f-contact .ic{color:var(--gold-light);margin-top:.2rem}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding-top:1.75rem;font-size:.8rem}
+.f-bottom div{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
+.f-social{width:40px;height:40px;border-radius:var(--r);display:grid;place-items:center;border:1px solid var(--deep-line)}
 
-        /* TEAM CTA */
-        .team-cta{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;display:flex;align-items:center;gap:1.25rem}
-        .team-cta-icon{width:48px;height:48px;background:var(--tint);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-        .team-cta-text h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:var(--deep);margin-bottom:0.2rem}
-        .team-cta-text p{font-size:0.88rem;color:var(--text-mid);margin:0}
-        .team-cta-text a{color:var(--primary);font-weight:600;text-decoration:none;font-size:0.88rem}
-        .team-cta-text a:hover{color:var(--deep)}
+/* MOTION : une entrée orchestrée (barre de faits), contenu visible par défaut */
+@media (prefers-reduced-motion:no-preference){
+  .js .facts li{animation:rise .9s var(--ease) both}
+  .js .facts li:nth-child(2){animation-delay:.08s}.js .facts li:nth-child(3){animation-delay:.16s}.js .facts li:nth-child(4){animation-delay:.24s}
+  @keyframes rise{from{opacity:.001;transform:translateY(14px)}}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
-        /* FOOTER */
-        .footer{background:var(--off-white);color:var(--text-mid);padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
-        .footer-inner{max-width:1200px;margin:0 auto}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
-        .footer-brand p{font-size:0.9rem;line-height:1.7;margin-top:1rem;max-width:280px}
-        .footer h4{color:var(--deep);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.25rem}
-        .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
-        .footer-links a{color:var(--text-mid);text-decoration:none;font-size:0.9rem;transition:var(--transition)}
-        .footer-links a:hover{color:var(--primary)}
-        .footer-contact-item{display:flex;align-items:start;gap:0.6rem;font-size:0.9rem;margin-bottom:0.75rem}
-        .footer-contact-item .icon{margin-top:0.1rem;font-size:0.85rem;flex-shrink:0}
-        .footer-contact-item a{color:var(--text-mid);text-decoration:none;transition:var(--transition)}
-        .footer-contact-item a:hover{color:var(--primary)}
-        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:0.8rem;color:var(--text-light);flex-wrap:wrap;gap:0.75rem}
-        .footer-bottom-left{display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem 1.25rem}
-        .footer-bottom-left a{color:var(--text-light);text-decoration:none;transition:color 0.2s ease}
-        .footer-bottom-left a:hover{color:var(--primary)}
-        .footer-social{display:flex;gap:0.75rem}
-        .footer-social a{width:36px;height:36px;border-radius:var(--radius);background:var(--tint);display:flex;align-items:center;justify-content:center;color:var(--primary);text-decoration:none;font-size:0.85rem;transition:var(--transition)}
-        .footer-social a:hover{background:var(--primary);color:var(--white)}
+/* RESPONSIVE */
+@media (max-width:1040px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .card{position:static;max-width:560px}
+  .faq-wrap,.proof,.money,.eval{grid-template-columns:minmax(0,1fr)}
+  .contact{position:static;max-width:560px}
+  .others{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:1.5rem}
+  .why>div:nth-child(3){padding-left:0;border-left:0}
+  .row a{grid-template-columns:48px minmax(0,1fr) 28px}
+  .row-ic{width:48px;height:48px}
+  .row-m{grid-column:2;grid-row:2;flex-direction:row;flex-wrap:wrap;gap:.3rem 1rem}
+  .row-go{grid-column:3;grid-row:1}
+}
+@media (max-width:960px){
+  .nav-toggle{display:block}
+  .nav-links{position:fixed;left:0;right:0;top:var(--nav-h);flex-direction:column;align-items:stretch;gap:.15rem;background:#fff;border-bottom:1px solid var(--line);box-shadow:var(--shadow);padding:.75rem var(--gut) 1rem;transform:translateY(-110%);visibility:hidden;transition:transform .3s var(--ease),visibility 0s .3s}
+  .nav-links.open{transform:none;visibility:visible;transition:transform .3s var(--ease)}
+  .nav-links a{padding:.85rem 1rem;font-size:1rem}
+  .nav-links a.nav-cta{margin:.5rem 0 0;text-align:center}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts li:nth-child(3){padding-left:0;border-left:0}
+  .facts li:nth-child(n+3){border-top:1px solid var(--deep-line)}
+  .who,.goals,.money-grid,.infos{grid-template-columns:minmax(0,1fr)}
+  .who>div+div{padding-left:0;border-left:0}
+  .step{grid-template-columns:minmax(0,1fr)}
+  .track{grid-template-columns:minmax(0,1fr);gap:1.25rem}
+  .track::before{left:9px;right:auto;top:9px;bottom:9px;width:2px;height:auto}
+  .track li{padding:0 0 0 2.25rem}
+  .others{grid-template-columns:minmax(0,1fr)}
+  .why{grid-template-columns:minmax(0,1fr)}
+  .why>div,.why>div+div{padding:1.25rem 0;border-left:0;border-bottom:1px solid var(--line)}
+  .f-grid{grid-template-columns:1fr}
+  .hero-actions .btn{flex:1 1 100%}
+}
 
-        /* RESPONSIVE */
-        @media(max-width:900px){
-            .nav-links{
-                position:fixed;top:72px;left:0;right:0;
-                background:var(--white);
-                flex-direction:column;align-items:stretch;gap:0;
-                list-style:none;
-                border-bottom:1px solid var(--border);
-                box-shadow:var(--shadow-lg);
-                transform:translateY(-110%);
-                opacity:0;
-                transition:transform 0.35s ease,opacity 0.3s ease;
-                pointer-events:none;
-                padding:0.75rem 1rem;
-                z-index:105
-            }
-            .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
-            .nav-links a{font-size:1rem;padding:0.85rem 1rem;border-radius:var(--radius);display:block}
-            .nav-links .nav-cta{text-align:center;margin-top:0.5rem}
-            .nav-toggle{display:block}
-            .contact-grid{grid-template-columns:1fr;gap:2.5rem}
-            .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
-        }
-        @media(max-width:600px){
-            .section{padding:4rem 1.25rem}
-            .page-header{padding:8rem 1.25rem 3rem}
-            .form-row{grid-template-columns:1fr}
-            .contact-form{padding:1.75rem}
-            .team-cta{flex-direction:column;text-align:center}
-            .footer-grid{grid-template-columns:1fr}
-            .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
-            .footer-bottom-left{justify-content:center}
-        }
-
-        .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
-        .fade-up.visible{opacity:1;transform:translateY(0)}
-        .stagger-1{transition-delay:0.05s}.stagger-2{transition-delay:0.1s}
-    </style>
+.c-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+.form-card .card-head h2{color:#fff;font-size:1.6rem;margin:0}
+.form-card .card-head p{font-size:.88rem;margin-top:.4rem}
+.form-body{padding:1.5rem}
+.f-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1rem}
+.field{margin-bottom:1.1rem;min-width:0}
+.field label{display:block;font-size:.9rem;font-weight:600;color:var(--deep);margin-bottom:.4rem}
+.field label .req{color:var(--gold-ink);margin-left:.15rem}
+.field label .opt-l{font-weight:500;color:var(--ink-3);font-size:.84rem}
+.field input,.field textarea{width:100%;font:400 1rem/1.5 var(--f-body);color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:.7rem .9rem;min-height:48px;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:160px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-3)}
+.field input:hover,.field textarea:hover{border-color:var(--primary-light)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--deep);box-shadow:0 0 0 3px var(--tint),0 0 0 5px var(--deep)}
+.form-body .btn{margin-top:.4rem}
+.c-info h2{font-size:1.6rem;margin-bottom:1rem}
+.c-list{list-style:none;border-top:1px solid var(--line)}
+.c-list li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:1rem;align-items:start;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.c-list .tile{width:44px;height:44px;border-radius:var(--r);background:var(--tint);color:var(--deep);display:grid;place-items:center}
+.c-list .lab{display:block;font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+.c-list .val{display:block;color:var(--ink);font-weight:600;overflow-wrap:anywhere;margin-top:.1rem}
+.c-list a.val{color:var(--primary)}
+.map{margin-top:1.75rem;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);aspect-ratio:16/11;background:var(--soft)}
+.map iframe{display:block;width:100%;height:100%;border:0}
+.join{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--line);display:grid;grid-template-columns:44px minmax(0,1fr);gap:1rem}
+.join .tile{width:44px;height:44px;border-radius:var(--r);background:var(--tint);color:var(--deep);display:grid;place-items:center}
+.join h3{font:700 1.1rem/1.3 var(--f-display);color:var(--deep)}
+.join p{font-size:.92rem;color:var(--ink-2);margin-top:.25rem}
+.join a{font-weight:600;overflow-wrap:anywhere}
+@media (max-width:1040px){.c-grid{grid-template-columns:minmax(0,1fr)}.form-card{max-width:680px}}
+@media (max-width:560px){.f-row{grid-template-columns:minmax(0,1fr)}.form-body{padding:1.25rem}}
+</style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<!-- Icônes : Lucide v0.460.0, licence ISC (https://lucide.dev) -->
+<symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14" /> <path d="m19 12-7 7-7-7" /></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /> <rect width="4" height="12" x="2" y="9" /> <circle cx="4" cy="4" r="2" /></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /></symbol>
+<symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /> <path d="m21.854 2.147-10.94 10.939" /></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <path d="M16 3.13a4 4 0 0 1 0 7.75" /></symbol>
+</svg>
+<a class="skip" href="#main">Aller au contenu</a>
+<nav class="nav" aria-label="Navigation principale"><div class="wrap nav-in">
+<a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" width="113" height="40"></a>
+<ul class="nav-links" id="navLinks"><li><a href="index.html">Accueil</a></li><li><a href="services.html">Nos services</a></li><li><a href="equipe.html">Notre équipe</a></li><li><a href="formations.html">Formations</a></li><li><a href="acv.html">L'ACV</a></li><li><a href="consolab.html">Consolab</a></li><li><a href="contact.html" class="nav-cta" aria-current="page">Nous contacter</a></li></ul>
+<button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+</div></nav>
+<main id="main">
+<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li aria-current="page">Contact</li></ol>
+<h1>Parlons de <em>votre projet</em></h1>
+<p class="hero-lead">Une question, un besoin d'accompagnement, une demande de formation ? Écrivez-nous, nous vous répondons sous 48h.</p>
+<div class="hero-actions"><a class="btn btn-gold" href="#message">Écrire un message <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></a><a class="btn btn-line" href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
+<ul class="facts" aria-label="En bref"><li><b>Sous 48 h</b><span>notre délai de réponse</span></li><li><b>Brioude</b><span>34 rue du Vallat, 43100 Brioude, France</span></li><li><b class="long">ACV, bilan GES, formations</b><span>audit environnemental</span></li><li><b>LinkedIn</b><span>Le Labo Durable</span></li></ul>
+</div>
+</header>
 
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="services.html">Nos services</a></li>
-                <li><a href="equipe.html">Notre équipe</a></li>
-                <li><a href="formations.html">Formations</a></li>
-                <li><a href="acv.html">L'ACV</a></li>
-                <li><a href="consolab.html">Consolab</a></li>
-                <li><a href="contact.html" class="nav-cta active">Nous contacter</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
-        </div>
-    </nav>
+<section class="sec" id="message" aria-label="Formulaire et coordonnées"><div class="wrap c-grid">
+<div class="form-card">
+<div class="card-head"><h2 id="form-h">Envoyez-nous un message</h2><p>Tous les champs marqués d'un * sont obligatoires.</p></div>
+<form class="form-body" action="https://formspree.io/f/mdapbdql" method="POST" aria-labelledby="form-h">
+<div class="f-row">
+<div class="field"><label for="f-nom">Nom <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><input id="f-nom" type="text" name="nom" placeholder="Votre nom" autocomplete="family-name" required></div>
+<div class="field"><label for="f-prenom">Prénom <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><input id="f-prenom" type="text" name="prenom" placeholder="Votre prénom" autocomplete="given-name" required></div>
+</div>
+<div class="field"><label for="f-email">Email <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><input id="f-email" type="email" name="email" placeholder="votre@email.com" autocomplete="email" required></div>
+<div class="field"><label for="f-org">Organisation</label><input id="f-org" type="text" name="organisation" placeholder="Nom de votre structure (optionnel)" autocomplete="organization"></div>
+<div class="field"><label for="f-msg">Message <span class="req" aria-hidden="true">*</span><span class="sr-only"> (obligatoire)</span></label><textarea id="f-msg" name="message" placeholder="Décrivez-nous votre projet ou votre besoin..." required></textarea></div>
+<button type="submit" class="btn btn-deep btn-block">Envoyer le message <svg class="ic" aria-hidden="true"><use href="#i-send"/></svg></button>
+</form>
+</div>
 
-    <header class="page-header">
-        <div class="page-header-inner">
-            <div class="section-label">Contact</div>
-            <h1>Parlons de votre projet</h1>
-            <p>Une question, un besoin d'accompagnement, une demande de formation ? Écrivez-nous, nous vous répondons sous 48h.</p>
-        </div>
-    </header>
+<div class="c-info">
+<h2>Nos coordonnées</h2>
+<ul class="c-list">
+<li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></span><span><span class="lab">Email</span><a class="val" href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></span></li>
+<li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg></span><span><span class="lab">Adresse</span><span class="val">34 rue du Vallat<br>43100 Brioude, France</span></span></li>
+<li><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg></span><span><span class="lab">LinkedIn</span><a class="val" href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener">Le Labo Durable</a></span></li>
+</ul>
+<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.5!2d3.3847!3d45.2942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDE3JzM5LjEiTiAzwrAyMycwNC45IkU!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Le Labo Durable — Brioude"></iframe></div>
+<div class="join"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><div><h3>Vous souhaitez rejoindre l'équipe ?</h3><p>Envoyez-nous votre CV à</p><a href="mailto:christophe.peres@lelabodurable.com">christophe.peres@lelabodurable.com</a></div></div>
+</div>
+</div></section>
 
-    <section class="section">
-        <div class="section-inner">
-            <div class="contact-grid">
-
-                <!-- FORM -->
-                <div class="contact-form fade-up">
-                    <h2>Envoyez-nous un message</h2>
-                    <p class="form-subtitle">Tous les champs marqués d'un * sont obligatoires.</p>
-
-                    <form action="https://formspree.io/f/mdapbdql" method="POST">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Nom <span class="required">*</span></label>
-                                <input type="text" name="nom" placeholder="Votre nom" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Prénom <span class="required">*</span></label>
-                                <input type="text" name="prenom" placeholder="Votre prénom" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Email <span class="required">*</span></label>
-                            <input type="email" name="email" placeholder="votre@email.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Organisation</label>
-                            <input type="text" name="organisation" placeholder="Nom de votre structure (optionnel)">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Message <span class="required">*</span></label>
-                            <textarea name="message" placeholder="Décrivez-nous votre projet ou votre besoin..." required></textarea>
-                        </div>
-
-                        <button type="submit" class="form-submit">
-                            Envoyer le message
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- INFO -->
-                <div class="contact-info fade-up stagger-1">
-                    <div class="info-card">
-                        <h3>Nos coordonnées</h3>
-
-                        <div class="info-item">
-                            <div class="info-icon">✉️</div>
-                            <div class="info-text">
-                                <span class="info-label">Email</span>
-                                <a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <div class="info-text">
-                                <span class="info-label">Adresse</span>
-                                <span class="info-value">34 rue du Vallat<br>43100 Brioude, France</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">🔗</div>
-                            <div class="info-text">
-                                <span class="info-label">LinkedIn</span>
-                                <a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener">Le Labo Durable</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MAP -->
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.5!2d3.3847!3d45.2942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDE3JzM5LjEiTiAzwrAyMycwNC45IkU!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Le Labo Durable — Brioude"></iframe>
-                    </div>
-
-                    <!-- TEAM CTA -->
-                    <div class="team-cta">
-                        <div class="team-cta-icon">👥</div>
-                        <div class="team-cta-text">
-                            <h3>Vous souhaitez rejoindre l'équipe ?</h3>
-                            <p>Envoyez-nous votre CV à</p>
-                            <a href="mailto:christophe.peres@lelabodurable.com">christophe.peres@lelabodurable.com</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
-                    <p>Accompagner les laboratoires d'analyses dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
-                </div>
-                <div>
-                    <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="services.html">Vue d'ensemble</a></li>
-                        <li><a href="acv.html">Analyse du cycle de vie</a></li>
-                        <li><a href="formations.html">Formations</a></li>
-                        <li><a href="consolab.html">Consolab</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Entreprise</h4>
-                    <ul class="footer-links">
-                        <li><a href="equipe.html">Notre équipe</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="mentions-legales.html">Mentions légales</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Nous contacter</h4>
-                    <div class="footer-contact-item"><span class="icon">📍</span><span>34 rue du Vallat, 43100 Brioude</span></div>
-                    <div class="footer-contact-item"><span class="icon">✉️</span><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-left">
-                    <span>© 2026 Le Labo Durable. Tous droits réservés.</span>
-                    <a href="mentions-legales.html">Mentions légales</a>
-                    <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
-                    <a href="mentions-legales.html#cookies">Cookies</a>
-                </div>
-                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a></div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-        toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
-        links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')}));
-        window.addEventListener('resize',()=>{if(window.innerWidth>900){toggle.classList.remove('open');links.classList.remove('open')}});
-        const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-        document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-    </script>
+</main>
+<footer class="footer"><div class="wrap">
+<div class="f-grid">
+<div class="f-brand"><a href="index.html"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" width="113" height="40"></a><p>Accompagner les laboratoires d'analyses dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p></div>
+<div><h4>Services</h4><ul><li><a href="services.html">Vue d'ensemble</a></li><li><a href="acv.html">Analyse du cycle de vie</a></li><li><a href="formations.html">Formations</a></li><li><a href="consolab.html">Consolab</a></li></ul></div>
+<div><h4>Entreprise</h4><ul><li><a href="equipe.html">Notre équipe</a></li><li><a href="contact.html">Contact</a></li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div>
+<div><h4>Nous contacter</h4><ul class="f-contact"><li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>34 rue du Vallat, 43100 Brioude</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></li></ul></div>
+</div>
+<div class="f-bottom"><div><span>© 2026 Le Labo Durable. Tous droits réservés.</span><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#confidentialite">Politique de confidentialité</a><a href="mentions-legales.html#cookies">Cookies</a></div>
+<a class="f-social" href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg></a></div>
+</div></footer>
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  if(t&&l){
+    var set=function(o){l.classList.toggle('open',o);t.setAttribute('aria-expanded',String(o));t.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu')};
+    t.addEventListener('click',function(){set(!l.classList.contains('open'))});
+    l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  }
+  // Carte d'inscription : le format choisi réécrit l'objet du mail
+  var form=document.getElementById('format'),cta=document.getElementById('ctaMail');
+  if(form&&cta){
+    var base=cta.dataset.subject;
+    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' — '+c.dataset.label:''))};
+    form.addEventListener('change',upd);upd();
+  }
+  // Catalogue : filtres
+  var chips=document.querySelectorAll('.chip[data-filter]');
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===c))});
+    var f=c.dataset.filter,n=0;
+    document.querySelectorAll('.row[data-cat]').forEach(function(r){var on=f==='all'||r.dataset.cat===f;r.hidden=!on;if(on)n++});
+    var s=document.getElementById('count');if(s)s.textContent=n+(n>1?' formations':' formation');
+  })});
+})();
+</script>
 </body>
 </html>

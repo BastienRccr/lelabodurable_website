@@ -1,0 +1,148 @@
+<!-- title: Notre équipe — Le Labo Durable -->
+<!-- description: Découvrez l'équipe Le Labo Durable : docteur·es et ingénieur·es en chimie analytique, ACV, chémo-informatique et instrumentation. -->
+<style>
+.member{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.45fr);gap:1.25rem 2.5rem;padding:1.75rem 0;border-bottom:1px solid var(--line);align-items:start}
+.member[hidden]{display:none}
+.member img{width:120px;height:143px;object-fit:contain;object-position:center bottom;background:var(--tint);border-radius:var(--r)}
+.m-id h3{font:700 1.3rem/1.25 var(--f-display);color:var(--deep)}
+.m-role{color:var(--ink-2);font-size:.95rem;margin-top:.3rem;max-width:34ch}
+.poles{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;list-style:none}
+.poles li{display:inline-flex;gap:.4rem;align-items:center;font-size:.8rem;font-weight:600;color:var(--deep);background:#fff;border:1px solid var(--line);border-radius:999px;padding:.25rem .75rem .25rem .6rem}
+.poles .ic{color:var(--primary)}
+.m-lab{font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
+.m-bio>p:first-of-type{color:var(--ink-2);font-size:.95rem;max-width:66ch}
+.m-bio .tools{margin-top:.9rem}
+.m-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:1rem;font-size:.9rem;font-weight:600}
+.m-links a{display:inline-flex;align-items:center;gap:.45rem;min-height:32px;text-decoration:none}
+.m-links a:hover{text-decoration:underline}
+.team-sum{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:1rem 2rem}
+.team-sum .sec-intro{margin-bottom:1.5rem}
+.team-list{list-style:none;border-top:1px solid var(--line)}
+.labo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.labo figure img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-lg)}
+.labo figcaption{display:flex;gap:.45rem;align-items:center;margin-top:.75rem;font-size:.84rem;color:var(--on-deep-3)}
+.labo figcaption .ic{color:var(--gold-light)}
+.labo p{margin-bottom:1.75rem;max-width:52ch}
+@media (max-width:1040px){.member{grid-template-columns:120px minmax(0,1fr)}.m-bio{grid-column:2}}
+@media (max-width:720px){
+  .member{grid-template-columns:84px minmax(0,1fr);gap:1rem 1.1rem}
+  .member img{width:84px;height:100px}
+  .m-bio{grid-column:1/-1}
+  .labo{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li aria-current="page">Notre équipe</li></ol>
+<h1>Les visages <em>derrière la mission</em></h1>
+<p class="hero-lead">Docteur·es et ingénieur·es passionné·es, nous combinons chimie analytique, ACV et chémo-informatique pour transformer les laboratoires.</p>
+<div class="hero-actions"><a class="btn btn-gold" href="#equipe">Rencontrer l'équipe {{ic:arrow-down}}</a><a class="btn btn-line" href="#rejoindre">Rejoignez-nous</a></div>
+<ul class="facts" aria-label="En bref"><li><b>5 expert·es</b><span>pluridisciplinaires</span></li><li><b>3 pôles</b><span>instrumentation, durabilité, chémo-informatique</span></li><li><b class="long">Docteur·es et ingénieur·es</b><span>en chimie analytique, ACV et chémo-informatique</span></li><li><b>Brioude</b><span>notre laboratoire, en Auvergne</span></li></ul>
+</div>
+</header>
+
+<section class="sec" id="equipe" aria-labelledby="team-h"><div class="wrap">
+<h2 id="team-h">L'équipe, pôle par pôle</h2>
+<div class="filters" role="group" aria-label="Filtrer par pôle"><button type="button" class="chip" data-pole="all" aria-pressed="true">Toute l'équipe <span class="n">5</span></button><button type="button" class="chip" data-pole="instru" aria-pressed="false">{{ic:settings}}Instrumentation <span class="n">2</span></button><button type="button" class="chip" data-pole="dura" aria-pressed="false">{{ic:sprout}}Durabilité <span class="n">3</span></button><button type="button" class="chip" data-pole="chemo" aria-pressed="false">{{ic:monitor}}Chémo-info <span class="n">2</span></button></div>
+<p class="sr-only" aria-live="polite" id="teamCount">5 personnes affichées</p>
+<ul class="team-list">
+<li class="member" data-cat="instru dura" id="christophe-peres">
+<img src="assets/team/christophe-peres.png" alt="Portrait de Christophe Pérès" width="120" height="143" loading="lazy">
+<div class="m-id">
+<h3>Christophe Pérès</h3>
+<p class="m-role">Fondateur — Pôle méthodes &amp; instrumentation</p>
+<ul class="poles" aria-label="Pôles"><li>{{ic:settings}}Instrumentation</li><li>{{ic:sprout}}Durabilité</li></ul>
+</div>
+<div class="m-bio">
+<h4 class="m-lab">Parcours</h4>
+<p>Docteur-ingénieur AgroParisTech, Christophe a débuté au Research Institute for Chromatography dans l'instrumentation analytique. En 2009, il prend la responsabilité de la Recherche Analytique Parfums chez Chanel. En 2021, il fonde Le Labo Durable.</p>
+<ul class="tools" aria-label="Compétences"><li>GC/LC/MS</li><li>Cosmétique</li><li>Reconditionnement</li><li>Durabilité</li></ul>
+<p class="m-links"><a href="https://www.linkedin.com/in/christophe-peres-385ba84/" target="_blank" rel="noopener">{{ic:linkedin}}LinkedIn<span class="sr-only"> de Christophe Pérès</span></a><a href="mailto:christophe.peres@lelabodurable.com">{{ic:mail}}Email<span class="sr-only"> à Christophe Pérès</span></a></p>
+</div>
+</li>
+<li class="member" data-cat="dura" id="bastien-raccary">
+<img src="assets/team/bastien-raccary.png" alt="Portrait de Bastien Raccary" width="120" height="143" loading="lazy">
+<div class="m-id">
+<h3>Bastien Raccary</h3>
+<p class="m-role">Responsable pôle durabilité — ACV &amp; stratégie low impact</p>
+<ul class="poles" aria-label="Pôles"><li>{{ic:sprout}}Durabilité</li></ul>
+</div>
+<div class="m-bio">
+<h4 class="m-lab">Parcours</h4>
+<p>Ingénieur CPE Lyon, docteur de l'Université Bordeaux 1. En 2019, il co-fonde The Green Analytical Project (GAP) avec Christophe Pérès. Auditeur ISO 14001, il audite des structures, propose des plans d'action et accompagne les équipes dans leur transition environnementale.</p>
+<ul class="tools" aria-label="Compétences"><li>ACV ISO 14040/44</li><li>Bilan GES</li><li>ISO 14001</li></ul>
+<p class="m-links"><a href="https://www.linkedin.com/in/bastien-raccary/" target="_blank" rel="noopener">{{ic:linkedin}}LinkedIn<span class="sr-only"> de Bastien Raccary</span></a><a href="mailto:bastien.raccary@lelabodurable.com">{{ic:mail}}Email<span class="sr-only"> à Bastien Raccary</span></a></p>
+</div>
+</li>
+<li class="member" data-cat="chemo dura" id="clement-truan">
+<img src="assets/team/clement-truan.png" alt="Portrait de Clément Truan" width="120" height="143" loading="lazy">
+<div class="m-id">
+<h3>Clément Truan</h3>
+<p class="m-role">Responsable pôle chémo-informatique &amp; IA</p>
+<ul class="poles" aria-label="Pôles"><li>{{ic:monitor}}Chémo-info</li><li>{{ic:sprout}}Durabilité</li></ul>
+</div>
+<div class="m-bio">
+<h4 class="m-lab">Parcours</h4>
+<p>Docteur-Ingénieur Chimie ParisTech et de l'Université Clermont-Auvergne. Sa double compétence en chimie analytique et en programmation lui permet de fournir des solutions de pointe utilisant algorithmes génétiques et intelligence artificielle.</p>
+<ul class="tools" aria-label="Compétences"><li>Algorithmie</li><li>IA</li><li>Traitement du signal</li></ul>
+<p class="m-links"><a href="https://www.linkedin.com/in/cl%C3%A9ment-truan-54a70669/" target="_blank" rel="noopener">{{ic:linkedin}}LinkedIn<span class="sr-only"> de Clément Truan</span></a><a href="mailto:clement.truan@lelabodurable.com">{{ic:mail}}Email<span class="sr-only"> à Clément Truan</span></a></p>
+</div>
+</li>
+<li class="member" data-cat="instru" id="xavier-rouessac">
+<img src="assets/team/xavier-rouessac.png" alt="Portrait de Xavier Rouessac" width="120" height="143" loading="lazy">
+<div class="m-id">
+<h3>Xavier Rouessac</h3>
+<p class="m-role">Responsable support &amp; formation — Expert LC/GC/MS</p>
+<ul class="poles" aria-label="Pôles"><li>{{ic:settings}}Support</li></ul>
+</div>
+<div class="m-bio">
+<h4 class="m-lab">Parcours</h4>
+<p>Chez les Rouessac, l'Analyse Chimique est une histoire de famille. Fort de 35 ans d'expérience en chromatographie et spectrométrie de masse, Xavier assure le support à distance et sur site des solutions déployées par Le Labo Durable.</p>
+<ul class="tools" aria-label="Compétences"><li>Chromatographie</li><li>Spectrométrie de masse</li><li>Maintenance</li></ul>
+<p class="m-links"><a href="https://www.linkedin.com/in/xavier-rouessac-b255a399/" target="_blank" rel="noopener">{{ic:linkedin}}LinkedIn<span class="sr-only"> de Xavier Rouessac</span></a><a href="mailto:xavier.rouessac@lelabodurable.com">{{ic:mail}}Email<span class="sr-only"> à Xavier Rouessac</span></a></p>
+</div>
+</li>
+<li class="member" data-cat="chemo" id="thomas-vandewattyne">
+<img src="assets/team/thomas-vandewattyne.png" alt="Portrait de Thomas Vandewattyne" width="120" height="143" loading="lazy">
+<div class="m-id">
+<h3>Thomas Vandewattyne</h3>
+<p class="m-role">Expert chémo-informatique — Doctorant IA appliquée</p>
+<ul class="poles" aria-label="Pôles"><li>{{ic:monitor}}Chémo-info</li></ul>
+</div>
+<div class="m-bio">
+<h4 class="m-lab">Parcours</h4>
+<p>Titulaire d'une licence en Chimie Analytique et d'un Master en Informatique, Thomas collabore avec Clément Truan. Sa thèse porte sur l'IA et l'algorithmie appliquées aux problématiques des laboratoires d'analyses.</p>
+<ul class="tools" aria-label="Compétences"><li>IA</li><li>Algorithmie</li><li>Recherche</li><li>Données labo</li></ul>
+<p class="m-links"><a href="https://www.linkedin.com/in/thomas-vandewattyne/" target="_blank" rel="noopener">{{ic:linkedin}}LinkedIn<span class="sr-only"> de Thomas Vandewattyne</span></a><a href="mailto:thomas.vandewattyne@lelabodurable.com">{{ic:mail}}Email<span class="sr-only"> à Thomas Vandewattyne</span></a></p>
+</div>
+</li>
+</ul>
+</div></section>
+
+<section class="sec dark" aria-labelledby="labo-h"><div class="wrap labo">
+<figure><img src="assets/photos/labo-brioude.jpg" alt="Laboratoire Le Labo Durable — Brioude" width="800" height="600" loading="lazy"><figcaption>{{ic:map-pin}}Notre laboratoire, à Brioude</figcaption></figure>
+<div>
+<h2 id="labo-h">Un membre à part entière de l'équipe</h2>
+<p>Situé à Brioude, en Auvergne, notre laboratoire nous permet d'expérimenter les solutions que nous proposons à nos clients. Conçu comme un lieu de rencontres et de coworking, il accueille aussi des associations comme la Fresque du Climat.</p>
+<a class="btn btn-gold" href="contact.html">Réserver une salle {{ic:arrow-right}}</a>
+</div>
+</div></section>
+
+<section class="sec sec-soft close" id="rejoindre" aria-labelledby="join-h"><div class="wrap">
+<h2 id="join-h">Envie de transformer les laboratoires avec nous ?</h2>
+<p>Nous sommes toujours en quête de talents passionnés. Envoyez-nous votre candidature.</p>
+<div class="row-actions"><a class="btn btn-deep" href="mailto:christophe.peres@lelabodurable.com">Postuler {{ic:arrow-right}}</a></div>
+</div></section>
+
+<script>
+(function(){
+  var chips=document.querySelectorAll('.chip[data-pole]'),out=document.getElementById('teamCount');
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===c))});
+    var f=c.dataset.pole,n=0;
+    document.querySelectorAll('.member[data-cat]').forEach(function(m){var on=f==='all'||m.dataset.cat.split(' ').indexOf(f)>-1;m.hidden=!on;if(on)n++});
+    if(out)out.textContent=n+(n>1?' personnes affichées':' personne affichée');
+  })});
+})();
+</script>
