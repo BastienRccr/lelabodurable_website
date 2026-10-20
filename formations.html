@@ -7,583 +7,205 @@
     <meta name="description" content="Formations certifiées Qualiopi en chimie analytique durable, analyse du cycle de vie, instrumentation GC/LC/MS et chémo-informatique. Le Labo Durable, structure du groupe Analytiss.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-/* ==========================================================================
-   Le Labo Durable — styles communs (identiques sur toutes les pages)
-   Concept : carnet de laboratoire. Encre presque noire et vert feuille du logo,
-   titres géométriques (écho du logotype), données et unités en chasse fixe,
-   repère en forme de goutte/feuille repris du « O » du logo.
-   Les couleurs sont toutes des jetons, définis sur :root.
-   Le site est volontairement toujours en thème clair.
-   ========================================================================== */
-
-:root {
-    /* Couleurs */
-    --paper: #ffffff;          /* fond de page, blanc pur */
-    --surface: #ffffff;        /* cartes, formulaires */
-    --surface-2: #f2f4f5;      /* aplats gris neutre, pistes de barres */
-    --line: #dde1e4;           /* filets et bordures */
-    --ink: #131a15;            /* texte principal (≈ noir du logo) */
-    --ink-2: #3a463e;          /* texte courant secondaire */
-    --ink-3: #5a665e;          /* légendes, métadonnées (AA ≥ 4.5:1) */
-    --leaf: #94c455;           /* vert du logo : aplats, repères, jamais en texte sur clair */
-    --leaf-ink: #3d6b1a;       /* vert lisible pour liens et labels (5.9:1) */
-    --leaf-wash: #f2f4f5;      /* fond des pastilles d'icônes (gris neutre) */
-    --on-leaf-ink: #ffffff;    /* texte sur bouton --leaf-ink */
-
-    /* Bandeaux sombres (hero, en-têtes, pied de page) */
-    --band: #142019;
-    --band-2: #1b2a21;
-    --on-band: #eef3ec;
-    --on-band-2: #c9d3cb;
-    --on-band-3: #9aa79d;
-    --band-line: rgba(238, 243, 236, 0.14);
-    --band-surface: rgba(238, 243, 236, 0.06);
-    --band-leaf: #a7d46c;
-
-    /* Ombres */
-    --shadow-sm: 0 1px 2px rgba(19, 26, 21, 0.06);
-    --shadow-md: 0 6px 24px rgba(19, 26, 21, 0.08);
-    --nav-bg: rgba(255, 255, 255, 0.92);
-
-    /* Typographie */
-    --font-display: 'Jost', 'Futura', 'Century Gothic', 'Avenir Next', system-ui, sans-serif;
-    --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
-
-    /* Échelle typographique (1.25) */
-    --fs-xs: 0.78rem;
-    --fs-sm: 0.875rem;
-    --fs-base: 1rem;
-    --fs-md: 1.125rem;
-    --fs-lg: 1.375rem;
-    --fs-xl: clamp(1.75rem, 1.3rem + 1.6vw, 2.4rem);
-    --fs-2xl: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem);
-
-    /* Formes et rythme */
-    --radius: 6px;
-    --radius-lg: 12px;
-    --leaf-shape: 50% 0 50% 50%;   /* goutte du logo */
-    --gutter: clamp(1rem, 4vw, 2rem);
-    --maxw: 1180px;
-    --nav-h: 68px;
-    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-
-    color-scheme: light;
-}
-
-
-/* ---------- Base ---------- */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: calc(var(--nav-h) + 1rem); }
-body {
-    font-family: var(--font-body);
-    font-size: var(--fs-base);
-    line-height: 1.65;
-    color: var(--ink);
-    background: var(--paper);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
-img { max-width: 100%; height: auto; }
-a { color: var(--leaf-ink); }
-h1, h2, h3, h4 { text-wrap: balance; }
-h2 {
-    font-family: var(--font-display);
-    font-size: var(--fs-xl);
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin-bottom: 1rem;
-}
-h3 { font-family: var(--font-body); font-weight: 600; color: var(--ink); line-height: 1.35; }
-p { text-wrap: pretty; }
-strong { font-weight: 600; }
-::selection { background: var(--leaf); color: #131a15; }
-
-:focus-visible { outline: 2px solid var(--leaf-ink); outline-offset: 3px; border-radius: 2px; }
-.band :focus-visible, .footer :focus-visible, .hero :focus-visible, .page-header :focus-visible { outline-color: var(--band-leaf); }
-
-.skip-link {
-    position: absolute; left: 1rem; top: -100px; z-index: 200;
-    background: var(--ink); color: var(--paper); padding: 0.6rem 1rem; border-radius: var(--radius);
-    font-weight: 600; text-decoration: none;
-}
-.skip-link:focus { top: 0.75rem; }
-
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-
-/* Données chiffrées et unités */
-.num, .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
-
-/* ---------- Icônes (sprite SVG intégré en haut de la page) ---------- */
-.ic { width: 1.25em; height: 1.25em; flex-shrink: 0; display: inline-block; vertical-align: -0.2em; color: inherit; }
-.ic-box {
-    width: 44px; height: 44px; flex-shrink: 0;
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--leaf-wash); color: var(--leaf-ink);
-    border-radius: var(--leaf-shape);
-}
-.ic-box .ic { width: 22px; height: 22px; }
-.ic-box.sm { width: 34px; height: 34px; }
-.ic-box.sm .ic { width: 18px; height: 18px; }
-
-/* ---------- Navigation ---------- */
-.nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: var(--nav-bg);
-    backdrop-filter: saturate(140%) blur(14px);
-    -webkit-backdrop-filter: saturate(140%) blur(14px);
-    border-bottom: 1px solid var(--line);
-    padding-top: env(safe-area-inset-top, 0px);
-}
-.nav-inner {
-    max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter);
-    height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-}
-.nav-logo { display: flex; align-items: center; text-decoration: none; position: relative; z-index: 120; }
-.nav-logo img, .logo-img { height: 34px; width: auto; display: block; }
-.nav-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
-.nav-links a {
-    position: relative; display: block;
-    text-decoration: none; color: var(--ink-2);
-    font-size: var(--fs-sm); font-weight: 500;
-    padding: 0.5rem 0.8rem; border-radius: var(--radius);
-    transition: color 0.2s, background-color 0.2s;
-}
-.nav-links a:hover { color: var(--ink); background: var(--surface-2); }
-.nav-links a.active, .nav-links a[aria-current="page"] { color: var(--ink); }
-.nav-links a.active::after, .nav-links a[aria-current="page"]::after {
-    content: ''; position: absolute; left: 0.8rem; right: 0.8rem; bottom: 0.2rem;
-    height: 2px; background: var(--leaf); border-radius: 2px;
-}
-.nav-links a.nav-cta {
-    background: var(--ink); color: var(--paper);
-    padding: 0.55rem 1.1rem; margin-left: 0.5rem;
-}
-.nav-links a.nav-cta:hover { background: var(--leaf-ink); color: var(--on-leaf-ink); }
-.nav-links a.nav-cta::after { display: none; }
-
-.nav-toggle {
-    display: none; position: relative; z-index: 120;
-    width: 44px; height: 44px; border: 0; border-radius: var(--radius);
-    background: none; cursor: pointer; color: var(--ink);
-}
-.nav-toggle:hover { background: var(--surface-2); }
-.nav-toggle-bar {
-    position: absolute; left: 12px; width: 20px; height: 2px; border-radius: 2px;
-    background: currentColor; transition: transform 0.3s var(--ease), opacity 0.2s;
-}
-.nav-toggle-bar:nth-child(1) { top: 15px; }
-.nav-toggle-bar:nth-child(2) { top: 21px; }
-.nav-toggle-bar:nth-child(3) { top: 27px; }
-.nav-toggle.open .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.nav-toggle.open .nav-toggle-bar:nth-child(2) { opacity: 0; }
-.nav-toggle.open .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-
-/* ---------- Boutons ---------- */
-.btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-    padding: 0.8rem 1.4rem; border-radius: var(--radius);
-    font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; line-height: 1.2;
-    text-decoration: none; cursor: pointer; border: 1px solid transparent;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s var(--ease);
-}
-.btn:hover { transform: translateY(-1px); }
-.btn .ic { width: 1.1em; height: 1.1em; }
-/* Plein, sur fond sombre (hero, bandeaux) */
-.btn-primary { background: var(--band-leaf); color: #10170f; }
-.btn-primary:hover { background: var(--on-band); }
-/* Contour, sur fond sombre */
-.btn-ghost { background: transparent; color: var(--on-band); border-color: var(--band-line); }
-.btn-ghost:hover { background: var(--band-surface); border-color: var(--on-band-3); }
-/* Plein, sur fond clair */
-.btn-accent { background: var(--ink); color: var(--paper); }
-.btn-accent:hover { background: var(--leaf-ink); color: var(--on-leaf-ink); }
-/* Contour, sur fond clair */
-.btn-outline { background: transparent; color: var(--ink); border-color: var(--ink-3); }
-.btn-outline:hover { border-color: var(--ink); background: var(--surface-2); }
-
-/* ---------- Sections ---------- */
-.section { padding-block: clamp(3.5rem, 7vw, 6rem); padding-inline: var(--gutter); }
-.section-inner { max-width: var(--maxw); margin: 0 auto; }
-.section-alt { background: var(--surface-2); border-block: 1px solid var(--line); }
-.section-header { max-width: 680px; margin-bottom: clamp(2rem, 4vw, 3rem); }
-.section-header.center { margin-inline: auto; text-align: center; }
-.section-header.center .section-label { justify-content: center; }
-.section-label {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.18em;
-    color: var(--leaf-ink); margin-bottom: 0.9rem;
-}
-.section-label::before {
-    content: ''; width: 9px; height: 9px; flex-shrink: 0;
-    background: var(--leaf); border-radius: var(--leaf-shape);
-}
-.section-desc { font-size: var(--fs-md); color: var(--ink-2); line-height: 1.65; max-width: 62ch; }
-.section-header.center .section-desc { margin-inline: auto; }
-
-/* Bandeau sombre générique */
-.band { background: var(--band); color: var(--on-band-2); }
-.band h2, .band h3 { color: var(--on-band); }
-.band .section-label { color: var(--band-leaf); }
-.band .section-label::before { background: var(--band-leaf); }
-.band .section-desc { color: var(--on-band-2); }
-.band .ic-box { background: var(--band-2); color: var(--band-leaf); }
-
-/* Motif papier millimétré pour les bandeaux */
-.grid-paper {
-    background-image:
-        linear-gradient(var(--band-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.35;
-}
-
-/* ---------- En-tête des pages intérieures ---------- */
-.page-header {
-    position: relative; overflow: hidden;
-    background: var(--band); color: var(--on-band-2);
-    padding-block: calc(var(--nav-h) + clamp(3rem, 7vw, 5rem)) clamp(3rem, 6vw, 4.5rem);
-    padding-inline: var(--gutter);
-}
-.page-header::before {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background-image:
-        linear-gradient(var(--band-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.35;
-    -webkit-mask-image: linear-gradient(100deg, #000 10%, transparent 75%);
-    mask-image: linear-gradient(100deg, #000 10%, transparent 75%);
-}
-.page-header-inner { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; }
-/* Photo de fond des en-têtes (paysage, atténué sur le bandeau sombre) */
-.page-header-bg {
-    position: absolute; inset: 0; pointer-events: none;
-    background: url('assets/photos/hero-accueil.jpg') center / cover no-repeat;
-    opacity: 0.35; filter: grayscale(0.35);
-}
-.page-header .section-label { color: var(--band-leaf); }
-.page-header .section-label::before { background: var(--band-leaf); }
-.page-header h1 {
-    font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 500;
-    line-height: 1.08; letter-spacing: -0.015em; color: var(--on-band);
-    max-width: 20ch; margin-bottom: 1.1rem;
-}
-.page-header p { font-size: var(--fs-md); color: var(--on-band-2); max-width: 60ch; line-height: 1.65; }
-
-/* ---------- Accordéon ---------- */
-.accordion { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
-.accordion-item { border-bottom: 1px solid var(--line); }
-.accordion-item:last-child { border-bottom: 0; }
-.accordion-trigger {
-    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    padding: 1.15rem 1.5rem; background: none; border: 0; cursor: pointer;
-    font: inherit; color: inherit; text-align: left; transition: background-color 0.2s;
-}
-.accordion-trigger:hover { background: var(--surface-2); }
-.accordion-trigger-left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
-.accordion-trigger-icon {
-    width: 40px; height: 40px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--leaf-wash); color: var(--leaf-ink); border-radius: var(--leaf-shape);
-}
-.accordion-trigger-icon .ic { width: 20px; height: 20px; }
-.accordion-trigger h3 { font-size: var(--fs-base); font-weight: 600; color: var(--ink); margin: 0; }
-.accordion-trigger .subtitle { font-size: var(--fs-sm); color: var(--ink-3); margin-top: 0.1rem; }
-.accordion-chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--ink-3); transition: transform 0.3s var(--ease); }
-.accordion-item.open .accordion-chevron { transform: rotate(180deg); }
-.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
-.accordion-content-inner { padding: 0 1.5rem 1.4rem calc(1.5rem + 40px + 1rem); color: var(--ink-2); font-size: 0.95rem; line-height: 1.7; max-width: 80ch; }
-.accordion-content-inner p + p { margin-top: 0.6rem; }
-
-/* Variante sur bandeau sombre */
-.accordion-dark { background: var(--band-surface); border-color: var(--band-line); }
-.accordion-dark .accordion-item { border-color: var(--band-line); }
-.accordion-dark .accordion-trigger:hover { background: var(--band-surface); }
-.accordion-dark .accordion-trigger-icon { background: var(--band-2); color: var(--band-leaf); }
-.accordion-dark .accordion-trigger h3 { color: var(--on-band); }
-.accordion-dark .accordion-trigger .subtitle { color: var(--on-band-3); }
-.accordion-dark .accordion-chevron { color: var(--on-band-3); }
-.accordion-dark .accordion-content-inner { color: var(--on-band-2); }
-
-/* ---------- Bandeau d'appel à l'action ---------- */
-.cta-band { padding-block: clamp(3.5rem, 7vw, 5rem); padding-inline: var(--gutter); background: var(--surface-2); border-top: 1px solid var(--line); text-align: center; }
-.cta-band h2 { max-width: 24ch; margin-inline: auto; }
-.cta-band p { color: var(--ink-2); font-size: var(--fs-md); max-width: 56ch; margin: 0 auto 2rem; }
-.cta-actions { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
-
-/* ---------- Pied de page ---------- */
-.footer { background: var(--band); color: var(--on-band-2); padding-block: 4rem 2rem; padding-inline: var(--gutter); }
-.footer-inner { max-width: var(--maxw); margin: 0 auto; }
-.footer-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2.5rem;
-    padding-bottom: 2.5rem; border-bottom: 1px solid var(--band-line);
-}
-.footer-brand p { font-size: var(--fs-sm); line-height: 1.7; margin-top: 1rem; max-width: 34ch; }
-.footer-brand img { height: 34px; width: auto; filter: brightness(0) invert(1); opacity: 0.92; }
-.footer h4 {
-    font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.16em; color: var(--on-band-3); margin-bottom: 1.1rem;
-}
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-.footer a { color: var(--on-band-2); text-decoration: none; transition: color 0.2s; }
-.footer a:hover { color: var(--on-band); text-decoration: underline; text-underline-offset: 3px; }
-.footer-links a { font-size: var(--fs-sm); }
-.footer-contact-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: var(--fs-sm); margin-bottom: 0.75rem; overflow-wrap: anywhere; }
-.footer-contact-item .ic { color: var(--band-leaf); margin-top: 0.15rem; width: 1.05em; height: 1.05em; }
-.footer-contact-item .icon { display: inline-flex; color: var(--band-leaf); }
-.footer-bottom {
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;
-    padding-top: 1.75rem; font-size: var(--fs-xs); color: var(--on-band-3);
-}
-.footer-bottom-left { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.25rem; }
-.footer-bottom-left a { color: var(--on-band-3); }
-.footer-social { display: flex; gap: 0.6rem; }
-.footer-social a {
-    width: 38px; height: 38px; border-radius: var(--radius);
-    display: flex; align-items: center; justify-content: center;
-    background: var(--band-surface); border: 1px solid var(--band-line); color: var(--on-band-2);
-}
-.footer-social a:hover { color: var(--on-band); border-color: var(--on-band-3); text-decoration: none; }
-.footer-social .ic { width: 18px; height: 18px; }
-
-/* ---------- Apparition au défilement ----------
-   Le contenu est visible par défaut ; l'effet ne s'applique que si le JS
-   a chargé (classe .js sur <html>) et si l'utilisateur accepte les animations. */
-@media (prefers-reduced-motion: no-preference) {
-    .js .fade-up { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
-    .js .fade-up.visible { opacity: 1; transform: none; }
-    .js .stagger-1 { transition-delay: 0.05s; }
-    .js .stagger-2 { transition-delay: 0.1s; }
-    .js .stagger-3 { transition-delay: 0.15s; }
-    .js .stagger-4 { transition-delay: 0.2s; }
-}
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
-}
-
-/* ---------- Responsive commun ---------- */
-@media (max-width: 960px) {
-    .nav-toggle { display: block; }
-    .nav-links {
-        position: fixed; left: 0; right: 0;
-        top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
-        flex-direction: column; align-items: stretch; gap: 0.1rem;
-        background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-md);
-        padding: 0.75rem var(--gutter) 1rem;
-        transform: translateY(-110%); opacity: 0; visibility: hidden; pointer-events: none;
-        transition: transform 0.3s var(--ease), opacity 0.25s, visibility 0s 0.3s;
-        z-index: 105;
-    }
-    .nav-links.open { transform: none; opacity: 1; visibility: visible; pointer-events: auto; transition: transform 0.3s var(--ease), opacity 0.25s; }
-    .nav-links a { font-size: var(--fs-base); padding: 0.8rem 0.9rem; }
-    .nav-links a.active::after, .nav-links a[aria-current="page"]::after { left: 0.9rem; right: auto; width: 24px; bottom: 0.45rem; }
-    .nav-links a.nav-cta { margin: 0.5rem 0 0; text-align: center; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-}
-@media (max-width: 600px) {
-    .footer-grid { grid-template-columns: 1fr; }
-    .footer-bottom { flex-direction: column; align-items: flex-start; }
-    .accordion-trigger { padding: 1rem; }
-    .accordion-content-inner { padding: 0 1rem 1.25rem; }
-}
-    </style>
-    <meta name="color-scheme" content="light">
-    <script>document.documentElement.classList.add('js')</script>
-    <style>
-        /* ---------- En-tête : statistique ---------- */
-        .page-header .hero-stat {
-            display: inline-block; max-width: 100%;
-            margin-top: 1.75rem; padding: 0.6rem 0.95rem;
-            font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--fs-sm);
-            color: var(--on-band-2); background: var(--band-surface);
-            border: 1px solid var(--band-line); border-radius: var(--radius);
+        :root {
+            --deep:#0f3d4f;--primary:#1a6b7a;--primary-light:#2a8a9a;--tint:#e8f4f6;--tint-warm:#f0f7f4;
+            --accent:#d4a053;--accent-light:#e8c88a;--text:#1a2a2e;--text-mid:#4a5e63;--text-light:#7a8e93;
+            --white:#ffffff;--off-white:#f8fafb;--border:#d8e4e7;--radius:8px;--radius-lg:16px;
+            --shadow-sm:0 1px 3px rgba(15,61,79,0.08);--shadow-md:0 4px 20px rgba(15,61,79,0.1);
+            --shadow-lg:0 8px 40px rgba(15,61,79,0.12);--transition:0.3s cubic-bezier(0.4,0,0.2,1);
         }
-        .page-header .hero-stat strong { color: var(--band-leaf); font-weight: 500; }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
 
-        /* ---------- Pourquoi nous ---------- */
-        .why-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
-        .why-card {
-            min-width: 0; background: var(--surface); border: 1px solid var(--line);
-            border-radius: var(--radius-lg); padding: 1.6rem;
-            transition: border-color 0.2s, transform 0.2s var(--ease);
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+        .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px}
+        .nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--deep);z-index:120}
+        .nav-logo-icon{width:40px;height:40px;background:var(--primary);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:white;font-family:'Outfit',sans-serif;font-size:1.1rem}
+        .nav-logo-text{font-weight:600;font-size:1.1rem}
+        .nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
+        .nav-links a{text-decoration:none;color:var(--text-mid);font-size:0.9rem;font-weight:500;padding:0.5rem 1rem;border-radius:var(--radius);transition:color 0.2s ease,background 0.2s ease}
+        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:var(--tint)}
+        .nav-cta{background:var(--primary)!important;color:var(--white)!important;padding:0.55rem 1.25rem!important}
+        .nav-cta:hover{background:var(--deep)!important;color:var(--white)!important}
+        .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;z-index:120;position:relative;border-radius:var(--radius)}
+        .nav-toggle:hover{background:var(--tint)}
+        .nav-toggle-bar{display:block;width:20px;height:2px;background:var(--text);position:absolute;left:12px;transition:transform 0.35s ease,opacity 0.25s ease;border-radius:2px}
+        .nav-toggle-bar:nth-child(1){top:15px}
+        .nav-toggle-bar:nth-child(2){top:21px}
+        .nav-toggle-bar:nth-child(3){top:27px}
+        .nav-toggle.open .nav-toggle-bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
+        .nav-toggle.open .nav-toggle-bar:nth-child(2){opacity:0;transform:scaleX(0)}
+        .nav-toggle.open .nav-toggle-bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+        /* PAGE HEADER */
+        .page-header{padding:10rem 2rem 5rem;background:linear-gradient(165deg,rgba(15,61,79,0.85) 0%,rgba(26,107,122,0.7) 50%,rgba(42,138,154,0.6) 100%),url('assets/photos/hero-accueil.jpg') center center/cover no-repeat;position:relative;overflow:hidden}
+        .page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+        .page-header::after{content:'';position:absolute;top:10%;right:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(42,138,154,0.12) 0%,transparent 70%);pointer-events:none}
+        .page-header-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+        .page-header .section-label{color:var(--accent-light)}
+        .page-header .section-label::before{background:var(--accent)}
+        .page-header h1{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:800;color:var(--white);line-height:1.15;margin-bottom:1rem}
+        .page-header .hero-stat{margin-top:1.5rem;font-size:0.92rem;color:rgba(255,255,255,0.8)}.page-header .hero-stat strong{color:var(--accent-light)}
+        .page-header p{font-size:1.05rem;color:rgba(255,255,255,0.65);max-width:620px;line-height:1.7}
+
+        /* SECTIONS */
+        .section{padding:6rem 2rem}
+        .section-inner{max-width:1200px;margin:0 auto}
+        .section-header{max-width:700px;margin-bottom:3rem}
+        .section-header.center{margin-left:auto;margin-right:auto;text-align:center}
+        .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);margin-bottom:1rem}
+        .section-label::before{content:'';width:20px;height:2px;background:var(--primary);border-radius:1px}
+        h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--deep);line-height:1.25;margin-bottom:1rem}
+        .section-desc{font-size:1.05rem;color:var(--text-mid);line-height:1.7}
+
+        .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.95rem;font-weight:600;text-decoration:none;transition:var(--transition);border:none;cursor:pointer}
+        .btn-accent{background:var(--primary);color:var(--white)}
+        .btn-accent:hover{background:var(--deep);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+
+        /* ─── WHY US — 4 cards ─── */
+        .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+        .why-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;transition:var(--transition)}
+        .why-card:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+        .why-icon{width:44px;height:44px;background:var(--tint);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:0.85rem;font-size:1.2rem}
+        .why-card h3{font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;color:var(--deep);margin-bottom:0.35rem}
+        .why-card p{font-size:0.82rem;color:var(--text-mid);line-height:1.55}
+
+        /* ─── CATEGORY FILTERS ─── */
+        .filters{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+        .filter-btn{padding:0.45rem 1rem;border-radius:100px;border:1.5px solid var(--border);background:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text-mid);cursor:pointer;transition:var(--transition)}
+        .filter-btn:hover{border-color:var(--primary-light);color:var(--primary)}
+        .filter-btn.active{background:var(--primary);color:var(--white);border-color:var(--primary)}
+
+        /* ─── FORMATION CARDS ─── */
+        .formations-list{display:flex;flex-direction:column;gap:1rem}
+
+        .formation-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition)}
+        .formation-card:hover{box-shadow:var(--shadow-sm)}
+
+        .formation-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.75rem;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-align:left;transition:background 0.2s ease;gap:1rem}
+        .formation-trigger:hover{background:var(--off-white)}
+
+        .formation-trigger-left{display:flex;align-items:center;gap:1rem;flex:1;min-width:0}
+        .formation-cat{font-size:1.4rem;flex-shrink:0}
+
+        .formation-title-block{flex:1;min-width:0}
+        .formation-title{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;color:var(--deep);margin-bottom:0.15rem}
+        .formation-subtitle{font-size:0.82rem;color:var(--text-light)}
+
+        .formation-meta{display:flex;gap:1.25rem;align-items:center;flex-shrink:0}
+        .formation-meta-item{font-size:0.78rem;color:var(--text-light);font-weight:500;display:flex;align-items:center;gap:0.3rem;white-space:nowrap}
+
+        .formation-satisfaction{background:var(--tint-warm);color:var(--primary);font-size:0.72rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:100px;white-space:nowrap}
+
+        .chevron{width:18px;height:18px;transition:transform 0.3s ease;flex-shrink:0;color:var(--text-light)}
+        .formation-card.open .chevron{transform:rotate(180deg)}
+
+        .formation-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+        .formation-content-inner{padding:0 1.75rem 1.75rem;border-top:1px solid var(--border);padding-top:1.5rem}
+
+        .formation-desc{font-size:0.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1.25rem}
+
+        .formation-objectives h4{font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;color:var(--deep);margin-bottom:0.6rem}
+        .formation-objectives ul{list-style:none;display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem}
+        .formation-objectives li{font-size:0.85rem;color:var(--text-mid);padding-left:1.1rem;position:relative;line-height:1.55}
+        .formation-objectives li::before{content:'✓';position:absolute;left:0;color:var(--primary);font-size:0.75rem;font-weight:700}
+
+        .formation-detail{display:flex;flex-direction:column;gap:0.1rem}
+        .formation-detail-label{font-size:0.72rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.04em}
+        .formation-detail-value{font-size:0.9rem;font-weight:600;color:var(--text)}
+
+        .formation-cta{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:600;color:var(--primary);text-decoration:none;padding:0.5rem 1rem;border-radius:var(--radius);border:1.5px solid var(--primary);transition:var(--transition)}
+        .formation-cta:hover{background:var(--primary);color:var(--white)}
+
+        .formation-ref{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.04em;color:var(--primary);background:var(--tint);padding:0.1rem 0.45rem;border-radius:4px;margin-right:0.5rem;vertical-align:1px}
+        .formation-details{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem 2rem;margin-bottom:1.25rem}
+
+        /* ─── INFOS PRATIQUES ─── */
+        .infos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--border)}
+        .info-item{display:grid;grid-template-columns:11rem 1fr;gap:1.5rem;padding:1.25rem 0;border-bottom:1px solid var(--border)}
+        .info-item:nth-child(odd){padding-right:2rem}
+        .info-item:nth-child(even){padding-left:2rem;border-left:1px solid var(--border)}
+        .info-item dt{font-family:'Outfit',sans-serif;font-size:0.92rem;font-weight:700;color:var(--deep)}
+        .info-item dd{font-size:0.88rem;color:var(--text-mid);line-height:1.65}
+        .info-item a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
+        .info-item a[href^="tel"]{white-space:nowrap}
+        .results{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;padding:1.5rem 1.75rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg)}
+        .results-figure{font-family:'Outfit',sans-serif;font-size:2.4rem;font-weight:800;color:var(--primary);line-height:1;flex-shrink:0}
+        .results-text{font-size:0.92rem;color:var(--text-mid);line-height:1.6}
+        .results-text strong{color:var(--deep)}
+        .legal-note{margin-top:1.5rem;font-size:0.78rem;color:var(--text-light);line-height:1.6;max-width:760px}
+        .legal-note a,.why-card p a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}
+
+        /* ─── LEGEND ─── */
+        .legend{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+        .legend-item{display:flex;align-items:center;gap:0.35rem;font-size:0.8rem;color:var(--text-mid);font-weight:500}
+
+        /* ─── CTA BAND ─── */
+        .cta-band{background:var(--deep);padding:4rem 2rem;text-align:center}
+        .cta-band h2{color:var(--white);margin-bottom:1rem}
+        .cta-band p{color:rgba(255,255,255,0.65);font-size:1.05rem;max-width:520px;margin:0 auto 2rem}
+
+        /* FOOTER */
+        .footer{background:var(--off-white);color:var(--text-mid);padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
+        .footer-inner{max-width:1200px;margin:0 auto}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
+        .footer-brand p{font-size:0.9rem;line-height:1.7;margin-top:1rem;max-width:280px}
+        .footer h4{color:var(--deep);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.25rem}
+        .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+        .footer-links a{color:var(--text-mid);text-decoration:none;font-size:0.9rem;transition:var(--transition)}
+        .footer-links a:hover{color:var(--primary)}
+        .footer-contact-item{display:flex;align-items:start;gap:0.6rem;font-size:0.9rem;margin-bottom:0.75rem}
+        .footer-contact-item .icon{margin-top:0.1rem;font-size:0.85rem;flex-shrink:0}
+        .footer-contact-item a{color:var(--text-mid);text-decoration:none;transition:var(--transition)}
+        .footer-contact-item a:hover{color:var(--primary)}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:0.8rem;color:var(--text-light);flex-wrap:wrap;gap:0.75rem}
+        .footer-bottom-left{display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem 1.25rem}
+        .footer-bottom-left a{color:var(--text-light);text-decoration:none;transition:color 0.2s ease}
+        .footer-bottom-left a:hover{color:var(--primary)}
+        .footer-social{display:flex;gap:0.75rem}
+        .footer-social a{width:36px;height:36px;border-radius:var(--radius);background:var(--tint);display:flex;align-items:center;justify-content:center;color:var(--primary);text-decoration:none;font-size:0.85rem;transition:var(--transition)}
+        .footer-social a:hover{background:var(--primary);color:var(--white)}
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .nav-links{position:fixed;top:72px;left:0;right:0;background:var(--white);flex-direction:column;align-items:stretch;gap:0;list-style:none;border-bottom:1px solid var(--border);box-shadow:var(--shadow-lg);transform:translateY(-110%);opacity:0;transition:transform 0.35s ease,opacity 0.3s ease;pointer-events:none;padding:0.75rem 1rem;z-index:105}
+            .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+            .nav-links a{font-size:1rem;padding:0.85rem 1rem;border-radius:var(--radius);display:block}
+            .nav-links .nav-cta{text-align:center;margin-top:0.5rem}
+            .nav-toggle{display:block}
+            .why-grid{grid-template-columns:repeat(2,1fr)}
+            .formation-meta{display:none}
+            .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+            .infos-grid{grid-template-columns:1fr}
+            .info-item:nth-child(odd),.info-item:nth-child(even){padding-left:0;padding-right:0;border-left:none}
         }
-        .why-card:hover { border-color: var(--ink-3); transform: translateY(-2px); }
-        .why-icon { margin-bottom: 1rem; }
-        .why-card h3 { font-size: var(--fs-base); margin-bottom: 0.35rem; }
-        .why-card p { font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.6; }
-
-        /* ---------- Filtres ---------- */
-        .filters { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
-        .filter-btn {
-            display: inline-flex; align-items: center; gap: 0.45rem;
-            min-height: 40px; padding: 0.45rem 0.95rem;
-            border: 1px solid var(--line); border-radius: var(--radius);
-            background: var(--surface); color: var(--ink-2);
-            font: inherit; font-size: var(--fs-sm); font-weight: 500; cursor: pointer;
-            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-        }
-        .filter-btn .ic { width: 1.05em; height: 1.05em; color: var(--leaf-ink); }
-        .filter-btn:hover { border-color: var(--ink-3); color: var(--ink); }
-        .filter-btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-        .filter-btn[aria-pressed="true"] .ic { color: var(--paper); }
-
-        /* ---------- Légende (icône + texte) ---------- */
-        .legend { display: flex; gap: 0.5rem 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .legend-item { display: inline-flex; align-items: center; gap: 0.4rem; font-size: var(--fs-sm); color: var(--ink-2); }
-        .legend-item .ic { color: var(--leaf-ink); }
-
-        /* ---------- Catalogue ---------- */
-        .formations-list { display: flex; flex-direction: column; gap: 0.75rem; }
-        .formation-card {
-            background: var(--surface); border: 1px solid var(--line);
-            border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s;
-        }
-        .formation-card:hover, .formation-card.open { border-color: var(--ink-3); }
-        .formation-card[hidden] { display: none; }
-
-        .formation-trigger {
-            width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
-            align-items: center; gap: 1rem;
-            padding: 1.1rem 1.5rem; background: none; border: 0; cursor: pointer;
-            font: inherit; color: inherit; text-align: left; transition: background-color 0.2s;
-        }
-        .formation-trigger:hover { background: var(--surface-2); }
-        .formation-trigger-left { display: flex; align-items: flex-start; gap: 1rem; min-width: 0; }
-        .formation-cat { margin-top: 0.1rem; }
-        .formation-title-block { flex: 1; min-width: 0; }
-        .formation-title { font-weight: 600; font-size: var(--fs-base); color: var(--ink); line-height: 1.4; margin-bottom: 0.2rem; }
-        .formation-subtitle { font-size: var(--fs-sm); color: var(--ink-3); line-height: 1.5; }
-        .formation-ref {
-            display: inline-block; margin-right: 0.5rem;
-            font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--fs-xs); font-weight: 500;
-            color: var(--leaf-ink); background: var(--leaf-wash);
-            padding: 0.05rem 0.4rem; border-radius: 4px; vertical-align: 1px;
+        @media(max-width:600px){
+            .section{padding:4rem 1.25rem}
+            .page-header{padding:8rem 1.25rem 3rem}
+            .why-grid{grid-template-columns:1fr}
+            .formation-trigger{padding:1rem 1.25rem}
+            .formation-content-inner{padding:0 1.25rem 1.5rem;padding-top:1.25rem}
+            .info-item{grid-template-columns:1fr;gap:0.35rem}
+            .results{flex-direction:column;align-items:flex-start;gap:0.75rem}
+            .footer-grid{grid-template-columns:1fr}
+            .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+            .footer-bottom-left{justify-content:center}
         }
 
-        .formation-meta { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-        .formation-meta-item, .formation-satisfaction {
-            display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap;
-            font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--fs-xs); font-weight: 500;
-            color: var(--ink-2); background: var(--surface-2);
-            padding: 0.25rem 0.55rem; border-radius: var(--radius);
-        }
-        .formation-meta-item .ic, .formation-satisfaction .ic { width: 1.1em; height: 1.1em; color: var(--ink-3); }
-
-        .formation-trigger .chevron { width: 20px; height: 20px; color: var(--ink-3); transition: transform 0.3s var(--ease); }
-        .formation-card.open .chevron { transform: rotate(180deg); }
-
-        .formation-content { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
-        .formation-content-inner {
-            padding: 1.4rem 1.5rem 1.6rem calc(1.5rem + 34px + 1rem);
-            border-top: 1px solid var(--line);
-        }
-        .formation-desc { font-size: 0.95rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1.25rem; max-width: 75ch; }
-        .formation-objectives h4, .formation-detail-label {
-            font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3);
-        }
-        .formation-objectives h4 { margin-bottom: 0.6rem; }
-        .formation-objectives ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.4rem; max-width: 75ch; }
-        .formation-objectives li { font-size: var(--fs-sm); color: var(--ink-2); padding-left: 1.2rem; position: relative; line-height: 1.6; }
-        .formation-objectives li::before {
-            content: ''; position: absolute; left: 0; top: 0.5em;
-            width: 7px; height: 7px; background: var(--leaf); border-radius: var(--leaf-shape);
-        }
-        .formation-details {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
-            gap: 1rem 2rem; margin-bottom: 1.4rem; padding-top: 1.2rem; border-top: 1px dashed var(--line);
-        }
-        .formation-detail { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
-        .formation-detail-value { font-size: var(--fs-sm); font-weight: 500; color: var(--ink); }
-        .formation-detail-value.num { font-size: 0.9rem; }
-        .formation-cta {
-            display: inline-flex; align-items: center; gap: 0.4rem;
-            font-size: var(--fs-sm); font-weight: 600; text-decoration: none;
-            color: var(--ink); background: transparent;
-            padding: 0.55rem 1rem; border-radius: var(--radius); border: 1px solid var(--ink-3);
-            transition: background-color 0.2s, border-color 0.2s;
-        }
-        .formation-cta:hover { border-color: var(--ink); background: var(--surface-2); }
-
-        /* ---------- Informations pratiques ---------- */
-        .infos-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
-        .info-item {
-            display: grid; grid-template-columns: minmax(0, 10rem) minmax(0, 1fr); gap: 1.25rem;
-            padding: 1.2rem 0; border-top: 1px solid var(--line); min-width: 0;
-        }
-        .info-item dt { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
-        .info-item dd { font-size: 0.92rem; color: var(--ink-2); line-height: 1.65; overflow-wrap: anywhere; }
-        .info-item a { color: var(--leaf-ink); text-underline-offset: 2px; }
-        .info-item a[href^="tel"] { white-space: nowrap; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.88rem; }
-
-        .results {
-            display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem;
-            padding: 1.5rem 1.75rem; background: var(--surface);
-            border: 1px solid var(--line); border-radius: var(--radius-lg);
-        }
-        .results-figure {
-            font-family: var(--font-mono); font-variant-numeric: tabular-nums;
-            font-size: var(--fs-2xl); font-weight: 500; letter-spacing: -0.03em;
-            color: var(--ink); line-height: 1; flex-shrink: 0;
-            padding-right: 1.5rem; border-right: 1px solid var(--line);
-        }
-        .results-text { font-size: 0.95rem; color: var(--ink-2); line-height: 1.6; min-width: 0; }
-        .results-text strong { color: var(--ink); }
-        .legal-note {
-            margin-top: 1.5rem; padding-left: 0.9rem; border-left: 2px solid var(--line);
-            font-size: var(--fs-xs); color: var(--ink-3); line-height: 1.65; max-width: 80ch;
-        }
-        .legal-note a, .why-card p a { color: var(--leaf-ink); text-underline-offset: 2px; }
-
-        /* ---------- Responsive ---------- */
-        @media (max-width: 960px) {
-            .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .infos-grid { grid-template-columns: minmax(0, 1fr); }
-        }
-        @media (max-width: 720px) {
-            .formation-trigger { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0.6rem; padding: 1rem; }
-            .formation-meta { grid-row: 2; grid-column: 1 / -1; justify-content: flex-start; padding-left: calc(34px + 1rem); }
-            .formation-trigger .chevron { grid-row: 1; grid-column: 2; }
-            .formation-content-inner { padding: 1.2rem 1rem 1.4rem; }
-        }
-        @media (max-width: 600px) {
-            .why-grid { grid-template-columns: minmax(0, 1fr); }
-            .info-item { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
-            .results { flex-direction: column; align-items: flex-start; gap: 0.9rem; padding: 1.25rem; }
-            .results-figure { padding-right: 0; border-right: 0; }
-        }
+        .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+        .fade-up.visible{opacity:1;transform:translateY(0)}
+        .stagger-1{transition-delay:0.05s}.stagger-2{transition-delay:0.1s}
     </style>
 </head>
 <body>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-<!-- Icônes : Lucide v0.460.0, licence ISC (https://lucide.dev) -->
-<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4" /> <path d="M16 2v4" /> <rect width="18" height="18" x="3" y="4" rx="2" /> <path d="M3 10h18" /></symbol>
-<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></symbol>
-<symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></symbol>
-<symbol id="i-flask-conical" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2" /> <path d="M8.5 2h7" /> <path d="M7 16h10" /></symbol>
-<symbol id="i-graduation-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /> <path d="M22 10v6" /> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></symbol>
-<symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /> <rect width="4" height="12" x="2" y="9" /> <circle cx="4" cy="4" r="2" /></symbol>
-<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol>
-<symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /></symbol>
-<symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2" /> <line x1="8" x2="16" y1="21" y2="21" /> <line x1="12" x2="12" y1="17" y2="21" /></symbol>
-<symbol id="i-radio-tower" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 16.1C1 12.2 1 5.8 4.9 1.9" /> <path d="M7.8 4.7a6.14 6.14 0 0 0-.8 7.5" /> <circle cx="12" cy="9" r="2" /> <path d="M16.2 4.8c2 2 2.26 5.11.8 7.47" /> <path d="M19.1 1.9a9.96 9.96 0 0 1 0 14.1" /> <path d="M9.5 18h5" /> <path d="m8 22 4-11 4 11" /></symbol>
-<symbol id="i-refresh-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /> <path d="M21 3v5h-5" /> <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /> <path d="M8 16H3v5" /></symbol>
-<symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /> <circle cx="12" cy="12" r="3" /></symbol>
-<symbol id="i-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10" /> <path d="M10 20c5.5-2.5.8-6.4 3-10" /> <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" /> <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" /></symbol>
-</svg>
-    <a class="skip-link" href="#main">Aller au contenu</a>
 
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
+            <a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Nos services</a></li>
@@ -593,14 +215,11 @@ strong { font-weight: 600; }
                 <li><a href="consolab.html">Consolab</a></li>
                 <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
         </div>
     </nav>
 
-    <main id="main">
-
     <header class="page-header">
-        <div class="page-header-bg" aria-hidden="true"></div>
         <div class="page-header-inner">
             <div class="section-label">Formations</div>
             <h1>Former pour susciter l'implication</h1>
@@ -610,7 +229,7 @@ strong { font-weight: 600; }
     </header>
 
     <!-- POURQUOI NOUS -->
-    <section class="section section-alt">
+    <section class="section" style="background:var(--off-white)">
         <div class="section-inner">
             <div class="section-header center fade-up">
                 <div class="section-label">Pourquoi nous</div>
@@ -618,22 +237,22 @@ strong { font-weight: 600; }
             </div>
             <div class="why-grid fade-up">
                 <div class="why-card">
-                    <div class="why-icon ic-box"><svg class="ic" aria-hidden="true"><use href="#i-graduation-cap"/></svg></div>
+                    <div class="why-icon">🎓</div>
                     <h3>Expertise unique</h3>
                     <p>Formateur·ices titulaires de doctorats avec plusieurs années d'expérience terrain.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon ic-box"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></div>
+                    <div class="why-icon">✓</div>
                     <h3>Certifié Qualiopi</h3>
                     <p>Certification qualité via <a href="https://analytiss.com" target="_blank" rel="noopener">Analytiss</a> : prise en charge possible par votre OPCO.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon ic-box"><svg class="ic" aria-hidden="true"><use href="#i-radio-tower"/></svg></div>
+                    <div class="why-icon">📡</div>
                     <h3>Contenus actualisés</h3>
                     <p>Veille bibliographique continue pour vous proposer les dernières innovations.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon ic-box"><svg class="ic" aria-hidden="true"><use href="#i-flask-conical"/></svg></div>
+                    <div class="why-icon">🧪</div>
                     <h3>Laboratoire R&D</h3>
                     <p>Un labo dédié à Brioude pour tester et développer les solutions présentées en formation.</p>
                 </div>
@@ -651,26 +270,26 @@ strong { font-weight: 600; }
             </div>
 
             <div class="filters fade-up" role="group" aria-label="Filtrer par thème">
-                <button type="button" class="filter-btn active" aria-pressed="true" data-filter="all">Toutes</button>
-                <button type="button" class="filter-btn" aria-pressed="false" data-filter="durabilite"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</button>
-                <button type="button" class="filter-btn" aria-pressed="false" data-filter="acv"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg>Analyse du cycle de vie</button>
-                <button type="button" class="filter-btn" aria-pressed="false" data-filter="instru"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Instrumentation</button>
-                <button type="button" class="filter-btn" aria-pressed="false" data-filter="chemo"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-informatique</button>
+                <button class="filter-btn active" data-filter="all">Toutes</button>
+                <button class="filter-btn" data-filter="durabilite">🌱 Durabilité</button>
+                <button class="filter-btn" data-filter="acv">🔄 Analyse du cycle de vie</button>
+                <button class="filter-btn" data-filter="instru">⚙️ Instrumentation</button>
+                <button class="filter-btn" data-filter="chemo">🖥️ Chémo-informatique</button>
             </div>
 
             <div class="formations-list fade-up">
 
                 <div class="formation-card" data-cat="durabilite">
-                    <button type="button" class="formation-trigger" aria-expanded="false">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat ic-box sm" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg></span>
+                            <span class="formation-cat" aria-hidden="true">🌱</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable</div>
                                 <div class="formation-subtitle"><span class="formation-ref">LLD2025-01</span>Limites planétaires, politique environnementale, analyse d'une méthode, communication responsable</div>
                             </div>
                         </div>
-                        <div class="formation-meta"><span class="formation-meta-item"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>1 jour</span></div>
-                        <svg class="chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
                         <p class="formation-desc">Les laboratoires d'analyse font face à des pénuries qui perturbent leur fonctionnement. Connaître les fondements de la chimie verte et de la chimie analytique verte, ainsi que les outils méthodologiques disponibles, permet de prioriser les actions, d'éviter les contresens et de maîtriser les coûts. Deux ateliers en sous-groupes : élaborer une politique environnementale de laboratoire, puis analyser une méthode analytique étape par étape.</p>
@@ -678,22 +297,22 @@ strong { font-weight: 600; }
                             <h4>Objectifs</h4>
                             <ul><li>Comprendre la nécessité et la pertinence de revisiter les pratiques de laboratoire</li><li>S'approprier les ordres de grandeur au laboratoire</li><li>Connaître les acteurs et les outils de la chimie analytique durable</li><li>Passer en revue les techniques de mise en place d'actions concrètes et de mobilisation des équipes, à l'échelle de la méthode et du laboratoire</li><li>Savoir communiquer sur ses actions de manière efficiente et engageante</li></ul>
                         </div>
-                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value num">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout personnel scientifique de laboratoire</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value num">1 à 5</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Évaluation</span><span class="formation-detail-value">Quiz et exercice pratique</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary, Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout personnel scientifique de laboratoire</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">1 à 5</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Évaluation</span><span class="formation-detail-value">Quiz et exercice pratique</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary, Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
                         <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — LLD2025-01 Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
                 <div class="formation-card" data-cat="durabilite">
-                    <button type="button" class="formation-trigger" aria-expanded="false">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat ic-box sm" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg></span>
+                            <span class="formation-cat" aria-hidden="true">🌱</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Introduction à la chimie analytique durable et mobilisation des équipes</div>
                                 <div class="formation-subtitle"><span class="formation-ref">LLD2025-02</span>Enjeux, cadre réglementaire, ateliers politique environnementale et analyse de méthode</div>
                             </div>
                         </div>
-                        <div class="formation-meta"><span class="formation-meta-item"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>1 jour</span></div>
-                        <svg class="chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
                         <p class="formation-desc">Une journée pour replacer l'activité du laboratoire face au dérèglement climatique et aux limites planétaires : enjeux et cadre réglementaire, ressources et matières premières critiques, résilience des activités. L'après-midi, les participant·es construisent un cadre de politique environnementale, analysent une méthode analytique représentative et apprennent à valoriser leurs actions sans greenwashing.</p>
@@ -701,22 +320,22 @@ strong { font-weight: 600; }
                             <h4>Objectifs</h4>
                             <ul><li>Comprendre la nécessité et la pertinence de revisiter les pratiques de laboratoire</li><li>S'approprier les ordres de grandeur au laboratoire</li><li>Connaître les acteurs et les outils de la chimie analytique durable</li><li>Mettre en place des actions concrètes et mobiliser les équipes, à l'échelle métier</li><li>Savoir communiquer sur ses actions de manière efficiente et engageante</li></ul>
                         </div>
-                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value num">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout personnel scientifique de laboratoire</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Évaluation</span><span class="formation-detail-value">Quiz et exercice pratique</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary, Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Tout personnel scientifique de laboratoire</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Évaluation</span><span class="formation-detail-value">Quiz et exercice pratique</span></div><div class="formation-detail"><span class="formation-detail-label">Formateurs</span><span class="formation-detail-value">Bastien Raccary, Christophe Pérès</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
                         <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — LLD2025-02 Introduction à la chimie analytique durable et mobilisation des équipes" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
                 <div class="formation-card" data-cat="acv">
-                    <button type="button" class="formation-trigger" aria-expanded="false">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat ic-box sm" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg></span>
+                            <span class="formation-cat" aria-hidden="true">🔄</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Introduction à l'analyse du cycle de vie (ACV) appliquée au domaine du laboratoire</div>
                                 <div class="formation-subtitle"><span class="formation-ref">P08-ACV-I</span>ISO 14040/14044, les 4 phases de l'ACV, atelier openLCA, collecte de données</div>
                             </div>
                         </div>
-                        <div class="formation-meta"><span class="formation-meta-item"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>1 jour</span></div>
-                        <svg class="chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
                         <p class="formation-desc">L'ACV est l'outil de référence pour évaluer de manière multicritère et multi-étapes les impacts des produits, procédés et services. Au laboratoire, elle permet d'identifier les points chauds des méthodes analytiques, de comparer des scénarios et d'orienter l'éco-conception. Le matin : contexte, cadre normatif et les 4 phases de l'ACV. L'après-midi : atelier openLCA (ecoinvent, EF 3.1) sur un cas comparatif, puis définition d'une unité fonctionnelle et collecte de données sur une méthode de votre laboratoire.</p>
@@ -724,22 +343,22 @@ strong { font-weight: 600; }
                             <h4>Objectifs</h4>
                             <ul><li>Décrire les 4 phases d'une ACV selon ISO 14040/14044 et mobiliser les concepts associés (unité fonctionnelle, frontières, flux élémentaires, méthodes LCIA)</li><li>Réaliser un inventaire du cycle de vie sur un cas comparatif avec openLCA</li><li>Interpréter des résultats en identifiant les points chauds et en conduisant une analyse de sensibilité élémentaire</li><li>Appliquer la démarche d'éco-conception en 6 étapes en évitant le greenwashing</li><li>Définir une unité fonctionnelle adaptée à un processus du laboratoire et initier la collecte de données</li></ul>
                         </div>
-                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value num">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Chimistes et ingénieur·es de laboratoire</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Évaluation</span><span class="formation-detail-value">QCM et atelier pratique openLCA</span></div><div class="formation-detail"><span class="formation-detail-label">Matériel</span><span class="formation-detail-value">Un ordinateur par participant·e</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Bastien Raccary</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Chimistes et ingénieur·es de laboratoire</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun</span></div><div class="formation-detail"><span class="formation-detail-label">Évaluation</span><span class="formation-detail-value">QCM et atelier pratique openLCA</span></div><div class="formation-detail"><span class="formation-detail-label">Matériel</span><span class="formation-detail-value">Un ordinateur par participant·e</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Bastien Raccary</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
                         <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P08-ACV-I Introduction à l’analyse du cycle de vie (ACV) appliquée au domaine du laboratoire" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
                 <div class="formation-card" data-cat="instru">
-                    <button type="button" class="formation-trigger" aria-expanded="false">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat ic-box sm" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg></span>
+                            <span class="formation-cat" aria-hidden="true">⚙️</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Les essentiels GC et GC-MS</div>
                                 <div class="formation-subtitle"><span class="formation-ref">P06-GC-E</span>Principes généraux, utilisation avancée et maintenance de 1er niveau GC-FID / GC-MS</div>
                             </div>
                         </div>
-                        <div class="formation-meta"><span class="formation-meta-item"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>2 jours (14 h)</span></div>
-                        <svg class="chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 2 jours (14 h)</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
                         <p class="formation-desc">Formation à la carte construite avec le laboratoire, pour accroître la compréhension et l'autonomie des opérateur·ices sur leurs systèmes GC-FID et GC-MS Agilent, côté logiciel comme instrument. Le contenu définitif est arrêté avant la session parmi trois modules : principes généraux, utilisation avancée des logiciels de pilotage (OpenLab, MassHunter), maintenance de premier niveau en travaux pratiques.</p>
@@ -747,22 +366,22 @@ strong { font-weight: 600; }
                             <h4>Objectifs</h4>
                             <ul><li>Expliquer le fonctionnement d'un système GC-FID / GC-MS et relier chaque paramètre de méthode à son effet sur le chromatogramme</li><li>Optimiser et exploiter une méthode d'acquisition dans OpenLab / MassHunter</li><li>Réaliser en autonomie la maintenance de 1er niveau de l'injecteur SSL, du FID et du MSD</li><li>Diagnostiquer les dérives courantes (fuites, pollution, perte de sensibilité) et décider des actions correctives</li></ul>
                         </div>
-                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value num">2 jours (14 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Techniciens, ingénieurs et responsables de laboratoire (GC-FID, GC-MS Agilent)</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value num">1 à 4</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">3 mois de pratique sur GC et GC-MS Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value num">30 % théorie, 70 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 jours (14 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Techniciens, ingénieurs et responsables de laboratoire (GC-FID, GC-MS Agilent)</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">1 à 4</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">3 mois de pratique sur GC et GC-MS Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">30 % théorie, 70 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
                         <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P06-GC-E Les essentiels GC et GC-MS" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
                 <div class="formation-card" data-cat="instru">
-                    <button type="button" class="formation-trigger" aria-expanded="false">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat ic-box sm" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg></span>
+                            <span class="formation-cat" aria-hidden="true">⚙️</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Maintenance GC-FID-MSD de premier niveau</div>
                                 <div class="formation-subtitle"><span class="formation-ref">P06-GC-M</span>Entretien courant des systèmes GC et GC-MS Agilent : ALS, HSS, SSL, FID, MSD</div>
                             </div>
                         </div>
-                        <div class="formation-meta"><span class="formation-meta-item"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>2 jours (14 h)</span></div>
-                        <svg class="chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 2 jours (14 h)</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
                         <p class="formation-desc">Acquérir une expertise pratique de la maintenance de premier niveau des principaux modules d'un système GC et GC-MS Agilent, pour optimiser la performance et la longévité des instruments et garantir des analyses fiables et reproductibles. Travaux pratiques sur les systèmes de votre laboratoire : SSL, FID, installation de colonne, nettoyage de la source EI, tests de fuite et tune.</p>
@@ -770,22 +389,22 @@ strong { font-weight: 600; }
                             <h4>Objectifs</h4>
                             <ul><li>Planifier l'entretien courant d'un GC Agilent équipé SSL, FID, MSD, ALS et HSS</li><li>Identifier les éléments et pièces consommables de chaque module</li><li>Réaliser en autonomie et en sécurité les opérations de maintenance de 1er niveau</li><li>Vérifier les performances après intervention (étanchéité, tune, chromatogramme de contrôle)</li></ul>
                         </div>
-                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value num">2 jours (14 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Techniciens et ingénieurs en charge de systèmes GC-FID et GC-MS Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value num">1 à 4</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">3 mois de pratique sur GC et GC-MS Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value num">20 % théorie, 80 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 jours (14 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Techniciens et ingénieurs en charge de systèmes GC-FID et GC-MS Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">1 à 4</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">3 mois de pratique sur GC et GC-MS Agilent</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">20 % théorie, 80 % TP</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Xavier Rouessac</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
                         <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P06-GC-M Maintenance GC-FID-MSD de premier niveau" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
                 <div class="formation-card" data-cat="chemo">
-                    <button type="button" class="formation-trigger" aria-expanded="false">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat ic-box sm" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg></span>
+                            <span class="formation-cat" aria-hidden="true">🖥️</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Introduction au traitement de données GC-MS / GC-FID</div>
                                 <div class="formation-subtitle"><span class="formation-ref">P07-GC-I</span>Comprendre ses données chromatographiques et adopter des stratégies de traitement efficaces</div>
                             </div>
                         </div>
-                        <div class="formation-meta"><span class="formation-meta-item"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>2 jours (12 h)</span></div>
-                        <svg class="chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 2 jours (12 h)</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
                         <p class="formation-desc">Comprendre les modes d'acquisition des données chromatographiques et leur contenu, découvrir les différentes façons de les traiter, puis appliquer des stratégies efficaces sur des échantillons d'intérêt de votre laboratoire (AMDIS, QualiFast, DataAnalysis ou MassHunter selon votre environnement).</p>
@@ -793,22 +412,22 @@ strong { font-weight: 600; }
                             <h4>Objectifs</h4>
                             <ul><li>Expliquer le fonctionnement d'un système GC-MS / GC-FID et les modes d'acquisition</li><li>Décrire la structure des données chromatographiques, leur contenu et leurs limites</li><li>Réaliser une déconvolution, une intégration et une identification sur des données réelles</li><li>Choisir une stratégie de traitement adaptée et mesurer l'influence des paramètres sur le résultat</li></ul>
                         </div>
-                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value num">2 jours (12 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel scientifique exploitant des données GC-MS ou GC-FID</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value num">2 à 5</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun (une pratique de la chromatographie est un plus)</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value num">50 % théorie, 50 % ateliers</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Clément Truan</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">2 jours (12 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Personnel scientifique exploitant des données GC-MS ou GC-FID</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">2 à 5</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Aucun (une pratique de la chromatographie est un plus)</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">50 % théorie, 50 % ateliers</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Clément Truan</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
                         <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P07-GC-I Introduction au traitement de données GC-MS / GC-FID" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
 
                 <div class="formation-card" data-cat="chemo">
-                    <button type="button" class="formation-trigger" aria-expanded="false">
+                    <button class="formation-trigger" aria-expanded="false">
                         <div class="formation-trigger-left">
-                            <span class="formation-cat ic-box sm" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg></span>
+                            <span class="formation-cat" aria-hidden="true">🖥️</span>
                             <div class="formation-title-block">
                                 <div class="formation-title">Traitement avancé des données GC-MS</div>
                                 <div class="formation-subtitle"><span class="formation-ref">P07-GC-D</span>Déconvolution, identification et quantification sur matrices complexes</div>
                             </div>
                         </div>
-                        <div class="formation-meta"><span class="formation-meta-item"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>1 jour (7 h)</span></div>
-                        <svg class="chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                        <div class="formation-meta"><span class="formation-meta-item">📅 1 jour (7 h)</span></div>
+                        <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
                     </button>
                     <div class="formation-content"><div class="formation-content-inner">
                         <p class="formation-desc">Aller au-delà de l'intégration de routine et fiabiliser l'exploitation des données GC-MS sur matrices complexes : coélutions, isomères, composés majoritaires et traces. Pour la parfumerie et les arômes, l'agroalimentaire, l'environnement, la pétrochimie ou les matériaux, de préférence sur les données de votre laboratoire.</p>
@@ -816,7 +435,7 @@ strong { font-weight: 600; }
                             <h4>Objectifs</h4>
                             <ul><li>Décrire la structure d'un fichier GC-MS (Scan, SIM, TIC, EIC) et ses contraintes de traitement</li><li>Appliquer une stratégie de déconvolution et d'intégration adaptée aux coélutions</li><li>Identifier les composés (spectres, bibliothèques NIST et internes, indices de rétention) en jugeant la fiabilité d'une proposition</li><li>Construire un traitement reproductible et en documenter les limites</li></ul>
                         </div>
-                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value num">1 jour (7 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Techniciens, ingénieurs, analystes travaillant sur matrices complexes</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value num">1 à 5</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Pratique régulière de la GC-MS et des logiciels de traitement</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value num">40 % théorie, 60 % ateliers</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Clément Truan</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
+                        <div class="formation-details"><div class="formation-detail"><span class="formation-detail-label">Durée</span><span class="formation-detail-value">1 jour (7 h)</span></div><div class="formation-detail"><span class="formation-detail-label">Public</span><span class="formation-detail-value">Techniciens, ingénieurs, analystes travaillant sur matrices complexes</span></div><div class="formation-detail"><span class="formation-detail-label">Participants</span><span class="formation-detail-value">1 à 5</span></div><div class="formation-detail"><span class="formation-detail-label">Prérequis</span><span class="formation-detail-value">Pratique régulière de la GC-MS et des logiciels de traitement</span></div><div class="formation-detail"><span class="formation-detail-label">Répartition</span><span class="formation-detail-value">40 % théorie, 60 % ateliers</span></div><div class="formation-detail"><span class="formation-detail-label">Formateur</span><span class="formation-detail-value">Clément Truan</span></div><div class="formation-detail"><span class="formation-detail-label">Tarif</span><span class="formation-detail-value">Sur devis</span></div></div>
                         <a href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P07-GC-D Traitement avancé des données GC-MS" class="formation-cta">Demander + d'infos →</a>
                     </div></div>
                 </div>
@@ -825,7 +444,7 @@ strong { font-weight: 600; }
     </section>
 
     <!-- INFORMATIONS PRATIQUES (Qualiopi) -->
-    <section class="section section-alt" id="informations-pratiques">
+    <section class="section" id="informations-pratiques" style="background:var(--off-white)">
         <div class="section-inner">
             <div class="section-header fade-up">
                 <div class="section-label">Informations pratiques</div>
@@ -851,17 +470,15 @@ strong { font-weight: 600; }
     <section class="cta-band">
         <h2>Besoin d'une formation sur mesure ?</h2>
         <p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs. Parlons-en.</p>
-        <a href="contact.html" class="btn btn-accent">Nous contacter →</a>
+        <a href="contact.html" class="btn" style="background:var(--white);color:var(--deep)">Nous contacter →</a>
     </section>
-
-    </main>
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable"></a>
+                    <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" style="height:40px;width:auto"></a>
                     <p>Accompagner les laboratoires d'analyses dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
                 </div>
                 <div>
@@ -883,8 +500,8 @@ strong { font-weight: 600; }
                 </div>
                 <div>
                     <h4>Nous contacter</h4>
-                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>34 rue du Vallat, 43100 Brioude</span></div>
-                    <div class="footer-contact-item"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
+                    <div class="footer-contact-item"><span class="icon">📍</span><span>34 rue du Vallat, 43100 Brioude</span></div>
+                    <div class="footer-contact-item"><span class="icon">✉️</span><a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -894,105 +511,55 @@ strong { font-weight: 600; }
                     <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
                     <a href="mentions-legales.html#cookies">Cookies</a>
                 </div>
-                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg></a></div>
+                <div class="footer-social"><a href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a></div>
             </div>
         </div>
     </footer>
 
     <script>
-// Le Labo Durable — comportements communs à toutes les pages
-// (menu mobile, accordéons .accordion, apparition au défilement)
-(function () {
-    document.documentElement.classList.add('js');
+        // Mobile nav
+        const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
+        toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
+        links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')}));
+        window.addEventListener('resize',()=>{if(window.innerWidth>900){toggle.classList.remove('open');links.classList.remove('open')}});
 
-    // Menu mobile
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    if (toggle && links) {
-        toggle.setAttribute('aria-controls', 'navLinks');
-        toggle.setAttribute('aria-expanded', 'false');
-        const setOpen = (open) => {
-            toggle.classList.toggle('open', open);
-            links.classList.toggle('open', open);
-            toggle.setAttribute('aria-expanded', String(open));
-        };
-        toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
-        links.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
-        window.addEventListener('resize', () => { if (window.innerWidth > 960) setOpen(false); });
-        // Lien de la page courante
-        links.querySelectorAll('a.active').forEach((a) => a.setAttribute('aria-current', 'page'));
-    }
-
-    // Accordéons : un seul élément ouvert par accordéon
-    document.querySelectorAll('.accordion-trigger').forEach((btn) => {
-        if (!btn.hasAttribute('aria-expanded')) btn.setAttribute('aria-expanded', 'false');
-        btn.addEventListener('click', () => {
-            const item = btn.closest('.accordion-item');
-            const content = item.querySelector('.accordion-content');
-            const isOpen = item.classList.contains('open');
-            item.parentElement.querySelectorAll('.accordion-item.open').forEach((sib) => {
-                if (sib === item) return;
-                sib.classList.remove('open');
-                sib.querySelector('.accordion-content').style.maxHeight = null;
-                sib.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
-            });
-            item.classList.toggle('open', !isOpen);
-            content.style.maxHeight = isOpen ? null : content.scrollHeight + 'px';
-            btn.setAttribute('aria-expanded', String(!isOpen));
-        });
-    });
-
-    // Apparition au défilement (le contenu reste visible sans JS)
-    const els = document.querySelectorAll('.fade-up');
-    if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((e) => {
-                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        els.forEach((el) => io.observe(el));
-    } else {
-        els.forEach((el) => el.classList.add('visible'));
-    }
-})();
-    </script>
-    <script>
-        // Fiches formation dépliables (une seule ouverte à la fois)
-        const closeCard = (card) => {
-            card.classList.remove('open');
-            card.querySelector('.formation-trigger').setAttribute('aria-expanded', 'false');
-            card.querySelector('.formation-content').style.maxHeight = null;
-        };
-        document.querySelectorAll('.formation-trigger').forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const card = btn.closest('.formation-card');
-                const content = card.querySelector('.formation-content');
-                const isOpen = card.classList.contains('open');
-                document.querySelectorAll('.formation-card.open').forEach((c) => { if (c !== card) closeCard(c); });
-                if (isOpen) { closeCard(card); return; }
-                card.classList.add('open');
-                btn.setAttribute('aria-expanded', 'true');
-                content.style.maxHeight = content.scrollHeight + 'px';
-            });
-        });
-
-        // Filtres par thème
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach((b) => {
-                    b.classList.toggle('active', b === btn);
-                    b.setAttribute('aria-pressed', String(b === btn));
+        // Formation accordion
+        document.querySelectorAll('.formation-trigger').forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                const card=btn.closest('.formation-card');
+                const content=card.querySelector('.formation-content');
+                const isOpen=card.classList.contains('open');
+                // Close others
+                document.querySelectorAll('.formation-card.open').forEach(c=>{
+                    if(c!==card){c.classList.remove('open');c.querySelector('.formation-trigger').setAttribute('aria-expanded','false');c.querySelector('.formation-content').style.maxHeight=null}
                 });
-                const filter = btn.dataset.filter;
-                document.querySelectorAll('.formation-card').forEach((card) => {
-                    const show = filter === 'all' || card.dataset.cat === filter;
-                    card.hidden = !show;
-                    if (!show) closeCard(card);
+                btn.setAttribute('aria-expanded',String(!isOpen));
+                if(isOpen){card.classList.remove('open');content.style.maxHeight=null}
+                else{card.classList.add('open');content.style.maxHeight=content.scrollHeight+'px'}
+            });
+        });
+
+        // Category filters
+        document.querySelectorAll('.filter-btn').forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter=btn.dataset.filter;
+                document.querySelectorAll('.formation-card').forEach(card=>{
+                    if(filter==='all'||card.dataset.cat===filter){
+                        card.style.display=''
+                    }else{
+                        card.style.display='none';
+                        card.classList.remove('open');
+                        card.querySelector('.formation-content').style.maxHeight=null
+                    }
                 });
             });
         });
+
+        // Scroll animations
+        const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+        document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
     </script>
 </body>
 </html>
