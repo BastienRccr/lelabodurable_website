@@ -123,6 +123,15 @@ p{text-wrap:pretty}
 .step-body ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
 .step-body li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem}
 .step-body li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.dots{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.dots li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem;min-width:0}
+.dots li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.more{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.15rem;font-weight:600;font-size:.92rem;color:var(--deep);text-decoration:none}
+.more:hover{text-decoration:underline}
+.more .ic{transition:transform .25s var(--ease)}
+.more:hover .ic{transform:translateX(3px)}
+.facts.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.hero.veil-strong::before{background:linear-gradient(100deg,rgba(15,61,79,.97) 0%,rgba(15,61,79,.9) 50%,rgba(15,61,79,.8) 100%)}
 .tools{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;list-style:none}
 .tools li{font-size:.84rem;font-weight:600;color:var(--deep);background:var(--tint);border-radius:999px;padding:.35rem .85rem}
 
@@ -310,6 +319,9 @@ p{text-wrap:pretty}
 @media (max-width:720px){
   .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .facts li:nth-child(3){padding-left:0;border-left:0}
+  .facts.cols-3{grid-template-columns:minmax(0,1fr)}
+  .facts.cols-3 li{padding-left:0;border-left:0}
+  .facts.cols-3 li+li{border-top:1px solid var(--deep-line)}
   .facts li:nth-child(n+3){border-top:1px solid var(--deep-line)}
   .who,.goals,.money-grid,.infos{grid-template-columns:minmax(0,1fr)}
   .who>div+div{padding-left:0;border-left:0}
@@ -324,10 +336,7 @@ p{text-wrap:pretty}
   .hero-actions .btn{flex:1 1 100%}
 }
 
-.hero::before{background:linear-gradient(100deg,rgba(15,61,79,.97) 0%,rgba(15,61,79,.9) 50%,rgba(15,61,79,.8) 100%)}
 .hero-photo{background-image:url('assets/photos/labo-brioude.jpg');background-position:center 40%}
-.facts{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:720px){.facts{grid-template-columns:minmax(0,1fr)}.facts li+li{padding-left:0;border-left:0;border-top:1px solid var(--deep-line)}}
 .c-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
 .form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
 .form-card .card-head h2{color:#fff;font-size:1.6rem;margin:0}
@@ -379,14 +388,14 @@ p{text-wrap:pretty}
 <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
 </div></nav>
 <main id="main">
-<header class="hero">
+<header class="hero veil-strong">
 <div class="hero-photo" aria-hidden="true"></div>
 <div class="wrap">
 <ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li aria-current="page">Contact</li></ol>
 <h1>Parlons de <em>votre projet</em></h1>
 <p class="hero-lead">Une question, un besoin d'accompagnement, une demande de formation ? Écrivez-nous, nous vous répondons sous 48h.</p>
 <div class="hero-actions"><a class="btn btn-gold" href="#message">Écrire un message <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></a><a class="btn btn-line" href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
-<ul class="facts" aria-label="En bref"><li><b>Sous 48 h</b><span>notre délai de réponse</span></li><li><b>Brioude</b><span>34 rue du Vallat, 43100 Brioude, France</span></li><li><b>LinkedIn</b><span>Le Labo Durable</span></li></ul>
+<ul class="facts cols-3" aria-label="En bref"><li><b>Sous 48 h</b><span>notre délai de réponse</span></li><li><b>Brioude</b><span>34 rue du Vallat, 43100 Brioude, France</span></li><li><b>LinkedIn</b><span>Le Labo Durable</span></li></ul>
 </div>
 </header>
 

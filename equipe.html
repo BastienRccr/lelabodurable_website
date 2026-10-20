@@ -123,6 +123,15 @@ p{text-wrap:pretty}
 .step-body ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
 .step-body li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem}
 .step-body li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.dots{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.dots li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem;min-width:0}
+.dots li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.more{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.15rem;font-weight:600;font-size:.92rem;color:var(--deep);text-decoration:none}
+.more:hover{text-decoration:underline}
+.more .ic{transition:transform .25s var(--ease)}
+.more:hover .ic{transform:translateX(3px)}
+.facts.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.hero.veil-strong::before{background:linear-gradient(100deg,rgba(15,61,79,.97) 0%,rgba(15,61,79,.9) 50%,rgba(15,61,79,.8) 100%)}
 .tools{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;list-style:none}
 .tools li{font-size:.84rem;font-weight:600;color:var(--deep);background:var(--tint);border-radius:999px;padding:.35rem .85rem}
 
@@ -310,6 +319,9 @@ p{text-wrap:pretty}
 @media (max-width:720px){
   .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .facts li:nth-child(3){padding-left:0;border-left:0}
+  .facts.cols-3{grid-template-columns:minmax(0,1fr)}
+  .facts.cols-3 li{padding-left:0;border-left:0}
+  .facts.cols-3 li+li{border-top:1px solid var(--deep-line)}
   .facts li:nth-child(n+3){border-top:1px solid var(--deep-line)}
   .who,.goals,.money-grid,.infos{grid-template-columns:minmax(0,1fr)}
   .who>div+div{padding-left:0;border-left:0}
@@ -329,9 +341,10 @@ p{text-wrap:pretty}
 .member img{width:120px;height:143px;object-fit:contain;object-position:center bottom;background:var(--tint);border-radius:var(--r)}
 .m-id h3{font:700 1.3rem/1.25 var(--f-display);color:var(--deep)}
 .m-role{color:var(--ink-2);font-size:.95rem;margin-top:.3rem;max-width:34ch}
-.poles{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;list-style:none}
-.poles li{display:inline-flex;gap:.4rem;align-items:center;font-size:.8rem;font-weight:600;color:var(--deep);background:#fff;border:1px solid var(--line);border-radius:999px;padding:.25rem .75rem .25rem .6rem}
-.poles .ic{color:var(--primary)}
+.member-poles{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;list-style:none}
+.member-poles li{display:inline-flex;gap:.35rem;align-items:center;font-size:.84rem;font-weight:600;color:var(--deep)}
+.member-poles li+li::before{content:"·";color:var(--ink-3);margin-right:.35rem}
+.member-poles .ic{color:var(--primary)}
 .m-lab{font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
 .m-bio>p:first-of-type{color:var(--ink-2);font-size:.95rem;max-width:66ch}
 .m-bio .tools{margin-top:.9rem}
@@ -395,7 +408,7 @@ p{text-wrap:pretty}
 <div class="m-id">
 <h3>Christophe Pérès</h3>
 <p class="m-role">Fondateur — Pôle méthodes &amp; instrumentation</p>
-<ul class="poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Instrumentation</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Instrumentation</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -409,7 +422,7 @@ p{text-wrap:pretty}
 <div class="m-id">
 <h3>Bastien Raccary</h3>
 <p class="m-role">Responsable pôle durabilité — ACV &amp; stratégie low impact</p>
-<ul class="poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -423,7 +436,7 @@ p{text-wrap:pretty}
 <div class="m-id">
 <h3>Clément Truan</h3>
 <p class="m-role">Responsable pôle chémo-informatique &amp; IA</p>
-<ul class="poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -437,7 +450,7 @@ p{text-wrap:pretty}
 <div class="m-id">
 <h3>Xavier Rouessac</h3>
 <p class="m-role">Responsable support &amp; formation — Expert LC/GC/MS</p>
-<ul class="poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Support</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Support</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -451,7 +464,7 @@ p{text-wrap:pretty}
 <div class="m-id">
 <h3>Thomas Vandewattyne</h3>
 <p class="m-role">Expert chémo-informatique — Doctorant IA appliquée</p>
-<ul class="poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>

@@ -1,11 +1,9 @@
 <!-- title: L'ACV — Le Labo Durable -->
 <!-- description: Analyse du Cycle de Vie (ACV) ISO 14040/44 : études d'impact, éco-conception, revues critiques, formations. Le Labo Durable, experts ACV en chimie analytique. -->
 <style>
-.hero::before{background:linear-gradient(100deg,rgba(15,61,79,.97) 0%,rgba(15,61,79,.9) 50%,rgba(15,61,79,.8) 100%)}
 .hero-photo{background-image:url('assets/photos/recherche-bordeaux.jpg');background-position:center}
 /* Hero : trois points forts sous le filet (variante à 3 colonnes de la barre de faits) */
-.facts.facts-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.facts-3 span{font-size:.88rem;max-width:36ch}
+.facts.cols-3 span{font-size:.88rem;max-width:36ch}
 /* Citation */
 .quote{max-width:52rem}
 .quote .ic{width:34px;height:34px;color:var(--on-deep-3)}
@@ -37,23 +35,20 @@
   .research-photo{max-width:640px}
 }
 @media (max-width:720px){
-  .facts.facts-3{grid-template-columns:minmax(0,1fr)}
-  .facts.facts-3 li{padding-left:0;border-left:0}
-  .facts.facts-3 li+li{border-top:1px solid var(--deep-line)}
   .sectors{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sectors li,.sectors li:nth-child(5n+1),.sectors li:nth-child(3n+1){padding:1.1rem 1rem 1.2rem;border-left:0}
   .sectors li:nth-child(even){border-left:1px solid var(--line)}
   .sectors li:nth-child(odd){padding-left:0}
 }
 </style>
-<header class="hero">
+<header class="hero veil-strong">
 <div class="hero-photo" aria-hidden="true"></div>
 <div class="wrap">
 <ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li><a href="services.html">Nos services</a></li><li aria-current="page">L'ACV</li></ol>
 <h1>L'Analyse du Cycle de Vie, <em>pierre angulaire de notre approche</em></h1>
 <p class="hero-lead">Méthode normée ISO 14040-44, l'ACV est la référence en comptabilité environnementale. Elle permet de quantifier les impacts de vos processus sur tout leur cycle de vie.</p>
 <div class="hero-actions"><a class="btn btn-gold" href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'ACV">J'ai besoin d'une ACV {{ic:arrow-up-right}}</a><a class="btn btn-line" href="contact.html">Nous contacter</a></div>
-<ul class="facts facts-3" aria-label="Notre approche en bref">
+<ul class="facts cols-3" aria-label="Notre approche en bref">
 <li><b>ACV ISO 14040/44</b><span>Études conformes aux normes internationales pour évaluer les impacts environnementaux</span></li>
 <li><b>Éco-conception</b><span>Arbitrer entre indicateurs d'impacts : réchauffement climatique, particules fines, toxicité humaine</span></li>
 <li><b>Formations &amp; R&amp;D</b><span>Ateliers pratiques et projets innovants en collaboration avec l'ADEME et le milieu académique</span></li>

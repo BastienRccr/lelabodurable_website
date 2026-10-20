@@ -6,9 +6,10 @@
 .member img{width:120px;height:143px;object-fit:contain;object-position:center bottom;background:var(--tint);border-radius:var(--r)}
 .m-id h3{font:700 1.3rem/1.25 var(--f-display);color:var(--deep)}
 .m-role{color:var(--ink-2);font-size:.95rem;margin-top:.3rem;max-width:34ch}
-.poles{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;list-style:none}
-.poles li{display:inline-flex;gap:.4rem;align-items:center;font-size:.8rem;font-weight:600;color:var(--deep);background:#fff;border:1px solid var(--line);border-radius:999px;padding:.25rem .75rem .25rem .6rem}
-.poles .ic{color:var(--primary)}
+.member-poles{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;list-style:none}
+.member-poles li{display:inline-flex;gap:.35rem;align-items:center;font-size:.84rem;font-weight:600;color:var(--deep)}
+.member-poles li+li::before{content:"·";color:var(--ink-3);margin-right:.35rem}
+.member-poles .ic{color:var(--primary)}
 .m-lab{font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
 .m-bio>p:first-of-type{color:var(--ink-2);font-size:.95rem;max-width:66ch}
 .m-bio .tools{margin-top:.9rem}
@@ -52,7 +53,7 @@
 <div class="m-id">
 <h3>Christophe Pérès</h3>
 <p class="m-role">Fondateur — Pôle méthodes &amp; instrumentation</p>
-<ul class="poles" aria-label="Pôles"><li>{{ic:settings}}Instrumentation</li><li>{{ic:sprout}}Durabilité</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li>{{ic:settings}}Instrumentation</li><li>{{ic:sprout}}Durabilité</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -66,7 +67,7 @@
 <div class="m-id">
 <h3>Bastien Raccary</h3>
 <p class="m-role">Responsable pôle durabilité — ACV &amp; stratégie low impact</p>
-<ul class="poles" aria-label="Pôles"><li>{{ic:sprout}}Durabilité</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li>{{ic:sprout}}Durabilité</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -80,7 +81,7 @@
 <div class="m-id">
 <h3>Clément Truan</h3>
 <p class="m-role">Responsable pôle chémo-informatique &amp; IA</p>
-<ul class="poles" aria-label="Pôles"><li>{{ic:monitor}}Chémo-info</li><li>{{ic:sprout}}Durabilité</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li>{{ic:monitor}}Chémo-info</li><li>{{ic:sprout}}Durabilité</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -94,7 +95,7 @@
 <div class="m-id">
 <h3>Xavier Rouessac</h3>
 <p class="m-role">Responsable support &amp; formation — Expert LC/GC/MS</p>
-<ul class="poles" aria-label="Pôles"><li>{{ic:settings}}Support</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li>{{ic:settings}}Support</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
@@ -108,7 +109,7 @@
 <div class="m-id">
 <h3>Thomas Vandewattyne</h3>
 <p class="m-role">Expert chémo-informatique — Doctorant IA appliquée</p>
-<ul class="poles" aria-label="Pôles"><li>{{ic:monitor}}Chémo-info</li></ul>
+<ul class="member-poles" aria-label="Pôles"><li>{{ic:monitor}}Chémo-info</li></ul>
 </div>
 <div class="m-bio">
 <h4 class="m-lab">Parcours</h4>
