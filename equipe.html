@@ -370,10 +370,11 @@ p{text-wrap:pretty}
 @media (prefers-reduced-motion:no-preference){.js .avatars li{animation:pop .8s var(--ease) both;animation-delay:calc(var(--i)*.08s + .2s)}@keyframes pop{from{opacity:.001;transform:translateY(24px) scale(.9)}}}
 /* MEMBRES : cartes */
 .filters{margin:1.25rem 0 1.75rem}
-.team-list{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
+.team-list{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:1.25rem}
+.team-list>li{flex:0 1 calc(50% - .625rem);min-width:0}
 .member{display:flex;flex-direction:column;overflow:hidden}
 .member[hidden]{display:none}
-.m-top{display:flex;gap:1.2rem;align-items:center;padding:1.4rem 1.5rem;background:linear-gradient(120deg,var(--deep),var(--primary));color:var(--on-deep-2)}
+.m-top{display:flex;gap:1.2rem;align-items:center;min-height:152px;padding:1.4rem 1.5rem;background:linear-gradient(120deg,var(--deep),var(--primary));color:var(--on-deep-2)}
 .m-ph{flex-shrink:0;width:104px;height:104px;border-radius:50%;overflow:hidden;background:var(--tint);border:3px solid var(--gold-light);transition:transform .5s var(--ease)}
 .member:hover .m-ph{transform:rotate(-4deg) scale(1.05)}
 .m-ph img{width:100%;height:100%;object-fit:cover;object-position:top;transform:translateY(6%)}
@@ -388,11 +389,6 @@ p{text-wrap:pretty}
 .m-bio .tools{margin-top:1rem}
 .m-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto;padding-top:1.2rem}
 .btn.sm{min-height:40px;padding:.5rem 1rem;font-size:.86rem}
-.member.featured{grid-column:1/-1;flex-direction:row}
-.member.featured .m-top{flex-direction:column;align-items:flex-start;justify-content:center;width:42%;padding:2rem}
-.member.featured .m-ph{width:140px;height:140px}
-.member.featured .m-id h3{font-size:1.6rem}
-.member.featured .m-bio{padding:2rem}
 /* LABO */
 .labo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
 .labo .photo{margin:0;aspect-ratio:4/3}
@@ -403,8 +399,8 @@ p{text-wrap:pretty}
 .join h2{max-width:24ch}
 .join p{color:var(--ink-2);max-width:52ch;margin:0 auto 1.5rem}
 @media (max-width:1040px){.eh{grid-template-columns:minmax(0,1fr)}.av-wrap{align-items:flex-start}.av-cap{padding:0}.avatars{justify-content:flex-start;padding:0 0 0 22px}.labo{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:860px){.team-list{grid-template-columns:minmax(0,1fr)}.member.featured{flex-direction:column}.member.featured .m-top{width:auto;flex-direction:row;align-items:center;padding:1.4rem 1.5rem}.member.featured .m-ph{width:104px;height:104px}.member.featured .m-bio{padding:1.3rem 1.5rem 1.5rem}}
-@media (max-width:520px){.m-top{flex-direction:column;align-items:flex-start}.member.featured .m-top{flex-direction:column;align-items:flex-start}.avatars li{margin-left:-18px}}
+@media (max-width:860px){.team-list>li{flex-basis:100%}}
+@media (max-width:520px){.m-top{flex-direction:column;align-items:flex-start}.avatars li{margin-left:-18px}}
 </style>
 </head>
 <body>
@@ -446,7 +442,7 @@ p{text-wrap:pretty}
 <div class="filters" role="group" aria-label="Filtrer par pôle"><button type="button" class="chip" data-pole="all" aria-pressed="true">Toute l'équipe <span class="n">5</span></button><button type="button" class="chip" data-pole="instru" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Instrumentation <span class="n">2</span></button><button type="button" class="chip" data-pole="dura" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité <span class="n">3</span></button><button type="button" class="chip" data-pole="chemo" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info <span class="n">2</span></button></div>
 <p class="sr-only" aria-live="polite" id="teamCount">5 personnes affichées</p>
 <ul class="team-list">
-<li class="member panel lift featured" data-cat="instru dura" id="christophe-peres" data-reveal style="--d:0.00s">
+<li class="member panel lift" data-cat="instru dura" id="christophe-peres" data-reveal style="--d:0.00s">
 <div class="m-top"><span class="m-ph"><img src="assets/team/christophe-peres.png" alt="Portrait de Christophe Pérès" width="160" height="160"></span>
 <div class="m-id"><h3>Christophe Pérès</h3><p class="m-role">Fondateur — Pôle méthodes &amp; instrumentation</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Instrumentation</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul></div></div>
 <div class="m-bio"><h4 class="m-lab">Parcours</h4><p>Docteur-ingénieur AgroParisTech, Christophe a débuté au Research Institute for Chromatography dans l'instrumentation analytique. En 2009, il prend la responsabilité de la Recherche Analytique Parfums chez Chanel. En 2021, il fonde Le Labo Durable.</p><ul class="tools" aria-label="Compétences"><li>GC/LC/MS</li><li>Cosmétique</li><li>Reconditionnement</li><li>Durabilité</li></ul><p class="m-links"><a class="btn btn-ghost sm" href="https://www.linkedin.com/in/christophe-peres-385ba84/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="sr-only"> de Christophe Pérès</span></a><a class="btn btn-deep sm" href="mailto:christophe.peres@lelabodurable.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> à Christophe Pérès</span></a></p></div>
