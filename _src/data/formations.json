@@ -42,7 +42,7 @@
     "Sur devis"
    ]
   ],
-  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — LLD2025-01 Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable"
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos : LLD2025-01 Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable"
  },
  {
   "cat": "durabilite",
@@ -83,7 +83,7 @@
     "Sur devis"
    ]
   ],
-  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — LLD2025-02 Introduction à la chimie analytique durable et mobilisation des équipes"
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos : LLD2025-02 Introduction à la chimie analytique durable et mobilisation des équipes"
  },
  {
   "cat": "acv",
@@ -128,7 +128,7 @@
     "Sur devis"
    ]
   ],
-  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P08-ACV-I Introduction à l’analyse du cycle de vie (ACV) appliquée au domaine du laboratoire"
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos : P08-ACV-I Introduction à l’analyse du cycle de vie (ACV) appliquée au domaine du laboratoire"
  },
  {
   "cat": "instru",
@@ -172,7 +172,7 @@
     "Sur devis"
    ]
   ],
-  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P06-GC-E Les essentiels GC et GC-MS"
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos : P06-GC-E Les essentiels GC et GC-MS"
  },
  {
   "cat": "instru",
@@ -216,7 +216,7 @@
     "Sur devis"
    ]
   ],
-  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P06-GC-M Maintenance GC-FID-MSD de premier niveau"
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos : P06-GC-M Maintenance GC-FID-MSD de premier niveau"
  },
  {
   "cat": "chemo",
@@ -260,7 +260,7 @@
     "Sur devis"
    ]
   ],
-  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P07-GC-I Introduction au traitement de données GC-MS / GC-FID"
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos : P07-GC-I Introduction au traitement de données GC-MS / GC-FID"
  },
  {
   "cat": "chemo",
@@ -304,6 +304,6 @@
     "Sur devis"
    ]
   ],
-  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P07-GC-D Traitement avancé des données GC-MS"
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos : P07-GC-D Traitement avancé des données GC-MS"
  }
 ]

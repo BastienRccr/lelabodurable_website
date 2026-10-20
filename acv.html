@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L&#x27;ACV — Le Labo Durable</title>
+<title>L&#x27;ACV | Le Labo Durable</title>
 <meta name="description" content="Analyse du Cycle de Vie (ACV) ISO 14040/44 : études d&#x27;impact, éco-conception, revues critiques, formations. Le Labo Durable, experts ACV en chimie analytique.">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -287,7 +287,7 @@ p{text-wrap:pretty}
 .f-social{width:40px;height:40px;border-radius:var(--r);display:grid;place-items:center;border:1px solid var(--deep-line)}
 
 
-/* RELIEF : cartes, apparition, tracé — v2.1 « plus de personnalité » */
+/* RELIEF : cartes, apparition, tracé, v2.1 « plus de personnalité » */
 .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:0 1px 2px rgba(15,61,79,.05),0 10px 28px -18px rgba(15,61,79,.28);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .25s}
 .lift:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(15,61,79,.06),0 28px 50px -22px rgba(15,61,79,.42);border-color:var(--primary-light)}
 .panel-dark{background:rgba(255,255,255,.05);border:1px solid var(--deep-line);border-radius:var(--r-lg);transition:transform .45s var(--ease),background-color .3s,border-color .3s}
@@ -457,7 +457,7 @@ p{text-wrap:pretty}
 <figure class="quote">
 <svg class="ic" aria-hidden="true"><use href="#i-quote"/></svg>
 <blockquote><p>L'analyse du cycle de vie permet de revisiter les pratiques des laboratoires et de redonner du sens aux métiers</p></blockquote>
-<figcaption><img src="assets/team/bastien-raccary.png" alt="" width="56" height="56" loading="lazy"><cite>Bastien Raccary — Responsable pôle durabilité</cite></figcaption>
+<figcaption><img src="assets/team/hd/bastien-raccary.png" alt="" width="56" height="56" loading="lazy"><cite>Bastien Raccary, responsable pôle durabilité</cite></figcaption>
 </figure>
 </div></section>
 
@@ -483,7 +483,7 @@ p{text-wrap:pretty}
 <div>
 <h2 id="rech-h">Nous participons activement à la recherche en ACV</h2>
 <p>En partenariat avec l'Université de Bordeaux, nous publions des travaux de recherche sur l'application de l'ACV à la chimie analytique. Nos publications sont en libre accès dans des journaux à comité de lecture.</p>
-<p>C'est cette activité de recherche qui nourrit directement nos prestations et nos formations — un pont permanent entre science et terrain.</p>
+<p>C'est cette activité de recherche qui nourrit directement nos prestations et nos formations, un pont permanent entre science et terrain.</p>
 <div class="partner"><img src="assets/photos/univ-bordeaux-logo.png" alt="Université de Bordeaux" width="131" height="46" loading="lazy"></div>
 <div class="row-actions"><a class="btn btn-deep" href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'ACV">J'ai besoin d'une ACV <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a class="btn btn-ghost" href="formation-acv.html">Se former à l'ACV <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
 </div>
@@ -520,7 +520,7 @@ document.documentElement.classList.add('js');
   var form=document.getElementById('format'),cta=document.getElementById('ctaMail');
   if(form&&cta){
     var base=cta.dataset.subject;
-    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' — '+c.dataset.label:''))};
+    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' ('+c.dataset.label+')':''))};
     form.addEventListener('change',upd);upd();
   }
   // Catalogue : filtres

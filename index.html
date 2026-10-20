@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Labo Durable — Réduire les impacts environnementaux des structures scientifiques</title>
+<title>Le Labo Durable | Réduire les impacts environnementaux des structures scientifiques</title>
 <meta name="description" content="Le Labo Durable accompagne les laboratoires de chimie analytique dans la réduction de leurs impacts environnementaux. ACV, Bilan GES, formations, audit.">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -287,7 +287,7 @@ p{text-wrap:pretty}
 .f-social{width:40px;height:40px;border-radius:var(--r);display:grid;place-items:center;border:1px solid var(--deep-line)}
 
 
-/* RELIEF : cartes, apparition, tracé — v2.1 « plus de personnalité » */
+/* RELIEF : cartes, apparition, tracé, v2.1 « plus de personnalité » */
 .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:0 1px 2px rgba(15,61,79,.05),0 10px 28px -18px rgba(15,61,79,.28);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .25s}
 .lift:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(15,61,79,.06),0 28px 50px -22px rgba(15,61,79,.42);border-color:var(--primary-light)}
 .panel-dark{background:rgba(255,255,255,.05);border:1px solid var(--deep-line);border-radius:var(--r-lg);transition:transform .45s var(--ease),background-color .3s,border-color .3s}
@@ -376,26 +376,23 @@ p{text-wrap:pretty}
 .total{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;font-size:.88rem;color:var(--ink-3)}
 .total b{color:var(--ink);font-variant-numeric:tabular-nums}
 /* HERO accueil : texte + écran de chromatogramme */
-.hero-home{padding-bottom:0}
+.hero-home{padding-bottom:clamp(3.5rem,7vw,5.5rem)}
 .hh{display:grid;grid-template-columns:minmax(0,1fr);max-width:860px;gap:clamp(2rem,4vw,4rem);align-items:center;padding-bottom:clamp(2rem,4vw,3rem)}
 .hero-home h1{margin-top:.9rem;font-size:clamp(2.4rem,1.5rem + 3.6vw,4.4rem);max-width:18ch}
 .hero-home .hero-ref{margin-top:0}
-/* À PROPOS + mosaïque */
+/* À PROPOS + mission */
+.mission-card{position:relative;overflow:hidden;background:var(--deep);color:var(--on-deep-2);border-radius:var(--r-lg);padding:clamp(1.75rem,4vw,2.75rem);box-shadow:0 30px 60px -30px rgba(15,61,79,.6)}
+.mission-card::after{content:'';position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;border:1px solid rgba(232,200,138,.25);box-shadow:0 0 0 40px rgba(232,200,138,.05),0 0 0 80px rgba(232,200,138,.03)}
+.mission-card h3{display:flex;align-items:center;gap:.6rem;font:700 .95rem var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light)}
+.mission-card h3 .ic{width:1.3em;height:1.3em}
+.mission-text{position:relative;z-index:1;font:700 clamp(1.45rem,1.1rem + 1.4vw,2.1rem)/1.3 var(--f-display);color:#fff;margin-top:1rem;text-wrap:balance}
+.mission-quote{position:relative;z-index:1;margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--deep-line)}
+.mission-quote p{font-size:1.05rem;color:var(--on-deep-2);font-style:italic}
+.mission-quote cite{display:flex;align-items:center;gap:.6rem;margin-top:.7rem;font-style:normal;font-size:.88rem;font-weight:600;color:#fff}
+.mission-quote cite img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:top;background:var(--tint)}
 .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
 .about-text p{color:var(--ink-2);font-size:1.05rem;max-width:62ch}
 .about-text p+p{margin-top:1rem}
-.mission{margin-top:1.75rem;padding:1.4rem 1.5rem;border-left:0;background:var(--deep);border-color:var(--deep)}
-.mission h3{color:var(--gold-light);margin-bottom:.4rem}
-.mission p{color:var(--on-deep-2)!important;font-size:1rem!important}
-.mosaic{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:170px 150px auto;gap:1rem}
-.m1{grid-column:1/5;grid-row:1/3;margin:0}
-.m1 figcaption{top:.75rem;bottom:auto}
-.m2{grid-column:5/7;grid-row:1/2;margin:0}
-.mosaic .quote{grid-column:3/7;grid-row:2/4;align-self:end;padding:1.3rem 1.4rem;position:relative;z-index:1;margin-top:-1rem}
-.mosaic .quote p{font:700 1.2rem/1.35 var(--f-display);color:var(--deep)}
-.mosaic .quote p::first-letter{color:var(--gold-ink)}
-.mosaic .quote cite{display:flex;align-items:center;gap:.6rem;margin-top:.8rem;font-style:normal;font-size:.88rem;color:var(--ink-3)}
-.mosaic .quote cite img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:top;background:var(--tint)}
 /* VALEURS */
 .values{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
 .values li{padding:1.5rem}
@@ -436,9 +433,8 @@ p{text-wrap:pretty}
 .team{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.25rem}
 .team a{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none}
 .team .ph{width:100%;max-width:150px;aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:var(--tint);box-shadow:0 0 0 0 var(--gold);transition:box-shadow .4s var(--ease),transform .5s var(--ease)}
-.team img{width:100%;height:100%;object-fit:cover;object-position:top;transform:translateY(6%) scale(1.02);transition:transform .6s var(--ease)}
+.team img{width:100%;height:100%;object-fit:cover;object-position:center 12%}
 .team a:hover .ph{box-shadow:0 0 0 4px var(--gold);transform:translateY(-4px)}
-.team a:hover img{transform:translateY(3%) scale(1.06)}
 .team b{font:700 1rem/1.3 var(--f-display);color:var(--deep);margin-top:.9rem}
 .team span{font-size:.8rem;color:var(--ink-2);line-height:1.4;margin-top:.25rem}
 /* ENGAGEMENTS */
@@ -471,9 +467,7 @@ p{text-wrap:pretty}
   .values,.poles,.trades,.commit{grid-template-columns:minmax(0,1fr)}
   .poles>li:last-child{grid-column:auto}
   .team{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .mosaic{grid-template-rows:140px 120px auto}
-  .mosaic .quote{grid-column:1/7;margin-top:0}
-  }
+      }
 @media (max-width:1040px){.ges-grid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:720px){.ges-head{grid-template-columns:minmax(0,1fr)}.bars li{grid-template-columns:minmax(0,1fr);gap:.3rem}}
 </style>
@@ -524,24 +518,19 @@ p{text-wrap:pretty}
 <div class="hero-actions"><a class="btn btn-gold" href="contact.html">Discutons de votre projet <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a class="btn btn-line" href="services.html">Découvrir nos services <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
 </div>
 </div>
-<ul class="facts" aria-label="Chiffres clés"><li><b data-count>25+</b><span>clients accompagnés</span></li><li><b data-count>500+</b><span>personnes sensibilisées et formées</span></li><li><b data-count>15+</b><span>stratégies de réduction déployées</span></li><li><b data-count>10+</b><span>politiques environnementales co-construites</span></li></ul>
 </div>
 </header>
 
 <section class="sec" aria-labelledby="about-h"><div class="wrap about">
 <div class="about-text" data-reveal>
 <h2 id="about-h">Pourquoi Le Labo Durable ?</h2>
-<p>La chimie analytique, comme toutes les activités humaines, n'échappe pas aux défis environnementaux. Son impact est encore trop peu documenté — à l'inverse de la chimie organique, déjà au cœur des débats.</p>
-<p>Composé de docteur·es et d'ingénieur·es passionné·es, Le Labo Durable privilégie la vision long terme, l'implication de tous les niveaux organisationnels et la prise en compte des contraintes terrain — un pragmatisme ambitieux en somme.</p>
-<div class="mission panel">
-<h3 class="h3">Notre mission</h3>
-<p>Embarquer les structures scientifiques dans la lutte contre la crise environnementale et les accompagner afin de répondre aux attentes de la société en termes d'engagements et d'actes.</p>
+<p>La chimie analytique, comme toutes les activités humaines, n'échappe pas aux défis environnementaux. Son impact est encore trop peu documenté, à l'inverse de la chimie organique, déjà au cœur des débats.</p>
+<p>Composé de docteur·es et d'ingénieur·es passionné·es, Le Labo Durable privilégie la vision long terme, l'implication de tous les niveaux organisationnels et la prise en compte des contraintes terrain : un pragmatisme ambitieux en somme.</p>
 </div>
-</div>
-<div class="mosaic" data-reveal style="--d:.12s">
-<figure class="photo m1"><img src="assets/photos/labo-brioude.jpg" alt="Laboratoire Le Labo Durable — Brioude" width="1600" height="978" loading="lazy"><figcaption>Notre laboratoire, à Brioude</figcaption></figure>
-<figure class="photo m2"><img src="assets/photos/recherche-bordeaux.jpg" alt="Campus Université de Bordeaux" width="1430" height="766" loading="lazy"></figure>
-<blockquote class="quote panel"><p>«&nbsp;S'engager est le meilleur moyen de faire évoluer son activité&nbsp;»</p><cite><img src="assets/team/christophe-peres.png" alt="" width="44" height="44">Christophe Pérès, fondateur</cite></blockquote>
+<div class="mission-card" data-reveal style="--d:.1s">
+<h3><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Notre mission</h3>
+<p class="mission-text">Embarquer les structures scientifiques dans la lutte contre la crise environnementale et les accompagner afin de répondre aux attentes de la société en termes d'engagements et d'actes.</p>
+<blockquote class="mission-quote"><p>«&nbsp;S'engager est le meilleur moyen de faire évoluer son activité&nbsp;»</p><cite><img src="assets/team/hd/christophe-peres.png" alt="" width="48" height="48">Christophe Pérès, fondateur</cite></blockquote>
 </div>
 </div></section>
 
@@ -554,9 +543,9 @@ p{text-wrap:pretty}
 <li class="panel lift" data-reveal style="--d:.24s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg></span><b>Détermination</b><p>Pour aller plus loin ensemble et relever les défis</p></li>
 </ul>
 <ul class="partners" aria-label="Certifications et partenaires">
-<li><img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi – processus certifié, Actions de formation"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Qualiopi (via Analytiss)</span></li>
-<li><img src="https://github.com/user-attachments/assets/2317682e-cad8-462c-8d78-312238bbc307" alt="CIR – Crédit Impôt Recherche"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Agréé CIR</span></li>
-<li><img src="https://github.com/user-attachments/assets/9b4d19d2-c2cd-4acd-9a9e-b2560ad00858" alt="République Française – ADEME, Agence de la Transition Écologique"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Partenaire ADEME</span></li>
+<li><img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi, processus certifié, Actions de formation"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Qualiopi (via Analytiss)</span></li>
+<li><img src="https://github.com/user-attachments/assets/2317682e-cad8-462c-8d78-312238bbc307" alt="CIR, Crédit Impôt Recherche"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Agréé CIR</span></li>
+<li><img src="https://github.com/user-attachments/assets/9b4d19d2-c2cd-4acd-9a9e-b2560ad00858" alt="République Française, ADEME, Agence de la Transition Écologique"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Partenaire ADEME</span></li>
 <li><img src="https://github.com/user-attachments/assets/9b12bd80-223d-4653-8d12-c398a51bed6a" alt="CIFL"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Membre du CIFL</span></li>
 </ul>
 </div></section>
@@ -585,7 +574,7 @@ p{text-wrap:pretty}
 
 <section class="sec team-sec" aria-labelledby="team-h"><div class="wrap team-wrap">
 <div class="team-intro"><h2 id="team-h">Notre équipe</h2><p>Docteur·es et ingénieur·es passionné·es, nous combinons chimie analytique, ACV et chémo-informatique pour transformer les laboratoires.</p><a class="btn btn-deep" href="equipe.html">Rencontrer l'équipe <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
-<ul class="team"><li data-reveal style="--d:0.00s"><a href="equipe.html"><span class="ph"><img src="assets/team/christophe-peres.png" alt="" width="466" height="551"></span><b>Christophe Pérès</b><span>Fondateur — Pôle méthodes & instrumentation</span></a></li><li data-reveal style="--d:0.06s"><a href="equipe.html"><span class="ph"><img src="assets/team/bastien-raccary.png" alt="" width="562" height="668"></span><b>Bastien Raccary</b><span>Responsable pôle durabilité — ACV & stratégie low impact</span></a></li><li data-reveal style="--d:0.12s"><a href="equipe.html"><span class="ph"><img src="assets/team/clement-truan.png" alt="" width="562" height="668"></span><b>Clément Truan</b><span>Responsable pôle chémo-informatique & IA</span></a></li><li data-reveal style="--d:0.18s"><a href="equipe.html"><span class="ph"><img src="assets/team/xavier-rouessac.png" alt="" width="562" height="668"></span><b>Xavier Rouessac</b><span>Responsable support & formation — Expert LC/GC/MS</span></a></li><li data-reveal style="--d:0.24s"><a href="equipe.html"><span class="ph"><img src="assets/team/thomas-vandewattyne.png" alt="" width="562" height="668"></span><b>Thomas Vandewattyne</b><span>Expert chémo-informatique — Doctorant IA appliquée</span></a></li></ul>
+<ul class="team"><li data-reveal style="--d:0.00s"><a href="equipe.html"><span class="ph"><img src="assets/team/hd/christophe-peres.png" alt="" width="466" height="551"></span><b>Christophe Pérès</b><span>Fondateur, pôle méthodes & instrumentation</span></a></li><li data-reveal style="--d:0.06s"><a href="equipe.html"><span class="ph"><img src="assets/team/hd/bastien-raccary.png" alt="" width="562" height="668"></span><b>Bastien Raccary</b><span>Responsable pôle durabilité, ACV & stratégie low impact</span></a></li><li data-reveal style="--d:0.12s"><a href="equipe.html"><span class="ph"><img src="assets/team/hd/clement-truan.png" alt="" width="562" height="668"></span><b>Clément Truan</b><span>Responsable pôle chémo-informatique & IA</span></a></li><li data-reveal style="--d:0.18s"><a href="equipe.html"><span class="ph"><img src="assets/team/hd/xavier-rouessac.png" alt="" width="562" height="668"></span><b>Xavier Rouessac</b><span>Responsable support & formation, expert LC/GC/MS</span></a></li><li data-reveal style="--d:0.24s"><a href="equipe.html"><span class="ph"><img src="assets/team/hd/thomas-vandewattyne.png" alt="" width="562" height="668"></span><b>Thomas Vandewattyne</b><span>Expert chémo-informatique, doctorant IA appliquée</span></a></li></ul>
 </div></section>
 
 <section class="sec dark commit-sec" aria-labelledby="commit-h"><div class="wrap">
@@ -634,7 +623,7 @@ p{text-wrap:pretty}
 <li><span class="lbl">Avion</span><span class="bar"><i style="--w:9.9%"></i><span>7 140 km · 9,9 %</span></span></li>
 </ul>
 <p class="total"><span>Total</span><b>72 040 km · 100 %</b></p>
-<p class="note">La majorité de nos déplacements est effectuée en train. La voiture reste nécessaire pour le transport de matériel analytique volumineux (HPLC, GC-MS) — chaque trajet combine livraison et récupération d'instruments.</p>
+<p class="note">La majorité de nos déplacements est effectuée en train. La voiture reste nécessaire pour le transport de matériel analytique volumineux (HPLC, GC-MS) : chaque trajet combine livraison et récupération d'instruments.</p>
 </div>
 </div>
 </div></section>
@@ -672,7 +661,7 @@ document.documentElement.classList.add('js');
   var form=document.getElementById('format'),cta=document.getElementById('ctaMail');
   if(form&&cta){
     var base=cta.dataset.subject;
-    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' — '+c.dataset.label:''))};
+    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' ('+c.dataset.label+')':''))};
     form.addEventListener('change',upd);upd();
   }
   // Catalogue : filtres

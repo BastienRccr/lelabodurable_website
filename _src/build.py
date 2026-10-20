@@ -95,10 +95,10 @@ TOOLS = {
     'P07-GC-D': ['Scan / SIM', 'TIC / EIC', 'Bibliothèque NIST', 'Indices de rétention'],
 }
 TEAM = {
-    'Bastien Raccary': ('bastien-raccary.png', 'Responsable pôle durabilité — ACV & stratégie low impact'),
-    'Christophe Pérès': ('christophe-peres.png', 'Fondateur — Pôle méthodes & instrumentation'),
+    'Bastien Raccary': ('bastien-raccary.png', 'Responsable pôle durabilité, ACV & stratégie low impact'),
+    'Christophe Pérès': ('christophe-peres.png', 'Fondateur, pôle méthodes & instrumentation'),
     'Clément Truan': ('clement-truan.png', 'Responsable pôle chémo-informatique & IA'),
-    'Xavier Rouessac': ('xavier-rouessac.png', 'Responsable support & formation — Expert LC/GC/MS'),
+    'Xavier Rouessac': ('xavier-rouessac.png', 'Responsable support & formation, expert LC/GC/MS'),
 }
 
 for d in DATA:
@@ -399,7 +399,7 @@ p{text-wrap:pretty}
 .f-social{width:40px;height:40px;border-radius:var(--r);display:grid;place-items:center;border:1px solid var(--deep-line)}
 
 
-/* RELIEF : cartes, apparition, tracé — v2.1 « plus de personnalité » */
+/* RELIEF : cartes, apparition, tracé, v2.1 « plus de personnalité » */
 .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:0 1px 2px rgba(15,61,79,.05),0 10px 28px -18px rgba(15,61,79,.28);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .25s}
 .lift:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(15,61,79,.06),0 28px 50px -22px rgba(15,61,79,.42);border-color:var(--primary-light)}
 .panel-dark{background:rgba(255,255,255,.05);border:1px solid var(--deep-line);border-radius:var(--r-lg);transition:transform .45s var(--ease),background-color .3s,border-color .3s}
@@ -483,7 +483,7 @@ document.documentElement.classList.add('js');
   var form=document.getElementById('format'),cta=document.getElementById('ctaMail');
   if(form&&cta){
     var base=cta.dataset.subject;
-    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' — '+c.dataset.label:''))};
+    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' ('+c.dataset.label+')':''))};
     form.addEventListener('change',upd);upd();
   }
   // Catalogue : filtres
@@ -631,7 +631,7 @@ def proof_band(scope):
 def contact_card(subject):
     href = 'mailto:bastien.raccary@lelabodurable.com?subject=' + html.escape(subject, quote=True)
     return f'''<aside class="contact" aria-label="Contact formations">
-<div class="person"><img src="assets/team/bastien-raccary.png" alt="" width="64" height="64" loading="lazy"><div><b>Bastien Raccary</b><span>Contact formations</span></div></div>
+<div class="person"><img src="assets/team/hd/bastien-raccary.png" alt="" width="64" height="64" loading="lazy"><div><b>Bastien Raccary</b><span>Contact formations</span></div></div>
 <h3>Une question sur cette formation ?</h3>
 <p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs.</p>
 <ul><li>{ic('mail')}<a href="{href}">bastien.raccary@lelabodurable.com</a></li><li>{ic('phone')}<a href="tel:+33630637757">06 30 63 77 57</a></li></ul>
@@ -682,7 +682,7 @@ def fiche(d):
     spec_html = ''.join(f'<li><span>{k}</span><b>{E(v)}</b></li>' for k, v in spec if v)
     mail_href = 'mailto:bastien.raccary@lelabodurable.com?subject=' + html.escape(subj_base, quote=True)
 
-    trainers = ''.join(f'<div class="trainer"><img src="assets/team/{TEAM[n][0]}" alt="Portrait de {E(n)}" width="84" height="84" loading="lazy"><div><b>{E(n)}</b><span>{E(TEAM[n][1])}</span><a href="equipe.html">Voir le parcours</a></div></div>' for n in d['trainers'])
+    trainers = ''.join(f'<div class="trainer"><img src="assets/team/hd/{TEAM[n][0]}" alt="Portrait de {E(n)}" width="84" height="84" loading="lazy"><div><b>{E(n)}</b><span>{E(TEAM[n][1])}</span><a href="equipe.html">Voir le parcours</a></div></div>' for n in d['trainers'])
 
     ev = list(EVAL_STEPS)
     if det.get('Évaluation'):
@@ -737,7 +737,7 @@ def fiche(d):
 <h2 id="x-h">Les autres formations</h2>
 <div class="others">{mini}</div>
 </div></section>'''
-    title = f"{d['title']} — Formation — Le Labo Durable"
+    title = f"{d['title']} | Formation | Le Labo Durable"
     desc = f"Formation {d['ref']} : {d['subtitle']}. {det['Durée']}, {det['Public'].lower()}. Sur devis, en intra-entreprise."
     return page(title, desc, body)
 
@@ -807,7 +807,7 @@ def catalogue():
 <p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs. Parlons-en.</p>
 <div class="row-actions"><a class="btn btn-deep" href="contact.html">Nous contacter {ic('arrow-up-right')}</a></div>
 </div></section>'''
-    return page('Formations — Le Labo Durable',
+    return page('Formations | Le Labo Durable',
                 "Catalogue 2026 des formations du Labo Durable : chimie analytique durable, ACV, GC et GC-MS, traitement de données. Intra-entreprise, à Brioude ou à distance.", body)
 
 # ---------------------------------------------------------------- pages éditoriales

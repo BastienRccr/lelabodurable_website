@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notre équipe — Le Labo Durable</title>
+<title>Notre équipe | Le Labo Durable</title>
 <meta name="description" content="Découvrez l&#x27;équipe Le Labo Durable : docteur·es et ingénieur·es en chimie analytique, ACV, chémo-informatique et instrumentation.">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -287,7 +287,7 @@ p{text-wrap:pretty}
 .f-social{width:40px;height:40px;border-radius:var(--r);display:grid;place-items:center;border:1px solid var(--deep-line)}
 
 
-/* RELIEF : cartes, apparition, tracé — v2.1 « plus de personnalité » */
+/* RELIEF : cartes, apparition, tracé, v2.1 « plus de personnalité » */
 .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:0 1px 2px rgba(15,61,79,.05),0 10px 28px -18px rgba(15,61,79,.28);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .25s}
 .lift:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(15,61,79,.06),0 28px 50px -22px rgba(15,61,79,.42);border-color:var(--primary-light)}
 .panel-dark{background:rgba(255,255,255,.05);border:1px solid var(--deep-line);border-radius:var(--r-lg);transition:transform .45s var(--ease),background-color .3s,border-color .3s}
@@ -366,7 +366,7 @@ p{text-wrap:pretty}
 .avatars li{width:clamp(78px,8vw,112px);aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:var(--tint);border:3px solid var(--deep);margin-left:-22px;box-shadow:0 12px 26px -12px rgba(0,0,0,.6);transition:transform .5s var(--ease)}
 .avatars li:nth-child(even){transform:translateY(18px)}
 .avatars li:hover{transform:translateY(-6px) scale(1.06);z-index:2}
-.avatars img{width:100%;height:100%;object-fit:cover;object-position:top;transform:translateY(6%)}
+.avatars img{width:100%;height:100%;object-fit:cover;object-position:center 12%}
 @media (prefers-reduced-motion:no-preference){.js .avatars li{animation:pop .8s var(--ease) both;animation-delay:calc(var(--i)*.08s + .2s)}@keyframes pop{from{opacity:.001;transform:translateY(24px) scale(.9)}}}
 /* MEMBRES : cartes */
 .filters{margin:1.25rem 0 1.75rem}
@@ -377,7 +377,7 @@ p{text-wrap:pretty}
 .m-top{display:flex;gap:1.2rem;align-items:center;min-height:152px;padding:1.4rem 1.5rem;background:linear-gradient(120deg,var(--deep),var(--primary));color:var(--on-deep-2)}
 .m-ph{flex-shrink:0;width:104px;height:104px;border-radius:50%;overflow:hidden;background:var(--tint);border:3px solid var(--gold-light);transition:transform .5s var(--ease)}
 .member:hover .m-ph{transform:rotate(-4deg) scale(1.05)}
-.m-ph img{width:100%;height:100%;object-fit:cover;object-position:top;transform:translateY(6%)}
+.m-ph img{width:100%;height:100%;object-fit:cover;object-position:center 12%}
 .m-id h3{font:700 1.3rem/1.2 var(--f-display);color:#fff}
 .m-role{font-size:.9rem;color:var(--on-deep-2);margin-top:.25rem}
 .member-poles{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem;list-style:none}
@@ -432,7 +432,7 @@ p{text-wrap:pretty}
 <p class="hero-lead">Docteur·es et ingénieur·es passionné·es, nous combinons chimie analytique, ACV et chémo-informatique pour transformer les laboratoires.</p>
 <div class="hero-actions"><a class="btn btn-gold" href="#equipe">Rencontrer l'équipe <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></a><a class="btn btn-line" href="#rejoindre">Rejoignez-nous</a></div>
 </div>
-<div class="av-wrap"><ul class="avatars" aria-hidden="true"><li style="--i:0"><img src="assets/team/christophe-peres.png" alt="" width="96" height="96"></li><li style="--i:1"><img src="assets/team/bastien-raccary.png" alt="" width="96" height="96"></li><li style="--i:2"><img src="assets/team/clement-truan.png" alt="" width="96" height="96"></li><li style="--i:3"><img src="assets/team/xavier-rouessac.png" alt="" width="96" height="96"></li><li style="--i:4"><img src="assets/team/thomas-vandewattyne.png" alt="" width="96" height="96"></li></ul><p class="av-cap">5 expert·es pluridisciplinaires</p></div>
+<div class="av-wrap"><ul class="avatars" aria-hidden="true"><li style="--i:0"><img src="assets/team/hd/christophe-peres.png" alt="" width="96" height="96"></li><li style="--i:1"><img src="assets/team/hd/bastien-raccary.png" alt="" width="96" height="96"></li><li style="--i:2"><img src="assets/team/hd/clement-truan.png" alt="" width="96" height="96"></li><li style="--i:3"><img src="assets/team/hd/xavier-rouessac.png" alt="" width="96" height="96"></li><li style="--i:4"><img src="assets/team/hd/thomas-vandewattyne.png" alt="" width="96" height="96"></li></ul><p class="av-cap">5 expert·es pluridisciplinaires</p></div>
 </div>
 </div>
 </header>
@@ -443,35 +443,35 @@ p{text-wrap:pretty}
 <p class="sr-only" aria-live="polite" id="teamCount">5 personnes affichées</p>
 <ul class="team-list">
 <li class="member panel lift" data-cat="instru dura" id="christophe-peres" data-reveal style="--d:0.00s">
-<div class="m-top"><span class="m-ph"><img src="assets/team/christophe-peres.png" alt="Portrait de Christophe Pérès" width="160" height="160"></span>
-<div class="m-id"><h3>Christophe Pérès</h3><p class="m-role">Fondateur — Pôle méthodes &amp; instrumentation</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Instrumentation</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul></div></div>
+<div class="m-top"><span class="m-ph"><img src="assets/team/hd/christophe-peres.png" alt="Portrait de Christophe Pérès" width="160" height="160"></span>
+<div class="m-id"><h3>Christophe Pérès</h3><p class="m-role">Fondateur, pôle méthodes &amp; instrumentation</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Instrumentation</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul></div></div>
 <div class="m-bio"><h4 class="m-lab">Parcours</h4><p>Docteur-ingénieur AgroParisTech, Christophe a débuté au Research Institute for Chromatography dans l'instrumentation analytique. En 2009, il prend la responsabilité de la Recherche Analytique Parfums chez Chanel. En 2021, il fonde Le Labo Durable.</p><ul class="tools" aria-label="Compétences"><li>GC/LC/MS</li><li>Cosmétique</li><li>Reconditionnement</li><li>Durabilité</li></ul><p class="m-links"><a class="btn btn-ghost sm" href="https://www.linkedin.com/in/christophe-peres-385ba84/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="sr-only"> de Christophe Pérès</span></a><a class="btn btn-deep sm" href="mailto:christophe.peres@lelabodurable.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> à Christophe Pérès</span></a></p></div>
 </li>
 <li class="member panel lift" data-cat="dura" id="bastien-raccary" data-reveal style="--d:0.08s">
-<div class="m-top"><span class="m-ph"><img src="assets/team/bastien-raccary.png" alt="Portrait de Bastien Raccary" width="160" height="160"></span>
-<div class="m-id"><h3>Bastien Raccary</h3><p class="m-role">Responsable pôle durabilité — ACV &amp; stratégie low impact</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul></div></div>
+<div class="m-top"><span class="m-ph"><img src="assets/team/hd/bastien-raccary.png" alt="Portrait de Bastien Raccary" width="160" height="160"></span>
+<div class="m-id"><h3>Bastien Raccary</h3><p class="m-role">Responsable pôle durabilité, ACV &amp; stratégie low impact</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul></div></div>
 <div class="m-bio"><h4 class="m-lab">Parcours</h4><p>Ingénieur CPE Lyon, docteur de l'Université Bordeaux 1. En 2019, il co-fonde The Green Analytical Project (GAP) avec Christophe Pérès. Auditeur ISO 14001, il audite des structures, propose des plans d'action et accompagne les équipes dans leur transition environnementale.</p><ul class="tools" aria-label="Compétences"><li>ACV ISO 14040/44</li><li>Bilan GES</li><li>ISO 14001</li></ul><p class="m-links"><a class="btn btn-ghost sm" href="https://www.linkedin.com/in/bastien-raccary/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="sr-only"> de Bastien Raccary</span></a><a class="btn btn-deep sm" href="mailto:bastien.raccary@lelabodurable.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> à Bastien Raccary</span></a></p></div>
 </li>
 <li class="member panel lift" data-cat="chemo dura" id="clement-truan" data-reveal style="--d:0.00s">
-<div class="m-top"><span class="m-ph"><img src="assets/team/clement-truan.png" alt="Portrait de Clément Truan" width="160" height="160"></span>
+<div class="m-top"><span class="m-ph"><img src="assets/team/hd/clement-truan.png" alt="Portrait de Clément Truan" width="160" height="160"></span>
 <div class="m-id"><h3>Clément Truan</h3><p class="m-role">Responsable pôle chémo-informatique &amp; IA</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info</li><li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg>Durabilité</li></ul></div></div>
 <div class="m-bio"><h4 class="m-lab">Parcours</h4><p>Docteur-Ingénieur Chimie ParisTech et de l'Université Clermont-Auvergne. Sa double compétence en chimie analytique et en programmation lui permet de fournir des solutions de pointe utilisant algorithmes génétiques et intelligence artificielle.</p><ul class="tools" aria-label="Compétences"><li>Algorithmie</li><li>IA</li><li>Traitement du signal</li></ul><p class="m-links"><a class="btn btn-ghost sm" href="https://www.linkedin.com/in/cl%C3%A9ment-truan-54a70669/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="sr-only"> de Clément Truan</span></a><a class="btn btn-deep sm" href="mailto:clement.truan@lelabodurable.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> à Clément Truan</span></a></p></div>
 </li>
 <li class="member panel lift" data-cat="instru" id="xavier-rouessac" data-reveal style="--d:0.08s">
-<div class="m-top"><span class="m-ph"><img src="assets/team/xavier-rouessac.png" alt="Portrait de Xavier Rouessac" width="160" height="160"></span>
-<div class="m-id"><h3>Xavier Rouessac</h3><p class="m-role">Responsable support &amp; formation — Expert LC/GC/MS</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Support</li></ul></div></div>
+<div class="m-top"><span class="m-ph"><img src="assets/team/hd/xavier-rouessac.png" alt="Portrait de Xavier Rouessac" width="160" height="160"></span>
+<div class="m-id"><h3>Xavier Rouessac</h3><p class="m-role">Responsable support &amp; formation, expert LC/GC/MS</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg>Support</li></ul></div></div>
 <div class="m-bio"><h4 class="m-lab">Parcours</h4><p>Chez les Rouessac, l'Analyse Chimique est une histoire de famille. Fort de 35 ans d'expérience en chromatographie et spectrométrie de masse, Xavier assure le support à distance et sur site des solutions déployées par Le Labo Durable.</p><ul class="tools" aria-label="Compétences"><li>Chromatographie</li><li>Spectrométrie de masse</li><li>Maintenance</li></ul><p class="m-links"><a class="btn btn-ghost sm" href="https://www.linkedin.com/in/xavier-rouessac-b255a399/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="sr-only"> de Xavier Rouessac</span></a><a class="btn btn-deep sm" href="mailto:xavier.rouessac@lelabodurable.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> à Xavier Rouessac</span></a></p></div>
 </li>
 <li class="member panel lift" data-cat="chemo" id="thomas-vandewattyne" data-reveal style="--d:0.00s">
-<div class="m-top"><span class="m-ph"><img src="assets/team/thomas-vandewattyne.png" alt="Portrait de Thomas Vandewattyne" width="160" height="160"></span>
-<div class="m-id"><h3>Thomas Vandewattyne</h3><p class="m-role">Expert chémo-informatique — Doctorant IA appliquée</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info</li></ul></div></div>
+<div class="m-top"><span class="m-ph"><img src="assets/team/hd/thomas-vandewattyne.png" alt="Portrait de Thomas Vandewattyne" width="160" height="160"></span>
+<div class="m-id"><h3>Thomas Vandewattyne</h3><p class="m-role">Expert chémo-informatique, doctorant IA appliquée</p><ul class="member-poles" aria-label="Pôles"><li><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Chémo-info</li></ul></div></div>
 <div class="m-bio"><h4 class="m-lab">Parcours</h4><p>Titulaire d'une licence en Chimie Analytique et d'un Master en Informatique, Thomas collabore avec Clément Truan. Sa thèse porte sur l'IA et l'algorithmie appliquées aux problématiques des laboratoires d'analyses.</p><ul class="tools" aria-label="Compétences"><li>IA</li><li>Algorithmie</li><li>Recherche</li><li>Données labo</li></ul><p class="m-links"><a class="btn btn-ghost sm" href="https://www.linkedin.com/in/thomas-vandewattyne/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="sr-only"> de Thomas Vandewattyne</span></a><a class="btn btn-deep sm" href="mailto:thomas.vandewattyne@lelabodurable.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> à Thomas Vandewattyne</span></a></p></div>
 </li>
 </ul>
 </div></section>
 
 <section class="sec dark" aria-labelledby="labo-h"><div class="wrap labo" data-reveal>
-<figure class="photo"><img src="assets/photos/labo-brioude.jpg" alt="Laboratoire Le Labo Durable — Brioude" width="800" height="600" loading="lazy"><figcaption><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg>Notre laboratoire, à Brioude</figcaption></figure>
+<figure class="photo"><img src="assets/photos/labo-brioude.jpg" alt="Laboratoire Le Labo Durable à Brioude" width="800" height="600" loading="lazy"><figcaption><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg>Notre laboratoire, à Brioude</figcaption></figure>
 <div>
 <h2 id="labo-h">Un membre à part entière de l'équipe</h2>
 <p>Situé à Brioude, en Auvergne, notre laboratoire nous permet d'expérimenter les solutions que nous proposons à nos clients. Conçu comme un lieu de rencontres et de coworking, il accueille aussi des associations comme la Fresque du Climat.</p>
@@ -511,7 +511,7 @@ document.documentElement.classList.add('js');
   var form=document.getElementById('format'),cta=document.getElementById('ctaMail');
   if(form&&cta){
     var base=cta.dataset.subject;
-    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' — '+c.dataset.label:''))};
+    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' ('+c.dataset.label+')':''))};
     form.addEventListener('change',upd);upd();
   }
   // Catalogue : filtres
