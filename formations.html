@@ -29,7 +29,8 @@ a{color:var(--primary);text-underline-offset:3px}
 h1,h2,h3{font-family:var(--f-display);color:var(--deep);line-height:1.15;text-wrap:balance;letter-spacing:-.01em}
 p{text-wrap:pretty}
 ::selection{background:var(--gold-light);color:var(--deep)}
-:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:2px solid var(--deep);outline-offset:3px;border-radius:4px}
+.hero :focus-visible,.dark :focus-visible,.footer :focus-visible,.card-head :focus-visible,.mini:focus-visible,.step-side :focus-visible{outline-color:var(--gold-light)}
 .ic{width:1.2em;height:1.2em;flex-shrink:0;display:inline-block;vertical-align:-.22em}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:1rem;top:-100px;z-index:300;background:var(--deep);color:#fff;padding:.6rem 1rem;border-radius:var(--r);font-weight:600}
@@ -114,8 +115,6 @@ p{text-wrap:pretty}
 .step{display:grid;grid-template-columns:180px minmax(0,1fr)}
 .step+.step{border-top:1px solid var(--line)}
 .step-side{background:var(--deep);color:var(--on-deep-2);padding:1.4rem 1.25rem}
-.step:first-child .step-side{background:var(--primary)}
-.step:first-child .step-side span{color:#fff}
 .step-side b{display:block;font:700 1.25rem/1.2 var(--f-display);color:#fff}
 .step-side span{display:block;margin-top:.25rem;font-size:.85rem;color:var(--gold-light);font-weight:600}
 .step+.step .step-side{border-top:1px solid var(--deep-line)}
@@ -130,7 +129,7 @@ p{text-wrap:pretty}
 .card{position:sticky;top:calc(var(--nav-h) + 1.25rem);background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
 .card-head{background:var(--deep);color:var(--on-deep-2);padding:1.4rem 1.5rem}
 .card-head small{display:block;font-size:.8rem;color:var(--on-deep-3)}
-.card-head b{display:block;font:700 1.7rem/1.15 var(--f-display);color:#fff;margin-top:.15rem}
+.card-head b{display:block;font:700 1.7rem/1.15 var(--f-display);color:#fff}
 .card-head p{font-size:.85rem;margin-top:.35rem}
 .card-body{padding:1.25rem 1.5rem 1.5rem}
 .card-body fieldset{border:0}
@@ -146,6 +145,10 @@ p{text-wrap:pretty}
 .opt b{display:block;font-size:.95rem;color:var(--deep)}
 .opt span{display:block;font-size:.82rem;color:var(--ink-3)}
 .card .btn{margin-top:1.1rem}
+.fmt-one{padding:.9rem 1rem;border-radius:var(--r);background:var(--tint)}
+.fmt-one span{display:block;font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+.fmt-one b{display:block;color:var(--deep);margin-top:.15rem}
+.fmt-one small{display:block;font-size:.84rem;color:var(--ink-2);margin-top:.15rem}
 .card-alt{display:block;text-align:center;margin-top:.75rem;font-size:.88rem;font-weight:600;color:var(--deep)}
 .spec{list-style:none;border-top:1px solid var(--line);margin-top:1.25rem;padding-top:.5rem}
 .spec li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;font-size:.86rem;border-bottom:1px solid var(--soft)}
@@ -155,11 +158,11 @@ p{text-wrap:pretty}
 
 /* ÉVALUATION (frise) */
 .eval{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:clamp(2rem,4vw,4rem);align-items:start}
+.eval h2{margin-bottom:0}
 .track{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
 .track::before{content:'';position:absolute;left:9px;right:12%;top:9px;height:2px;background:var(--gold)}
 .track li{position:relative;padding:2.1rem 1rem 0 0;min-width:0}
 .track li::before{content:'';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--gold)}
-.track small{display:block;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-ink)}
 .track b{display:block;font-weight:600;color:var(--deep);line-height:1.35;margin-top:.25rem;font-size:.95rem}
 .track span{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.3rem}
 
@@ -234,8 +237,8 @@ p{text-wrap:pretty}
 .row a:hover{background:var(--soft)}
 .row-ic{width:56px;height:56px;border-radius:14px;background:var(--tint);color:var(--deep);display:grid;place-items:center}
 .row-ic .ic{width:24px;height:24px}
-.row-t small{display:block;font-size:.78rem;font-weight:700;color:var(--gold-ink);letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.row-t b{display:block;font:700 1.15rem/1.3 var(--f-display);color:var(--deep);margin-top:.15rem}
+.row-t b{display:block;font:700 1.15rem/1.3 var(--f-display);color:var(--deep)}
+.row-m .ref{font-weight:700;color:var(--gold-ink);font-variant-numeric:tabular-nums}
 .row-t span{display:block;font-size:.9rem;color:var(--ink-2);margin-top:.25rem}
 .row-m{font-size:.86rem;color:var(--ink-2);display:flex;flex-direction:column;gap:.3rem}
 .row-m span{display:flex;gap:.45rem;align-items:center}
@@ -349,7 +352,7 @@ p{text-wrap:pretty}
 </div></nav>
 <main id="main">
 <header class="hero">
-<div class="hero-photo" role="img" aria-label="Paysage des monts d'Auvergne"></div>
+<div class="hero-photo" aria-hidden="true"></div>
 <div class="wrap">
 <ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li aria-current="page">Formations</li></ol>
 <h1>Former pour susciter <em>l'implication</em></h1>
@@ -366,32 +369,32 @@ p{text-wrap:pretty}
 <p class="sr-only" aria-live="polite" id="count">7 formations</p>
 <ul class="list"><li class="row" data-cat="durabilite"><a href="formation-defis-environnementaux.html">
 <span class="row-ic"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg></span>
-<span class="row-t"><small>LLD2025-01 · Durabilité</small><b>Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable</b><span>Limites planétaires, politique environnementale, analyse d&#x27;une méthode, communication responsable</span></span>
-<span class="row-m"><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Bastien Raccary, Christophe Pérès</span></span>
+<span class="row-t"><b>Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable</b><span>Limites planétaires, politique environnementale, analyse d&#x27;une méthode, communication responsable</span></span>
+<span class="row-m"><span class="ref">LLD2025-01 · Durabilité</span><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Bastien Raccary, Christophe Pérès</span></span>
 <span class="row-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></li><li class="row" data-cat="durabilite"><a href="formation-chimie-analytique-durable.html">
 <span class="row-ic"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg></span>
-<span class="row-t"><small>LLD2025-02 · Durabilité</small><b>Introduction à la chimie analytique durable et mobilisation des équipes</b><span>Enjeux, cadre réglementaire, ateliers politique environnementale et analyse de méthode</span></span>
-<span class="row-m"><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Bastien Raccary, Christophe Pérès</span></span>
+<span class="row-t"><b>Introduction à la chimie analytique durable et mobilisation des équipes</b><span>Enjeux, cadre réglementaire, ateliers politique environnementale et analyse de méthode</span></span>
+<span class="row-m"><span class="ref">LLD2025-02 · Durabilité</span><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Bastien Raccary, Christophe Pérès</span></span>
 <span class="row-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></li><li class="row" data-cat="acv"><a href="formation-acv.html">
 <span class="row-ic"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg></span>
-<span class="row-t"><small>P08-ACV-I · Analyse du cycle de vie</small><b>Introduction à l&#x27;analyse du cycle de vie (ACV) appliquée au domaine du laboratoire</b><span>ISO 14040/14044, les 4 phases de l&#x27;ACV, atelier openLCA, collecte de données</span></span>
-<span class="row-m"><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Bastien Raccary</span></span>
+<span class="row-t"><b>Introduction à l&#x27;analyse du cycle de vie (ACV) appliquée au domaine du laboratoire</b><span>ISO 14040/14044, les 4 phases de l&#x27;ACV, atelier openLCA, collecte de données</span></span>
+<span class="row-m"><span class="ref">P08-ACV-I · Analyse du cycle de vie</span><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Bastien Raccary</span></span>
 <span class="row-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></li><li class="row" data-cat="instru"><a href="formation-gc-gcms-essentiels.html">
 <span class="row-ic"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg></span>
-<span class="row-t"><small>P06-GC-E · Instrumentation</small><b>Les essentiels GC et GC-MS</b><span>Principes généraux, utilisation avancée et maintenance de 1er niveau GC-FID / GC-MS</span></span>
-<span class="row-m"><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2 jours (14 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Xavier Rouessac</span></span>
+<span class="row-t"><b>Les essentiels GC et GC-MS</b><span>Principes généraux, utilisation avancée et maintenance de 1er niveau GC-FID / GC-MS</span></span>
+<span class="row-m"><span class="ref">P06-GC-E · Instrumentation</span><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2 jours (14 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Xavier Rouessac</span></span>
 <span class="row-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></li><li class="row" data-cat="instru"><a href="formation-maintenance-gc.html">
 <span class="row-ic"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg></span>
-<span class="row-t"><small>P06-GC-M · Instrumentation</small><b>Maintenance GC-FID-MSD de premier niveau</b><span>Entretien courant des systèmes GC et GC-MS Agilent : ALS, HSS, SSL, FID, MSD</span></span>
-<span class="row-m"><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2 jours (14 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Xavier Rouessac</span></span>
+<span class="row-t"><b>Maintenance GC-FID-MSD de premier niveau</b><span>Entretien courant des systèmes GC et GC-MS Agilent : ALS, HSS, SSL, FID, MSD</span></span>
+<span class="row-m"><span class="ref">P06-GC-M · Instrumentation</span><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2 jours (14 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Xavier Rouessac</span></span>
 <span class="row-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></li><li class="row" data-cat="chemo"><a href="formation-donnees-gcms-introduction.html">
 <span class="row-ic"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg></span>
-<span class="row-t"><small>P07-GC-I · Chémo-informatique</small><b>Introduction au traitement de données GC-MS / GC-FID</b><span>Comprendre ses données chromatographiques et adopter des stratégies de traitement efficaces</span></span>
-<span class="row-m"><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2 jours (12 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Clément Truan</span></span>
+<span class="row-t"><b>Introduction au traitement de données GC-MS / GC-FID</b><span>Comprendre ses données chromatographiques et adopter des stratégies de traitement efficaces</span></span>
+<span class="row-m"><span class="ref">P07-GC-I · Chémo-informatique</span><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2 jours (12 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Clément Truan</span></span>
 <span class="row-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></li><li class="row" data-cat="chemo"><a href="formation-donnees-gcms-avance.html">
 <span class="row-ic"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg></span>
-<span class="row-t"><small>P07-GC-D · Chémo-informatique</small><b>Traitement avancé des données GC-MS</b><span>Déconvolution, identification et quantification sur matrices complexes</span></span>
-<span class="row-m"><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour (7 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Clément Truan</span></span>
+<span class="row-t"><b>Traitement avancé des données GC-MS</b><span>Déconvolution, identification et quantification sur matrices complexes</span></span>
+<span class="row-m"><span class="ref">P07-GC-D · Chémo-informatique</span><span><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 jour (7 h)</span><span><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Clément Truan</span></span>
 <span class="row-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></a></li></ul>
 </div></section>
 
@@ -405,7 +408,7 @@ p{text-wrap:pretty}
 <div>
 <h2 id="proof-h">Ce que retiennent nos stagiaires</h2>
 <p class="sec-intro">Résultats 2025, sur l'ensemble de nos formations. Chaque session se termine par un questionnaire de satisfaction.</p>
-<a class="quali" href="https://analytiss.com" target="_blank" rel="noopener"><img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi" loading="lazy" width="96" height="34"><span>Formations portées par Analytiss,<br>certifié Qualiopi (actions de formation)</span></a>
+<a class="quali" href="https://analytiss.com" target="_blank" rel="noopener"><img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi" width="96" height="34"><span>Formations portées par Analytiss,<br>certifié Qualiopi (actions de formation)</span></a>
 </div>
 <div class="score" role="group" aria-label="Note moyenne 4,7 sur 5">
 <div class="score-n">4,7<small>/ 5</small></div>
@@ -415,7 +418,7 @@ p{text-wrap:pretty}
 </div>
 </div>
 <div class="money">
-<div><h3 class="h3">Prix et financement</h3><p>Chaque formation est construite pour votre laboratoire : le tarif dépend du nombre de participant·es et du lieu.</p></div>
+<div><h3 class="h3">Prix et financement</h3><p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs.</p></div>
 <div class="money-grid">
 <div><b class="gold">Sur devis</b><span>Selon le nombre de participant·es et le lieu</span></div>
 <div><b>OPCO</b><span>Prise en charge possible par votre OPCO</span></div>
