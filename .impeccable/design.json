@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-20T12:00:00Z",
+  "generatedAt": "2026-10-20T14:00:00Z",
   "title": "Design System: Le Labo Durable",
   "extensions": {
     "colorMeta": {
@@ -280,7 +280,7 @@
       {
         "name": "floating-panel",
         "value": "0 18px 40px -18px rgba(15,61,79,.28), 0 2px 6px rgba(15,61,79,.06)",
-        "purpose": "Carte d'inscription, carte contact collante, menu mobile."
+        "purpose": "Carte d'inscription, carte contact collante, formulaire de contact, menu mobile ; une seule pièce flottante par page."
       },
       {
         "name": "open-state",
@@ -317,6 +317,22 @@
       {
         "name": "compact",
         "value": "720px"
+      },
+      {
+        "name": "narrow",
+        "value": "560px"
+      }
+    ],
+    "heroVeil": [
+      {
+        "name": "default",
+        "value": "linear-gradient(100deg,rgba(15,61,79,.96) 0%,rgba(15,61,79,.84) 42%,rgba(15,61,79,.42) 100%)",
+        "purpose": "Voile du hero sur photo de paysage sombre."
+      },
+      {
+        "name": "bright-photo",
+        "value": "linear-gradient(100deg,rgba(15,61,79,.97) 0%,rgba(15,61,79,.9) 50%,rgba(15,61,79,.8) 100%)",
+        "purpose": "Voile renforcé pour une photo claire ou texturée (acv, contact)."
       }
     ]
   },
@@ -391,18 +407,43 @@
       "description": "details natif ; ouvert = chevron retourné + bordure or + ombre d'état.",
       "html": "<details class=\"ds-faq\" open><summary>Quels sont les délais pour démarrer ?<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary><p>Démarrage possible sous 4 à 8 semaines après signature de la convention.</p></details>",
       "css": ".ds-faq{border:1px solid #d8e4e7;border-radius:10px;background:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;transition:border-color .2s,box-shadow .2s}.ds-faq[open]{border-color:#d4a053;box-shadow:0 10px 30px -18px rgba(15,61,79,.35)}.ds-faq summary{list-style:none;display:flex;align-items:center;gap:1rem;padding:1.05rem 1.2rem;cursor:pointer;font-weight:600;color:#0f3d4f}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-faq summary svg{margin-left:auto;color:#566a6f;transition:transform .3s cubic-bezier(.16,1,.3,1)}.ds-faq[open] summary svg{transform:rotate(180deg);color:#0f3d4f}.ds-faq p{margin:0;padding:0 1.2rem 1.15rem;color:#4a5e63;font-size:.95rem}"
+    },
+    {
+      "name": "Champ de formulaire",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "Champ texte 48px, contour filet ; focus = contour pétrole + double anneau voile sarcelle / pétrole.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-n\">Nom <span class=\"ds-req\" aria-hidden=\"true\">*</span></label><input id=\"ds-n\" placeholder=\"Votre nom\" required></div>",
+      "css": ".ds-field{font-family:'Plus Jakarta Sans',system-ui,sans-serif;max-width:360px}.ds-field label{display:block;font-size:.9rem;font-weight:600;color:#0f3d4f;margin-bottom:.4rem}.ds-req{color:#8f5c15;margin-left:.15rem}.ds-field input{width:100%;box-sizing:border-box;font:400 1rem/1.5 'Plus Jakarta Sans',system-ui,sans-serif;color:#1a2a2e;background:#fff;border:1.5px solid #d8e4e7;border-radius:10px;padding:.7rem .9rem;min-height:48px;transition:border-color .2s,box-shadow .2s}.ds-field input::placeholder{color:#566a6f}.ds-field input:hover{border-color:#2a8a9a}.ds-field input:focus{outline:none;border-color:#0f3d4f;box-shadow:0 0 0 3px #e8f4f6,0 0 0 5px #0f3d4f}"
+    },
+    {
+      "name": "Barres de données",
+      "kind": "custom",
+      "refersTo": "bar-fill",
+      "description": "Signature : graphique horizontal HTML, valeur toujours écrite en chiffres tabulaires.",
+      "html": "<ul class=\"ds-bars\"><li><span class=\"ds-lbl\">Voiture</span><span class=\"ds-bar\"><i style=\"--w:61%\"><span>3,87 tCO₂e · 61,0 %</span></i></span></li><li><span class=\"ds-lbl\">Avion</span><span class=\"ds-bar\"><i style=\"--w:20.5%\"></i><span>1,30 tCO₂e · 20,5 %</span></span></li><li><span class=\"ds-lbl\">Train</span><span class=\"ds-bar\"><i style=\"--w:4.1%\"></i><span>0,26 tCO₂e · 4,1 %</span></span></li></ul>",
+      "css": ".ds-bars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem;max-width:520px;font-family:'Plus Jakarta Sans',system-ui,sans-serif}.ds-bars li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:.9rem;align-items:center}.ds-lbl{font-size:.92rem;font-weight:600;color:#1a2a2e}.ds-bar{display:flex;align-items:center;min-height:32px;background:#f4f8f9;border-radius:10px;font-size:.84rem;font-variant-numeric:tabular-nums}.ds-bar i{display:flex;align-items:center;align-self:stretch;width:var(--w);min-width:4px;background:#1a6b7a;border-radius:10px;font-style:normal}.ds-bar span{padding:0 .6rem;color:#1a2a2e;font-weight:600;white-space:nowrap}.ds-bar i span{color:#fff;padding-left:.75rem}"
+    },
+    {
+      "name": "Liste de coordonnées",
+      "kind": "custom",
+      "refersTo": "icon-tile",
+      "description": "Lignes filetées : tuile d'icône voile sarcelle, libellé de donnée, valeur.",
+      "html": "<ul class=\"ds-clist\"><li><span class=\"ds-tile\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg></span><span><span class=\"ds-lab\">Email</span><a class=\"ds-val\" href=\"#\">contact@lelabodurable.com</a></span></li><li><span class=\"ds-tile\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg></span><span><span class=\"ds-lab\">Adresse</span><span class=\"ds-val\">34 rue du Vallat, 43100 Brioude</span></span></li></ul>",
+      "css": ".ds-clist{list-style:none;margin:0;padding:0;border-top:1px solid #d8e4e7;max-width:440px;font-family:'Plus Jakarta Sans',system-ui,sans-serif}.ds-clist li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:1rem;align-items:start;padding:1.1rem 0;border-bottom:1px solid #d8e4e7}.ds-tile{width:44px;height:44px;border-radius:10px;background:#e8f4f6;color:#0f3d4f;display:grid;place-items:center}.ds-lab{display:block;font-size:.8rem;font-weight:600;color:#566a6f;text-transform:uppercase;letter-spacing:.08em}.ds-val{display:block;color:#1a2a2e;font-weight:600;margin-top:.1rem;overflow-wrap:anywhere}a.ds-val{color:#1a6b7a;text-underline-offset:3px}a.ds-val:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}"
     }
   ],
   "narrative": {
     "northStar": "La fiche de stage technique",
-    "overview": "Tout ce qu'un·e responsable de laboratoire vérifie avant d'engager une équipe (public, durée, prérequis, formateur, modalités, prise en charge) est posé à plat, lisible sans cliquer, comme sur une fiche technique d'instrument. Le système alterne deux matières seulement : de grands bandeaux bleu pétrole profond (hero photographique voilé, preuves et financement, cartes de renvoi, pied de page) et une lecture sur blanc pur, structurée par des filets fins plutôt que par des boîtes. L'or n'apparaît que là où l'on agit, où l'on compte, ou où l'on avance d'une étape.\n\nLa densité est celle d'un document de référence : grilles de faits séparées par des filets verticaux, listes de définitions, tableaux de spécifications alignés à droite, chiffres en chiffres tabulaires. Une seule pièce flotte : la carte d'inscription (et, plus bas, la carte contact), collante dans une colonne de 360px, seule à porter une ombre douce. Le mouvement est rare : une seule entrée orchestrée (la barre de faits du hero), des survols de 0,2 s et une courbe unique.\n\nLe site est toujours en thème clair. Le propriétaire a un daltonisme mixte sévère : aucun état, aucune catégorie, aucune information n'est portée par la couleur seule, et chaque couple texte/fond atteint au moins WCAG AA.",
+    "overview": "Tout ce qu'un·e responsable de laboratoire vérifie avant d'engager une équipe (public, durée, prérequis, formateur, modalités, prise en charge) est posé à plat, lisible sans cliquer, comme sur une fiche technique d'instrument. Le système alterne deux matières seulement : de grands bandeaux bleu pétrole profond (hero photographique voilé, preuves et financement, cartes de renvoi, pied de page) et une lecture sur blanc pur, structurée par des filets fins plutôt que par des boîtes. L'or n'apparaît que là où l'on agit, où l'on compte, ou où l'on avance d'une étape.\n\nLa densité est celle d'un document de référence : grilles de faits séparées par des filets verticaux, listes de définitions, tableaux de spécifications alignés à droite, chiffres en chiffres tabulaires. Une seule pièce flotte par page : sur une fiche, la carte d'inscription (et, plus bas, la carte contact), collante dans une colonne de 360px ; sur la page Contact, le formulaire. Elle est seule à porter une ombre douce. Le mouvement est rare : une seule entrée orchestrée (la barre de faits du hero), des survols de 0,2 s et une courbe unique.\n\nLe site est toujours en thème clair. Le propriétaire a un daltonisme mixte sévère : aucun état, aucune catégorie, aucune information n'est portée par la couleur seule, et chaque couple texte/fond atteint au moins WCAG AA.",
     "keyCharacteristics": [
       "Bandeaux bleu pétrole pleine largeur alternant avec des zones de lecture sur blanc pur.",
       "Or réservé aux actions (pilules), aux chiffres et aux marqueurs de progression.",
       "Structure par filets de 1px et grilles de faits, pas par cartes empilées.",
       "Carte d'inscription collante, seule surface en élévation, dont le choix de format réécrit l'objet du mail.",
       "Outfit 700 pour les titres et les chiffres, Plus Jakarta Sans pour tout le texte courant.",
-      "Icônes Lucide au trait, en SVG en ligne, jamais seules porteuses de sens."
+      "Icônes Lucide au trait, en SVG en ligne, jamais seules porteuses de sens.",
+      "Données chiffrées en barres HTML dont chaque valeur est écrite, jamais en graphique muet."
     ],
     "rules": [
       {
@@ -432,12 +473,12 @@
       },
       {
         "name": "The Visible By Default Rule",
-        "body": "Le contenu de décision n'est jamais caché derrière un accordéon ou un onglet ; seule la FAQ se replie.",
+        "body": "Le contenu de décision n'est jamais caché derrière un accordéon ou un onglet ; métiers et engagements s'affichent en grilles ouvertes à filets. Seule la FAQ se replie.",
         "section": "layout"
       },
       {
         "name": "The One Floating Panel Rule",
-        "body": "Seuls les panneaux qui flottent au-dessus du contenu (carte collante, menu mobile) portent une ombre ; lignes, cartes de formateur et cartes sombres restent à plat.",
+        "body": "Seuls les panneaux qui flottent au-dessus du contenu (carte collante, formulaire de contact, menu mobile) portent une ombre, et une page n'en a qu'un ; lignes, cartes de formateur, cartes de logos et cartes sombres restent à plat.",
         "section": "elevation"
       }
     ],
@@ -448,7 +489,9 @@
       "**Do** doubler chaque signal de couleur d'une forme, d'une icône, d'un texte ou d'un attribut ARIA.",
       "**Do** afficher les chiffres en `tabular-nums` et en Outfit 700.",
       "**Do** utiliser des icônes Lucide au trait en SVG en ligne, accompagnées d'un libellé.",
-      "**Do** garder une seule courbe (`cubic-bezier(.16,1,.3,1)`) et respecter `prefers-reduced-motion`."
+      "**Do** garder une seule courbe (`cubic-bezier(.16,1,.3,1)`) et respecter `prefers-reduced-motion`.",
+      "**Do** écrire la valeur de chaque barre de données en toutes lettres, en chiffres tabulaires.",
+      "**Do** renforcer le voile du hero (97 % → 80 %) quand la photo de la page est claire."
     ],
     "donts": [
       "**Don't** poser de surtitre en capitales au-dessus d'un titre ; les capitales espacées sont réservées aux libellés de données.",

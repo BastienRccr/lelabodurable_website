@@ -135,11 +135,32 @@ components:
     padding: "1.25rem"
   mini-card-hover:
     backgroundColor: "{colors.petrole-profond-survol}"
+  text-field:
+    backgroundColor: "{colors.papier}"
+    textColor: "{colors.encre}"
+    rounded: "{rounded.r}"
+    padding: "0.7rem 0.9rem"
+    height: "48px"
+  icon-tile:
+    backgroundColor: "{colors.voile-sarcelle}"
+    textColor: "{colors.petrole-profond}"
+    rounded: "{rounded.r}"
+    size: "44px"
+  bar-track:
+    backgroundColor: "{colors.papier-doux}"
+    textColor: "{colors.encre}"
+    rounded: "{rounded.r}"
+    height: "32px"
+  bar-fill:
+    backgroundColor: "{colors.sarcelle-labo}"
+    textColor: "{colors.papier}"
+    rounded: "{rounded.r}"
+    height: "32px"
 ---
 
 # Design System: Le Labo Durable
 
-<!-- Monde v2, relevé sur la surface Formations livrée (formations.html + 7 fiches formation-*.html). Les autres pages du site portent encore l'implémentation antérieure de la même marque ; ce monde a vocation à s'y étendre. -->
+<!-- Monde v2, relevé d'abord sur la surface Formations (formations.html + 7 fiches formation-*.html), puis vérifié et complété sur son extension à tout le site (index, services, equipe, acv, consolab, contact, mentions-legales). -->
 
 ## Overview
 
@@ -147,7 +168,7 @@ components:
 
 Tout ce qu'un·e responsable de laboratoire vérifie avant d'engager une équipe (public, durée, prérequis, formateur, modalités, prise en charge) est posé à plat, lisible sans cliquer, comme sur une fiche technique d'instrument. Le système alterne deux matières seulement : de grands bandeaux bleu pétrole profond (hero photographique voilé, preuves et financement, cartes de renvoi, pied de page) et une lecture sur blanc pur, structurée par des filets fins plutôt que par des boîtes. L'or n'apparaît que là où l'on agit, où l'on compte, ou où l'on avance d'une étape.
 
-La densité est celle d'un document de référence : grilles de faits séparées par des filets verticaux, listes de définitions, tableaux de spécifications alignés à droite, chiffres en chiffres tabulaires. Une seule pièce flotte : la carte d'inscription (et, plus bas, la carte contact), collante dans une colonne de 360px, seule à porter une ombre douce. Le mouvement est rare : une seule entrée orchestrée (la barre de faits du hero), des survols de 0,2 s et une courbe unique.
+La densité est celle d'un document de référence : grilles de faits séparées par des filets verticaux, listes de définitions, tableaux de spécifications alignés à droite, chiffres en chiffres tabulaires. Une seule pièce flotte par page : sur une fiche, la carte d'inscription (et, plus bas, la carte contact), collante dans une colonne de 360px ; sur la page Contact, le formulaire. Elle est seule à porter une ombre douce. Le mouvement est rare : une seule entrée orchestrée (la barre de faits du hero), des survols de 0,2 s et une courbe unique.
 
 Le site est toujours en thème clair. Le propriétaire a un daltonisme mixte sévère : aucun état, aucune catégorie, aucune information n'est portée par la couleur seule, et chaque couple texte/fond atteint au moins WCAG AA.
 
@@ -158,6 +179,7 @@ Le site est toujours en thème clair. Le propriétaire a un daltonisme mixte sé
 - Carte d'inscription collante, seule surface en élévation, dont le choix de format réécrit l'objet du mail.
 - Outfit 700 pour les titres et les chiffres, Plus Jakarta Sans pour tout le texte courant.
 - Icônes Lucide au trait, en SVG en ligne, jamais seules porteuses de sens.
+- Données chiffrées en barres HTML dont chaque valeur est écrite, jamais en graphique muet.
 
 ## Colors
 
@@ -165,20 +187,20 @@ Un bleu pétrole profond qui tient la scène, une sarcelle de laboratoire pour l
 
 ### Primary
 - **Bleu pétrole profond** (petrole-profond) : fond des bandeaux sombres (hero, preuves, financement, pied de page, colonne d'étapes du programme, tête de la carte d'inscription, cartes « autres formations »), couleur des titres sur blanc, texte des pilules or, état « pressé » des filtres, contour de focus sur fond clair. **Pétrole survol** (petrole-profond-survol) n'existe que pour le survol des cartes sombres.
-- **Sarcelle labo** (sarcelle-labo) : liens courants, icônes au trait dans le texte (coches d'objectifs, méta des lignes du catalogue, contacts), survol du bouton plein pétrole. **Sarcelle claire** (sarcelle-claire) : uniquement la bordure de survol des options de format.
+- **Sarcelle labo** (sarcelle-labo) : liens courants, icônes au trait dans le texte (coches d'objectifs, méta des lignes du catalogue, contacts), survol du bouton plein pétrole, remplissage des barres de données. **Sarcelle claire** (sarcelle-claire) : uniquement la bordure de survol des options de format.
 
 ### Secondary
 - **Or action** (or-action) : remplissage des pilules d'action principales (« Demander un devis », « Nous contacter »), barres du compteur de satisfaction, frise d'évaluation, losanges des listes de programme, bordure d'une question FAQ ouverte. Jamais en texte sur blanc (contraste 2,35:1).
 - **Or clair** (or-clair) : chiffres et mots-clés sur fond pétrole (mot-clé du titre hero, barre de faits, note 4,7, montants « Sur devis »), sous-titres des étapes, survol des pilules or, sélection de texte, contour de focus sur fond sombre.
-- **Or encre** (or-encre) : seule version de l'or autorisée en texte sur blanc (codes de formation du catalogue, 5,66:1).
+- **Or encre** (or-encre) : seule version de l'or autorisée en texte sur blanc (codes de formation du catalogue, astérisque des champs obligatoires, 5,66:1).
 
 ### Neutral
 - **Encre** (encre) : texte courant et valeurs des spécifications.
 - **Encre secondaire** (encre-secondaire) : chapeaux, paragraphes de section, corps des listes, texte des filtres au repos.
 - **Encre tertiaire** (encre-tertiaire) : libellés en capitales, intitulés des spécifications, sous-lignes d'options, chevrons de FAQ.
 - **Filet** (filet) : tous les filets, bordures de cartes, d'options, de puces et de questions FAQ.
-- **Papier** (papier) : fond de lecture, toujours blanc pur. **Papier doux** (papier-doux) : sections secondaires (évaluation, « Pourquoi nous ») et survol des lignes du catalogue.
-- **Voile sarcelle** (voile-sarcelle) : fond des étiquettes d'outils, des tuiles d'icône du catalogue, du lien de navigation actif et de l'option de format choisie.
+- **Papier** (papier) : fond de lecture, toujours blanc pur. **Papier doux** (papier-doux) : sections secondaires (évaluation, « Pourquoi nous », partenaires) et survol des lignes du catalogue ; piste des barres de données, en-têtes de tableaux, sommaire replié sur mobile.
+- **Voile sarcelle** (voile-sarcelle) : fond des étiquettes d'outils, des tuiles d'icône (catalogue, métiers, pôles, coordonnées), du lien de navigation actif, de l'option de format choisie et de l'anneau intérieur du focus des champs.
 - **Texte sur pétrole** (texte-sur-petrole), **atténué** (texte-sur-petrole-attenue) et **filet sur pétrole** (filet-sur-petrole) : la triade de lecture à l'intérieur des bandeaux sombres ; les titres y passent en blanc.
 
 ### Named Rules
@@ -216,22 +238,26 @@ La fiche est une grille à deux colonnes : contenu fluide + colonne d'inscriptio
 
 Points de rupture : à 1040px la fiche passe en une colonne (la carte devient statique, 560px max), les grilles de preuve/FAQ s'empilent, le catalogue replie sa méta sous le titre ; à 960px la navigation devient un panneau déroulant ; à 720px les grilles de faits passent en deux puis une colonne, la frise d'évaluation devient verticale et les boutons du hero prennent toute la largeur.
 
-**The Visible By Default Rule.** Le contenu de décision n'est jamais caché derrière un accordéon ou un onglet ; seule la FAQ se replie.
+Pages éditoriales : les sections à deux temps posent un bloc d'intro (titre + chapeau) à gauche et le contenu à droite (≈ 0,85fr / 1,6fr), ou texte et image côte à côte, empilés sous 1040px. Les listes de métiers, pôles, engagements, outils, secteurs et différenciateurs sont des **grilles ouvertes à filets** : 3 à 5 colonnes égales, chaque élément sous un filet supérieur (ou séparé par des filets verticaux), icône sarcelle au trait ou tuile voile sarcelle, titre Outfit, texte encre secondaire ; sur pétrole, mêmes grilles en filet sur pétrole avec icônes or clair ou texte atténué. Elles passent à 2 puis 1 colonne.
+
+Lecture longue (mentions légales) : sommaire collant de 250px à gauche, texte limité à 70ch à droite, sections séparées par un filet et le rythme de bloc ; sous 960px le sommaire devient un encadré papier doux statique en tête. Sous 560px, les tableaux à en-têtes s'empilent : chaque ligne devient un bloc et chaque cellule une paire libellé (encre tertiaire, tiré de `data-label`) / valeur ; les formulaires passent à une colonne.
+
+**The Visible By Default Rule.** Le contenu de décision n'est jamais caché derrière un accordéon ou un onglet ; métiers et engagements s'affichent en grilles ouvertes à filets. Seule la FAQ se replie.
 
 ## Elevation & Depth
 
-Système à plat. La profondeur vient du contraste de matière (bandeau pétrole contre papier blanc, papier doux pour les sections secondaires) et des filets de 1px. Le hero superpose une photo de paysage à un voile pétrole en dégradé (96 % → 42 % d'opacité, de gauche à droite) pour garder le texte lisible.
+Système à plat. La profondeur vient du contraste de matière (bandeau pétrole contre papier blanc, papier doux pour les sections secondaires) et des filets de 1px. Le hero superpose une photo de paysage à un voile pétrole en dégradé (96 % → 42 % d'opacité, de gauche à droite) pour garder le texte lisible. Chaque page peut changer la photo du hero ; quand la photo est claire ou très texturée (façade, bâtiment), le voile se renforce et s'aplatit (97 % → 90 % → 80 %) pour que le texte reste AA sur toute la largeur.
 
 ### Shadow Vocabulary
-- **Ombre de carte flottante** (`0 18px 40px -18px rgba(15,61,79,.28), 0 2px 6px rgba(15,61,79,.06)`) : carte d'inscription, carte contact collante, panneau de navigation mobile.
+- **Ombre de carte flottante** (`0 18px 40px -18px rgba(15,61,79,.28), 0 2px 6px rgba(15,61,79,.06)`) : carte d'inscription, carte contact collante, formulaire de contact, panneau de navigation mobile.
 - **Ombre d'état ouvert** (`0 10px 30px -18px rgba(15,61,79,.35)`) : question FAQ dépliée, en réponse à l'état uniquement.
 
 ### Named Rules
-**The One Floating Panel Rule.** Seuls les panneaux qui flottent au-dessus du contenu (carte collante, menu mobile) portent une ombre ; lignes, cartes de formateur et cartes sombres restent à plat.
+**The One Floating Panel Rule.** Seuls les panneaux qui flottent au-dessus du contenu (carte collante, formulaire de contact, menu mobile) portent une ombre, et une page n'en a qu'un ; lignes, cartes de formateur, cartes de logos et cartes sombres restent à plat.
 
 ## Shapes
 
-Trois rayons : 10px pour les éléments de contrôle et petites surfaces (options, questions FAQ, vignettes de formateur, badge Qualiopi), 18px pour les conteneurs (carte d'inscription, programme, cartes sombres, carte de note), 999px pour tout ce qui est cliquable en ligne (boutons, filtres, étiquettes, liens de navigation). Les portraits de contact sont circulaires. Les puces du programme sont de petits losanges or (carré de 7px à coins de 2px, tourné de 45°) ; la frise d'évaluation aligne des cercles cerclés d'or sur un trait or de 2px.
+Trois rayons : 10px pour les éléments de contrôle et petites surfaces (options, questions FAQ, vignettes de formateur, badge Qualiopi), 18px pour les conteneurs (carte d'inscription, programme, cartes sombres, carte de note), 999px pour tout ce qui est cliquable en ligne (boutons, filtres, étiquettes, liens de navigation). Les portraits de contact sont circulaires. Les puces du programme sont de petits losanges or (carré de 7px à coins de 2px, tourné de 45°) ; la frise d'évaluation aligne des cercles cerclés d'or sur un trait or de 2px. Les logos en couleur (Qualiopi, partenaires, produit Consolab) sont toujours posés sur une plaque ou une carte blanche à 10px, jamais directement sur pétrole.
 
 ## Components
 
@@ -255,7 +281,10 @@ Pilules franches, toujours avec un libellé verbal et une icône fléchée qui g
 - **Carte de note :** sur pétrole, 18px, filet sur pétrole, voile blanc 4 %, compteur à cinq segments or.
 
 ### Inputs / Fields
+- **Champs texte :** 48px min. (zone de message 160px, redimensionnable verticalement), fond blanc, contour filet 1,5px, 10px, Plus Jakarta 400 1rem encre, texte indicatif encre tertiaire. Libellé au-dessus en 600 0.9rem pétrole ; astérisque obligatoire en or encre, mention « optionnel » en encre tertiaire 500. Survol : contour sarcelle claire. Focus : contour pétrole + double anneau (3px voile sarcelle, puis 2px pétrole). Deux champs par rangée, une seule sous 560px.
 - **Options de format :** boutons radio redessinés (cercle 18px, contour encre tertiaire 2px, point pétrole 8px qui grandit), dans une rangée à 10px de rayon et contour filet 1,5px. Survol : contour sarcelle claire. Choisi : contour pétrole, fond voile sarcelle, point visible. Le choix réécrit l'objet du `mailto`.
+
+- **Formulaire de contact :** même anatomie que la carte d'inscription (tête pleine pétrole avec titre blanc et consigne, corps à 1.5rem), ombre de carte flottante, bouton plein pétrole pleine largeur en pied. C'est l'unique pièce flottante de la page.
 
 ### Navigation
 Barre fixe blanche à 96 % avec flou, filet inférieur. Liens en pilules encre secondaire 500 0.9rem ; survol et page courante en voile sarcelle + texte pétrole (page courante en 600 et `aria-current`). Appel « Nous contacter » en pilule or. Sous 960px : bouton burger 44px qui se transforme en croix et un panneau déroulant blanc avec ombre de carte flottante ; fermeture par Échap.
@@ -272,6 +301,21 @@ Lignes filetées pleine largeur cliquables : tuile d'icône 56px voile sarcelle 
 ### Questions fréquentes
 `details` natifs empilés, 10px, contour filet ; question en 600 pétrole avec chevron à droite. Ouvert : bordure or, ombre d'état ouvert, chevron retourné.
 
+### Barres de données (signature)
+Graphique horizontal en HTML, pas en image : libellé de poste (600 0.92rem encre, colonne de 96px) puis piste papier doux de 32px à 10px de rayon, remplie de sarcelle labo à la proportion exacte (4px minimum). La valeur est toujours écrite en chiffres tabulaires (« 3,87 tCO₂e · 61,0 % ») : en blanc dans la barre quand elle est assez large, en encre juste après sinon. Sous la liste, une ligne de total filetée (intitulé encre tertiaire, valeur encre) ; au-dessus, l'unité en 0.85rem encre tertiaire. Le chiffre global de la section s'affiche en Figure grand format pétrole. Sous 720px, le libellé passe au-dessus de la barre.
+
+### Lignes de membres
+Liste filetée : portrait 120×143px sur voile sarcelle à 10px (84×100px sur mobile), identité (nom Outfit 1.3rem pétrole, rôle encre secondaire, étiquettes de pôle) puis colonne parcours (libellé de donnée, texte 66ch, étiquettes d'outils, liens LinkedIn/Email avec icône). Les filtres en pilules au-dessus réutilisent les filtres du catalogue (`aria-pressed`, compteur) et masquent les lignes ; un texte annonce le nombre affiché. Les étiquettes de pôle sont de petites pilules blanches à filet 1px, icône sarcelle + texte pétrole 600 0.8rem, non interactives.
+
+### Liste de coordonnées
+Lignes filetées : tuile d'icône 44px voile sarcelle à 10px, libellé de donnée en capitales encre tertiaire, valeur en 600 encre (liens en sarcelle labo soulignés).
+
+### Sommaire de lecture
+Liste ordonnée sous un filet vertical gauche ; liens 0.88rem encre secondaire, sous-niveaux en retrait à 0.83rem. La section visible est marquée par un trait pétrole de 2px à gauche, le texte en 700 pétrole et `aria-current` (jamais par la couleur seule).
+
+### Tableaux de données
+Encadrés à 10px, filet 1px, défilement horizontal au besoin (région focalisable). En-têtes de ligne sur papier doux en 600 encre tertiaire (38 % de largeur), en-têtes de colonne en capitales encre tertiaire, cellules en encre 0.9rem séparées par des filets. Empilés en paires libellé/valeur sous 560px.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -282,6 +326,8 @@ Lignes filetées pleine largeur cliquables : tuile d'icône 56px voile sarcelle 
 - **Do** afficher les chiffres en `tabular-nums` et en Outfit 700.
 - **Do** utiliser des icônes Lucide au trait en SVG en ligne, accompagnées d'un libellé.
 - **Do** garder une seule courbe (`cubic-bezier(.16,1,.3,1)`) et respecter `prefers-reduced-motion`.
+- **Do** écrire la valeur de chaque barre de données en toutes lettres, en chiffres tabulaires.
+- **Do** renforcer le voile du hero (97 % → 80 %) quand la photo de la page est claire.
 
 ### Don't:
 - **Don't** poser de surtitre en capitales au-dessus d'un titre ; les capitales espacées sont réservées aux libellés de données.
@@ -290,3 +336,7 @@ Lignes filetées pleine largeur cliquables : tuile d'icône 56px voile sarcelle 
 - **Don't** cacher public, durée, prérequis, formateur, modalités ou prise en charge derrière un accordéon ou un onglet.
 - **Don't** distinguer des catégories ou des états par la seule teinte.
 - **Don't** utiliser d'icônes-glyphes (émojis, caractères) ni d'icônes pleines.
+
+## Fabrication
+
+Les pages sont générées par `python3 _src/build.py [page.html ...]` (sans argument : toutes les pages) à partir des fragments `_src/pages/` (contenu de `<main>`, CSS propre à la page dans leur `<style>`) et de `_src/data/formations.json` (catalogue et fiches ; les fiches `formation-*.html` sont régénérées avec `formations.html`). La coque commune (CSS, JS, navigation, pied de page) vit dans `build.py`. Chaque page publiée est autonome : CSS, JS et sprite d'icônes intégrés. Les icônes viennent de `_src/icons.svg` (Lucide, licence ISC) ; une icône absente du sprite arrête la génération.
