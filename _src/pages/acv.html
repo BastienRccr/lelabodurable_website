@@ -1,0 +1,112 @@
+<!-- title: L'ACV — Le Labo Durable -->
+<!-- description: Analyse du Cycle de Vie (ACV) ISO 14040/44 : études d'impact, éco-conception, revues critiques, formations. Le Labo Durable, experts ACV en chimie analytique. -->
+<style>
+/* Hero : trois points forts sous le filet (variante à 3 colonnes de la barre de faits) */
+.facts.facts-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.facts-3 span{font-size:.88rem;max-width:36ch}
+/* Citation */
+.quote{max-width:52rem}
+.quote .ic{width:34px;height:34px;color:var(--on-deep-3)}
+.quote blockquote p{font:700 clamp(1.45rem,1.1rem + 1.6vw,2.2rem)/1.3 var(--f-display);color:#fff;letter-spacing:-.01em;margin-top:1.1rem;text-wrap:balance}
+.quote figcaption{display:flex;align-items:center;gap:.9rem;margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--deep-line);font-size:.95rem;color:var(--on-deep-2)}
+.quote figcaption img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top;background:var(--tint)}
+.quote cite{font-style:normal;font-weight:600}
+/* Secteurs : grille à filets */
+.sectors{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line)}
+.sectors li{display:flex;flex-direction:column;gap:.75rem;padding:1.4rem 1.25rem 1.5rem;border-bottom:1px solid var(--line);min-width:0;font:700 1.02rem/1.3 var(--f-display);color:var(--deep)}
+.sectors li:not(:nth-child(5n+1)){border-left:1px solid var(--line)}
+.sectors li:nth-child(5n+1){padding-left:0}
+.sectors .ic{width:26px;height:26px;color:var(--primary)}
+/* Recherche */
+.research{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.research-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-lg)}
+.research p{color:var(--ink-2);max-width:60ch}
+.research p+p{margin-top:.9rem}
+.partner{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--line)}
+.partner img{height:46px;width:auto}
+.research .row-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+@media (max-width:1040px){
+  .sectors{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sectors li:nth-child(5n+1){padding-left:1.25rem}
+  .sectors li:not(:nth-child(5n+1)){border-left:0}
+  .sectors li:not(:nth-child(3n+1)){border-left:1px solid var(--line)}
+  .sectors li:nth-child(3n+1){padding-left:0}
+  .research{grid-template-columns:minmax(0,1fr)}
+  .research-photo{max-width:640px}
+}
+@media (max-width:720px){
+  .facts.facts-3{grid-template-columns:minmax(0,1fr)}
+  .facts.facts-3 li{padding-left:0;border-left:0}
+  .facts.facts-3 li+li{border-top:1px solid var(--deep-line)}
+  .sectors{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sectors li,.sectors li:nth-child(5n+1),.sectors li:nth-child(3n+1){padding:1.1rem 1rem 1.2rem;border-left:0}
+  .sectors li:nth-child(even){border-left:1px solid var(--line)}
+  .sectors li:nth-child(odd){padding-left:0}
+}
+</style>
+<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li><a href="services.html">Nos services</a></li><li aria-current="page">L'ACV</li></ol>
+<h1>L'Analyse du Cycle de Vie, <em>pierre angulaire de notre approche</em></h1>
+<p class="hero-lead">Méthode normée ISO 14040-44, l'ACV est la référence en comptabilité environnementale. Elle permet de quantifier les impacts de vos processus sur tout leur cycle de vie.</p>
+<div class="hero-actions"><a class="btn btn-gold" href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'ACV">J'ai besoin d'une ACV {{ic:arrow-up-right}}</a><a class="btn btn-line" href="contact.html">Nous contacter</a></div>
+<ul class="facts facts-3" aria-label="Notre approche en bref">
+<li><b>ACV ISO 14040/44</b><span>Études conformes aux normes internationales pour évaluer les impacts environnementaux</span></li>
+<li><b>Éco-conception</b><span>Arbitrer entre indicateurs d'impacts : réchauffement climatique, particules fines, toxicité humaine</span></li>
+<li><b>Formations &amp; R&amp;D</b><span>Ateliers pratiques et projets innovants en collaboration avec l'ADEME et le milieu académique</span></li>
+</ul>
+</div>
+</header>
+
+<section class="sec" aria-labelledby="adv-h"><div class="wrap">
+<h2 id="adv-h">Les avantages de l'Analyse du Cycle de Vie</h2>
+<div class="why">
+<div>{{ic:refresh-cw}}<b>Holistique</b><p>Étude des impacts sur tout le cycle de vie, de l'extraction des matières premières à la fin de vie.</p></div>
+<div>{{ic:chart-column}}<b>Multicritère</b><p>Arbitrage entre différents indicateurs : réchauffement climatique, particules fines, toxicité humaine…</p></div>
+<div>{{ic:ruler}}<b>Chiffrée et objective</b><p>Résultats quantitatifs sans jugement de valeur, fournissant un chiffrage objectif des impacts potentiels.</p></div>
+<div>{{ic:globe}}<b>Normée et internationale</b><p>Encadrée par les normes ISO 14040-44 pour éviter le bricolage et les estimations imprécises.</p></div>
+</div>
+</div></section>
+
+<section class="sec dark" aria-label="Citation"><div class="wrap">
+<figure class="quote">
+{{ic:quote}}
+<blockquote><p>L'analyse du cycle de vie permet de revisiter les pratiques des laboratoires et de redonner du sens aux métiers</p></blockquote>
+<figcaption><img src="assets/team/bastien-raccary.png" alt="" width="56" height="56" loading="lazy"><cite>Bastien Raccary — Responsable pôle durabilité</cite></figcaption>
+</figure>
+</div></section>
+
+<section class="sec sec-soft" aria-labelledby="sec-h"><div class="wrap">
+<h2 id="sec-h">Nous réalisons des ACV pour tous les secteurs</h2>
+<p class="sec-intro">Bien que spécialisés en chimie analytique, nous sommes capables d'étudier tout service ou produit. Nous sommes également disponibles pour des revues critiques.</p>
+<ul class="sectors">
+<li>{{ic:flask-conical}}<span>Chimie</span></li>
+<li>{{ic:apple}}<span>Agro-alimentaire</span></li>
+<li>{{ic:building-2}}<span>Bâtiments, BTP</span></li>
+<li>{{ic:car}}<span>Automobile</span></li>
+<li>{{ic:pill}}<span>Santé, pharma</span></li>
+<li>{{ic:shirt}}<span>Textile</span></li>
+<li>{{ic:flower}}<span>Parfumerie, cosmétique</span></li>
+<li>{{ic:package}}<span>Packaging</span></li>
+<li>{{ic:wine}}<span>Vins &amp; spiritueux</span></li>
+<li>{{ic:microscope}}<span>Laboratoires</span></li>
+</ul>
+</div></section>
+
+<section class="sec" aria-labelledby="rech-h"><div class="wrap research">
+<div class="research-photo"><img src="assets/photos/recherche-bordeaux.jpg" alt="Campus Université de Bordeaux" width="1430" height="766" loading="lazy"></div>
+<div>
+<h2 id="rech-h">Nous participons activement à la recherche en ACV</h2>
+<p>En partenariat avec l'Université de Bordeaux, nous publions des travaux de recherche sur l'application de l'ACV à la chimie analytique. Nos publications sont en libre accès dans des journaux à comité de lecture.</p>
+<p>C'est cette activité de recherche qui nourrit directement nos prestations et nos formations — un pont permanent entre science et terrain.</p>
+<div class="partner"><img src="assets/photos/univ-bordeaux-logo.png" alt="Université de Bordeaux" width="131" height="46" loading="lazy"></div>
+<div class="row-actions"><a class="btn btn-deep" href="mailto:bastien.raccary@lelabodurable.com?subject=Demande d'ACV">J'ai besoin d'une ACV {{ic:arrow-up-right}}</a><a class="btn btn-ghost" href="formation-acv.html">Se former à l'ACV {{ic:arrow-right}}</a></div>
+</div>
+</div></section>
+
+<section class="sec sec-soft close" aria-labelledby="cl-h"><div class="wrap">
+<h2 id="cl-h">Améliorez la performance environnementale de vos activités</h2>
+<p>Que ce soit pour une ACV complète, une revue critique ou de l'éco-conception, nous sommes à votre disposition.</p>
+<div class="row-actions"><a class="btn btn-deep" href="contact.html">Nous contacter {{ic:arrow-up-right}}</a></div>
+</div></section>
