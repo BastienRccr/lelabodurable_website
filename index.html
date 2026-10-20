@@ -377,14 +377,9 @@ p{text-wrap:pretty}
 .total b{color:var(--ink);font-variant-numeric:tabular-nums}
 /* HERO accueil : texte + écran de chromatogramme */
 .hero-home{padding-bottom:0}
-.hh{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(2rem,4vw,4rem);align-items:center;padding-bottom:clamp(2rem,4vw,3rem)}
-.hero-home h1{margin-top:.9rem}
+.hh{display:grid;grid-template-columns:minmax(0,1fr);max-width:860px;gap:clamp(2rem,4vw,4rem);align-items:center;padding-bottom:clamp(2rem,4vw,3rem)}
+.hero-home h1{margin-top:.9rem;font-size:clamp(2.4rem,1.5rem + 3.6vw,4.4rem);max-width:18ch}
 .hero-home .hero-ref{margin-top:0}
-.scope{position:relative;height:clamp(240px,28vw,340px);border-radius:var(--r-lg);background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 60px -30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:2.6rem 1.25rem 1.25rem;transform:perspective(1200px) rotateY(-8deg) rotateX(3deg);transition:transform .8s var(--ease)}
-.scope:hover{transform:perspective(1200px) rotateY(-2deg) rotateX(1deg)}
-.scope-bar{position:absolute;top:.9rem;left:1.1rem;display:flex;gap:.4rem}
-.scope-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
-.scope-bar i:first-child{background:var(--gold)}
 /* À PROPOS + mosaïque */
 .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
 .about-text p{color:var(--ink-2);font-size:1.05rem;max-width:62ch}
@@ -419,7 +414,8 @@ p{text-wrap:pretty}
 .pole-art.p3{background:#123544}
 .pole-art .big{width:54px;height:54px;position:relative;z-index:1;transition:transform .6s var(--ease)}
 .poles>li:hover .pole-art .big{transform:scale(1.12) rotate(-4deg)}
-.pole-art .trace{position:absolute;inset:auto 0 0;height:70%;opacity:.55}
+.pole-art .rings{position:absolute;width:170px;height:170px;fill:none;stroke:rgba(232,200,138,.35);stroke-width:1.5}
+.pole-art .rings circle:nth-child(2){stroke-dasharray:3 6}
 .pole-art .cycle{position:absolute;width:150px;height:150px;fill:none;stroke:rgba(232,200,138,.45);stroke-width:1.5;stroke-dasharray:4 6;animation:spin 40s linear infinite}
 .pole-art .cycle circle+circle{fill:var(--gold-light);stroke:none}
 .pole-art .net{position:absolute;width:85%;height:auto;fill:none;stroke:rgba(232,200,138,.4);stroke-width:1.5}
@@ -435,14 +431,16 @@ p{text-wrap:pretty}
 .trades small{display:block;font-size:.84rem;font-weight:600;color:var(--primary);margin-top:.2rem}
 .trades p{font-size:.93rem;color:var(--ink-2);margin-top:.5rem}
 /* ÉQUIPE */
-.team-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
-.team-head .more{margin-top:0}
-.team{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
-.team a{display:flex;flex-direction:column;height:100%;text-decoration:none;overflow:hidden}
-.team img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top;background:var(--tint);transition:transform .8s var(--ease)}
-.team a:hover img{transform:scale(1.05)}
-.team b{font:700 1rem/1.3 var(--f-display);color:var(--deep);padding:.9rem 1rem 0}
-.team span{font-size:.82rem;color:var(--ink-2);padding:.25rem 1rem 1rem;line-height:1.4}
+.team-wrap{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,2fr);gap:clamp(2rem,4vw,4rem);align-items:center}
+.team-intro p{color:var(--ink-2);margin:.2rem 0 1.4rem;max-width:34ch}
+.team{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.25rem}
+.team a{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none}
+.team .ph{width:100%;max-width:150px;aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:var(--tint);box-shadow:0 0 0 0 var(--gold);transition:box-shadow .4s var(--ease),transform .5s var(--ease)}
+.team img{width:100%;height:100%;object-fit:cover;object-position:top;transform:translateY(6%) scale(1.02);transition:transform .6s var(--ease)}
+.team a:hover .ph{box-shadow:0 0 0 4px var(--gold);transform:translateY(-4px)}
+.team a:hover img{transform:translateY(3%) scale(1.06)}
+.team b{font:700 1rem/1.3 var(--f-display);color:var(--deep);margin-top:.9rem}
+.team span{font-size:.8rem;color:var(--ink-2);line-height:1.4;margin-top:.25rem}
 /* ENGAGEMENTS */
 .commit{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:.5rem}
 .commit li{padding:1.4rem 1.5rem}
@@ -460,14 +458,13 @@ p{text-wrap:pretty}
 .close-dark h2{max-width:22ch;margin-inline:auto}
 .close-dark p{max-width:52ch;margin:0 auto 1.75rem}
 .close-dark .row-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem}
-.close-trace{position:absolute;inset:auto 0 0;height:75%;opacity:.35;pointer-events:none}
-@media (prefers-reduced-motion:reduce){.pole-art .cycle{animation:none}.scope{transform:none}}
+@media (prefers-reduced-motion:reduce){.pole-art .cycle{animation:none}}
 @media (max-width:1040px){
   .hh,.about{grid-template-columns:minmax(0,1fr)}
-  .scope{transform:none;height:220px}
-  .values,.partners{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .values,.partners{grid-template-columns:repeat(2,minmax(0,1fr))}
   .poles,.trades,.commit{grid-template-columns:repeat(2,minmax(0,1fr))}
   .poles>li:last-child{grid-column:1/-1}
+  .team-wrap{grid-template-columns:minmax(0,1fr)}
   .team{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:720px){
@@ -476,8 +473,7 @@ p{text-wrap:pretty}
   .team{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mosaic{grid-template-rows:140px 120px auto}
   .mosaic .quote{grid-column:1/7;margin-top:0}
-  .scope{height:180px;padding-top:2.2rem}
-}
+  }
 @media (max-width:1040px){.ges-grid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:720px){.ges-head{grid-template-columns:minmax(0,1fr)}.bars li{grid-template-columns:minmax(0,1fr);gap:.3rem}}
 </style>
@@ -527,10 +523,6 @@ p{text-wrap:pretty}
 <p class="hero-lead">Nous accompagnons les laboratoires de chimie analytique dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
 <div class="hero-actions"><a class="btn btn-gold" href="contact.html">Discutons de votre projet <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a class="btn btn-line" href="services.html">Découvrir nos services <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
 </div>
-<div class="scope" aria-hidden="true">
-<div class="scope-bar"><i></i><i></i><i></i></div>
-<canvas class="trace" data-peaks="[[0.12,0.18,0.012],[0.2,0.42,0.01],[0.31,0.26,0.014],[0.42,0.9,0.011],[0.5,0.34,0.012],[0.61,0.58,0.01],[0.7,0.2,0.016],[0.79,0.72,0.012],[0.9,0.3,0.013]]"></canvas>
-</div>
 </div>
 <ul class="facts" aria-label="Chiffres clés"><li><b data-count>25+</b><span>clients accompagnés</span></li><li><b data-count>500+</b><span>personnes sensibilisées et formées</span></li><li><b data-count>15+</b><span>stratégies de réduction déployées</span></li><li><b data-count>10+</b><span>politiques environnementales co-construites</span></li></ul>
 </div>
@@ -573,7 +565,7 @@ p{text-wrap:pretty}
 <h2 id="poles-h">Trois pôles pour transformer votre laboratoire</h2>
 <p class="sec-intro">Un accompagnement pluridisciplinaire unique, porté par 3 pôles d'expertise : expertise analytique & instrumentation ; durabilité, ACV & bilans GES ; chémo-informatique & IA.</p>
 <ul class="poles">
-<li class="panel lift" data-reveal><div class="pole-art p1" aria-hidden="true"><svg class="big" aria-hidden="true"><use href="#i-microscope"/></svg><canvas class="trace" data-peaks="[[0.25,0.5,0.03],[0.55,0.85,0.025],[0.8,0.35,0.03]]"></canvas></div><div class="pole-body"><h3>Expertise analytique & instrumentation</h3><ul class="dots"><li>Conseil en stratégies analytiques</li><li>Audit de performance</li><li>Maintenance instrumentale</li><li>Matériel reconditionné</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></li>
+<li class="panel lift" data-reveal><div class="pole-art p1" aria-hidden="true"><svg class="big" aria-hidden="true"><use href="#i-microscope"/></svg><svg class="rings" viewBox="0 0 160 160"><circle cx="80" cy="80" r="30"/><circle cx="80" cy="80" r="50"/><circle cx="80" cy="80" r="70"/></svg></div><div class="pole-body"><h3>Expertise analytique & instrumentation</h3><ul class="dots"><li>Conseil en stratégies analytiques</li><li>Audit de performance</li><li>Maintenance instrumentale</li><li>Matériel reconditionné</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></li>
 <li class="panel lift" data-reveal style="--d:.1s"><div class="pole-art p2" aria-hidden="true"><svg class="big" aria-hidden="true"><use href="#i-leaf"/></svg><svg class="cycle" viewBox="0 0 120 120"><circle cx="60" cy="60" r="44"/><circle cx="60" cy="16" r="5"/><circle cx="98" cy="82" r="5"/><circle cx="22" cy="82" r="5"/></svg></div><div class="pole-body"><h3>Durabilité, résilience & criticité</h3><ul class="dots"><li>ACV ISO 14040/44</li><li>Bilans GES / Bilan Carbone®</li><li>Éco-conception de méthodes</li><li>Pilotage des consommations</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></li>
 <li class="panel lift" data-reveal style="--d:.2s"><div class="pole-art p3" aria-hidden="true"><svg class="big" aria-hidden="true"><use href="#i-laptop"/></svg><svg class="net" viewBox="0 0 160 100"><path d="M20 70 50 30 85 60 120 25 145 55"/><circle cx="20" cy="70" r="4"/><circle cx="50" cy="30" r="4"/><circle cx="85" cy="60" r="4"/><circle cx="120" cy="25" r="4"/><circle cx="145" cy="55" r="4"/></svg></div><div class="pole-body"><h3>Chémo-informatique & IA</h3><ul class="dots"><li>Traitement de données labo</li><li>Solutions algorithmiques</li><li>Bases de données sur mesure</li><li>Formations spécialisées</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></li>
 </ul>
@@ -591,15 +583,9 @@ p{text-wrap:pretty}
 </ul>
 </div></section>
 
-<section class="sec team-sec" aria-labelledby="team-h"><div class="wrap">
-<div class="team-head"><h2 id="team-h">Notre équipe</h2><a class="more" href="equipe.html">Voir toute l'équipe <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
-<ul class="team">
-<li data-reveal><a class="panel lift" href="equipe.html"><img src="assets/team/christophe-peres.png" alt="" width="466" height="551"><b>Christophe Pérès</b><span>Fondateur — Pôle méthodes & instrumentation</span></a></li>
-<li data-reveal style="--d:.06s"><a class="panel lift" href="equipe.html"><img src="assets/team/bastien-raccary.png" alt="" width="562" height="668"><b>Bastien Raccary</b><span>Responsable pôle durabilité — ACV & stratégie low impact</span></a></li>
-<li data-reveal style="--d:.12s"><a class="panel lift" href="equipe.html"><img src="assets/team/clement-truan.png" alt="" width="562" height="668"><b>Clément Truan</b><span>Responsable pôle chémo-informatique & IA</span></a></li>
-<li data-reveal style="--d:.18s"><a class="panel lift" href="equipe.html"><img src="assets/team/xavier-rouessac.png" alt="" width="562" height="668"><b>Xavier Rouessac</b><span>Responsable support & formation — Expert LC/GC/MS</span></a></li>
-<li data-reveal style="--d:.24s"><a class="panel lift" href="equipe.html"><img src="assets/team/thomas-vandewattyne.png" alt="" width="562" height="668"><b>Thomas Vandewattyne</b><span>Expert chémo-informatique — Doctorant IA appliquée</span></a></li>
-</ul>
+<section class="sec team-sec" aria-labelledby="team-h"><div class="wrap team-wrap">
+<div class="team-intro"><h2 id="team-h">Notre équipe</h2><p>Docteur·es et ingénieur·es passionné·es, nous combinons chimie analytique, ACV et chémo-informatique pour transformer les laboratoires.</p><a class="btn btn-deep" href="equipe.html">Rencontrer l'équipe <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+<ul class="team"><li data-reveal style="--d:0.00s"><a href="equipe.html"><span class="ph"><img src="assets/team/christophe-peres.png" alt="" width="466" height="551"></span><b>Christophe Pérès</b><span>Fondateur — Pôle méthodes & instrumentation</span></a></li><li data-reveal style="--d:0.06s"><a href="equipe.html"><span class="ph"><img src="assets/team/bastien-raccary.png" alt="" width="562" height="668"></span><b>Bastien Raccary</b><span>Responsable pôle durabilité — ACV & stratégie low impact</span></a></li><li data-reveal style="--d:0.12s"><a href="equipe.html"><span class="ph"><img src="assets/team/clement-truan.png" alt="" width="562" height="668"></span><b>Clément Truan</b><span>Responsable pôle chémo-informatique & IA</span></a></li><li data-reveal style="--d:0.18s"><a href="equipe.html"><span class="ph"><img src="assets/team/xavier-rouessac.png" alt="" width="562" height="668"></span><b>Xavier Rouessac</b><span>Responsable support & formation — Expert LC/GC/MS</span></a></li><li data-reveal style="--d:0.24s"><a href="equipe.html"><span class="ph"><img src="assets/team/thomas-vandewattyne.png" alt="" width="562" height="668"></span><b>Thomas Vandewattyne</b><span>Expert chémo-informatique — Doctorant IA appliquée</span></a></li></ul>
 </div></section>
 
 <section class="sec dark commit-sec" aria-labelledby="commit-h"><div class="wrap">
@@ -654,7 +640,6 @@ p{text-wrap:pretty}
 </div></section>
 
 <section class="sec dark close-dark" aria-labelledby="cl-h">
-<canvas class="trace close-trace" aria-hidden="true" data-peaks="[[0.08,0.3,0.02],[0.22,0.6,0.015],[0.37,0.4,0.02],[0.55,0.95,0.014],[0.68,0.5,0.018],[0.86,0.7,0.016]]" data-color="#2a8a9a" data-grid="rgba(255,255,255,0)"></canvas>
 <div class="wrap" data-reveal>
 <h2 id="cl-h">Rejoignez le mouvement</h2>
 <p>Vous souhaitez engager votre laboratoire dans une démarche durable ? Parlons-en.</p>
