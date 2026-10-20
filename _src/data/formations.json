@@ -1,0 +1,309 @@
+[
+ {
+  "cat": "durabilite",
+  "title": "Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable",
+  "ref": "LLD2025-01",
+  "subtitle": "Limites planétaires, politique environnementale, analyse d'une méthode, communication responsable",
+  "desc": "Les laboratoires d'analyse font face à des pénuries qui perturbent leur fonctionnement. Connaître les fondements de la chimie verte et de la chimie analytique verte, ainsi que les outils méthodologiques disponibles, permet de prioriser les actions, d'éviter les contresens et de maîtriser les coûts. Deux ateliers en sous-groupes : élaborer une politique environnementale de laboratoire, puis analyser une méthode analytique étape par étape.",
+  "objectives": [
+   "Comprendre la nécessité et la pertinence de revisiter les pratiques de laboratoire",
+   "S'approprier les ordres de grandeur au laboratoire",
+   "Connaître les acteurs et les outils de la chimie analytique durable",
+   "Passer en revue les techniques de mise en place d'actions concrètes et de mobilisation des équipes, à l'échelle de la méthode et du laboratoire",
+   "Savoir communiquer sur ses actions de manière efficiente et engageante"
+  ],
+  "details": [
+   [
+    "Durée",
+    "1 jour"
+   ],
+   [
+    "Public",
+    "Tout personnel scientifique de laboratoire"
+   ],
+   [
+    "Participants",
+    "1 à 5"
+   ],
+   [
+    "Prérequis",
+    "Aucun"
+   ],
+   [
+    "Évaluation",
+    "Quiz et exercice pratique"
+   ],
+   [
+    "Formateurs",
+    "Bastien Raccary, Christophe Pérès"
+   ],
+   [
+    "Tarif",
+    "Sur devis"
+   ]
+  ],
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — LLD2025-01 Les laboratoires face aux défis environnementaux : introduction à la chimie analytique durable"
+ },
+ {
+  "cat": "durabilite",
+  "title": "Introduction à la chimie analytique durable et mobilisation des équipes",
+  "ref": "LLD2025-02",
+  "subtitle": "Enjeux, cadre réglementaire, ateliers politique environnementale et analyse de méthode",
+  "desc": "Une journée pour replacer l'activité du laboratoire face au dérèglement climatique et aux limites planétaires : enjeux et cadre réglementaire, ressources et matières premières critiques, résilience des activités. L'après-midi, les participant·es construisent un cadre de politique environnementale, analysent une méthode analytique représentative et apprennent à valoriser leurs actions sans greenwashing.",
+  "objectives": [
+   "Comprendre la nécessité et la pertinence de revisiter les pratiques de laboratoire",
+   "S'approprier les ordres de grandeur au laboratoire",
+   "Connaître les acteurs et les outils de la chimie analytique durable",
+   "Mettre en place des actions concrètes et mobiliser les équipes, à l'échelle métier",
+   "Savoir communiquer sur ses actions de manière efficiente et engageante"
+  ],
+  "details": [
+   [
+    "Durée",
+    "1 jour"
+   ],
+   [
+    "Public",
+    "Tout personnel scientifique de laboratoire"
+   ],
+   [
+    "Prérequis",
+    "Aucun"
+   ],
+   [
+    "Évaluation",
+    "Quiz et exercice pratique"
+   ],
+   [
+    "Formateurs",
+    "Bastien Raccary, Christophe Pérès"
+   ],
+   [
+    "Tarif",
+    "Sur devis"
+   ]
+  ],
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — LLD2025-02 Introduction à la chimie analytique durable et mobilisation des équipes"
+ },
+ {
+  "cat": "acv",
+  "title": "Introduction à l'analyse du cycle de vie (ACV) appliquée au domaine du laboratoire",
+  "ref": "P08-ACV-I",
+  "subtitle": "ISO 14040/14044, les 4 phases de l'ACV, atelier openLCA, collecte de données",
+  "desc": "L'ACV est l'outil de référence pour évaluer de manière multicritère et multi-étapes les impacts des produits, procédés et services. Au laboratoire, elle permet d'identifier les points chauds des méthodes analytiques, de comparer des scénarios et d'orienter l'éco-conception. Le matin : contexte, cadre normatif et les 4 phases de l'ACV. L'après-midi : atelier openLCA (ecoinvent, EF 3.1) sur un cas comparatif, puis définition d'une unité fonctionnelle et collecte de données sur une méthode de votre laboratoire.",
+  "objectives": [
+   "Décrire les 4 phases d'une ACV selon ISO 14040/14044 et mobiliser les concepts associés (unité fonctionnelle, frontières, flux élémentaires, méthodes LCIA)",
+   "Réaliser un inventaire du cycle de vie sur un cas comparatif avec openLCA",
+   "Interpréter des résultats en identifiant les points chauds et en conduisant une analyse de sensibilité élémentaire",
+   "Appliquer la démarche d'éco-conception en 6 étapes en évitant le greenwashing",
+   "Définir une unité fonctionnelle adaptée à un processus du laboratoire et initier la collecte de données"
+  ],
+  "details": [
+   [
+    "Durée",
+    "1 jour"
+   ],
+   [
+    "Public",
+    "Chimistes et ingénieur·es de laboratoire"
+   ],
+   [
+    "Prérequis",
+    "Aucun"
+   ],
+   [
+    "Évaluation",
+    "QCM et atelier pratique openLCA"
+   ],
+   [
+    "Matériel",
+    "Un ordinateur par participant·e"
+   ],
+   [
+    "Formateur",
+    "Bastien Raccary"
+   ],
+   [
+    "Tarif",
+    "Sur devis"
+   ]
+  ],
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P08-ACV-I Introduction à l’analyse du cycle de vie (ACV) appliquée au domaine du laboratoire"
+ },
+ {
+  "cat": "instru",
+  "title": "Les essentiels GC et GC-MS",
+  "ref": "P06-GC-E",
+  "subtitle": "Principes généraux, utilisation avancée et maintenance de 1er niveau GC-FID / GC-MS",
+  "desc": "Formation à la carte construite avec le laboratoire, pour accroître la compréhension et l'autonomie des opérateur·ices sur leurs systèmes GC-FID et GC-MS Agilent, côté logiciel comme instrument. Le contenu définitif est arrêté avant la session parmi trois modules : principes généraux, utilisation avancée des logiciels de pilotage (OpenLab, MassHunter), maintenance de premier niveau en travaux pratiques.",
+  "objectives": [
+   "Expliquer le fonctionnement d'un système GC-FID / GC-MS et relier chaque paramètre de méthode à son effet sur le chromatogramme",
+   "Optimiser et exploiter une méthode d'acquisition dans OpenLab / MassHunter",
+   "Réaliser en autonomie la maintenance de 1er niveau de l'injecteur SSL, du FID et du MSD",
+   "Diagnostiquer les dérives courantes (fuites, pollution, perte de sensibilité) et décider des actions correctives"
+  ],
+  "details": [
+   [
+    "Durée",
+    "2 jours (14 h)"
+   ],
+   [
+    "Public",
+    "Techniciens, ingénieurs et responsables de laboratoire (GC-FID, GC-MS Agilent)"
+   ],
+   [
+    "Participants",
+    "1 à 4"
+   ],
+   [
+    "Prérequis",
+    "3 mois de pratique sur GC et GC-MS Agilent"
+   ],
+   [
+    "Répartition",
+    "30 % théorie, 70 % TP"
+   ],
+   [
+    "Formateur",
+    "Xavier Rouessac"
+   ],
+   [
+    "Tarif",
+    "Sur devis"
+   ]
+  ],
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P06-GC-E Les essentiels GC et GC-MS"
+ },
+ {
+  "cat": "instru",
+  "title": "Maintenance GC-FID-MSD de premier niveau",
+  "ref": "P06-GC-M",
+  "subtitle": "Entretien courant des systèmes GC et GC-MS Agilent : ALS, HSS, SSL, FID, MSD",
+  "desc": "Acquérir une expertise pratique de la maintenance de premier niveau des principaux modules d'un système GC et GC-MS Agilent, pour optimiser la performance et la longévité des instruments et garantir des analyses fiables et reproductibles. Travaux pratiques sur les systèmes de votre laboratoire : SSL, FID, installation de colonne, nettoyage de la source EI, tests de fuite et tune.",
+  "objectives": [
+   "Planifier l'entretien courant d'un GC Agilent équipé SSL, FID, MSD, ALS et HSS",
+   "Identifier les éléments et pièces consommables de chaque module",
+   "Réaliser en autonomie et en sécurité les opérations de maintenance de 1er niveau",
+   "Vérifier les performances après intervention (étanchéité, tune, chromatogramme de contrôle)"
+  ],
+  "details": [
+   [
+    "Durée",
+    "2 jours (14 h)"
+   ],
+   [
+    "Public",
+    "Techniciens et ingénieurs en charge de systèmes GC-FID et GC-MS Agilent"
+   ],
+   [
+    "Participants",
+    "1 à 4"
+   ],
+   [
+    "Prérequis",
+    "3 mois de pratique sur GC et GC-MS Agilent"
+   ],
+   [
+    "Répartition",
+    "20 % théorie, 80 % TP"
+   ],
+   [
+    "Formateur",
+    "Xavier Rouessac"
+   ],
+   [
+    "Tarif",
+    "Sur devis"
+   ]
+  ],
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P06-GC-M Maintenance GC-FID-MSD de premier niveau"
+ },
+ {
+  "cat": "chemo",
+  "title": "Introduction au traitement de données GC-MS / GC-FID",
+  "ref": "P07-GC-I",
+  "subtitle": "Comprendre ses données chromatographiques et adopter des stratégies de traitement efficaces",
+  "desc": "Comprendre les modes d'acquisition des données chromatographiques et leur contenu, découvrir les différentes façons de les traiter, puis appliquer des stratégies efficaces sur des échantillons d'intérêt de votre laboratoire (AMDIS, QualiFast, DataAnalysis ou MassHunter selon votre environnement).",
+  "objectives": [
+   "Expliquer le fonctionnement d'un système GC-MS / GC-FID et les modes d'acquisition",
+   "Décrire la structure des données chromatographiques, leur contenu et leurs limites",
+   "Réaliser une déconvolution, une intégration et une identification sur des données réelles",
+   "Choisir une stratégie de traitement adaptée et mesurer l'influence des paramètres sur le résultat"
+  ],
+  "details": [
+   [
+    "Durée",
+    "2 jours (12 h)"
+   ],
+   [
+    "Public",
+    "Personnel scientifique exploitant des données GC-MS ou GC-FID"
+   ],
+   [
+    "Participants",
+    "2 à 5"
+   ],
+   [
+    "Prérequis",
+    "Aucun (une pratique de la chromatographie est un plus)"
+   ],
+   [
+    "Répartition",
+    "50 % théorie, 50 % ateliers"
+   ],
+   [
+    "Formateur",
+    "Clément Truan"
+   ],
+   [
+    "Tarif",
+    "Sur devis"
+   ]
+  ],
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P07-GC-I Introduction au traitement de données GC-MS / GC-FID"
+ },
+ {
+  "cat": "chemo",
+  "title": "Traitement avancé des données GC-MS",
+  "ref": "P07-GC-D",
+  "subtitle": "Déconvolution, identification et quantification sur matrices complexes",
+  "desc": "Aller au-delà de l'intégration de routine et fiabiliser l'exploitation des données GC-MS sur matrices complexes : coélutions, isomères, composés majoritaires et traces. Pour la parfumerie et les arômes, l'agroalimentaire, l'environnement, la pétrochimie ou les matériaux, de préférence sur les données de votre laboratoire.",
+  "objectives": [
+   "Décrire la structure d'un fichier GC-MS (Scan, SIM, TIC, EIC) et ses contraintes de traitement",
+   "Appliquer une stratégie de déconvolution et d'intégration adaptée aux coélutions",
+   "Identifier les composés (spectres, bibliothèques NIST et internes, indices de rétention) en jugeant la fiabilité d'une proposition",
+   "Construire un traitement reproductible et en documenter les limites"
+  ],
+  "details": [
+   [
+    "Durée",
+    "1 jour (7 h)"
+   ],
+   [
+    "Public",
+    "Techniciens, ingénieurs, analystes travaillant sur matrices complexes"
+   ],
+   [
+    "Participants",
+    "1 à 5"
+   ],
+   [
+    "Prérequis",
+    "Pratique régulière de la GC-MS et des logiciels de traitement"
+   ],
+   [
+    "Répartition",
+    "40 % théorie, 60 % ateliers"
+   ],
+   [
+    "Formateur",
+    "Clément Truan"
+   ],
+   [
+    "Tarif",
+    "Sur devis"
+   ]
+  ],
+  "mail": "mailto:bastien.raccary@lelabodurable.com?subject=Demande d’infos — P07-GC-D Traitement avancé des données GC-MS"
+ }
+]

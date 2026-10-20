@@ -1,0 +1,779 @@
+#!/usr/bin/env python3
+"""Générateur du site Le Labo Durable (v2).
+
+Usage : python3 _src/build.py            (depuis la racine du dépôt)
+
+Chaque page publiée est autonome : CSS, JS et icônes (sprite SVG) intégrés.
+- Pages éditoriales : _src/pages/<page>.html (fragment de <main>), avec en tête
+  <!-- title: ... --> et <!-- description: ... -->, puis un <style> optionnel
+  propre à la page ; un <script> optionnel en fin de fragment.
+  Icônes : {{ic:nom}} (sprite Lucide, voir _src/icons.svg).
+- Formations : catalogue + fiches générés depuis _src/data/formations.json.
+Le système visuel est documenté dans DESIGN.md."""
+import json, re, html, sys, os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+DATA = json.load(open(os.path.join(HERE, 'data', 'formations.json')))
+SYMBOLS = {m.group(2): m.group(1) for m in re.finditer(r'(<symbol id="i-([a-z0-9-]+)".*?</symbol>)', open(os.path.join(HERE, 'icons.svg')).read(), re.S)}
+E = html.escape
+
+# ---------------------------------------------------------------- données éditoriales (tirées du texte existant)
+SLUG = {
+    'LLD2025-01': 'formation-defis-environnementaux',
+    'LLD2025-02': 'formation-chimie-analytique-durable',
+    'P08-ACV-I': 'formation-acv',
+    'P06-GC-E': 'formation-gc-gcms-essentiels',
+    'P06-GC-M': 'formation-maintenance-gc',
+    'P07-GC-I': 'formation-donnees-gcms-introduction',
+    'P07-GC-D': 'formation-donnees-gcms-avance',
+}
+# titre court du hero : (début, mot-clé en or)
+HERO = {
+    'LLD2025-01': ('Le laboratoire face aux', 'défis environnementaux'),
+    'LLD2025-02': ('Chimie analytique durable', 'et mobilisation des équipes'),
+    'P08-ACV-I': ("L'analyse du cycle de vie", 'appliquée au laboratoire'),
+    'P06-GC-E': ('Les essentiels', 'GC et GC-MS'),
+    'P06-GC-M': ('Maintenance GC-FID-MSD', 'de premier niveau'),
+    'P07-GC-I': ('Traitement de données', 'GC-MS / GC-FID'),
+    'P07-GC-D': ('Traitement avancé', 'des données GC-MS'),
+}
+CATS = {
+    'durabilite': ('Durabilité', 'sprout'),
+    'acv': ('Analyse du cycle de vie', 'refresh-cw'),
+    'instru': ('Instrumentation', 'settings'),
+    'chemo': ('Chémo-informatique', 'monitor'),
+}
+# formats possibles : vrai d'après le texte (TP sur vos instruments => intra uniquement)
+FORMATS_ALL = [('intra', 'Dans vos locaux', 'Intra-entreprise'),
+               ('brioude', 'À Brioude', 'En présentiel'),
+               ('distance', 'À distance', '')]
+FORMATS = {r: FORMATS_ALL for r in SLUG}
+FORMATS['P06-GC-E'] = FORMATS_ALL[:1]
+FORMATS['P06-GC-M'] = FORMATS_ALL[:1]
+
+# déroulé : uniquement ce que la description existante affirme
+PROGRAMME = {
+    'LLD2025-01': ('Déroulé de la journée', [
+        ('Apports', 'Fondements', ['Chimie verte et chimie analytique verte', 'Limites planétaires et ordres de grandeur au laboratoire', 'Outils méthodologiques disponibles']),
+        ('Atelier 1', 'En sous-groupes', ['Élaborer une politique environnementale de laboratoire']),
+        ('Atelier 2', 'En sous-groupes', ["Analyser une méthode analytique étape par étape", 'Communiquer sur ses actions de manière responsable']),
+    ]),
+    'LLD2025-02': ('Déroulé de la journée', [
+        ('Matin', 'Enjeux', ['Le laboratoire face au dérèglement climatique et aux limites planétaires', 'Enjeux et cadre réglementaire', 'Ressources et matières premières critiques', 'Résilience des activités']),
+        ('Après-midi', 'Ateliers', ['Construire un cadre de politique environnementale', 'Analyser une méthode analytique représentative', 'Valoriser ses actions sans greenwashing']),
+    ]),
+    'P08-ACV-I': ('Déroulé de la journée', [
+        ('Matin', 'Cadre et méthode', ["Contexte : pourquoi l'ACV au laboratoire", 'Cadre normatif ISO 14040/14044', "Les 4 phases de l'ACV"]),
+        ('Après-midi', 'Atelier openLCA', ['Atelier openLCA (ecoinvent, EF 3.1) sur un cas comparatif', "Définition d'une unité fonctionnelle", 'Collecte de données sur une méthode de votre laboratoire']),
+    ]),
+    'P06-GC-E': ('Trois modules à la carte', [
+        ('Module A', 'Principes généraux', ['Fonctionnement des systèmes GC-FID et GC-MS', 'Lien entre paramètres de méthode et chromatogramme']),
+        ('Module B', 'Logiciels', ['Utilisation avancée des logiciels de pilotage', 'OpenLab, MassHunter']),
+        ('Module C', 'Maintenance', ['Maintenance de premier niveau', 'En travaux pratiques sur vos systèmes']),
+    ]),
+    'P06-GC-M': ('Travaux pratiques sur vos systèmes', [
+        ('Injection', 'SSL, ALS, HSS', ["Entretien de l'injecteur SSL", 'Installation de colonne']),
+        ('Détection', 'FID, MSD', ['Entretien du FID', 'Nettoyage de la source EI']),
+        ('Contrôle', 'Après intervention', ['Tests de fuite', 'Tune', 'Chromatogramme de contrôle']),
+    ]),
+    'P07-GC-I': ('Trois temps', [
+        ('Comprendre', 'Les données', ["Modes d'acquisition des données chromatographiques", 'Structure et contenu des données']),
+        ('Découvrir', 'Les traitements', ['Les différentes façons de traiter les données', 'Déconvolution, intégration, identification']),
+        ('Appliquer', 'Sur vos échantillons', ["Stratégies efficaces sur des échantillons d'intérêt de votre laboratoire", 'AMDIS, QualiFast, DataAnalysis ou MassHunter selon votre environnement']),
+    ]),
+    'P07-GC-D': ('Ce que l\'on traite', [
+        ('Matrices', 'Complexes', ['Coélutions et isomères', 'Composés majoritaires et traces']),
+        ('Secteurs', 'De préférence vos données', ['Parfumerie et arômes, agroalimentaire', 'Environnement, pétrochimie, matériaux']),
+    ]),
+}
+TOOLS = {
+    'P08-ACV-I': ['openLCA', 'ecoinvent', 'EF 3.1', 'ISO 14040/14044'],
+    'P06-GC-E': ['GC-FID / GC-MS Agilent', 'OpenLab', 'MassHunter'],
+    'P06-GC-M': ['ALS', 'HSS', 'SSL', 'FID', 'MSD'],
+    'P07-GC-I': ['AMDIS', 'QualiFast', 'DataAnalysis', 'MassHunter'],
+    'P07-GC-D': ['Scan / SIM', 'TIC / EIC', 'Bibliothèque NIST', 'Indices de rétention'],
+}
+TEAM = {
+    'Bastien Raccary': ('bastien-raccary.png', 'Responsable pôle durabilité — ACV & stratégie low impact'),
+    'Christophe Pérès': ('christophe-peres.png', 'Fondateur — Pôle méthodes & instrumentation'),
+    'Clément Truan': ('clement-truan.png', 'Responsable pôle chémo-informatique & IA'),
+    'Xavier Rouessac': ('xavier-rouessac.png', 'Responsable support & formation — Expert LC/GC/MS'),
+}
+
+for d in DATA:
+    d['slug'] = SLUG[d['ref']]
+    d['det'] = dict(d['details'])
+    d['trainers'] = [n.strip() for n in (d['det'].get('Formateurs') or d['det'].get('Formateur')).split(',')]
+
+# ---------------------------------------------------------------- icônes
+ICON_NAMES = set()
+def ic(name, cls='ic'):
+    ICON_NAMES.add(name)
+    return f'<svg class="{cls}" aria-hidden="true"><use href="#i-{name}"/></svg>'
+def sprite():
+    out = ['<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">',
+           '<!-- Icônes : Lucide v0.460.0, licence ISC (https://lucide.dev) -->']
+    for n in sorted(ICON_NAMES):
+        if n not in SYMBOLS: raise SystemExit(f'Icône inconnue : {n} (ajoutez-la à _src/icons.svg)')
+        out.append(SYMBOLS[n])
+    out.append('</svg>')
+    return '\n'.join(out)
+
+# ---------------------------------------------------------------- CSS
+CSS = r"""
+:root{
+  --deep:#0f3d4f; --deep-2:#14495d; --primary:#1a6b7a; --primary-light:#2a8a9a;
+  --tint:#e8f4f6; --gold:#d4a053; --gold-light:#e8c88a; --gold-ink:#8f5c15;
+  --ink:#1a2a2e; --ink-2:#4a5e63; --ink-3:#566a6f; --line:#d8e4e7; --paper:#ffffff; --soft:#f4f8f9;
+  --on-deep:#ffffff; --on-deep-2:#d3e6eb; --on-deep-3:#a9c9d1; --deep-line:rgba(255,255,255,.14);
+  --f-display:'Outfit',system-ui,sans-serif; --f-body:'Plus Jakarta Sans',system-ui,sans-serif;
+  --maxw:1180px; --gut:clamp(1rem,4vw,2rem); --nav-h:72px;
+  --r:10px; --r-lg:18px; --ease:cubic-bezier(.16,1,.3,1);
+  --shadow:0 18px 40px -18px rgba(15,61,79,.28),0 2px 6px rgba(15,61,79,.06);
+  color-scheme:light;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 1rem);-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);font-size:1rem;line-height:1.65;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--primary);text-underline-offset:3px}
+h1,h2,h3{font-family:var(--f-display);color:var(--deep);line-height:1.15;text-wrap:balance;letter-spacing:-.01em}
+p{text-wrap:pretty}
+::selection{background:var(--gold-light);color:var(--deep)}
+:focus-visible{outline:2px solid var(--deep);outline-offset:3px;border-radius:4px}
+.hero :focus-visible,.dark :focus-visible,.footer :focus-visible,.card-head :focus-visible,.mini:focus-visible,.step-side :focus-visible{outline-color:var(--gold-light)}
+.ic{width:1.2em;height:1.2em;flex-shrink:0;display:inline-block;vertical-align:-.22em}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:1rem;top:-100px;z-index:300;background:var(--deep);color:#fff;padding:.6rem 1rem;border-radius:var(--r);font-weight:600}
+.skip:focus{top:.75rem}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+.num{font-variant-numeric:tabular-nums}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:saturate(150%) blur(14px);-webkit-backdrop-filter:saturate(150%) blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo img{height:40px;width:auto}
+.nav-links{display:flex;align-items:center;gap:.15rem;list-style:none}
+.nav-links a{display:block;text-decoration:none;color:var(--ink-2);font-size:.9rem;font-weight:500;padding:.5rem .9rem;border-radius:999px;transition:color .2s,background-color .2s}
+.nav-links a:hover{color:var(--deep);background:var(--tint)}
+.nav-links a[aria-current="page"]{color:var(--deep);background:var(--tint);font-weight:600}
+.nav-links a.nav-cta{background:var(--gold);color:var(--deep);font-weight:700;margin-left:.5rem;padding:.6rem 1.2rem}
+.nav-links a.nav-cta:hover{background:var(--gold-light)}
+.nav-toggle{display:none;width:44px;height:44px;border:0;background:none;border-radius:var(--r);cursor:pointer;position:relative;color:var(--ink)}
+.nav-toggle span{position:absolute;left:12px;width:20px;height:2px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .2s}
+.nav-toggle span:nth-child(1){top:15px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:27px}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* BOUTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:.8rem 1.5rem;border-radius:999px;font:700 .95rem/1.2 var(--f-body);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s,transform .25s var(--ease),box-shadow .25s}
+.btn .ic{width:1.05em;height:1.05em;transition:transform .25s var(--ease)}
+.btn:hover .ic{transform:translate(2px,-2px)}
+.btn-gold{background:var(--gold);color:var(--deep);box-shadow:0 8px 20px -10px rgba(212,160,83,.9)}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-line{color:#fff;border-color:rgba(255,255,255,.45)}
+.btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-deep{background:var(--deep);color:#fff}
+.btn-deep:hover{background:var(--primary)}
+.btn-ghost{color:var(--deep);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--deep)}
+.btn-block{width:100%}
+
+/* HERO */
+.hero{position:relative;background:var(--deep);color:var(--on-deep-2);padding-top:calc(var(--nav-h) + clamp(1.5rem,4vw,2.5rem));overflow:hidden;isolation:isolate}
+.hero-photo{position:absolute;inset:0;z-index:-2;background:url('assets/photos/hero-accueil.jpg') center 62%/cover no-repeat}
+.hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(15,61,79,.96) 0%,rgba(15,61,79,.84) 42%,rgba(15,61,79,.42) 100%)}
+.crumbs{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-size:.8rem;color:var(--on-deep-3);list-style:none}
+.crumbs a{color:var(--on-deep-2);text-decoration:none}
+.crumbs a:hover{color:#fff;text-decoration:underline}
+.crumbs li+li::before{content:'/';margin-right:.4rem;color:var(--on-deep-3)}
+.hero h1{color:#fff;font-weight:700;font-size:clamp(2.2rem,1.5rem + 3vw,3.6rem);line-height:1.06;letter-spacing:-.02em;max-width:17ch;margin:1.4rem 0 1.2rem}
+.hero h1 em{font-style:normal;color:var(--gold-light);display:block}
+.hero-lead{font-size:clamp(1rem,.95rem + .3vw,1.13rem);max-width:58ch;color:var(--on-deep-2)}
+.hero-ref{display:inline-flex;gap:.5rem;align-items:center;margin-top:1rem;font-size:.82rem;color:var(--on-deep-3)}
+.hero-ref b{color:var(--on-deep-2);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.8rem 0 clamp(2rem,5vw,3rem)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--deep-line);list-style:none}
+.facts li{padding:1.25rem 1.25rem 1.6rem 0;min-width:0}
+.facts li+li{padding-left:1.25rem;border-left:1px solid var(--deep-line)}
+.facts b{display:block;font:700 clamp(1.15rem,1rem + .6vw,1.45rem)/1.2 var(--f-display);color:var(--gold-light);font-variant-numeric:tabular-nums}
+.facts b.long{font:700 .98rem/1.4 var(--f-body);color:#fff}
+.facts span{display:block;margin-top:.3rem;font-size:.84rem;color:var(--on-deep-2);line-height:1.4}
+
+/* SECTIONS */
+.sec{padding-block:clamp(3.5rem,7vw,5.5rem)}
+.sec-soft{background:var(--soft)}
+.sec h2{font-size:clamp(1.6rem,1.25rem + 1.4vw,2.25rem);font-weight:700;margin-bottom:1rem}
+.sec-intro{max-width:62ch;color:var(--ink-2);font-size:1.05rem;margin-bottom:clamp(1.75rem,4vw,2.5rem)}
+.h3{font:700 1.2rem/1.3 var(--f-display);color:var(--deep);margin-bottom:.9rem}
+
+/* FICHE : grille contenu + carte */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:clamp(2rem,4vw,4rem);align-items:start}
+.main>*+*{margin-top:clamp(2.75rem,5vw,3.75rem)}
+.lede{font-size:1.08rem;color:var(--ink-2);max-width:66ch}
+.lede strong{color:var(--deep)}
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.who>div{padding:1.1rem 1.25rem 0 0;min-width:0}
+.who>div+div{padding-left:1.25rem;border-left:1px solid var(--line)}
+.who dt{font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
+.who dd{font-weight:600;color:var(--deep);line-height:1.45}
+.goals{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
+.goals li{display:flex;gap:.8rem;padding:1rem 0;border-top:1px solid var(--line);color:var(--ink-2);font-size:.95rem;min-width:0}
+.goals .ic{color:var(--primary);margin-top:.2rem}
+
+/* PROGRAMME */
+.prog{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:#fff}
+.step{display:grid;grid-template-columns:180px minmax(0,1fr)}
+.step+.step{border-top:1px solid var(--line)}
+.step-side{background:var(--deep);color:var(--on-deep-2);padding:1.4rem 1.25rem}
+.step-side b{display:block;font:700 1.25rem/1.2 var(--f-display);color:#fff}
+.step-side span{display:block;margin-top:.25rem;font-size:.85rem;color:var(--gold-light);font-weight:600}
+.step+.step .step-side{border-top:1px solid var(--deep-line)}
+.step-body{padding:1.4rem 1.5rem;min-width:0}
+.step-body ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.step-body li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem}
+.step-body li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.tools{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;list-style:none}
+.tools li{font-size:.84rem;font-weight:600;color:var(--deep);background:var(--tint);border-radius:999px;padding:.35rem .85rem}
+
+/* CARTE D'INSCRIPTION */
+.card{position:sticky;top:calc(var(--nav-h) + 1.25rem);background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+.card-head{background:var(--deep);color:var(--on-deep-2);padding:1.4rem 1.5rem}
+.card-head small{display:block;font-size:.8rem;color:var(--on-deep-3)}
+.card-head b{display:block;font:700 1.7rem/1.15 var(--f-display);color:#fff}
+.card-head p{font-size:.85rem;margin-top:.35rem}
+.card-body{padding:1.25rem 1.5rem 1.5rem}
+.card-body fieldset{border:0}
+.card-body legend{font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.opt{display:flex;gap:.75rem;align-items:flex-start;padding:.8rem .9rem;border:1.5px solid var(--line);border-radius:var(--r);cursor:pointer;transition:border-color .2s,background-color .2s}
+.opt+.opt{margin-top:.5rem}
+.opt input{appearance:none;width:18px;height:18px;margin-top:.15rem;border:2px solid var(--ink-3);border-radius:50%;flex-shrink:0;display:grid;place-content:center;cursor:pointer}
+.opt input::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--deep);transform:scale(0);transition:transform .2s var(--ease)}
+.opt input:checked{border-color:var(--deep)}
+.opt input:checked::before{transform:scale(1)}
+.opt:has(input:checked){border-color:var(--deep);background:var(--tint)}
+.opt:hover{border-color:var(--primary-light)}
+.opt b{display:block;font-size:.95rem;color:var(--deep)}
+.opt span{display:block;font-size:.82rem;color:var(--ink-3)}
+.card .btn{margin-top:1.1rem}
+.fmt-one{padding:.9rem 1rem;border-radius:var(--r);background:var(--tint)}
+.fmt-one span{display:block;font-size:.8rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+.fmt-one b{display:block;color:var(--deep);margin-top:.15rem}
+.fmt-one small{display:block;font-size:.84rem;color:var(--ink-2);margin-top:.15rem}
+.card-alt{display:block;text-align:center;margin-top:.75rem;font-size:.88rem;font-weight:600;color:var(--deep)}
+.spec{list-style:none;border-top:1px solid var(--line);margin-top:1.25rem;padding-top:.5rem}
+.spec li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;font-size:.86rem;border-bottom:1px solid var(--soft)}
+.spec li:last-child{border-bottom:0}
+.spec span{color:var(--ink-3);flex-shrink:0}
+.spec b{color:var(--ink);font-weight:600;text-align:right;min-width:0}
+
+/* ÉVALUATION (frise) */
+.eval{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:clamp(2rem,4vw,4rem);align-items:start}
+.eval h2{margin-bottom:0}
+.track{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
+.track::before{content:'';position:absolute;left:9px;right:12%;top:9px;height:2px;background:var(--gold)}
+.track li{position:relative;padding:2.1rem 1rem 0 0;min-width:0}
+.track li::before{content:'';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--gold)}
+.track b{display:block;font-weight:600;color:var(--deep);line-height:1.35;margin-top:.25rem;font-size:.95rem}
+.track span{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.3rem}
+
+/* BANDEAU SOMBRE */
+.dark{background:var(--deep);color:var(--on-deep-2);position:relative;isolation:isolate}
+.dark h2,.dark h3{color:#fff}
+.dark .sec-intro{color:var(--on-deep-2)}
+.proof{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.score{border:1px solid var(--deep-line);border-radius:var(--r-lg);padding:1.75rem;background:rgba(255,255,255,.04)}
+.score-n{font:700 clamp(3rem,2.4rem + 2.5vw,4.4rem)/1 var(--f-display);color:var(--gold-light);font-variant-numeric:tabular-nums}
+.score-n small{font-size:.35em;color:var(--on-deep-2);font-weight:600;margin-left:.2rem}
+.meter{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:1.1rem 0 .6rem}
+.meter i{height:8px;border-radius:2px;background:rgba(255,255,255,.14);position:relative;overflow:hidden}
+.meter i::after{content:'';position:absolute;inset:0;width:var(--fill,100%);background:var(--gold)}
+.score p{font-size:.88rem}
+.score dl{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.25rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--deep-line);font-size:.88rem}
+.score dt{font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.quali{display:inline-flex;align-items:center;gap:.75rem;margin-top:1.5rem;padding:.6rem .9rem .6rem .6rem;background:#fff;border-radius:var(--r);color:var(--deep);font-size:.85rem;font-weight:600;text-decoration:none}
+.quali img{height:34px;width:auto}
+.money{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(2rem,5vw,4rem);margin-top:clamp(3rem,6vw,4.5rem);padding-top:clamp(2.5rem,5vw,3.5rem);border-top:1px solid var(--deep-line)}
+.money-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2rem}
+.money-grid>div{padding:1.1rem 0;border-bottom:1px solid var(--deep-line);min-width:0}
+.money-grid b{display:block;font:700 1.35rem/1.2 var(--f-display);color:#fff}
+.money-grid b.gold{color:var(--gold-light)}
+.money-grid span{display:block;font-size:.88rem;margin-top:.3rem}
+
+/* FAQ + CONTACT */
+.faq-wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(2rem,4vw,4rem);align-items:start}
+.faq details{border:1px solid var(--line);border-radius:var(--r);background:#fff;transition:border-color .2s,box-shadow .2s}
+.faq details+details{margin-top:.6rem}
+.faq details[open]{border-color:var(--gold);box-shadow:0 10px 30px -18px rgba(15,61,79,.35)}
+.faq summary{list-style:none;display:flex;align-items:center;gap:1rem;padding:1.05rem 1.2rem;cursor:pointer;font-weight:600;color:var(--deep)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ic{margin-left:auto;color:var(--ink-3);transition:transform .3s var(--ease)}
+.faq details[open] summary .ic{transform:rotate(180deg);color:var(--deep)}
+.faq details p{padding:0 1.2rem 1.15rem;color:var(--ink-2);font-size:.95rem}
+.contact{border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow);border:1px solid var(--line);padding:1.5rem;position:sticky;top:calc(var(--nav-h) + 1.25rem)}
+.person{display:flex;gap:.9rem;align-items:center}
+.person img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;background:var(--tint);border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.person b{display:block;color:var(--deep)}
+.person span{display:block;font-size:.84rem;color:var(--ink-3);line-height:1.4}
+.contact h3{font-size:1.15rem;margin:1.25rem 0 .4rem}
+.contact p{font-size:.92rem;color:var(--ink-2)}
+.contact ul{list-style:none;margin:1rem 0 1.25rem;display:flex;flex-direction:column;gap:.5rem;font-size:.92rem}
+.contact li{display:flex;gap:.6rem;align-items:center;min-width:0;overflow-wrap:anywhere}
+.contact li .ic{color:var(--primary)}
+
+/* FORMATEURS */
+.trainers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1rem}
+.trainer{display:flex;gap:1.1rem;align-items:center;padding:1.1rem;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff}
+.trainer img{width:84px;height:84px;border-radius:var(--r);object-fit:cover;object-position:top;background:var(--tint)}
+.trainer b{display:block;font:700 1.1rem/1.25 var(--f-display);color:var(--deep)}
+.trainer span{display:block;font-size:.88rem;color:var(--ink-2);margin-top:.2rem}
+.trainer a{font-size:.85rem;font-weight:600;display:inline-block;margin-top:.4rem}
+
+/* AUTRES FORMATIONS / CATALOGUE */
+.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.mini{display:flex;flex-direction:column;gap:.5rem;padding:1.25rem;border-radius:var(--r-lg);background:var(--deep);color:var(--on-deep-2);text-decoration:none;min-height:180px;transition:transform .3s var(--ease),background-color .2s}
+.mini:hover{transform:translateY(-3px);background:var(--deep-2)}
+.mini small{display:flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;color:var(--gold-light)}
+.mini b{font:700 1.08rem/1.3 var(--f-display);color:#fff}
+.mini span{margin-top:auto;display:flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;color:var(--on-deep-2)}
+
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.chip{display:inline-flex;align-items:center;gap:.45rem;min-height:40px;padding:.45rem 1rem;border-radius:999px;border:1.5px solid var(--line);background:#fff;font:600 .88rem var(--f-body);color:var(--ink-2);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}
+.chip:hover{border-color:var(--deep);color:var(--deep)}
+.chip[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+.chip .n{font-variant-numeric:tabular-nums;opacity:.75}
+.list{list-style:none;border-top:1px solid var(--line)}
+.row{border-bottom:1px solid var(--line)}
+.row a{display:grid;grid-template-columns:56px minmax(0,1fr) 210px 28px;gap:1.25rem;align-items:center;padding:1.4rem .5rem;text-decoration:none;color:inherit;border-radius:var(--r);transition:background-color .2s}
+.row a:hover{background:var(--soft)}
+.row-ic{width:56px;height:56px;border-radius:14px;background:var(--tint);color:var(--deep);display:grid;place-items:center}
+.row-ic .ic{width:24px;height:24px}
+.row-t b{display:block;font:700 1.15rem/1.3 var(--f-display);color:var(--deep)}
+.row-m .ref{font-weight:700;color:var(--gold-ink);font-variant-numeric:tabular-nums}
+.row-t span{display:block;font-size:.9rem;color:var(--ink-2);margin-top:.25rem}
+.row-m{font-size:.86rem;color:var(--ink-2);display:flex;flex-direction:column;gap:.3rem}
+.row-m span{display:flex;gap:.45rem;align-items:center}
+.row-m .ic{color:var(--primary)}
+.row-go{color:var(--deep);transition:transform .25s var(--ease)}
+.row a:hover .row-go{transform:translateX(4px)}
+.row[hidden]{display:none}
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.why>div{padding:1.4rem 1.4rem 0 0;min-width:0}
+.why>div+div{padding-left:1.4rem;border-left:1px solid var(--line)}
+.why .ic{width:28px;height:28px;color:var(--primary)}
+.why b{display:block;font:700 1.1rem/1.3 var(--f-display);color:var(--deep);margin:.8rem 0 .35rem}
+.why p{font-size:.92rem;color:var(--ink-2)}
+.infos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 3rem}
+.infos>div{padding:1.25rem 0;border-top:1px solid var(--line);min-width:0}
+.infos dt{font:700 1.05rem var(--f-display);color:var(--deep);margin-bottom:.35rem}
+.infos dd{color:var(--ink-2);font-size:.95rem;overflow-wrap:anywhere}
+.close{text-align:center}
+.close h2{max-width:22ch;margin-inline:auto}
+.close p{color:var(--ink-2);max-width:52ch;margin:0 auto 1.75rem}
+.close .row-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem}
+
+/* FOOTER */
+.footer{background:var(--deep);color:var(--on-deep-3);padding-block:4rem 2rem}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--deep-line)}
+.f-brand img{height:40px;width:auto;filter:brightness(0) invert(1)}
+.f-brand p{font-size:.9rem;margin-top:1rem;max-width:34ch;color:var(--on-deep-2)}
+.footer h4{color:#fff;font:600 .85rem var(--f-body);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.1rem}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;font-size:.9rem}
+.footer a{color:var(--on-deep-2);text-decoration:none}
+.footer a:hover{color:#fff;text-decoration:underline}
+.f-contact li{display:flex;gap:.55rem;align-items:flex-start;overflow-wrap:anywhere}
+.f-contact .ic{color:var(--gold-light);margin-top:.2rem}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding-top:1.75rem;font-size:.8rem}
+.f-bottom div{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
+.f-social{width:40px;height:40px;border-radius:var(--r);display:grid;place-items:center;border:1px solid var(--deep-line)}
+
+/* MOTION : une entrée orchestrée (barre de faits), contenu visible par défaut */
+@media (prefers-reduced-motion:no-preference){
+  .js .facts li{animation:rise .9s var(--ease) both}
+  .js .facts li:nth-child(2){animation-delay:.08s}.js .facts li:nth-child(3){animation-delay:.16s}.js .facts li:nth-child(4){animation-delay:.24s}
+  @keyframes rise{from{opacity:.001;transform:translateY(14px)}}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* RESPONSIVE */
+@media (max-width:1040px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .card{position:static;max-width:560px}
+  .faq-wrap,.proof,.money,.eval{grid-template-columns:minmax(0,1fr)}
+  .contact{position:static;max-width:560px}
+  .others{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:1.5rem}
+  .why>div:nth-child(3){padding-left:0;border-left:0}
+  .row a{grid-template-columns:48px minmax(0,1fr) 28px}
+  .row-ic{width:48px;height:48px}
+  .row-m{grid-column:2;grid-row:2;flex-direction:row;flex-wrap:wrap;gap:.3rem 1rem}
+  .row-go{grid-column:3;grid-row:1}
+}
+@media (max-width:960px){
+  .nav-toggle{display:block}
+  .nav-links{position:fixed;left:0;right:0;top:var(--nav-h);flex-direction:column;align-items:stretch;gap:.15rem;background:#fff;border-bottom:1px solid var(--line);box-shadow:var(--shadow);padding:.75rem var(--gut) 1rem;transform:translateY(-110%);visibility:hidden;transition:transform .3s var(--ease),visibility 0s .3s}
+  .nav-links.open{transform:none;visibility:visible;transition:transform .3s var(--ease)}
+  .nav-links a{padding:.85rem 1rem;font-size:1rem}
+  .nav-links a.nav-cta{margin:.5rem 0 0;text-align:center}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts li:nth-child(3){padding-left:0;border-left:0}
+  .facts li:nth-child(n+3){border-top:1px solid var(--deep-line)}
+  .who,.goals,.money-grid,.infos{grid-template-columns:minmax(0,1fr)}
+  .who>div+div{padding-left:0;border-left:0}
+  .step{grid-template-columns:minmax(0,1fr)}
+  .track{grid-template-columns:minmax(0,1fr);gap:1.25rem}
+  .track::before{left:9px;right:auto;top:9px;bottom:9px;width:2px;height:auto}
+  .track li{padding:0 0 0 2.25rem}
+  .others{grid-template-columns:minmax(0,1fr)}
+  .why{grid-template-columns:minmax(0,1fr)}
+  .why>div,.why>div+div{padding:1.25rem 0;border-left:0;border-bottom:1px solid var(--line)}
+  .f-grid{grid-template-columns:1fr}
+  .hero-actions .btn{flex:1 1 100%}
+}
+"""
+
+JS = r"""
+document.documentElement.classList.add('js');
+(function(){
+  var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  if(t&&l){
+    var set=function(o){l.classList.toggle('open',o);t.setAttribute('aria-expanded',String(o));t.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu')};
+    t.addEventListener('click',function(){set(!l.classList.contains('open'))});
+    l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  }
+  // Carte d'inscription : le format choisi réécrit l'objet du mail
+  var form=document.getElementById('format'),cta=document.getElementById('ctaMail');
+  if(form&&cta){
+    var base=cta.dataset.subject;
+    var upd=function(){var c=form.querySelector('input:checked');cta.href='mailto:bastien.raccary@lelabodurable.com?subject='+encodeURIComponent(base+(c?' — '+c.dataset.label:''))};
+    form.addEventListener('change',upd);upd();
+  }
+  // Catalogue : filtres
+  var chips=document.querySelectorAll('.chip[data-filter]');
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===c))});
+    var f=c.dataset.filter,n=0;
+    document.querySelectorAll('.row[data-cat]').forEach(function(r){var on=f==='all'||r.dataset.cat===f;r.hidden=!on;if(on)n++});
+    var s=document.getElementById('count');if(s)s.textContent=n+(n>1?' formations':' formation');
+  })});
+})();
+"""
+
+FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+         '<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">')
+
+def nav(current):
+    items = [('index.html', 'Accueil'), ('services.html', 'Nos services'), ('equipe.html', 'Notre équipe'),
+             ('formations.html', 'Formations'), ('acv.html', "L'ACV"), ('consolab.html', 'Consolab')]
+    lis = ''.join(f'<li><a href="{h}"' + (' aria-current="page"' if h == current else '') + f'>{t}</a></li>' for h, t in items)
+    cta_cur = ' aria-current="page"' if current == 'contact.html' else ''
+    return f'''<nav class="nav" aria-label="Navigation principale"><div class="wrap nav-in">
+<a href="index.html" class="nav-logo"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" width="113" height="40"></a>
+<ul class="nav-links" id="navLinks">{lis}<li><a href="contact.html" class="nav-cta"{cta_cur}>Nous contacter</a></li></ul>
+<button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+</div></nav>'''
+
+def footer():
+    return f'''<footer class="footer"><div class="wrap">
+<div class="f-grid">
+<div class="f-brand"><a href="index.html"><img src="assets/logo/lld-logo.png" alt="Le Labo Durable" width="113" height="40"></a><p>Accompagner les laboratoires d'analyses dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p></div>
+<div><h4>Services</h4><ul><li><a href="services.html">Vue d'ensemble</a></li><li><a href="acv.html">Analyse du cycle de vie</a></li><li><a href="formations.html">Formations</a></li><li><a href="consolab.html">Consolab</a></li></ul></div>
+<div><h4>Entreprise</h4><ul><li><a href="equipe.html">Notre équipe</a></li><li><a href="contact.html">Contact</a></li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div>
+<div><h4>Nous contacter</h4><ul class="f-contact"><li>{ic('map-pin')}<span>34 rue du Vallat, 43100 Brioude</span></li><li>{ic('mail')}<a href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></li></ul></div>
+</div>
+<div class="f-bottom"><div><span>© 2026 Le Labo Durable. Tous droits réservés.</span><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#confidentialite">Politique de confidentialité</a><a href="mentions-legales.html#cookies">Cookies</a></div>
+<a class="f-social" href="https://www.linkedin.com/company/le-labo-durable/" target="_blank" rel="noopener" aria-label="LinkedIn">{ic('linkedin')}</a></div>
+</div></footer>'''
+
+def page(title, desc, body, current='formations.html', extra_css='', extra_js=''):
+    main = body  # icônes collectées pendant la construction du corps
+    foot = footer()
+    return f'''<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{E(title)}</title>
+<meta name="description" content="{E(desc)}">
+<meta name="color-scheme" content="light">
+{FONTS}
+<style>{CSS}{extra_css}</style>
+</head>
+<body>
+{sprite_placeholder}
+<a class="skip" href="#main">Aller au contenu</a>
+{nav(current)}
+<main id="main">
+{main}
+</main>
+{foot}
+<script>{JS}{extra_js}</script>
+</body>
+</html>
+'''
+
+sprite_placeholder = '<!--SPRITE-->'
+
+def finalize(s):
+    return s.replace('<!--SPRITE-->', sprite(), 1)
+
+def dur_short(d):  # « 2 jours (14 h) » -> ('2 jours', '14 h')
+    m = re.match(r'(.*?)\s*\((.*)\)', d)
+    return (m.group(1), m.group(2)) if m else (d, '')
+
+# Faits communs, tirés du texte existant
+EVAL_STEPS = [
+    ('Avant', 'Questionnaire de positionnement', 'Avant la formation.'),
+    ('Pendant', 'Évaluation des acquis', 'Par le formateur, pendant les exercices et travaux pratiques.'),
+    ('Fin de session', 'Questionnaire de satisfaction', 'En fin de session.'),
+    ('Après', 'Attestation de fin de formation', 'Remise à chaque participant·e.'),
+]
+FAQ = [
+    ('Quels sont les délais pour démarrer ?', "Formation intra-entreprise sur devis : démarrage possible sous 4 à 8 semaines après signature de la convention. Formation à Brioude : inscription jusqu'à 10 jours ouvrés avant la session."),
+    ('Combien coûte la formation ?', "Sur devis, selon le nombre de participant·es et le lieu. Prise en charge possible par votre OPCO."),
+    ('Qui porte administrativement la formation ?', "Nos formations sont portées par Analytiss, organisme de formation certifié Qualiopi au titre de la catégorie : actions de formation. Déclaration d'activité enregistrée sous le numéro 84 43 03750 43 auprès du préfet de région Auvergne-Rhône-Alpes."),
+    ('Comment se déroule la formation ?', "Apports théoriques, démonstrations sur instruments et ateliers pratiques (openLCA, données réelles, travaux pratiques de maintenance). Supports remis aux participant·es."),
+    ('La formation est-elle accessible en situation de handicap ?', "Oui. Contactez notre référent handicap, Christophe Pérès (christophe.peres@lelabodurable.com, 06 84 14 54 84), pour étudier les aménagements nécessaires."),
+]
+
+def proof_band(scope):
+    return f'''<section class="sec dark" aria-labelledby="proof-h"><div class="wrap">
+<div class="proof">
+<div>
+<h2 id="proof-h">Ce que retiennent nos stagiaires</h2>
+<p class="sec-intro">Résultats 2025, sur l'ensemble de nos formations{scope}. Chaque session se termine par un questionnaire de satisfaction.</p>
+<a class="quali" href="https://analytiss.com" target="_blank" rel="noopener"><img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi" width="96" height="34"><span>Formations portées par Analytiss,<br>certifié Qualiopi (actions de formation)</span></a>
+</div>
+<div class="score" role="group" aria-label="Note moyenne 4,7 sur 5">
+<div class="score-n">4,7<small>/ 5</small></div>
+<div class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i style="--fill:70%"></i></div>
+<p>Note moyenne attribuée par les stagiaires en 2025.</p>
+<dl><dt>100 %</dt><dd>de stagiaires satisfaits en 2025</dd></dl>
+</div>
+</div>
+<div class="money">
+<div><h3 class="h3">Prix et financement</h3><p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs.</p></div>
+<div class="money-grid">
+<div><b class="gold">Sur devis</b><span>Selon le nombre de participant·es et le lieu</span></div>
+<div><b>OPCO</b><span>Prise en charge possible par votre OPCO</span></div>
+<div><b>4 à 8 semaines</b><span>Délai de démarrage en intra après signature de la convention</span></div>
+<div><b>J−10 ouvrés</b><span>Inscription possible jusqu'à 10 jours ouvrés avant une session à Brioude</span></div>
+</div>
+</div>
+</div></section>'''
+
+def contact_card(subject):
+    href = 'mailto:bastien.raccary@lelabodurable.com?subject=' + html.escape(subject, quote=True)
+    return f'''<aside class="contact" aria-label="Contact formations">
+<div class="person"><img src="assets/team/bastien-raccary.png" alt="" width="64" height="64" loading="lazy"><div><b>Bastien Raccary</b><span>Contact formations</span></div></div>
+<h3>Une question sur cette formation ?</h3>
+<p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs.</p>
+<ul><li>{ic('mail')}<a href="{href}">bastien.raccary@lelabodurable.com</a></li><li>{ic('phone')}<a href="tel:+33630637757">06 30 63 77 57</a></li></ul>
+<a class="btn btn-deep btn-block" href="{href}">Écrire à Bastien {ic('arrow-up-right')}</a>
+</aside>'''
+
+def faq_section(subject, title='Questions fréquentes'):
+    items = ''.join(f'<details><summary>{E(q)}{ic("chevron-down")}</summary><p>{E(a)}</p></details>' for q, a in FAQ)
+    return f'''<section class="sec" aria-labelledby="faq-h"><div class="wrap faq-wrap">
+<div><h2 id="faq-h">{title}</h2><div class="faq">{items}</div></div>
+{contact_card(subject)}
+</div></section>'''
+
+# ---------------------------------------------------------------- fiche
+def fiche(d):
+    det = d['det']
+    a, b = HERO[d['ref']]
+    dur, hours = dur_short(det['Durée'])
+    cat_label, cat_icon = CATS[d['cat']]
+    subj_base = d['mail'].split('subject=', 1)[1]  # objet exact du site en ligne
+    fmts = FORMATS[d['ref']]
+    fmt_fact = 'Dans vos locaux' if len(fmts) == 1 else 'Intra, Brioude ou à distance'
+    facts = [(dur, hours and f'soit {hours} de formation' or 'de formation'),
+             (fmt_fact, 'sur les systèmes de votre laboratoire' if len(fmts) == 1 else 'au choix'),
+             (det['Public'], 'public visé', 'long'),
+             ('Sur devis', 'prise en charge OPCO possible')]
+    facts_html = ''.join(f'<li><b' + (' class="long"' if len(f) > 2 else '') + f'>{E(f[0])}</b><span>{E(f[1])}</span></li>' for f in facts)
+
+    who = [('Public', det['Public']), ('Prérequis', det['Prérequis'])]
+    if det.get('Répartition'): who.append(('Répartition', det['Répartition']))
+    elif det.get('Évaluation'): who.append(('Évaluation', det['Évaluation']))
+    who_html = ''.join(f'<div><dt>{k}</dt><dd>{E(v)}</dd></div>' for k, v in who)
+    goals = ''.join(f'<li>{ic("check")}<span>{E(o)}</span></li>' for o in d['objectives'])
+
+    ptitle, steps = PROGRAMME[d['ref']]
+    steps_html = ''.join(f'<div class="step"><div class="step-side"><b>{E(s)}</b><span>{E(t)}</span></div><div class="step-body"><ul>' + ''.join(f'<li>{E(x)}</li>' for x in items) + '</ul></div></div>' for s, t, items in steps)
+    tools = TOOLS.get(d['ref'])
+    tools_html = ('<ul class="tools" aria-label="Outils et références">' + ''.join(f'<li>{E(t)}</li>' for t in tools) + '</ul>') if tools else ''
+
+    if len(fmts) > 1:
+        opts = '<fieldset id="format"><legend>Choisissez un format</legend>' + ''.join(f'<label class="opt"><input type="radio" name="fmt" value="{v}" data-label="{E(l)}"' + (' checked' if i == 0 else '') + f'><span><b>{E(l)}</b>' + (f'<span>{E(s)}</span>' if s else '') + '</span></label>' for i, (v, l, s) in enumerate(fmts)) + '</fieldset>'
+    else:
+        v, l, s = fmts[0]
+        opts = f'<p class="fmt-one"><span>Format</span><b>{E(l)}</b><small>Travaux pratiques sur les systèmes de votre laboratoire</small></p>'
+    spec = [('Durée', det['Durée']), ('Public', det['Public']), ('Participants', det.get('Participants')),
+            ('Prérequis', det['Prérequis']), ('Évaluation', det.get('Évaluation')),
+            ('Matériel', det.get('Matériel')), ('Référence', d['ref'])]
+    spec_html = ''.join(f'<li><span>{k}</span><b>{E(v)}</b></li>' for k, v in spec if v)
+    mail_href = 'mailto:bastien.raccary@lelabodurable.com?subject=' + html.escape(subj_base, quote=True)
+
+    trainers = ''.join(f'<div class="trainer"><img src="assets/team/{TEAM[n][0]}" alt="Portrait de {E(n)}" width="84" height="84" loading="lazy"><div><b>{E(n)}</b><span>{E(TEAM[n][1])}</span><a href="equipe.html">Voir le parcours</a></div></div>' for n in d['trainers'])
+
+    ev = list(EVAL_STEPS)
+    if det.get('Évaluation'):
+        ev[1] = ('Pendant', 'Évaluation des acquis', det['Évaluation'] + ', par le formateur.')
+    track = ''.join(f'<li><b>{E(t)}</b><span>{E(x)}</span></li>' for s, t, x in ev)
+
+    others = [o for o in DATA if o['ref'] != d['ref']]
+    others.sort(key=lambda o: (o['cat'] != d['cat']))
+    mini = ''.join(f'<a class="mini" href="{o["slug"]}.html"><b>{E(o["title"])}</b><small>{ic(CATS[o["cat"]][1])}{E(CATS[o["cat"]][0])} · {E(dur_short(o["det"]["Durée"])[0])}</small><span>Voir la fiche {ic("arrow-right")}</span></a>' for o in others[:3])
+
+    body = f'''<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li><a href="formations.html">Formations</a></li><li aria-current="page">{E(cat_label)}</li></ol>
+<h1>{E(a)} <em>{E(b)}</em></h1>
+<p class="hero-lead">{E(d['subtitle'])}.</p>
+<p class="hero-ref">{ic(cat_icon)}<span>{E(cat_label)} · réf. <b>{E(d['ref'])}</b></span></p>
+<div class="hero-actions"><a class="btn btn-gold" href="#inscription">Demander un devis {ic('arrow-up-right')}</a><a class="btn btn-line" href="formations.html">Toutes les formations</a></div>
+<ul class="facts" aria-label="En bref">{facts_html}</ul>
+</div>
+</header>
+
+<div class="sec"><div class="wrap layout">
+<div class="main">
+<section aria-labelledby="f-h"><h2 class="h3" id="f-h">La formation</h2><p class="lede">{E(d['desc'])}</p></section>
+<section aria-labelledby="w-h"><h2 class="h3" id="w-h">Pour qui</h2><dl class="who">{who_html}</dl></section>
+<section aria-labelledby="o-h"><h2 class="h3" id="o-h">Objectifs pédagogiques</h2><ul class="goals">{goals}</ul></section>
+<section aria-labelledby="p-h"><h2 class="h3" id="p-h">{E(ptitle)}</h2><div class="prog">{steps_html}</div>{tools_html}</section>
+<section aria-labelledby="t-h"><h2 class="h3" id="t-h">{'Vos formateurs' if len(d['trainers']) > 1 else 'Votre formateur'}</h2><div class="trainers">{trainers}</div></section>
+</div>
+<aside class="card" id="inscription" aria-labelledby="c-h">
+<div class="card-head"><b id="c-h">Sur devis</b><p>Prise en charge possible par votre OPCO</p></div>
+<div class="card-body">
+{opts}
+<a class="btn btn-gold btn-block" id="ctaMail" data-subject="{E(subj_base)}" href="{mail_href}">Demander un devis {ic('arrow-up-right')}</a>
+<a class="card-alt" href="contact.html">Former mon équipe sur mesure</a>
+<ul class="spec">{spec_html}</ul>
+</div>
+</aside>
+</div></div>
+
+<section class="sec sec-soft" aria-labelledby="e-h"><div class="wrap eval">
+<div><h2 id="e-h">Évaluation et validation</h2></div>
+<ol class="track">{track}</ol>
+</div></section>
+
+{proof_band('')}
+
+{faq_section(subj_base)}
+
+<section class="sec sec-soft" aria-labelledby="x-h"><div class="wrap">
+<h2 id="x-h">Les autres formations</h2>
+<div class="others">{mini}</div>
+</div></section>'''
+    title = f"{d['title']} — Formation — Le Labo Durable"
+    desc = f"Formation {d['ref']} : {d['subtitle']}. {det['Durée']}, {det['Public'].lower()}. Sur devis, en intra-entreprise."
+    return page(title, desc, body)
+
+# ---------------------------------------------------------------- catalogue
+def catalogue():
+    n = len(DATA)
+    counts = {k: sum(1 for d in DATA if d['cat'] == k) for k in CATS}
+    chips = f'<button type="button" class="chip" data-filter="all" aria-pressed="true">Toutes <span class="n">{n}</span></button>' + ''.join(
+        f'<button type="button" class="chip" data-filter="{k}" aria-pressed="false">{ic(icn)}{E(l)} <span class="n">{counts[k]}</span></button>' for k, (l, icn) in CATS.items())
+    rows = ''
+    for d in DATA:
+        det = d['det']; l, icn = CATS[d['cat']]
+        rows += f'''<li class="row" data-cat="{d['cat']}"><a href="{d['slug']}.html">
+<span class="row-ic">{ic(icn)}</span>
+<span class="row-t"><b>{E(d['title'])}</b><span>{E(d['subtitle'])}</span></span>
+<span class="row-m"><span class="ref">{E(d['ref'])} · {E(l)}</span><span>{ic('clock')}{E(det['Durée'])}</span><span>{ic('user')}{E(', '.join(d['trainers']))}</span></span>
+<span class="row-go">{ic('arrow-right')}</span></a></li>'''
+    why = [('graduation-cap', 'Expertise unique', "Formateur·ices titulaires de doctorats avec plusieurs années d'expérience terrain."),
+           ('badge-check', 'Certifié Qualiopi', 'Certification qualité via Analytiss : prise en charge possible par votre OPCO.'),
+           ('radio-tower', 'Contenus actualisés', 'Veille bibliographique continue pour vous proposer les dernières innovations.'),
+           ('flask-conical', 'Laboratoire R&D', 'Un labo dédié à Brioude pour tester et développer les solutions présentées en formation.')]
+    why_html = ''.join(f'<div>{ic(i)}<b>{t}</b><p>{x}</p></div>' for i, t, x in why)
+    infos = [
+        ("Délais d'accès", "Formation intra-entreprise sur devis : démarrage possible sous 4 à 8 semaines après signature de la convention. Formation à Brioude : inscription jusqu'à 10 jours ouvrés avant la session."),
+        ('Tarifs', 'Sur devis, selon le nombre de participant·es et le lieu. Prise en charge possible par votre OPCO.'),
+        ('Méthodes pédagogiques', 'Apports théoriques, démonstrations sur instruments et ateliers pratiques (openLCA, données réelles, travaux pratiques de maintenance). Supports remis aux participant·es.'),
+        ("Modalités d'évaluation", "Questionnaire de positionnement avant la formation, évaluation des acquis par le formateur pendant les exercices et travaux pratiques, questionnaire de satisfaction en fin de session. Une attestation de fin de formation est remise à chaque participant·e."),
+    ]
+    infos_html = ''.join(f'<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>' for k, v in infos)
+    infos_html += ('<div><dt>Accessibilité</dt><dd>Nos formations sont accessibles aux personnes en situation de handicap. Référent handicap : Christophe Pérès, '
+                   '<a href="mailto:christophe.peres@lelabodurable.com">christophe.peres@lelabodurable.com</a>, <a href="tel:+33684145484">06 84 14 54 84</a>.</dd></div>'
+                   '<div><dt>Contact</dt><dd>Bastien Raccary, <a href="mailto:bastien.raccary@lelabodurable.com">bastien.raccary@lelabodurable.com</a>, <a href="tel:+33630637757">06 30 63 77 57</a>.</dd></div>')
+    body = f'''<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li aria-current="page">Formations</li></ol>
+<h1>Former pour susciter <em>l'implication</em></h1>
+<p class="hero-lead">Des sessions pratiques et théoriques à la pointe de la connaissance en chimie analytique durable, analyse du cycle de vie, instrumentation et chémo-informatique. Adaptées à tous les profils, du néophyte à l'expert.</p>
+<div class="hero-actions"><a class="btn btn-gold" href="#catalogue">Voir le catalogue {ic('arrow-down')}</a><a class="btn btn-line" href="contact.html">Demander une formation sur mesure</a></div>
+<ul class="facts" aria-label="En bref"><li><b>{n} formations</b><span>catalogue 2026</span></li><li><b>1 à 2 jours</b><span>selon la formation</span></li><li><b>Intra, Brioude, distance</b><span>dans vos locaux ou chez nous</span></li><li><b>100 % satisfaits</b><span>en 2025, note moyenne 4,7/5</span></li></ul>
+</div>
+</header>
+
+<section class="sec" id="catalogue" aria-labelledby="cat-h"><div class="wrap">
+<h2 id="cat-h">Notre offre de formations</h2>
+<p class="sec-intro">En présentiel à Brioude, dans vos locaux (intra-entreprise) ou à distance. Toutes nos formations sont accessibles aux personnes en situation de handicap : contactez notre référent handicap pour étudier les aménagements nécessaires.</p>
+<div class="filters" role="group" aria-label="Filtrer par thème">{chips}</div>
+<p class="sr-only" aria-live="polite" id="count">{n} formations</p>
+<ul class="list">{rows}</ul>
+</div></section>
+
+<section class="sec sec-soft" aria-labelledby="why-h"><div class="wrap">
+<h2 id="why-h">Pourquoi faire appel à nous ?</h2>
+<div class="why">{why_html}</div>
+</div></section>
+
+{proof_band('')}
+
+<section class="sec" aria-labelledby="inf-h"><div class="wrap">
+<h2 id="inf-h">Comment se déroulent nos formations</h2>
+<p class="sec-intro">Nos formations sont portées par <a href="https://analytiss.com" target="_blank" rel="noopener">Analytiss</a>, organisme de formation certifié Qualiopi au titre de la catégorie : actions de formation. Déclaration d'activité enregistrée sous le numéro 84 43 03750 43 auprès du préfet de région Auvergne-Rhône-Alpes.</p>
+<dl class="infos">{infos_html}</dl>
+</div></section>
+
+<section class="sec sec-soft close" aria-labelledby="cl-h"><div class="wrap">
+<h2 id="cl-h">Besoin d'une formation sur mesure ?</h2>
+<p>Nous adaptons nos sessions à votre contexte, vos instruments et vos objectifs. Parlons-en.</p>
+<div class="row-actions"><a class="btn btn-deep" href="contact.html">Nous contacter {ic('arrow-up-right')}</a></div>
+</div></section>'''
+    return page('Formations — Le Labo Durable',
+                "Catalogue 2026 des formations du Labo Durable : chimie analytique durable, ACV, GC et GC-MS, traitement de données. Intra-entreprise, à Brioude ou à distance.", body)
+
+# ---------------------------------------------------------------- pages éditoriales
+def fragment(name):
+    src = open(os.path.join(HERE, 'pages', name)).read()
+    meta = dict(re.findall(r'<!--\s*(title|description):\s*(.*?)\s*-->', src))
+    src = re.sub(r'<!--\s*(title|description):.*?-->\s*', '', src)
+    css = ''.join(re.findall(r'<style>(.*?)</style>', src, re.S)); src = re.sub(r'<style>.*?</style>\s*', '', src, flags=re.S)
+    js = ''.join(re.findall(r'<script>(.*?)</script>', src, re.S)); src = re.sub(r'<script>.*?</script>\s*', '', src, flags=re.S)
+    src = re.sub(r'\{\{ic:([a-z0-9-]+)(?: ([a-z0-9 -]+))?\}\}', lambda m: ic(m.group(1), m.group(2) or 'ic'), src)
+    return page(meta['title'], meta['description'], src, current=name, extra_css=css, extra_js=js)
+
+# ---------------------------------------------------------------- écriture (un sprite par page)
+def write(name, builder, *args):
+    global ICON_NAMES
+    ICON_NAMES = set()
+    s = builder(*args)
+    open(os.path.join(ROOT, name), 'w').write(finalize(s))
+    print(name, len(s) // 1024, 'Ko', len(ICON_NAMES), 'icônes')
+
+only = sys.argv[1:]
+for f in sorted(os.listdir(os.path.join(HERE, 'pages'))):
+    if f.endswith('.html') and (not only or f in only):
+        write(f, fragment, f)
+if not only or 'formations.html' in only:
+    write('formations.html', catalogue)
+    for d in DATA:
+        write(d['slug'] + '.html', fiche, d)
