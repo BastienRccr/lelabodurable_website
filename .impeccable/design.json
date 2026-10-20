@@ -1,0 +1,462 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T12:00:00Z",
+  "title": "Design System: Le Labo Durable",
+  "extensions": {
+    "colorMeta": {
+      "petrole-profond": {
+        "role": "primary",
+        "displayName": "Bleu pétrole profond",
+        "canonical": "#0f3d4f",
+        "tonalRamp": [
+          "#0c3240",
+          "#14536b",
+          "#1c7496",
+          "#2595c1",
+          "#3eaeda",
+          "#76c6e5",
+          "#b2dff0",
+          "#eaf6fb"
+        ]
+      },
+      "petrole-profond-survol": {
+        "role": "primary",
+        "displayName": "Pétrole survol",
+        "canonical": "#14495d",
+        "tonalRamp": [
+          "#0e313f",
+          "#175269",
+          "#207393",
+          "#2994bd",
+          "#42aed6",
+          "#79c5e2",
+          "#b3dfef",
+          "#eaf6fa"
+        ]
+      },
+      "sarcelle-labo": {
+        "role": "primary",
+        "displayName": "Sarcelle labo",
+        "canonical": "#1a6b7a",
+        "tonalRamp": [
+          "#0d373f",
+          "#165c69",
+          "#1f8193",
+          "#28a6bd",
+          "#42bfd7",
+          "#78d2e2",
+          "#b3e6ef",
+          "#eaf8fb"
+        ]
+      },
+      "sarcelle-claire": {
+        "role": "primary",
+        "displayName": "Sarcelle claire",
+        "canonical": "#2a8a9a",
+        "tonalRamp": [
+          "#10363c",
+          "#1b5a64",
+          "#267e8c",
+          "#31a2b4",
+          "#4bbbce",
+          "#7fcfdc",
+          "#b7e4eb",
+          "#ebf7fa"
+        ]
+      },
+      "voile-sarcelle": {
+        "role": "neutral",
+        "displayName": "Voile sarcelle",
+        "canonical": "#e8f4f6",
+        "tonalRamp": [
+          "#163237",
+          "#24545c",
+          "#327580",
+          "#4197a5",
+          "#5ab0be",
+          "#8ac7d1",
+          "#bddfe5",
+          "#edf6f8"
+        ]
+      },
+      "or-action": {
+        "role": "secondary",
+        "displayName": "Or action",
+        "canonical": "#d4a053",
+        "tonalRamp": [
+          "#3d2b0f",
+          "#664719",
+          "#8f6424",
+          "#b8802e",
+          "#d19a47",
+          "#deb77c",
+          "#edd6b6",
+          "#faf4eb"
+        ]
+      },
+      "or-clair": {
+        "role": "secondary",
+        "displayName": "Or clair",
+        "canonical": "#e8c88a",
+        "tonalRamp": [
+          "#402e0d",
+          "#6b4d15",
+          "#956c1d",
+          "#c08b26",
+          "#d9a53f",
+          "#e4bf77",
+          "#f0dbb2",
+          "#fbf5ea"
+        ]
+      },
+      "or-encre": {
+        "role": "secondary",
+        "displayName": "Or encre",
+        "canonical": "#8f5c15",
+        "tonalRamp": [
+          "#432b0a",
+          "#6f4810",
+          "#9c6417",
+          "#c8811d",
+          "#e29a37",
+          "#eab771",
+          "#f3d7af",
+          "#fcf4e9"
+        ]
+      },
+      "encre": {
+        "role": "neutral",
+        "displayName": "Encre",
+        "canonical": "#1a2a2e",
+        "tonalRamp": [
+          "#1c2d31",
+          "#2e4a51",
+          "#406872",
+          "#538693",
+          "#6c9fac",
+          "#97bbc4",
+          "#c4d9de",
+          "#eff4f6"
+        ]
+      },
+      "encre-secondaire": {
+        "role": "neutral",
+        "displayName": "Encre secondaire",
+        "canonical": "#4a5e63",
+        "tonalRamp": [
+          "#212a2c",
+          "#374549",
+          "#4c6166",
+          "#627d83",
+          "#7c969d",
+          "#a2b4b9",
+          "#cad5d8",
+          "#f0f3f4"
+        ]
+      },
+      "encre-tertiaire": {
+        "role": "neutral",
+        "displayName": "Encre tertiaire",
+        "canonical": "#566a6f",
+        "tonalRamp": [
+          "#21292b",
+          "#384548",
+          "#4e6065",
+          "#647b81",
+          "#7e959b",
+          "#a3b4b8",
+          "#cbd5d7",
+          "#f1f3f4"
+        ]
+      },
+      "filet": {
+        "role": "neutral",
+        "displayName": "Filet",
+        "canonical": "#d8e4e7",
+        "tonalRamp": [
+          "#1d2c2f",
+          "#31494f",
+          "#44666e",
+          "#57838e",
+          "#719da8",
+          "#9ab9c1",
+          "#c6d8dc",
+          "#eff4f5"
+        ]
+      },
+      "papier": {
+        "role": "neutral",
+        "displayName": "Papier",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#adadad",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "papier-doux": {
+        "role": "neutral",
+        "displayName": "Papier doux",
+        "canonical": "#f4f8f9",
+        "tonalRamp": [
+          "#1b2d31",
+          "#2d4b52",
+          "#3f6973",
+          "#518794",
+          "#6ba0ae",
+          "#95bcc5",
+          "#c4d9df",
+          "#eef4f6"
+        ]
+      },
+      "texte-sur-petrole": {
+        "role": "neutral",
+        "displayName": "Texte sur pétrole",
+        "canonical": "#d3e6eb",
+        "tonalRamp": [
+          "#182f35",
+          "#284e58",
+          "#386d7b",
+          "#488c9e",
+          "#61a5b7",
+          "#8fbfcc",
+          "#c0dbe2",
+          "#edf5f7"
+        ]
+      },
+      "texte-sur-petrole-attenue": {
+        "role": "neutral",
+        "displayName": "Texte sur pétrole atténué",
+        "canonical": "#a9c9d1",
+        "tonalRamp": [
+          "#1b2d32",
+          "#2c4b53",
+          "#3e6974",
+          "#508896",
+          "#69a1af",
+          "#95bcc6",
+          "#c3d9df",
+          "#eef5f6"
+        ]
+      },
+      "filet-sur-petrole": {
+        "role": "neutral",
+        "displayName": "Filet sur pétrole",
+        "canonical": "rgba(255,255,255,.14)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titre du hero uniquement, deux lignes, mot-clé en or clair."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titres de section."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Titres de lignes, cartes, étapes, formateurs."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Chiffres de la barre de faits, montants, note ; chiffres tabulaires."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texte courant ; chapeaux 58–66ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Libellés de données en capitales espacées ; jamais de surtitre."
+      }
+    },
+    "shadows": [
+      {
+        "name": "floating-panel",
+        "value": "0 18px 40px -18px rgba(15,61,79,.28), 0 2px 6px rgba(15,61,79,.06)",
+        "purpose": "Carte d'inscription, carte contact collante, menu mobile."
+      },
+      {
+        "name": "open-state",
+        "value": "0 10px 30px -18px rgba(15,61,79,.35)",
+        "purpose": "Question FAQ dépliée, en réponse à l'état."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Courbe unique du système (flèches, chevrons, cartes, menu)."
+      },
+      {
+        "name": "state",
+        "value": "200ms",
+        "purpose": "Survols de couleur, bordure, fond."
+      },
+      {
+        "name": "facts-rise",
+        "value": "900ms, translateY(14px), décalage 80ms",
+        "purpose": "Seule entrée orchestrée : barre de faits du hero ; désactivée si mouvement réduit."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "1040px"
+      },
+      {
+        "name": "nav",
+        "value": "960px"
+      },
+      {
+        "name": "compact",
+        "value": "720px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Pilule or (action principale)",
+      "kind": "button",
+      "refersTo": "button-gold",
+      "description": "Action principale : demander un devis, nous contacter. Toujours texte pétrole sur or.",
+      "html": "<a class=\"ds-btn ds-btn-gold\" href=\"#\">Demander un devis <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:.55rem;min-height:48px;padding:.8rem 1.5rem;border-radius:999px;font:700 .95rem/1.2 'Plus Jakarta Sans',system-ui,sans-serif;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s,transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn svg{transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover svg{transform:translate(2px,-2px)}.ds-btn:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-btn-gold{background:#d4a053;color:#0f3d4f;box-shadow:0 8px 20px -10px rgba(212,160,83,.9)}.ds-btn-gold:hover{background:#e8c88a;transform:translateY(-1px)}"
+    },
+    {
+      "name": "Bouton plein pétrole",
+      "kind": "button",
+      "refersTo": "button-deep",
+      "description": "Action principale sur fond clair hors carte d'inscription (carte contact, appel final).",
+      "html": "<a class=\"ds-btn ds-btn-deep\" href=\"#\">Écrire à Bastien <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:.55rem;min-height:48px;padding:.8rem 1.5rem;border-radius:999px;font:700 .95rem/1.2 'Plus Jakarta Sans',system-ui,sans-serif;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s,transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn svg{transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover svg{transform:translate(2px,-2px)}.ds-btn:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-btn-deep{background:#0f3d4f;color:#fff}.ds-btn-deep:hover{background:#1a6b7a}"
+    },
+    {
+      "name": "Bouton contour clair",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Action secondaire sur bandeau pétrole (hero).",
+      "html": "<div style=\"background:#0f3d4f;padding:24px\"><a class=\"ds-btn ds-btn-line\" href=\"#\">Toutes les formations</a></div>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:.55rem;min-height:48px;padding:.8rem 1.5rem;border-radius:999px;font:700 .95rem/1.2 'Plus Jakarta Sans',system-ui,sans-serif;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s,transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn svg{transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover svg{transform:translate(2px,-2px)}.ds-btn:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-btn-line{color:#fff;border-color:rgba(255,255,255,.45)}.ds-btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}.ds-btn-line:focus-visible{outline-color:#e8c88a}"
+    },
+    {
+      "name": "Filtres du catalogue",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Filtres à bascule ; l'état actif est une inversion plein/contour doublée d'aria-pressed.",
+      "html": "<div class=\"ds-filters\"><button class=\"ds-chip\" aria-pressed=\"true\">Toutes <span class=\"ds-n\">7</span></button><button class=\"ds-chip\" aria-pressed=\"false\">Instrumentation <span class=\"ds-n\">2</span></button></div>",
+      "css": ".ds-filters{display:flex;gap:.5rem;flex-wrap:wrap}.ds-chip{display:inline-flex;align-items:center;gap:.45rem;min-height:40px;padding:.45rem 1rem;border-radius:999px;border:1.5px solid #d8e4e7;background:#fff;font:600 .88rem 'Plus Jakarta Sans',system-ui,sans-serif;color:#4a5e63;cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}.ds-chip:hover{border-color:#0f3d4f;color:#0f3d4f}.ds-chip[aria-pressed=\"true\"]{background:#0f3d4f;border-color:#0f3d4f;color:#fff}.ds-chip:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-n{font-variant-numeric:tabular-nums;opacity:.75}"
+    },
+    {
+      "name": "Carte d'inscription",
+      "kind": "card",
+      "refersTo": "inscription-card-head",
+      "description": "Signature : carte collante, seule surface ombrée ; le format choisi réécrit l'objet du mail.",
+      "html": "<aside class=\"ds-card\"><div class=\"ds-card-head\"><b>Sur devis</b><p>Prise en charge possible par votre OPCO</p></div><div class=\"ds-card-body\"><fieldset><legend>Choisissez un format</legend><label class=\"ds-opt\"><input type=\"radio\" name=\"f\" checked><span><b>Dans vos locaux</b><small>Intra-entreprise</small></span></label><label class=\"ds-opt\"><input type=\"radio\" name=\"f\"><span><b>À Brioude</b><small>En présentiel</small></span></label></fieldset><a class=\"ds-card-cta\" href=\"#\">Demander un devis <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a><ul class=\"ds-spec\"><li><span>Durée</span><b>1 jour</b></li><li><span>Référence</span><b>P08-ACV-I</b></li></ul></div></aside>",
+      "css": ".ds-card{max-width:360px;background:#fff;border-radius:18px;border:1px solid #d8e4e7;box-shadow:0 18px 40px -18px rgba(15,61,79,.28),0 2px 6px rgba(15,61,79,.06);overflow:hidden;font-family:'Plus Jakarta Sans',system-ui,sans-serif}.ds-card-head{background:#0f3d4f;color:#d3e6eb;padding:1.4rem 1.5rem}.ds-card-head b{display:block;font:700 1.7rem/1.15 Outfit,system-ui,sans-serif;color:#fff}.ds-card-head p{font-size:.85rem;margin:.35rem 0 0}.ds-card-body{padding:1.25rem 1.5rem 1.5rem}.ds-card-body fieldset{border:0;margin:0;padding:0}.ds-card-body legend{font-size:.8rem;font-weight:600;color:#566a6f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}.ds-opt{display:flex;gap:.75rem;align-items:flex-start;padding:.8rem .9rem;border:1.5px solid #d8e4e7;border-radius:10px;cursor:pointer;transition:border-color .2s,background-color .2s}.ds-opt+.ds-opt{margin-top:.5rem}.ds-opt:hover{border-color:#2a8a9a}.ds-opt:has(input:checked){border-color:#0f3d4f;background:#e8f4f6}.ds-opt input{appearance:none;width:18px;height:18px;margin:.15rem 0 0;border:2px solid #566a6f;border-radius:50%;display:grid;place-content:center;flex-shrink:0}.ds-opt input::before{content:'';width:8px;height:8px;border-radius:50%;background:#0f3d4f;transform:scale(0);transition:transform .2s cubic-bezier(.16,1,.3,1)}.ds-opt input:checked{border-color:#0f3d4f}.ds-opt input:checked::before{transform:scale(1)}.ds-opt input:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-opt b{display:block;font-size:.95rem;color:#0f3d4f}.ds-opt small{display:block;font-size:.82rem;color:#566a6f}.ds-card-cta{display:flex;justify-content:center;align-items:center;gap:.55rem;margin-top:1.1rem;min-height:48px;border-radius:999px;background:#d4a053;color:#0f3d4f;font-weight:700;font-size:.95rem;text-decoration:none}.ds-card-cta:hover{background:#e8c88a}.ds-card-cta:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-spec{list-style:none;margin:1.25rem 0 0;padding:.5rem 0 0;border-top:1px solid #d8e4e7}.ds-spec li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;font-size:.86rem;border-bottom:1px solid #f4f8f9}.ds-spec li:last-child{border-bottom:0}.ds-spec span{color:#566a6f}.ds-spec b{color:#1a2a2e;font-weight:600;font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Barre de faits",
+      "kind": "custom",
+      "refersTo": "figure",
+      "description": "Signature du hero : quatre faits sous un filet, séparés de filets verticaux, chiffres en or clair.",
+      "html": "<ul class=\"ds-facts\"><li><b>1 jour</b><span>de formation</span></li><li><b>Intra, Brioude ou à distance</b><span>au choix</span></li><li><b>Sur devis</b><span>prise en charge OPCO possible</span></li></ul>",
+      "css": ".ds-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;margin:0;padding:0 24px;background:#0f3d4f;border-top:1px solid rgba(255,255,255,.14)}.ds-facts li{padding:1.25rem 1.25rem 1.6rem 0;min-width:0}.ds-facts li+li{padding-left:1.25rem;border-left:1px solid rgba(255,255,255,.14)}.ds-facts b{display:block;font:700 1.3rem/1.2 Outfit,system-ui,sans-serif;color:#e8c88a;font-variant-numeric:tabular-nums}.ds-facts span{display:block;margin-top:.3rem;font:.84rem/1.4 'Plus Jakarta Sans',system-ui,sans-serif;color:#d3e6eb}"
+    },
+    {
+      "name": "Ligne du catalogue",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Ligne filetée cliquable : tuile d'icône, titre et résumé, méta avec code en or encre, flèche qui glisse.",
+      "html": "<ul class=\"ds-list\"><li><a class=\"ds-row\" href=\"#\"><span class=\"ds-row-ic\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/></svg></span><span class=\"ds-row-t\"><b>Traitement avancé des données GC-MS</b><span>Déconvolution, identification et quantification</span></span><span class=\"ds-row-m\"><span class=\"ds-ref\">P07-GC-D · Chémo-informatique</span><span>1 jour (7 h)</span></span><span class=\"ds-go\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></span></a></li></ul>",
+      "css": ".ds-list{list-style:none;margin:0;padding:0;border-top:1px solid #d8e4e7;font-family:'Plus Jakarta Sans',system-ui,sans-serif}.ds-list li{border-bottom:1px solid #d8e4e7}.ds-row{display:grid;grid-template-columns:56px minmax(0,1fr) 210px 28px;gap:1.25rem;align-items:center;padding:1.4rem .5rem;text-decoration:none;color:inherit;border-radius:10px;transition:background-color .2s}.ds-row:hover{background:#f4f8f9}.ds-row:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-row-ic{width:56px;height:56px;border-radius:14px;background:#e8f4f6;color:#0f3d4f;display:grid;place-items:center}.ds-row-t b{display:block;font:700 1.15rem/1.3 Outfit,system-ui,sans-serif;color:#0f3d4f}.ds-row-t span{display:block;font-size:.9rem;color:#4a5e63;margin-top:.25rem}.ds-row-m{display:flex;flex-direction:column;gap:.3rem;font-size:.86rem;color:#4a5e63}.ds-ref{font-weight:700;color:#8f5c15;font-variant-numeric:tabular-nums}.ds-go{color:#0f3d4f;transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-row:hover .ds-go{transform:translateX(4px)}"
+    },
+    {
+      "name": "Navigation principale",
+      "kind": "nav",
+      "refersTo": "nav-link-active",
+      "description": "Barre fixe blanche floutée ; liens en pilules, page courante en voile sarcelle, appel en pilule or.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navigation\"><ul><li><a href=\"#\">Accueil</a></li><li><a href=\"#\">Nos services</a></li><li><a href=\"#\" aria-current=\"page\">Formations</a></li><li><a href=\"#\" class=\"ds-nav-cta\">Nous contacter</a></li></ul></nav>",
+      "css": ".ds-nav{background:rgba(255,255,255,.96);backdrop-filter:saturate(150%) blur(14px);border-bottom:1px solid #d8e4e7;padding:14px 16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif}.ds-nav ul{display:flex;align-items:center;gap:.15rem;list-style:none;margin:0;padding:0}.ds-nav a{display:block;text-decoration:none;color:#4a5e63;font-size:.9rem;font-weight:500;padding:.5rem .9rem;border-radius:999px;transition:color .2s,background-color .2s}.ds-nav a:hover{color:#0f3d4f;background:#e8f4f6}.ds-nav a[aria-current=\"page\"]{color:#0f3d4f;background:#e8f4f6;font-weight:600}.ds-nav a:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-nav a.ds-nav-cta{background:#d4a053;color:#0f3d4f;font-weight:700;margin-left:.5rem;padding:.6rem 1.2rem}.ds-nav a.ds-nav-cta:hover{background:#e8c88a}"
+    },
+    {
+      "name": "Question fréquente",
+      "kind": "custom",
+      "description": "details natif ; ouvert = chevron retourné + bordure or + ombre d'état.",
+      "html": "<details class=\"ds-faq\" open><summary>Quels sont les délais pour démarrer ?<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary><p>Démarrage possible sous 4 à 8 semaines après signature de la convention.</p></details>",
+      "css": ".ds-faq{border:1px solid #d8e4e7;border-radius:10px;background:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;transition:border-color .2s,box-shadow .2s}.ds-faq[open]{border-color:#d4a053;box-shadow:0 10px 30px -18px rgba(15,61,79,.35)}.ds-faq summary{list-style:none;display:flex;align-items:center;gap:1rem;padding:1.05rem 1.2rem;cursor:pointer;font-weight:600;color:#0f3d4f}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:focus-visible{outline:2px solid #0f3d4f;outline-offset:3px}.ds-faq summary svg{margin-left:auto;color:#566a6f;transition:transform .3s cubic-bezier(.16,1,.3,1)}.ds-faq[open] summary svg{transform:rotate(180deg);color:#0f3d4f}.ds-faq p{margin:0;padding:0 1.2rem 1.15rem;color:#4a5e63;font-size:.95rem}"
+    }
+  ],
+  "narrative": {
+    "northStar": "La fiche de stage technique",
+    "overview": "Tout ce qu'un·e responsable de laboratoire vérifie avant d'engager une équipe (public, durée, prérequis, formateur, modalités, prise en charge) est posé à plat, lisible sans cliquer, comme sur une fiche technique d'instrument. Le système alterne deux matières seulement : de grands bandeaux bleu pétrole profond (hero photographique voilé, preuves et financement, cartes de renvoi, pied de page) et une lecture sur blanc pur, structurée par des filets fins plutôt que par des boîtes. L'or n'apparaît que là où l'on agit, où l'on compte, ou où l'on avance d'une étape.\n\nLa densité est celle d'un document de référence : grilles de faits séparées par des filets verticaux, listes de définitions, tableaux de spécifications alignés à droite, chiffres en chiffres tabulaires. Une seule pièce flotte : la carte d'inscription (et, plus bas, la carte contact), collante dans une colonne de 360px, seule à porter une ombre douce. Le mouvement est rare : une seule entrée orchestrée (la barre de faits du hero), des survols de 0,2 s et une courbe unique.\n\nLe site est toujours en thème clair. Le propriétaire a un daltonisme mixte sévère : aucun état, aucune catégorie, aucune information n'est portée par la couleur seule, et chaque couple texte/fond atteint au moins WCAG AA.",
+    "keyCharacteristics": [
+      "Bandeaux bleu pétrole pleine largeur alternant avec des zones de lecture sur blanc pur.",
+      "Or réservé aux actions (pilules), aux chiffres et aux marqueurs de progression.",
+      "Structure par filets de 1px et grilles de faits, pas par cartes empilées.",
+      "Carte d'inscription collante, seule surface en élévation, dont le choix de format réécrit l'objet du mail.",
+      "Outfit 700 pour les titres et les chiffres, Plus Jakarta Sans pour tout le texte courant.",
+      "Icônes Lucide au trait, en SVG en ligne, jamais seules porteuses de sens."
+    ],
+    "rules": [
+      {
+        "name": "The Gold Earns Its Place Rule",
+        "body": "L'or marque une action, un chiffre ou une étape de progression, rien d'autre. Pas de fond de section or, pas de titre de section or, pas d'or décoratif.",
+        "section": "colors"
+      },
+      {
+        "name": "The Gold Ink Rule",
+        "body": "Sur blanc, un texte « or » s'écrit en or encre ; l'or action et l'or clair ne servent qu'en remplissage, en marqueur ou sur pétrole.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never By Colour Alone Rule",
+        "body": "Chaque état coloré a un second signal : option choisie = point radio + bordure + fond ; filtre actif = inversion plein/contour + `aria-pressed` ; question ouverte = chevron retourné + bordure ; lien = soulignement au survol ou flèche.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Tout chiffre comparable (durées, notes, pourcentages, codes, délais) s'affiche en `tabular-nums`.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Eyebrow Rule",
+        "body": "Aucun surtitre en capitales au-dessus d'un titre de section ou de hero. Les capitales espacées ne servent qu'aux libellés de données.",
+        "section": "typography"
+      },
+      {
+        "name": "The Visible By Default Rule",
+        "body": "Le contenu de décision n'est jamais caché derrière un accordéon ou un onglet ; seule la FAQ se replie.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Floating Panel Rule",
+        "body": "Seuls les panneaux qui flottent au-dessus du contenu (carte collante, menu mobile) portent une ombre ; lignes, cartes de formateur et cartes sombres restent à plat.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** alterner bandeaux pétrole pleine largeur et zones de lecture sur blanc pur (#ffffff), jamais de thème sombre global.",
+      "**Do** réserver l'or aux actions, aux chiffres et aux marqueurs de progression, et écrire l'or en texte sur blanc uniquement en or encre (#8f5c15).",
+      "**Do** structurer l'information par des filets de 1px (filet sur blanc, filet sur pétrole sur fond sombre) et des grilles de faits plutôt que par des boîtes.",
+      "**Do** doubler chaque signal de couleur d'une forme, d'une icône, d'un texte ou d'un attribut ARIA.",
+      "**Do** afficher les chiffres en `tabular-nums` et en Outfit 700.",
+      "**Do** utiliser des icônes Lucide au trait en SVG en ligne, accompagnées d'un libellé.",
+      "**Do** garder une seule courbe (`cubic-bezier(.16,1,.3,1)`) et respecter `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** poser de surtitre en capitales au-dessus d'un titre ; les capitales espacées sont réservées aux libellés de données.",
+      "**Don't** mettre d'ombre sur une surface qui ne flotte pas ; lignes, cartes formateur et cartes sombres restent à plat.",
+      "**Don't** utiliser l'or action ou l'or clair comme couleur de texte sur blanc.",
+      "**Don't** cacher public, durée, prérequis, formateur, modalités ou prise en charge derrière un accordéon ou un onglet.",
+      "**Don't** distinguer des catégories ou des états par la seule teinte.",
+      "**Don't** utiliser d'icônes-glyphes (émojis, caractères) ni d'icônes pleines."
+    ]
+  }
+}
