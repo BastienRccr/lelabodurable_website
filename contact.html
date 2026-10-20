@@ -324,6 +324,10 @@ p{text-wrap:pretty}
   .hero-actions .btn{flex:1 1 100%}
 }
 
+.hero::before{background:linear-gradient(100deg,rgba(15,61,79,.97) 0%,rgba(15,61,79,.9) 50%,rgba(15,61,79,.8) 100%)}
+.hero-photo{background-image:url('assets/photos/labo-brioude.jpg');background-position:center 40%}
+.facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:720px){.facts{grid-template-columns:minmax(0,1fr)}.facts li+li{padding-left:0;border-left:0;border-top:1px solid var(--deep-line)}}
 .c-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
 .form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
 .form-card .card-head h2{color:#fff;font-size:1.6rem;margin:0}
@@ -382,7 +386,7 @@ p{text-wrap:pretty}
 <h1>Parlons de <em>votre projet</em></h1>
 <p class="hero-lead">Une question, un besoin d'accompagnement, une demande de formation ? Écrivez-nous, nous vous répondons sous 48h.</p>
 <div class="hero-actions"><a class="btn btn-gold" href="#message">Écrire un message <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></a><a class="btn btn-line" href="mailto:contact@lelabodurable.com">contact@lelabodurable.com</a></div>
-<ul class="facts" aria-label="En bref"><li><b>Sous 48 h</b><span>notre délai de réponse</span></li><li><b>Brioude</b><span>34 rue du Vallat, 43100 Brioude, France</span></li><li><b class="long">ACV, bilan GES, formations</b><span>audit environnemental</span></li><li><b>LinkedIn</b><span>Le Labo Durable</span></li></ul>
+<ul class="facts" aria-label="En bref"><li><b>Sous 48 h</b><span>notre délai de réponse</span></li><li><b>Brioude</b><span>34 rue du Vallat, 43100 Brioude, France</span></li><li><b>LinkedIn</b><span>Le Labo Durable</span></li></ul>
 </div>
 </header>
 
