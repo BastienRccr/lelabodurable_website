@@ -1,0 +1,149 @@
+<!-- title: Nos services — Le Labo Durable -->
+<!-- description: Découvrez nos services : ACV ISO 14040/44, bilans GES, audit environnemental, maintenance instrumentale, chémo-informatique, formations Qualiopi. -->
+<style>
+.hero h1{max-width:20ch}
+
+/* 3 pôles : schéma cyclique + colonnes à filets */
+.poles-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.cycle{position:sticky;top:calc(var(--nav-h) + 1.5rem)}
+.cycle svg{display:block;width:100%;height:auto;max-width:460px;margin-inline:auto}
+.cy-arc{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round}
+.cy-head{fill:var(--primary)}
+.cy-node{fill:var(--tint);stroke:var(--primary);stroke-width:2}
+.cy-ic{color:var(--deep)}
+.cy-label{font:700 20px var(--f-display);fill:var(--deep)}
+.cy-sub{font:500 16.5px var(--f-body);fill:var(--ink-2)}
+.cy-center{font:600 15px var(--f-body);fill:var(--ink-3);letter-spacing:.02em}
+.pole{padding:1.6rem 0;border-top:1px solid var(--line)}
+.pole:last-child{border-bottom:1px solid var(--line)}
+.pole-h{display:flex;gap:1rem;align-items:center}
+.pole-ic{width:52px;height:52px;border-radius:14px;background:var(--tint);color:var(--deep);display:grid;place-items:center;flex-shrink:0}
+.pole-ic .ic{width:24px;height:24px}
+.pole h3{font:700 1.25rem/1.3 var(--f-display);color:var(--deep)}
+.pole-team{display:flex;gap:.45rem;align-items:center;font-size:.88rem;color:var(--ink-2);margin-top:.15rem}
+.pole-team .ic{color:var(--primary)}
+.dots{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem 2rem;margin-top:1.1rem}
+.dots li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem;min-width:0}
+.dots li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.more{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.1rem;font-weight:600;font-size:.92rem;color:var(--deep);text-decoration:none}
+.more:hover{text-decoration:underline}
+.more .ic{transition:transform .25s var(--ease)}
+.more:hover .ic{transform:translate(2px,-2px)}
+
+/* Boîte à outils */
+.kit{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;border-top:1px solid var(--line)}
+.kit li{padding:1.4rem 1.4rem 1.5rem;min-width:0;border-bottom:1px solid var(--line)}
+.kit li:not(:nth-child(4n+1)){border-left:1px solid var(--line)}
+.kit li:nth-child(4n+1){padding-left:0}
+.kit>li>.ic{width:28px;height:28px;color:var(--primary)}
+.kit b{display:block;font:700 1.1rem/1.3 var(--f-display);color:var(--deep);margin:.8rem 0 .3rem}
+.kit p{font-size:.92rem;color:var(--ink-2)}
+.kit a{display:inline-flex;align-items:center;gap:.35rem;margin-top:.55rem;font-size:.86rem;font-weight:600;color:var(--deep);text-decoration:none}
+.kit a:hover{text-decoration:underline}
+
+/* Confidentialité */
+.conf{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.conf-pts{list-style:none;margin-top:.5rem}
+.conf-pts li{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 0;border-top:1px solid var(--deep-line);color:var(--on-deep-2)}
+.conf-pts .ic{width:24px;height:24px;color:var(--gold-light);margin-top:.05rem}
+.pledge{border:1px solid var(--deep-line);border-radius:var(--r-lg);padding:1.75rem;background:rgba(255,255,255,.04)}
+.pledge>.ic{width:34px;height:34px;color:var(--gold-light)}
+.pledge h3{font:700 1.3rem/1.3 var(--f-display);margin:.9rem 0 .5rem}
+.pledge p{font-size:.95rem}
+
+@media (max-width:1040px){
+  .poles-wrap,.conf{grid-template-columns:minmax(0,1fr)}
+  .cycle{position:static}
+  .kit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kit li:not(:nth-child(4n+1)){border-left:0}
+  .kit li:nth-child(4n+1){padding-left:1.4rem}
+  .kit li:nth-child(odd){padding-left:0}
+  .kit li:nth-child(even){border-left:1px solid var(--line)}
+}
+@media (max-width:720px){
+  .dots{grid-template-columns:minmax(0,1fr)}
+  .kit li{padding:1.1rem .9rem 1.2rem}
+  .kit li:nth-child(odd){padding-left:0}
+}
+</style>
+
+<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<ol class="crumbs" aria-label="Fil d'Ariane"><li><a href="index.html">Accueil</a></li><li aria-current="page">Nos services</li></ol>
+<h1>Pour répondre aux enjeux techniques <em>et sociétaux des laboratoires</em></h1>
+<p class="hero-lead">Une boîte à outils mobilisable en fonction de vos besoins, portée par une équipe de docteur·es et d'ingénieur·es aux compétences pluridisciplinaires.</p>
+<div class="hero-actions"><a class="btn btn-gold" href="contact.html">Discutons de votre projet {{ic:arrow-up-right}}</a><a class="btn btn-line" href="#poles">Voir les trois pôles {{ic:arrow-down}}</a></div>
+<ul class="facts" aria-label="En bref"><li><b>3 pôles</b><span>complémentaires, en interaction permanente</span></li><li><b>8 outils</b><span>mobilisables selon vos besoins</span></li><li><b class="long">ACV ISO 14040/44</b><span>et Bilan Carbone®</span></li><li><b class="long">Formations certifiées Qualiopi</b><span>adaptées à tous niveaux</span></li></ul>
+</div>
+</header>
+
+<section class="sec" id="poles" aria-labelledby="poles-h"><div class="wrap">
+<h2 id="poles-h">Trois pôles complémentaires</h2>
+<div class="poles-wrap">
+<figure class="cycle">
+<svg viewBox="-20 0 520 480" role="img" aria-labelledby="cy-t">
+<title id="cy-t">Cycle des trois pôles en interaction permanente : expertise analytique et instrumentation, puis durabilité, résilience et criticité, puis chémo-informatique et intelligence artificielle, qui renvoie à l'expertise analytique.</title>
+<defs><marker id="cyArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="cy-head" d="M 0 1.5 L 10 5 L 0 8.5 z"/></marker></defs>
+<g transform="translate(0,34)">
+<path class="cy-arc" d="M 268,118 A 130,130 0 0,1 348,238" marker-end="url(#cyArrow)"/>
+<path class="cy-arc" d="M 330,305 A 130,130 0 0,1 168,305" marker-end="url(#cyArrow)"/>
+<path class="cy-arc" d="M 132,238 A 130,130 0 0,1 212,118" marker-end="url(#cyArrow)"/>
+<text class="cy-center" x="240" y="206" text-anchor="middle">Interaction</text>
+<text class="cy-center" x="240" y="225" text-anchor="middle">permanente</text>
+<g transform="translate(240,80)"><circle class="cy-node" r="46"/><use class="cy-ic" href="#i-microscope" x="-17" y="-17" width="34" height="34"/><text class="cy-label" y="-74" text-anchor="middle">Expertise analytique</text><text class="cy-sub" y="-53" text-anchor="middle">&amp; instrumentation</text></g>
+<g transform="translate(352.6,275)"><circle class="cy-node" r="46"/><use class="cy-ic" href="#i-leaf" x="-17" y="-17" width="34" height="34"/><text class="cy-label" y="74" text-anchor="middle">Durabilité</text><text class="cy-sub" y="94" text-anchor="middle">résilience &amp; criticité</text></g>
+<g transform="translate(127.4,275)"><circle class="cy-node" r="46"/><use class="cy-ic" href="#i-laptop" x="-17" y="-17" width="34" height="34"/><text class="cy-label" y="74" text-anchor="middle">Chémo-informatique</text><text class="cy-sub" y="94" text-anchor="middle">&amp; intelligence artificielle</text></g>
+</g>
+</svg>
+</figure>
+<div>
+<article class="pole">
+<div class="pole-h"><span class="pole-ic">{{ic:microscope}}</span><div><h3>Expertise analytique & instrumentation</h3><p class="pole-team">{{ic:users}}Christophe Pérès & Xavier Rouessac</p></div></div>
+<ul class="dots"><li>Conseil en stratégies analytiques</li><li>Audit de performance des laboratoires</li><li>Prestations analytiques</li><li>Déploiement de solutions clés en main</li><li>Sourcing et déploiement de matériel reconditionné</li><li>Contrats de maintenance instrumentale</li><li>Formations et conférences</li></ul>
+</article>
+<article class="pole">
+<div class="pole-h"><span class="pole-ic">{{ic:leaf}}</span><div><h3>Durabilité, résilience & criticité</h3><p class="pole-team">{{ic:users}}Bastien Raccary & Christophe Pérès</p></div></div>
+<ul class="dots"><li>Stratégies bas carbone</li><li>Bilans GES / Bilan Carbone®</li><li>ACV ISO 14040/44</li><li>Revues critiques</li><li>Éco-conception de méthodes analytiques</li><li>Identification des défauts de résilience</li><li>Pilotage des consommations de laboratoire</li><li>Formations et conférences</li></ul>
+<a class="more" href="acv.html">En savoir plus sur l'ACV {{ic:arrow-right}}</a>
+</article>
+<article class="pole">
+<div class="pole-h"><span class="pole-ic">{{ic:laptop}}</span><div><h3>Chémo-informatique & IA</h3><p class="pole-team">{{ic:users}}Clément Truan & Thomas Vandewattyne</p></div></div>
+<ul class="dots"><li>Stratégie de traitement des données labo</li><li>Solutions algorithmiques personnalisables</li><li>Bases de données interactives et sur mesure</li><li>Algorithmes génétiques et traitement du signal</li><li>Formations et conférences</li></ul>
+<a class="more" href="https://www.apychrom.com" target="_blank" rel="noopener">Découvrir Apychrom {{ic:arrow-up-right}}<span class="sr-only">(nouvel onglet)</span></a>
+</article>
+</div>
+</div>
+</div></section>
+
+<section class="sec sec-soft" aria-labelledby="kit-h"><div class="wrap">
+<h2 id="kit-h">Une boîte à outils mobilisable selon vos besoins</h2>
+<ul class="kit">
+<li>{{ic:target}}<b>Coaching</b><p>Accompagnement personnalisé</p></li>
+<li>{{ic:refresh-cw}}<b>ACV</b><p>Analyse du cycle de vie ISO 14040/44</p><a href="acv.html">L'ACV {{ic:arrow-right}}</a></li>
+<li>{{ic:wrench}}<b>Maintenance</b><p>Maintenance instrumentale & reconditionnement</p></li>
+<li>{{ic:chart-column}}<b>Bilan GES</b><p>Bilan Carbone® & stratégie bas carbone</p><a href="index.html#bilan-ges">Notre bilan GES 2025 {{ic:arrow-right}}</a></li>
+<li>{{ic:graduation-cap}}<b>Formations</b><p>Certifiées Qualiopi, adaptées à tous niveaux</p><a href="formations.html">Le catalogue {{ic:arrow-right}}</a></li>
+<li>{{ic:laptop}}<b>Chémo-informatique</b><p>Traitement de données & algorithmie</p></li>
+<li>{{ic:flask-conical}}<b>Conseil analytique</b><p>Stratégie & optimisation de méthodes</p></li>
+<li>{{ic:smartphone}}<b>Consolab</b><p>Pilotage des consommations du labo</p><a href="consolab.html">Découvrir Consolab {{ic:arrow-right}}</a></li>
+</ul>
+</div></section>
+
+<section class="sec dark" aria-labelledby="conf-h"><div class="wrap conf">
+<div>
+<h2 id="conf-h">La confidentialité au cœur de notre méthodologie</h2>
+<p class="sec-intro">Nos missions nous conduisent à accéder à des informations souvent stratégiques. Nous prenons cet accès très au sérieux et nous engageons à la plus stricte confidentialité.</p>
+<ul class="conf-pts">
+<li>{{ic:file-text}}<span>Contrats de confidentialité stricts avec chaque client</span></li>
+<li>{{ic:lock}}<span>Nos audits, échanges et études ne sont en aucun cas rendus publiques.</span></li>
+</ul>
+</div>
+<div class="pledge">{{ic:shield-check}}<h3>Un engagement sans compromis</h3><p>La confidentialité n'est pas une simple clause contractuelle : c'est une valeur fondamentale qui guide chacune de nos interventions. Vos données, vos process et vos stratégies restent les vôtres.</p></div>
+</div></section>
+
+<section class="sec close" aria-labelledby="cl-h"><div class="wrap">
+<h2 id="cl-h">Discutons de votre projet</h2>
+<p>Chaque laboratoire est unique. Contactez-nous pour un accompagnement sur mesure.</p>
+<div class="row-actions"><a class="btn btn-deep" href="contact.html">Nous contacter {{ic:arrow-up-right}}</a></div>
+</div></section>

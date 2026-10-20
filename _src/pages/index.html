@@ -1,0 +1,220 @@
+<!-- title: Le Labo Durable — Réduire les impacts environnementaux des structures scientifiques -->
+<!-- description: Le Labo Durable accompagne les laboratoires de chimie analytique dans la réduction de leurs impacts environnementaux. ACV, Bilan GES, formations, audit. -->
+<style>
+.hero h1{max-width:19ch}
+.hero-ref .ic{color:var(--gold-light)}
+
+/* À propos */
+.about{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.about-text p{color:var(--ink-2);font-size:1.05rem;max-width:62ch}
+.about-text p+p{margin-top:1rem}
+.mission{border-top:1px solid var(--line);padding-top:1.25rem}
+.mission p{color:var(--ink-2)}
+.quote{margin-top:1.75rem;padding:1.25rem 0 0;border-top:1px solid var(--line);display:flex;gap:.9rem}
+.quote>.ic{width:28px;height:28px;color:var(--gold-ink);margin-top:.15rem}
+.quote p{font:700 1.3rem/1.35 var(--f-display);color:var(--deep)}
+.quote cite{display:block;margin-top:.5rem;font-style:normal;font-size:.88rem;color:var(--ink-3)}
+.values{margin-top:clamp(2.75rem,5vw,3.75rem)}
+
+/* Partenaires et certifications */
+.partners{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;list-style:none}
+.partners li{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding:1.25rem 1rem 1.1rem;background:#fff;border:1px solid var(--line);border-radius:var(--r);min-width:0;text-align:center}
+.partners img{height:72px;width:auto;max-width:100%;object-fit:contain}
+.partners span{display:block;font-size:.88rem;font-weight:600;color:var(--deep);line-height:1.4}
+.partners span .ic{color:var(--primary);margin-right:.3rem}
+
+/* Nos métiers */
+.split{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.6fr);gap:clamp(2rem,4vw,4rem);align-items:start}
+.split h2{margin-bottom:.75rem}
+.split .sec-intro{margin-bottom:0}
+.trade summary{gap:.9rem}
+.trade-ic{width:40px;height:40px;border-radius:var(--r);background:var(--tint);color:var(--deep);display:grid;place-items:center;flex-shrink:0}
+.trade-ic .ic{width:20px;height:20px}
+.trade summary .ic.chev{margin-left:auto}
+.trade-t b{display:block;font:700 1.05rem/1.3 var(--f-display);color:var(--deep)}
+.trade-t small{display:block;font-size:.85rem;font-weight:500;color:var(--ink-3);margin-top:.1rem}
+.faq.trade details p{padding-left:calc(1.2rem + 40px + .9rem)}
+
+/* 3 pôles */
+.poles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);list-style:none}
+.poles>li{padding:1.5rem 1.5rem 0 0;min-width:0;display:flex;flex-direction:column}
+.poles>li+li{padding-left:1.5rem;border-left:1px solid var(--line)}
+.poles>li>.ic{width:30px;height:30px;color:var(--primary)}
+.poles h3{font:700 1.2rem/1.3 var(--f-display);color:var(--deep);margin:.8rem 0 .9rem}
+.dots{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.dots li{position:relative;padding-left:1.25rem;color:var(--ink-2);font-size:.95rem}
+.dots li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.more{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.25rem;font-weight:600;font-size:.92rem;color:var(--deep);text-decoration:none}
+.more:hover{text-decoration:underline}
+.more .ic{transition:transform .25s var(--ease)}
+.more:hover .ic{transform:translateX(3px)}
+
+/* Engagements (bandeau sombre) */
+.commit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2.5rem;list-style:none}
+.commit li{padding:1.4rem 0;border-top:1px solid var(--deep-line);display:flex;gap:1rem;min-width:0}
+.commit .ic{width:26px;height:26px;color:var(--gold-light);flex-shrink:0;margin-top:.1rem}
+.commit b{display:block;font:700 1.1rem/1.3 var(--f-display);color:#fff;margin-bottom:.35rem}
+.commit p{font-size:.92rem;color:var(--on-deep-2)}
+
+/* Bilan GES */
+.ges-head{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center;padding:1.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ges-total{font:700 clamp(3rem,2.4rem + 2.5vw,4.4rem)/1 var(--f-display);color:var(--deep);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ges-total small{font:600 1.1rem var(--f-body);color:var(--ink-2);margin-left:.35rem}
+.ges-head p{color:var(--ink-2);max-width:62ch}
+.ges-goal{display:flex;gap:.6rem;align-items:flex-start;margin-top:.75rem;font-weight:600;color:var(--deep)!important}
+.ges-goal .ic{color:var(--primary);margin-top:.15rem}
+.ges-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2rem,5vw,4rem);margin-top:clamp(2rem,4vw,3rem)}
+.ges-grid h3{font:700 1.15rem/1.3 var(--f-display);color:var(--deep)}
+.ges-grid .unit{font-size:.85rem;color:var(--ink-3);margin:.2rem 0 1rem}
+.bars{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.bars li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:.9rem;align-items:center}
+.bars .lbl{font-size:.92rem;font-weight:600;color:var(--ink)}
+.bar{display:flex;align-items:center;min-height:32px;background:var(--soft);border-radius:var(--r);font-size:.84rem;font-variant-numeric:tabular-nums}
+.bar i{display:flex;align-items:center;align-self:stretch;width:var(--w);min-width:4px;background:var(--primary);border-radius:var(--r);font-style:normal}
+.bar span{padding:0 .6rem;color:var(--ink);font-weight:600;white-space:nowrap}
+.bar i span{color:#fff;padding-left:.75rem}
+.note{margin-top:1.1rem;font-size:.9rem;color:var(--ink-2);max-width:60ch}
+.total{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;font-size:.88rem;color:var(--ink-3)}
+.total b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+@media (max-width:1040px){
+  .about,.split{grid-template-columns:minmax(0,1fr)}
+  .partners{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .commit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ges-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:720px){
+  .poles{grid-template-columns:minmax(0,1fr)}
+  .poles>li,.poles>li+li{padding:1.4rem 0 1.6rem;border-left:0;border-bottom:1px solid var(--line)}
+  .commit{grid-template-columns:minmax(0,1fr)}
+  .ges-head{grid-template-columns:minmax(0,1fr)}
+  .bars li{grid-template-columns:minmax(0,1fr);gap:.3rem}
+  .faq.trade details p{padding-left:1.2rem}
+}
+</style>
+
+<header class="hero">
+<div class="hero-photo" aria-hidden="true"></div>
+<div class="wrap">
+<h1>Réduire les impacts environnementaux <em>des structures scientifiques</em></h1>
+<p class="hero-lead">Nous accompagnons les laboratoires de chimie analytique dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
+<p class="hero-ref">{{ic:leaf}}<span>Cabinet de conseil en durabilité</span></p>
+<div class="hero-actions"><a class="btn btn-gold" href="contact.html">Discutons de votre projet {{ic:arrow-up-right}}</a><a class="btn btn-line" href="services.html">Découvrir nos services {{ic:arrow-right}}</a></div>
+<ul class="facts" aria-label="Chiffres clés"><li><b>25+</b><span>clients accompagnés</span></li><li><b>500+</b><span>personnes sensibilisées et formées</span></li><li><b>15+</b><span>stratégies de réduction déployées</span></li><li><b>10+</b><span>politiques environnementales co-construites</span></li></ul>
+</div>
+</header>
+
+<section class="sec" aria-labelledby="about-h"><div class="wrap">
+<div class="about">
+<div class="about-text">
+<h2 id="about-h">Pourquoi Le Labo Durable ?</h2>
+<p>La chimie analytique, comme toutes les activités humaines, n'échappe pas aux défis environnementaux. Son impact est encore trop peu documenté — à l'inverse de la chimie organique, déjà au cœur des débats.</p>
+<p>Composé de docteur·es et d'ingénieur·es passionné·es, Le Labo Durable privilégie la vision long terme, l'implication de tous les niveaux organisationnels et la prise en compte des contraintes terrain — un pragmatisme ambitieux en somme.</p>
+</div>
+<div>
+<div class="mission">
+<h3 class="h3">Notre mission</h3>
+<p>Embarquer les structures scientifiques dans la lutte contre la crise environnementale et les accompagner afin de répondre aux attentes de la société en termes d'engagements et d'actes.</p>
+</div>
+<blockquote class="quote">{{ic:quote}}<div><p>«&nbsp;S'engager est le meilleur moyen de faire évoluer son activité&nbsp;»</p><cite>Christophe Pérès, fondateur</cite></div></blockquote>
+</div>
+</div>
+<h3 class="h3 values">Nos valeurs</h3>
+<div class="why">
+<div>{{ic:target}}<b>Engagement</b><p>Dans nos accompagnements et nos pratiques</p></div>
+<div>{{ic:handshake}}<b>Partage</b><p>Des connaissances, expertises et expériences</p></div>
+<div>{{ic:microscope}}<b>Rigueur</b><p>Scientifique et méthodologique, sans greenwashing</p></div>
+<div>{{ic:mountain}}<b>Détermination</b><p>Pour aller plus loin ensemble et relever les défis</p></div>
+</div>
+</div></section>
+
+<section class="sec sec-soft" aria-labelledby="cert-h"><div class="wrap">
+<h2 id="cert-h">Certifications et partenaires</h2>
+<ul class="partners">
+<li><img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi – processus certifié, Actions de formation"><span>{{ic:check}}Qualiopi (via Analytiss)</span></li>
+<li><img src="https://github.com/user-attachments/assets/2317682e-cad8-462c-8d78-312238bbc307" alt="CIR – Crédit Impôt Recherche"><span>{{ic:check}}Agréé CIR</span></li>
+<li><img src="https://github.com/user-attachments/assets/9b4d19d2-c2cd-4acd-9a9e-b2560ad00858" alt="République Française – ADEME, Agence de la Transition Écologique"><span>{{ic:check}}Partenaire ADEME</span></li>
+<li><img src="https://github.com/user-attachments/assets/9b12bd80-223d-4653-8d12-c398a51bed6a" alt="CIFL"><span>{{ic:check}}Membre du CIFL</span></li>
+</ul>
+</div></section>
+
+<section class="sec" aria-labelledby="trade-h"><div class="wrap split">
+<div>
+<h2 id="trade-h">De la mesure d'impact au déploiement opérationnel</h2>
+</div>
+<div class="faq trade">
+<details><summary><span class="trade-ic">{{ic:chart-column}}</span><span class="trade-t"><b>Diagnostic & mesure d'impact</b><small>Bilans GES, ACV, audits environnementaux</small></span>{{ic:chevron-down ic chev}}</summary><p>Nous accompagnons les organisations dans la compréhension de leurs enjeux, par l'identification, la mesure et l'analyse de leurs impacts environnementaux.</p></details>
+<details><summary><span class="trade-ic">{{ic:compass}}</span><span class="trade-t"><b>Conseil stratégique</b><small>Stratégie et feuille de route</small></span>{{ic:chevron-down ic chev}}</summary><p>Nous guidons les organisations dans la formalisation de leurs engagements en matière d'atténuation de leurs impacts, par la construction d'une stratégie et d'une feuille de route adaptées.</p></details>
+<details><summary><span class="trade-ic">{{ic:rocket}}</span><span class="trade-t"><b>Déploiement opérationnel</b><small>Plan d'actions, financement, suivi</small></span>{{ic:chevron-down ic chev}}</summary><p>Nous sommes aux côtés des organisations dans le déploiement, le financement et le suivi de leur plan d'actions, ainsi que l'intégration des enjeux dans leurs métiers et pratiques.</p></details>
+<details><summary><span class="trade-ic">{{ic:megaphone}}</span><span class="trade-t"><b>Conduite du changement</b><small>Communication, sensibilisation, formation</small></span>{{ic:chevron-down ic chev}}</summary><p>Nous accompagnons les organisations dans le déploiement d'actions de communication, de sensibilisation et de formation, et dans la valorisation de leurs engagements.</p></details>
+<details><summary><span class="trade-ic">{{ic:wrench}}</span><span class="trade-t"><b>Expertise analytique & maintenance</b><small>Instruments reconditionnés, économie circulaire</small></span>{{ic:chevron-down ic chev}}</summary><p>Sourcing et déploiement d'instruments analytiques reconditionnés, contrats de maintenance, extension de durée de vie des équipements de laboratoire. Réparation et économie circulaire appliquée.</p></details>
+<details><summary><span class="trade-ic">{{ic:laptop}}</span><span class="trade-t"><b>Chémo-informatique & algorithmie</b><small>Données analytiques, algorithmes génétiques</small></span>{{ic:chevron-down ic chev}}</summary><p>Accompagnement dans la gestion des données analytiques, algorithmes génétiques, traitement du signal pour les laboratoires.</p></details>
+</div>
+</div></section>
+
+<section class="sec sec-soft" aria-labelledby="poles-h"><div class="wrap">
+<h2 id="poles-h">Trois pôles pour transformer votre laboratoire</h2>
+<p class="sec-intro">Un accompagnement pluridisciplinaire unique, porté par 3 pôles d'expertise : expertise analytique & instrumentation ; durabilité, ACV & bilans GES ; chémo-informatique & IA.</p>
+<ul class="poles">
+<li>{{ic:microscope}}<h3>Expertise analytique & instrumentation</h3><ul class="dots"><li>Conseil en stratégies analytiques</li><li>Audit de performance</li><li>Maintenance instrumentale</li><li>Matériel reconditionné</li></ul><a class="more" href="services.html">En savoir plus {{ic:arrow-right}}</a></li>
+<li>{{ic:leaf}}<h3>Durabilité, résilience & criticité</h3><ul class="dots"><li>ACV ISO 14040/44</li><li>Bilans GES / Bilan Carbone®</li><li>Éco-conception de méthodes</li><li>Pilotage des consommations</li></ul><a class="more" href="services.html">En savoir plus {{ic:arrow-right}}</a></li>
+<li>{{ic:laptop}}<h3>Chémo-informatique & IA</h3><ul class="dots"><li>Traitement de données labo</li><li>Solutions algorithmiques</li><li>Bases de données sur mesure</li><li>Formations spécialisées</li></ul><a class="more" href="services.html">En savoir plus {{ic:arrow-right}}</a></li>
+</ul>
+</div></section>
+
+<section class="sec dark" aria-labelledby="commit-h"><div class="wrap">
+<h2 id="commit-h">Des pratiques engagées au quotidien</h2>
+<p class="sec-intro">Notre politique environnementale structure nos actions autour de 3 axes et 6 engagements concrets.</p>
+<ul class="commit">
+<li>{{ic:train-front}}<div><b>Transports bas carbone</b><p>Priorisation train et vélo, regroupement des RDV par zone géographique, visioconférence systématique. 61 % de nos km parcourus en train en 2025.</p></div></li>
+<li>{{ic:house}}<div><b>Télétravail encouragé</b><p>Réduction des déplacements quotidiens et de l'empreinte carbone associée. Recrutement régional priorisé pour réduire les distances domicile-client.</p></div></li>
+<li>{{ic:recycle}}<div><b>Numérique responsable</b><p>Achat de matériel informatique reconditionné uniquement (sauf irréparabilité), extension de garantie, réparation prioritaire.</p></div></li>
+<li>{{ic:scale}}<div><b>Éthique & loyauté</b><p>CDI favorisés, rémunération des stagiaires dès le 1er jour, écart salarial de 1 à 3 maximum. Confidentialité stricte sur les données clients (RGPD).</p></div></li>
+<li>{{ic:graduation-cap}}<div><b>Formation continue</b><p>Fresques, myCO₂, ateliers. Sensibilisation régulière des collaborateur·ices aux enjeux environnementaux. Formations 100 % accessibles PMR.</p></div></li>
+<li>{{ic:sprout}}<div><b>Alimentation responsable</b><p>Pas de viande ni de poisson lors de nos workshops et événements. Alternatives végétales systématiquement proposées.</p></div></li>
+</ul>
+</div></section>
+
+<section class="sec" id="bilan-ges" aria-labelledby="ges-h"><div class="wrap">
+<h2 id="ges-h">Notre bilan GES 2025</h2>
+<div class="ges-head">
+<div class="ges-total">6,34<small>tCO₂e</small></div>
+<div>
+<p>~1,15 tCO₂e par personne. 85 % de notre empreinte provient des déplacements, principalement liés au transport de matériel analytique volumineux.</p>
+<p class="ges-goal">{{ic:trending-down}}<span>Objectif 2028 : 3,80 tCO₂e (−40 %), zéro avion dès 2027</span></p>
+</div>
+</div>
+<div class="ges-grid">
+<div>
+<h3>Détail par poste</h3>
+<p class="unit">Émissions 2025, en tCO₂e et en part du total</p>
+<ul class="bars">
+<li><span class="lbl">Voiture</span><span class="bar"><i style="--w:61.0%"><span>3,87 tCO₂e · 61,0 %</span></i></span></li>
+<li><span class="lbl">Avion</span><span class="bar"><i style="--w:20.5%"></i><span>1,30 tCO₂e · 20,5 %</span></span></li>
+<li><span class="lbl">Achats</span><span class="bar"><i style="--w:6.2%"></i><span>0,39 tCO₂e · 6,2 %</span></span></li>
+<li><span class="lbl">Électricité</span><span class="bar"><i style="--w:4.3%"></i><span>0,27 tCO₂e · 4,3 %</span></span></li>
+<li><span class="lbl">Train</span><span class="bar"><i style="--w:4.1%"></i><span>0,26 tCO₂e · 4,1 %</span></span></li>
+<li><span class="lbl">Télétravail</span><span class="bar"><i style="--w:3.9%"></i><span>0,25 tCO₂e · 3,9 %</span></span></li>
+</ul>
+<p class="total"><span>Total</span><b>6,34 tCO₂e · 100 %</b></p>
+<p class="note">85 % de notre empreinte carbone est liée aux déplacements, principalement la voiture pour le transport de matériel analytique volumineux (HPLC, GC-MS). L'avion représente le second poste malgré un usage limité.</p>
+</div>
+<div>
+<h3>Répartition des déplacements</h3>
+<p class="unit">Distances parcourues en 2025, en km et en part du total</p>
+<ul class="bars">
+<li><span class="lbl">Train</span><span class="bar"><i style="--w:60.6%"><span>43 660 km · 60,6 %</span></i></span></li>
+<li><span class="lbl">Voiture</span><span class="bar"><i style="--w:29.5%"></i><span>21 240 km · 29,5 %</span></span></li>
+<li><span class="lbl">Avion</span><span class="bar"><i style="--w:9.9%"></i><span>7 140 km · 9,9 %</span></span></li>
+</ul>
+<p class="total"><span>Total</span><b>72 040 km · 100 %</b></p>
+<p class="note">La majorité de nos déplacements est effectuée en train. La voiture reste nécessaire pour le transport de matériel analytique volumineux (HPLC, GC-MS) — chaque trajet combine livraison et récupération d'instruments.</p>
+</div>
+</div>
+</div></section>
+
+<section class="sec sec-soft close" aria-labelledby="cl-h"><div class="wrap">
+<h2 id="cl-h">Rejoignez le mouvement</h2>
+<p>Vous souhaitez engager votre laboratoire dans une démarche durable ? Parlons-en.</p>
+<div class="row-actions"><a class="btn btn-deep" href="contact.html">Nous contacter {{ic:arrow-up-right}}</a><a class="btn btn-ghost" href="formations.html">Voir nos formations {{ic:arrow-right}}</a></div>
+</div></section>
