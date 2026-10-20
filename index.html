@@ -286,6 +286,26 @@ p{text-wrap:pretty}
 .f-bottom div{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem}
 .f-social{width:40px;height:40px;border-radius:var(--r);display:grid;place-items:center;border:1px solid var(--deep-line)}
 
+
+/* RELIEF : cartes, apparition, tracé — v2.1 « plus de personnalité » */
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:0 1px 2px rgba(15,61,79,.05),0 10px 28px -18px rgba(15,61,79,.28);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .25s}
+.lift:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(15,61,79,.06),0 28px 50px -22px rgba(15,61,79,.42);border-color:var(--primary-light)}
+.panel-dark{background:rgba(255,255,255,.05);border:1px solid var(--deep-line);border-radius:var(--r-lg);transition:transform .45s var(--ease),background-color .3s,border-color .3s}
+.panel-dark.lift:hover{background:rgba(255,255,255,.09);border-color:rgba(232,200,138,.5);box-shadow:none}
+.badge-ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--tint);color:var(--deep);transition:transform .45s var(--ease),background-color .3s,color .3s}
+.badge-ic .ic{width:26px;height:26px}
+.lift:hover .badge-ic{transform:rotate(-6deg) scale(1.06);background:var(--deep);color:var(--gold-light)}
+.trace{display:block;width:100%;height:100%}
+.photo{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--tint);box-shadow:0 18px 40px -22px rgba(15,61,79,.45)}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.photo:hover img{transform:scale(1.04)}
+.photo figcaption{position:absolute;left:.75rem;bottom:.75rem;right:.75rem;font-size:.8rem;font-weight:600;color:#fff;background:rgba(15,61,79,.82);backdrop-filter:blur(6px);padding:.4rem .7rem;border-radius:8px;width:fit-content;max-width:calc(100% - 1.5rem)}
+@media (prefers-reduced-motion:no-preference){
+  .js [data-reveal]{opacity:.001;transform:translateY(26px);transition:opacity .9s var(--ease) var(--d,0s),transform .9s var(--ease) var(--d,0s)}
+  .js [data-reveal].in{opacity:1;transform:none}
+  .js .bars.grow i{transition:width 1.4s var(--ease) var(--d,0s)}
+  .js .bars.grow:not(.in) i{width:0!important}
+}
 /* MOTION : une entrée orchestrée (barre de faits), contenu visible par défaut */
 @media (prefers-reduced-motion:no-preference){
   .js .facts li{animation:rise .9s var(--ease) both}
@@ -336,58 +356,6 @@ p{text-wrap:pretty}
   .hero-actions .btn{flex:1 1 100%}
 }
 
-.trades{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:2.5rem;margin-top:1.75rem}
-.trades li{display:flex;gap:1rem;padding:1.4rem 0;border-top:1px solid var(--line);min-width:0}
-.trades h3{font:700 1.08rem/1.3 var(--f-display);color:var(--deep)}
-.trades small{display:block;font-size:.84rem;font-weight:600;color:var(--primary);margin-top:.2rem}
-.trades p{font-size:.93rem;color:var(--ink-2);margin-top:.5rem}
-@media (max-width:1040px){.trades{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:720px){.trades{grid-template-columns:minmax(0,1fr)}}
-
-.hero h1{max-width:19ch}
-.hero-ref .ic{color:var(--gold-light)}
-
-/* À propos */
-.about{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
-.about-text p{color:var(--ink-2);font-size:1.05rem;max-width:62ch}
-.about-text p+p{margin-top:1rem}
-.mission{border-top:1px solid var(--line);padding-top:1.25rem}
-.mission p{color:var(--ink-2)}
-.quote{margin-top:1.75rem;padding:1.25rem 0 0;border-top:1px solid var(--line);display:flex;gap:.9rem}
-.quote>.ic{width:28px;height:28px;color:var(--primary);margin-top:.15rem}
-.quote p{font:700 1.3rem/1.35 var(--f-display);color:var(--deep)}
-.quote cite{display:block;margin-top:.5rem;font-style:normal;font-size:.88rem;color:var(--ink-3)}
-.values{margin-top:clamp(2.75rem,5vw,3.75rem)}
-
-/* Partenaires et certifications */
-.partners{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;list-style:none}
-.partners li{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding:1.25rem 1rem 1.1rem;background:#fff;border:1px solid var(--line);border-radius:var(--r);min-width:0;text-align:center}
-.partners img{height:72px;width:auto;max-width:100%;object-fit:contain}
-.partners span{display:block;font-size:.88rem;font-weight:600;color:var(--deep);line-height:1.4}
-.partners span .ic{color:var(--primary);margin-right:.3rem}
-
-/* Nos métiers */
-.split{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.6fr);gap:clamp(2rem,4vw,4rem);align-items:start}
-.split h2{margin-bottom:.75rem}
-.split .sec-intro{margin-bottom:0}
-.trade-ic{width:40px;height:40px;border-radius:var(--r);background:var(--tint);color:var(--deep);display:grid;place-items:center;flex-shrink:0}
-.trade-ic .ic{width:20px;height:20px}
-
-/* 3 pôles */
-.poles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);list-style:none}
-.poles>li{padding:1.5rem 1.5rem 0 0;min-width:0;display:flex;flex-direction:column}
-.poles>li+li{padding-left:1.5rem;border-left:1px solid var(--line)}
-.poles>li>.ic{width:30px;height:30px;color:var(--primary)}
-.poles h3{font:700 1.2rem/1.3 var(--f-display);color:var(--deep);margin:.8rem 0 .9rem}
-
-/* Engagements (bandeau sombre) */
-.commit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2.5rem;list-style:none}
-.commit li{padding:1.4rem 0;border-top:1px solid var(--deep-line);display:flex;gap:1rem;min-width:0}
-.commit .ic{width:26px;height:26px;color:var(--gold-light);flex-shrink:0;margin-top:.1rem}
-.commit b{display:block;font:700 1.1rem/1.3 var(--f-display);color:#fff;margin-bottom:.35rem}
-.commit p{font-size:.92rem;color:var(--on-deep-2)}
-
-/* Bilan GES */
 .ges-head{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center;padding:1.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ges-total{font:700 clamp(3rem,2.4rem + 2.5vw,4.4rem)/1 var(--f-display);color:var(--deep);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ges-total small{font:600 1.1rem var(--f-body);color:var(--ink-2);margin-left:.35rem}
@@ -407,20 +375,111 @@ p{text-wrap:pretty}
 .note{margin-top:1.1rem;font-size:.9rem;color:var(--ink-2);max-width:60ch}
 .total{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;font-size:.88rem;color:var(--ink-3)}
 .total b{color:var(--ink);font-variant-numeric:tabular-nums}
-
+/* HERO accueil : texte + écran de chromatogramme */
+.hero-home{padding-bottom:0}
+.hh{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(2rem,4vw,4rem);align-items:center;padding-bottom:clamp(2rem,4vw,3rem)}
+.hero-home h1{margin-top:.9rem}
+.hero-home .hero-ref{margin-top:0}
+.scope{position:relative;height:clamp(240px,28vw,340px);border-radius:var(--r-lg);background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 60px -30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:2.6rem 1.25rem 1.25rem;transform:perspective(1200px) rotateY(-8deg) rotateX(3deg);transition:transform .8s var(--ease)}
+.scope:hover{transform:perspective(1200px) rotateY(-2deg) rotateX(1deg)}
+.scope-bar{position:absolute;top:.9rem;left:1.1rem;display:flex;gap:.4rem}
+.scope-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+.scope-bar i:first-child{background:var(--gold)}
+/* À PROPOS + mosaïque */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.about-text p{color:var(--ink-2);font-size:1.05rem;max-width:62ch}
+.about-text p+p{margin-top:1rem}
+.mission{margin-top:1.75rem;padding:1.4rem 1.5rem;border-left:0;background:var(--deep);border-color:var(--deep)}
+.mission h3{color:var(--gold-light);margin-bottom:.4rem}
+.mission p{color:var(--on-deep-2)!important;font-size:1rem!important}
+.mosaic{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:170px 150px auto;gap:1rem}
+.m1{grid-column:1/5;grid-row:1/3;margin:0}
+.m1 figcaption{top:.75rem;bottom:auto}
+.m2{grid-column:5/7;grid-row:1/2;margin:0}
+.mosaic .quote{grid-column:3/7;grid-row:2/4;align-self:end;padding:1.3rem 1.4rem;position:relative;z-index:1;margin-top:-1rem}
+.mosaic .quote p{font:700 1.2rem/1.35 var(--f-display);color:var(--deep)}
+.mosaic .quote p::first-letter{color:var(--gold-ink)}
+.mosaic .quote cite{display:flex;align-items:center;gap:.6rem;margin-top:.8rem;font-style:normal;font-size:.88rem;color:var(--ink-3)}
+.mosaic .quote cite img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:top;background:var(--tint)}
+/* VALEURS */
+.values{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+.values li{padding:1.5rem}
+.values b{display:block;font:700 1.15rem var(--f-display);color:var(--deep);margin:1rem 0 .35rem}
+.values p{font-size:.92rem;color:var(--ink-2)}
+.partners{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:clamp(2rem,4vw,3rem)}
+.partners li{display:flex;flex-direction:column;gap:.6rem}
+.partners img{width:100%;height:96px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:.9rem 1.1rem}
+.partners span{display:flex;gap:.4rem;align-items:center;font-size:.86rem;font-weight:600;color:var(--ink-2)}
+.partners .ic{color:var(--primary)}
+/* PÔLES : cartes à visuel */
+.poles{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.poles>li{overflow:hidden;display:flex;flex-direction:column}
+.pole-art{position:relative;height:150px;background:var(--deep);color:var(--gold-light);display:grid;place-items:center;overflow:hidden}
+.pole-art.p2{background:var(--primary)}
+.pole-art.p3{background:#123544}
+.pole-art .big{width:54px;height:54px;position:relative;z-index:1;transition:transform .6s var(--ease)}
+.poles>li:hover .pole-art .big{transform:scale(1.12) rotate(-4deg)}
+.pole-art .trace{position:absolute;inset:auto 0 0;height:70%;opacity:.55}
+.pole-art .cycle{position:absolute;width:150px;height:150px;fill:none;stroke:rgba(232,200,138,.45);stroke-width:1.5;stroke-dasharray:4 6;animation:spin 40s linear infinite}
+.pole-art .cycle circle+circle{fill:var(--gold-light);stroke:none}
+.pole-art .net{position:absolute;width:85%;height:auto;fill:none;stroke:rgba(232,200,138,.4);stroke-width:1.5}
+.pole-art .net circle{fill:var(--gold-light);stroke:none;opacity:.8}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pole-body{padding:1.4rem 1.5rem 1.5rem;display:flex;flex-direction:column;flex:1}
+.pole-body h3{font:700 1.2rem/1.3 var(--f-display);color:var(--deep);margin-bottom:.9rem}
+.pole-body .more{margin-top:auto;padding-top:1.1rem}
+/* MÉTIERS */
+.trades{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.75rem}
+.trades li{padding:1.4rem 1.5rem}
+.trades h3{font:700 1.08rem/1.3 var(--f-display);color:var(--deep);margin-top:1rem}
+.trades small{display:block;font-size:.84rem;font-weight:600;color:var(--primary);margin-top:.2rem}
+.trades p{font-size:.93rem;color:var(--ink-2);margin-top:.5rem}
+/* ÉQUIPE */
+.team-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.team-head .more{margin-top:0}
+.team{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+.team a{display:flex;flex-direction:column;height:100%;text-decoration:none;overflow:hidden}
+.team img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top;background:var(--tint);transition:transform .8s var(--ease)}
+.team a:hover img{transform:scale(1.05)}
+.team b{font:700 1rem/1.3 var(--f-display);color:var(--deep);padding:.9rem 1rem 0}
+.team span{font-size:.82rem;color:var(--ink-2);padding:.25rem 1rem 1rem;line-height:1.4}
+/* ENGAGEMENTS */
+.commit{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:.5rem}
+.commit li{padding:1.4rem 1.5rem}
+.c-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(232,200,138,.12);color:var(--gold-light)}
+.c-ic .ic{width:24px;height:24px}
+.commit b{display:block;color:#fff;font:700 1.08rem var(--f-display);margin:.9rem 0 .4rem}
+.commit p{font-size:.92rem;color:var(--on-deep-2)}
+/* BILAN GES */
+.ges-head.panel{padding:1.5rem 1.75rem;border-top:1px solid var(--line)}
+.ges-card{padding:1.5rem 1.6rem}
+.bar i{background:linear-gradient(90deg,var(--deep),var(--primary))}
+/* FINAL */
+.close-dark{position:relative;overflow:hidden;text-align:center}
+.close-dark .wrap{position:relative;z-index:1}
+.close-dark h2{max-width:22ch;margin-inline:auto}
+.close-dark p{max-width:52ch;margin:0 auto 1.75rem}
+.close-dark .row-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem}
+.close-trace{position:absolute;inset:auto 0 0;height:75%;opacity:.35;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.pole-art .cycle{animation:none}.scope{transform:none}}
 @media (max-width:1040px){
-  .about,.split{grid-template-columns:minmax(0,1fr)}
-  .partners{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .commit{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ges-grid{grid-template-columns:minmax(0,1fr)}
+  .hh,.about{grid-template-columns:minmax(0,1fr)}
+  .scope{transform:none;height:220px}
+  .values,.partners{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .poles,.trades,.commit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .poles>li:last-child{grid-column:1/-1}
+  .team{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:720px){
-  .poles{grid-template-columns:minmax(0,1fr)}
-  .poles>li,.poles>li+li{padding:1.4rem 0 1.6rem;border-left:0;border-bottom:1px solid var(--line)}
-  .commit{grid-template-columns:minmax(0,1fr)}
-  .ges-head{grid-template-columns:minmax(0,1fr)}
-  .bars li{grid-template-columns:minmax(0,1fr);gap:.3rem}
-  }
+  .values,.poles,.trades,.commit{grid-template-columns:minmax(0,1fr)}
+  .poles>li:last-child{grid-column:auto}
+  .team{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mosaic{grid-template-rows:140px 120px auto}
+  .mosaic .quote{grid-column:1/7;margin-top:0}
+  .scope{height:180px;padding-top:2.2rem}
+}
+@media (max-width:1040px){.ges-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:720px){.ges-head{grid-template-columns:minmax(0,1fr)}.bars li{grid-template-columns:minmax(0,1fr);gap:.3rem}}
 </style>
 </head>
 <body>
@@ -442,7 +501,6 @@ p{text-wrap:pretty}
 <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z" /> <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" /></symbol>
 <symbol id="i-microscope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8" /> <path d="M3 22h18" /> <path d="M14 22a7 7 0 1 0 0-14h-1" /> <path d="M9 14h2" /> <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z" /> <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3" /></symbol>
 <symbol id="i-mountain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z" /></symbol>
-<symbol id="i-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /> <path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></symbol>
 <symbol id="i-recycle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" /> <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12" /> <path d="m14 16-3 3 3 3" /> <path d="M8.293 13.596 7.196 9.5 3.1 10.598" /> <path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843" /> <path d="m13.378 9.633 4.096 1.098 1.097-4.096" /></symbol>
 <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /> <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /> <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /> <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></symbol>
 <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="M7 21h10" /> <path d="M12 3v18" /> <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /></symbol>
@@ -459,44 +517,51 @@ p{text-wrap:pretty}
 <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
 </div></nav>
 <main id="main">
-<header class="hero">
+<header class="hero hero-home">
 <div class="hero-photo" aria-hidden="true"></div>
 <div class="wrap">
+<div class="hh">
+<div class="hh-text">
+<p class="hero-ref"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg><span>Cabinet de conseil en durabilité</span></p>
 <h1>Réduire les impacts environnementaux <em>des structures scientifiques</em></h1>
 <p class="hero-lead">Nous accompagnons les laboratoires de chimie analytique dans leur transition environnementale en alliant rigueur scientifique et pragmatisme.</p>
-<p class="hero-ref"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg><span>Cabinet de conseil en durabilité</span></p>
 <div class="hero-actions"><a class="btn btn-gold" href="contact.html">Discutons de votre projet <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a class="btn btn-line" href="services.html">Découvrir nos services <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
-<ul class="facts" aria-label="Chiffres clés"><li><b>25+</b><span>clients accompagnés</span></li><li><b>500+</b><span>personnes sensibilisées et formées</span></li><li><b>15+</b><span>stratégies de réduction déployées</span></li><li><b>10+</b><span>politiques environnementales co-construites</span></li></ul>
+</div>
+<div class="scope" aria-hidden="true">
+<div class="scope-bar"><i></i><i></i><i></i></div>
+<canvas class="trace" data-peaks="[[0.12,0.18,0.012],[0.2,0.42,0.01],[0.31,0.26,0.014],[0.42,0.9,0.011],[0.5,0.34,0.012],[0.61,0.58,0.01],[0.7,0.2,0.016],[0.79,0.72,0.012],[0.9,0.3,0.013]]"></canvas>
+</div>
+</div>
+<ul class="facts" aria-label="Chiffres clés"><li><b data-count>25+</b><span>clients accompagnés</span></li><li><b data-count>500+</b><span>personnes sensibilisées et formées</span></li><li><b data-count>15+</b><span>stratégies de réduction déployées</span></li><li><b data-count>10+</b><span>politiques environnementales co-construites</span></li></ul>
 </div>
 </header>
 
-<section class="sec" aria-labelledby="about-h"><div class="wrap">
-<div class="about">
-<div class="about-text">
+<section class="sec" aria-labelledby="about-h"><div class="wrap about">
+<div class="about-text" data-reveal>
 <h2 id="about-h">Pourquoi Le Labo Durable ?</h2>
 <p>La chimie analytique, comme toutes les activités humaines, n'échappe pas aux défis environnementaux. Son impact est encore trop peu documenté — à l'inverse de la chimie organique, déjà au cœur des débats.</p>
 <p>Composé de docteur·es et d'ingénieur·es passionné·es, Le Labo Durable privilégie la vision long terme, l'implication de tous les niveaux organisationnels et la prise en compte des contraintes terrain — un pragmatisme ambitieux en somme.</p>
-</div>
-<div>
-<div class="mission">
+<div class="mission panel">
 <h3 class="h3">Notre mission</h3>
 <p>Embarquer les structures scientifiques dans la lutte contre la crise environnementale et les accompagner afin de répondre aux attentes de la société en termes d'engagements et d'actes.</p>
 </div>
-<blockquote class="quote"><svg class="ic" aria-hidden="true"><use href="#i-quote"/></svg><div><p>«&nbsp;S'engager est le meilleur moyen de faire évoluer son activité&nbsp;»</p><cite>Christophe Pérès, fondateur</cite></div></blockquote>
 </div>
-</div>
-<h3 class="h3 values">Nos valeurs</h3>
-<div class="why">
-<div><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><b>Engagement</b><p>Dans nos accompagnements et nos pratiques</p></div>
-<div><svg class="ic" aria-hidden="true"><use href="#i-handshake"/></svg><b>Partage</b><p>Des connaissances, expertises et expériences</p></div>
-<div><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg><b>Rigueur</b><p>Scientifique et méthodologique, sans greenwashing</p></div>
-<div><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg><b>Détermination</b><p>Pour aller plus loin ensemble et relever les défis</p></div>
+<div class="mosaic" data-reveal style="--d:.12s">
+<figure class="photo m1"><img src="assets/photos/labo-brioude.jpg" alt="Laboratoire Le Labo Durable — Brioude" width="1600" height="978" loading="lazy"><figcaption>Notre laboratoire, à Brioude</figcaption></figure>
+<figure class="photo m2"><img src="assets/photos/recherche-bordeaux.jpg" alt="Campus Université de Bordeaux" width="1430" height="766" loading="lazy"></figure>
+<blockquote class="quote panel"><p>«&nbsp;S'engager est le meilleur moyen de faire évoluer son activité&nbsp;»</p><cite><img src="assets/team/christophe-peres.png" alt="" width="44" height="44">Christophe Pérès, fondateur</cite></blockquote>
 </div>
 </div></section>
 
-<section class="sec sec-soft" aria-labelledby="cert-h"><div class="wrap">
-<h2 id="cert-h">Certifications et partenaires</h2>
-<ul class="partners">
+<section class="sec sec-soft" aria-labelledby="val-h"><div class="wrap">
+<h2 id="val-h">Nos valeurs</h2>
+<ul class="values">
+<li class="panel lift" data-reveal><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></span><b>Engagement</b><p>Dans nos accompagnements et nos pratiques</p></li>
+<li class="panel lift" data-reveal style="--d:.08s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-handshake"/></svg></span><b>Partage</b><p>Des connaissances, expertises et expériences</p></li>
+<li class="panel lift" data-reveal style="--d:.16s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg></span><b>Rigueur</b><p>Scientifique et méthodologique, sans greenwashing</p></li>
+<li class="panel lift" data-reveal style="--d:.24s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg></span><b>Détermination</b><p>Pour aller plus loin ensemble et relever les défis</p></li>
+</ul>
+<ul class="partners" aria-label="Certifications et partenaires">
 <li><img src="https://github.com/user-attachments/assets/72ee6b8b-cc7d-4beb-92f1-797336f933bf" alt="Qualiopi – processus certifié, Actions de formation"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Qualiopi (via Analytiss)</span></li>
 <li><img src="https://github.com/user-attachments/assets/2317682e-cad8-462c-8d78-312238bbc307" alt="CIR – Crédit Impôt Recherche"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Agréé CIR</span></li>
 <li><img src="https://github.com/user-attachments/assets/9b4d19d2-c2cd-4acd-9a9e-b2560ad00858" alt="République Française – ADEME, Agence de la Transition Écologique"><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Partenaire ADEME</span></li>
@@ -504,48 +569,66 @@ p{text-wrap:pretty}
 </ul>
 </div></section>
 
-<section class="sec" aria-labelledby="trade-h"><div class="wrap">
-<h2 id="trade-h">De la mesure d'impact au déploiement opérationnel</h2>
-<ul class="trades"><li><span class="trade-ic"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></span><div><h3>Diagnostic & mesure d'impact</h3><small>Bilans GES, ACV, audits environnementaux</small><p>Nous accompagnons les organisations dans la compréhension de leurs enjeux, par l'identification, la mesure et l'analyse de leurs impacts environnementaux.</p></div></li><li><span class="trade-ic"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg></span><div><h3>Conseil stratégique</h3><small>Stratégie et feuille de route</small><p>Nous guidons les organisations dans la formalisation de leurs engagements en matière d'atténuation de leurs impacts, par la construction d'une stratégie et d'une feuille de route adaptées.</p></div></li><li><span class="trade-ic"><svg class="ic" aria-hidden="true"><use href="#i-rocket"/></svg></span><div><h3>Déploiement opérationnel</h3><small>Plan d'actions, financement, suivi</small><p>Nous sommes aux côtés des organisations dans le déploiement, le financement et le suivi de leur plan d'actions, ainsi que l'intégration des enjeux dans leurs métiers et pratiques.</p></div></li><li><span class="trade-ic"><svg class="ic" aria-hidden="true"><use href="#i-megaphone"/></svg></span><div><h3>Conduite du changement</h3><small>Communication, sensibilisation, formation</small><p>Nous accompagnons les organisations dans le déploiement d'actions de communication, de sensibilisation et de formation, et dans la valorisation de leurs engagements.</p></div></li><li><span class="trade-ic"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></span><div><h3>Expertise analytique & maintenance</h3><small>Instruments reconditionnés, économie circulaire</small><p>Sourcing et déploiement d'instruments analytiques reconditionnés, contrats de maintenance, extension de durée de vie des équipements de laboratoire. Réparation et économie circulaire appliquée.</p></div></li><li><span class="trade-ic"><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg></span><div><h3>Chémo-informatique & algorithmie</h3><small>Données analytiques, algorithmes génétiques</small><p>Accompagnement dans la gestion des données analytiques, algorithmes génétiques, traitement du signal pour les laboratoires.</p></div></li></ul>
-</div></section>
-
-<section class="sec sec-soft" aria-labelledby="poles-h"><div class="wrap">
+<section class="sec poles-sec" aria-labelledby="poles-h"><div class="wrap">
 <h2 id="poles-h">Trois pôles pour transformer votre laboratoire</h2>
 <p class="sec-intro">Un accompagnement pluridisciplinaire unique, porté par 3 pôles d'expertise : expertise analytique & instrumentation ; durabilité, ACV & bilans GES ; chémo-informatique & IA.</p>
 <ul class="poles">
-<li><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg><h3>Expertise analytique & instrumentation</h3><ul class="dots"><li>Conseil en stratégies analytiques</li><li>Audit de performance</li><li>Maintenance instrumentale</li><li>Matériel reconditionné</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg><h3>Durabilité, résilience & criticité</h3><ul class="dots"><li>ACV ISO 14040/44</li><li>Bilans GES / Bilan Carbone®</li><li>Éco-conception de méthodes</li><li>Pilotage des consommations</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg><h3>Chémo-informatique & IA</h3><ul class="dots"><li>Traitement de données labo</li><li>Solutions algorithmiques</li><li>Bases de données sur mesure</li><li>Formations spécialisées</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+<li class="panel lift" data-reveal><div class="pole-art p1" aria-hidden="true"><svg class="big" aria-hidden="true"><use href="#i-microscope"/></svg><canvas class="trace" data-peaks="[[0.25,0.5,0.03],[0.55,0.85,0.025],[0.8,0.35,0.03]]"></canvas></div><div class="pole-body"><h3>Expertise analytique & instrumentation</h3><ul class="dots"><li>Conseil en stratégies analytiques</li><li>Audit de performance</li><li>Maintenance instrumentale</li><li>Matériel reconditionné</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></li>
+<li class="panel lift" data-reveal style="--d:.1s"><div class="pole-art p2" aria-hidden="true"><svg class="big" aria-hidden="true"><use href="#i-leaf"/></svg><svg class="cycle" viewBox="0 0 120 120"><circle cx="60" cy="60" r="44"/><circle cx="60" cy="16" r="5"/><circle cx="98" cy="82" r="5"/><circle cx="22" cy="82" r="5"/></svg></div><div class="pole-body"><h3>Durabilité, résilience & criticité</h3><ul class="dots"><li>ACV ISO 14040/44</li><li>Bilans GES / Bilan Carbone®</li><li>Éco-conception de méthodes</li><li>Pilotage des consommations</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></li>
+<li class="panel lift" data-reveal style="--d:.2s"><div class="pole-art p3" aria-hidden="true"><svg class="big" aria-hidden="true"><use href="#i-laptop"/></svg><svg class="net" viewBox="0 0 160 100"><path d="M20 70 50 30 85 60 120 25 145 55"/><circle cx="20" cy="70" r="4"/><circle cx="50" cy="30" r="4"/><circle cx="85" cy="60" r="4"/><circle cx="120" cy="25" r="4"/><circle cx="145" cy="55" r="4"/></svg></div><div class="pole-body"><h3>Chémo-informatique & IA</h3><ul class="dots"><li>Traitement de données labo</li><li>Solutions algorithmiques</li><li>Bases de données sur mesure</li><li>Formations spécialisées</li></ul><a class="more" href="services.html">En savoir plus <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div></li>
 </ul>
 </div></section>
 
-<section class="sec dark" aria-labelledby="commit-h"><div class="wrap">
+<section class="sec sec-soft" aria-labelledby="trade-h"><div class="wrap">
+<h2 id="trade-h">De la mesure d'impact au déploiement opérationnel</h2>
+<ul class="trades">
+<li class="panel lift" data-reveal><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></span><h3>Diagnostic & mesure d'impact</h3><small>Bilans GES, ACV, audits environnementaux</small><p>Nous accompagnons les organisations dans la compréhension de leurs enjeux, par l'identification, la mesure et l'analyse de leurs impacts environnementaux.</p></li>
+<li class="panel lift" data-reveal style="--d:.06s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg></span><h3>Conseil stratégique</h3><small>Stratégie et feuille de route</small><p>Nous guidons les organisations dans la formalisation de leurs engagements en matière d'atténuation de leurs impacts, par la construction d'une stratégie et d'une feuille de route adaptées.</p></li>
+<li class="panel lift" data-reveal style="--d:.12s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-rocket"/></svg></span><h3>Déploiement opérationnel</h3><small>Plan d'actions, financement, suivi</small><p>Nous sommes aux côtés des organisations dans le déploiement, le financement et le suivi de leur plan d'actions, ainsi que l'intégration des enjeux dans leurs métiers et pratiques.</p></li>
+<li class="panel lift" data-reveal><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-megaphone"/></svg></span><h3>Conduite du changement</h3><small>Communication, sensibilisation, formation</small><p>Nous accompagnons les organisations dans le déploiement d'actions de communication, de sensibilisation et de formation, et dans la valorisation de leurs engagements.</p></li>
+<li class="panel lift" data-reveal style="--d:.06s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></span><h3>Expertise analytique & maintenance</h3><small>Instruments reconditionnés, économie circulaire</small><p>Sourcing et déploiement d'instruments analytiques reconditionnés, contrats de maintenance, extension de durée de vie des équipements de laboratoire. Réparation et économie circulaire appliquée.</p></li>
+<li class="panel lift" data-reveal style="--d:.12s"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg></span><h3>Chémo-informatique & algorithmie</h3><small>Données analytiques, algorithmes génétiques</small><p>Accompagnement dans la gestion des données analytiques, algorithmes génétiques, traitement du signal pour les laboratoires.</p></li>
+</ul>
+</div></section>
+
+<section class="sec team-sec" aria-labelledby="team-h"><div class="wrap">
+<div class="team-head"><h2 id="team-h">Notre équipe</h2><a class="more" href="equipe.html">Voir toute l'équipe <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+<ul class="team">
+<li data-reveal><a class="panel lift" href="equipe.html"><img src="assets/team/christophe-peres.png" alt="" width="466" height="551"><b>Christophe Pérès</b><span>Fondateur — Pôle méthodes & instrumentation</span></a></li>
+<li data-reveal style="--d:.06s"><a class="panel lift" href="equipe.html"><img src="assets/team/bastien-raccary.png" alt="" width="562" height="668"><b>Bastien Raccary</b><span>Responsable pôle durabilité — ACV & stratégie low impact</span></a></li>
+<li data-reveal style="--d:.12s"><a class="panel lift" href="equipe.html"><img src="assets/team/clement-truan.png" alt="" width="562" height="668"><b>Clément Truan</b><span>Responsable pôle chémo-informatique & IA</span></a></li>
+<li data-reveal style="--d:.18s"><a class="panel lift" href="equipe.html"><img src="assets/team/xavier-rouessac.png" alt="" width="562" height="668"><b>Xavier Rouessac</b><span>Responsable support & formation — Expert LC/GC/MS</span></a></li>
+<li data-reveal style="--d:.24s"><a class="panel lift" href="equipe.html"><img src="assets/team/thomas-vandewattyne.png" alt="" width="562" height="668"><b>Thomas Vandewattyne</b><span>Expert chémo-informatique — Doctorant IA appliquée</span></a></li>
+</ul>
+</div></section>
+
+<section class="sec dark commit-sec" aria-labelledby="commit-h"><div class="wrap">
 <h2 id="commit-h">Des pratiques engagées au quotidien</h2>
 <p class="sec-intro">Notre politique environnementale structure nos actions autour de 3 axes et 6 engagements concrets.</p>
 <ul class="commit">
-<li><svg class="ic" aria-hidden="true"><use href="#i-train-front"/></svg><div><b>Transports bas carbone</b><p>Priorisation train et vélo, regroupement des RDV par zone géographique, visioconférence systématique. 61 % de nos km parcourus en train en 2025.</p></div></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg><div><b>Télétravail encouragé</b><p>Réduction des déplacements quotidiens et de l'empreinte carbone associée. Recrutement régional priorisé pour réduire les distances domicile-client.</p></div></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg><div><b>Numérique responsable</b><p>Achat de matériel informatique reconditionné uniquement (sauf irréparabilité), extension de garantie, réparation prioritaire.</p></div></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-scale"/></svg><div><b>Éthique & loyauté</b><p>CDI favorisés, rémunération des stagiaires dès le 1er jour, écart salarial de 1 à 3 maximum. Confidentialité stricte sur les données clients (RGPD).</p></div></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-graduation-cap"/></svg><div><b>Formation continue</b><p>Fresques, myCO₂, ateliers. Sensibilisation régulière des collaborateur·ices aux enjeux environnementaux. Formations 100 % accessibles PMR.</p></div></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg><div><b>Alimentation responsable</b><p>Pas de viande ni de poisson lors de nos workshops et événements. Alternatives végétales systématiquement proposées.</p></div></li>
+<li class="panel-dark lift" data-reveal><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-train-front"/></svg></span><b>Transports bas carbone</b><p>Priorisation train et vélo, regroupement des RDV par zone géographique, visioconférence systématique. 61 % de nos km parcourus en train en 2025.</p></li>
+<li class="panel-dark lift" data-reveal style="--d:.06s"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg></span><b>Télétravail encouragé</b><p>Réduction des déplacements quotidiens et de l'empreinte carbone associée. Recrutement régional priorisé pour réduire les distances domicile-client.</p></li>
+<li class="panel-dark lift" data-reveal style="--d:.12s"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg></span><b>Numérique responsable</b><p>Achat de matériel informatique reconditionné uniquement (sauf irréparabilité), extension de garantie, réparation prioritaire.</p></li>
+<li class="panel-dark lift" data-reveal><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-scale"/></svg></span><b>Éthique & loyauté</b><p>CDI favorisés, rémunération des stagiaires dès le 1er jour, écart salarial de 1 à 3 maximum. Confidentialité stricte sur les données clients (RGPD).</p></li>
+<li class="panel-dark lift" data-reveal style="--d:.06s"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-graduation-cap"/></svg></span><b>Formation continue</b><p>Fresques, myCO₂, ateliers. Sensibilisation régulière des collaborateur·ices aux enjeux environnementaux. Formations 100 % accessibles PMR.</p></li>
+<li class="panel-dark lift" data-reveal style="--d:.12s"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg></span><b>Alimentation responsable</b><p>Pas de viande ni de poisson lors de nos workshops et événements. Alternatives végétales systématiquement proposées.</p></li>
 </ul>
 </div></section>
 
 <section class="sec" id="bilan-ges" aria-labelledby="ges-h"><div class="wrap">
 <h2 id="ges-h">Notre bilan GES 2025</h2>
-<div class="ges-head">
-<div class="ges-total">6,34<small>tCO₂e</small></div>
+<div class="ges-head panel">
+<div class="ges-total"><span data-count>6,34</span><small>tCO₂e</small></div>
 <div>
 <p>~1,15 tCO₂e par personne. 85 % de notre empreinte provient des déplacements, principalement liés au transport de matériel analytique volumineux.</p>
 <p class="ges-goal"><svg class="ic" aria-hidden="true"><use href="#i-trending-down"/></svg><span>Objectif 2028 : 3,80 tCO₂e (−40 %), zéro avion dès 2027</span></p>
 </div>
 </div>
 <div class="ges-grid">
-<div>
+<div class="panel ges-card" data-reveal>
 <h3>Détail par poste</h3>
 <p class="unit">Émissions 2025, en tCO₂e et en part du total</p>
-<ul class="bars">
+<ul class="bars grow">
 <li><span class="lbl">Voiture</span><span class="bar"><i style="--w:61.0%"><span>3,87 tCO₂e · 61,0 %</span></i></span></li>
 <li><span class="lbl">Avion</span><span class="bar"><i style="--w:20.5%"></i><span>1,30 tCO₂e · 20,5 %</span></span></li>
 <li><span class="lbl">Achats</span><span class="bar"><i style="--w:6.2%"></i><span>0,39 tCO₂e · 6,2 %</span></span></li>
@@ -556,10 +639,10 @@ p{text-wrap:pretty}
 <p class="total"><span>Total</span><b>6,34 tCO₂e · 100 %</b></p>
 <p class="note">85 % de notre empreinte carbone est liée aux déplacements, principalement la voiture pour le transport de matériel analytique volumineux (HPLC, GC-MS). L'avion représente le second poste malgré un usage limité.</p>
 </div>
-<div>
+<div class="panel ges-card" data-reveal style="--d:.1s">
 <h3>Répartition des déplacements</h3>
 <p class="unit">Distances parcourues en 2025, en km et en part du total</p>
-<ul class="bars">
+<ul class="bars grow">
 <li><span class="lbl">Train</span><span class="bar"><i style="--w:60.6%"><span>43 660 km · 60,6 %</span></i></span></li>
 <li><span class="lbl">Voiture</span><span class="bar"><i style="--w:29.5%"></i><span>21 240 km · 29,5 %</span></span></li>
 <li><span class="lbl">Avion</span><span class="bar"><i style="--w:9.9%"></i><span>7 140 km · 9,9 %</span></span></li>
@@ -570,11 +653,14 @@ p{text-wrap:pretty}
 </div>
 </div></section>
 
-<section class="sec sec-soft close" aria-labelledby="cl-h"><div class="wrap">
+<section class="sec dark close-dark" aria-labelledby="cl-h">
+<canvas class="trace close-trace" aria-hidden="true" data-peaks="[[0.08,0.3,0.02],[0.22,0.6,0.015],[0.37,0.4,0.02],[0.55,0.95,0.014],[0.68,0.5,0.018],[0.86,0.7,0.016]]" data-color="#2a8a9a" data-grid="rgba(255,255,255,0)"></canvas>
+<div class="wrap" data-reveal>
 <h2 id="cl-h">Rejoignez le mouvement</h2>
 <p>Vous souhaitez engager votre laboratoire dans une démarche durable ? Parlons-en.</p>
-<div class="row-actions"><a class="btn btn-deep" href="contact.html">Nous contacter <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a class="btn btn-ghost" href="formations.html">Voir nos formations <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
-</div></section>
+<div class="row-actions"><a class="btn btn-gold" href="contact.html">Nous contacter <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a class="btn btn-line" href="formations.html">Voir nos formations <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+</div>
+</section>
 
 </main>
 <footer class="footer"><div class="wrap">
@@ -612,6 +698,33 @@ document.documentElement.classList.add('js');
     document.querySelectorAll('.row[data-cat]').forEach(function(r){var on=f==='all'||r.dataset.cat===f;r.hidden=!on;if(on)n++});
     var s=document.getElementById('count');if(s)s.textContent=n+(n>1?' formations':' formation');
   })});
+})();
+
+// v2.1 : apparitions, compteurs, barres, tracé chromatographique (décoratif)
+(function(){
+  var calm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.dataset.count!==undefined)count(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'}):null;
+  document.querySelectorAll('[data-reveal],.bars.grow,[data-count]').forEach(function(el){if(io)io.observe(el);else el.classList.add('in')});
+  function count(el){
+    if(calm)return;var txt=el.textContent,m=txt.match(/[\d\s]+([,.]\d+)?/);if(!m)return;
+    var raw=m[0],dec=(raw.split(/[,.]/)[1]||'').length,target=parseFloat(raw.replace(/\s/g,'').replace(',','.')),t0=null,dur=1400;
+    function fmt(v){var s=v.toFixed(dec).replace('.',',');return dec?s:Math.round(v).toLocaleString('fr-FR')}
+    function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur);k=1-Math.pow(1-k,4);el.textContent=txt.replace(raw,fmt(target*k));if(k<1)requestAnimationFrame(step);else el.textContent=txt}
+    requestAnimationFrame(step);
+  }
+  // Tracé : pics gaussiens dessinés de gauche à droite, une fois. Purement illustratif.
+  document.querySelectorAll('canvas.trace').forEach(function(cv){
+    var ctx=cv.getContext('2d'),peaks=JSON.parse(cv.dataset.peaks||'[]'),col=cv.dataset.color||'#e8c88a',grid=cv.dataset.grid||'rgba(255,255,255,.08)',W,H,dpr;
+    function size(){dpr=Math.min(2,window.devicePixelRatio||1);var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+    function y(x){var v=0;peaks.forEach(function(p){v+=p[1]*Math.exp(-Math.pow((x-p[0])/p[2],2)/2)});v+=0.012*Math.sin(x*140)+0.008*Math.sin(x*57);return H*.88-v*H*.78}
+    function draw(f){ctx.clearRect(0,0,W,H);ctx.strokeStyle=grid;ctx.lineWidth=1;for(var i=1;i<6;i++){var gy=H*i/6;ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke()}
+      var n=Math.max(2,Math.floor(W*f));ctx.beginPath();for(var x=0;x<=n;x++){var u=x/W;x?ctx.lineTo(x,y(u)):ctx.moveTo(x,y(u))}
+      ctx.lineWidth=2;ctx.strokeStyle=col;ctx.lineJoin='round';ctx.stroke();
+      ctx.lineTo(n,H);ctx.lineTo(0,H);ctx.closePath();var g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,col+'55');g.addColorStop(1,col+'00');ctx.fillStyle=g;ctx.fill();
+      if(f<1){ctx.fillStyle=col;ctx.beginPath();ctx.arc(n,y(n/W),3.5,0,7);ctx.fill()}}
+    size();if(calm){draw(1)}else{var t0=null;(function a(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/3200);draw(1-Math.pow(1-k,3));if(k<1)requestAnimationFrame(a)})(performance.now())}
+    window.addEventListener('resize',function(){size();draw(1)});
+  });
 })();
 </script>
 </body>
